@@ -55,13 +55,28 @@ def normalize_name(name: str) -> str:
     "Jason S. Warnick" and "jason warnick" map to the same key. Nicknames ("Vlad" vs
     "Vladimir") are deliberately not merged here.
     """
-    text = unicodedata.normalize("NFKD", name)
+    text = unicodedata.normalize("NFKD", display_name(name))
     text = "".join(c for c in text if not unicodedata.combining(c)).lower().replace("’", "'")
     text = re.sub(r"[^a-z\s'-]", " ", text).replace("'", "").replace("-", " ")
     tokens = [t for t in text.split() if t not in _HONORIFICS]
     if len(tokens) > 2:
         tokens = [tokens[0], *[t for t in tokens[1:-1] if len(t) > 1], tokens[-1]]
     return " ".join(tokens)
+
+
+# Professional credentials after a name ("Stephanie Guild, CFA", "Jane Doe PhD"). Removed
+# from the displayed name only; facts keep the name exactly as the source wrote it.
+# Generational suffixes (Jr., III) are part of the name and stay.
+_CREDENTIAL_SUFFIX = re.compile(
+    r"(?:,?\s+(?:CFA|CPA|CFP|CAIA|FRM|CISSP|PhD|Ph\.D\.?|MBA|MD|M\.D\.?|JD|J\.D\.?|Esq\.?"
+    r"|PE|P\.E\.?|DDS|LLM|LL\.M\.?))+\s*$"
+)
+
+
+def display_name(name: str) -> str:
+    """'Stephanie Guild, CFA' -> 'Stephanie Guild'. Never empties a name."""
+    stripped = _CREDENTIAL_SUFFIX.sub("", name.strip()).strip().rstrip(",")
+    return stripped or name.strip()
 
 
 def utc_now_iso() -> str:

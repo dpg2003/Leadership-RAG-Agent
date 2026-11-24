@@ -15,7 +15,8 @@ from leadership.pipeline.prefilter import select_text
 from leadership.pipeline.resolve import resolve_claims
 from leadership.pipeline.titles import classify_title
 from leadership.pipeline.validate import Claim, Rejection, validate
-from leadership.sources.base import RawDocument
+from leadership.sources.base import Company, RawDocument
+from leadership.sources.fetch import html_blocks, html_to_text
 
 TODAY = date(2026, 11, 24)
 
@@ -334,9 +335,9 @@ def test_prefilter_uses_the_sec_executive_officers_span():
     assert select_text(d)[0] == PROXY_TEXT
 
 
-def test_evidence_is_reanchored_to_the_literal_heading_when_the_quote_rewords_the_title():
+def test_evidence_is_reanchored_within_one_line():
     text = (
-        "Chris Koegel\nVice President, Corporate Finance & Investor Relations\n"
+        "Chris Koegel, Vice President, Corporate Finance & Investor Relations\n"
         "Chris Koegel is the Vice President of Corporate Finance and Investor Relations."
     )
     d = doc("https://investors.x.test/m/ck", text, "search")
@@ -347,22 +348,32 @@ def test_evidence_is_reanchored_to_the_literal_heading_when_the_quote_rewords_th
     (claim,), rejections = validate(d, ex)
     assert not rejections and claim.reanchored
     assert claim.evidence_snippet == (
-        "Chris Koegel Vice President, Corporate Finance & Investor Relations"
+        "Chris Koegel, Vice President, Corporate Finance & Investor Relations"
     )
 
 
-def test_reanchor_handles_table_cells_and_refuses_distant_matches():
-    text = (
-        "| Date: | May 8, 2026 |\n| | | | Name: Shiv Verma |\n"
-        "| | | | Title: Chief Financial Officer |"
-    )
-    d = doc("https://sec.test/8k", text, "search")
+def test_reanchor_refuses_name_and_title_on_different_lines():
+    """A heading with the name above a line with the title is two blocks: not re-anchored."""
+    text = "Chris Koegel\nVice President, Investor Relations\nChris Koegel leads IR."
+    d = doc("https://investors.x.test/m/ck", text, "search")
     ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
-        person("Shiv Verma", "Chief Financial Officer",
-               "Name: Shiv Verma | | | | Title: Chief Financial Officer"),
+        person("Chris Koegel", "Vice President, Investor Relations", "Chris Koegel leads IR."),
     ])  # fmt: skip
-    (claim,), _ = validate(d, ex)
-    assert claim.reanchored and "Shiv Verma" in claim.evidence_snippet
+    claims, (rej,) = validate(d, ex)
+    assert not claims and rej.reason == "title not found in the evidence snippet"
+
+
+def test_reanchor_uses_markdown_table_cells_as_blocks():
+    text = "| Shiv Verma, Chief Financial Officer | Ann Lee, Chief Operating Officer |"
+    d = doc("https://x.test/t", text, "search")
+    ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
+        person("Shiv Verma", "Chief Financial Officer", "Shiv Verma - Chief Financial Officer"),
+        # Wrong pairing by the model: the neighbouring cell's title.
+        person("Shiv Verma", "Chief Operating Officer", "Shiv Verma - Chief Operating Officer"),
+    ])  # fmt: skip
+    (claim,), (rej,) = validate(d, ex)
+    assert claim.reanchored and claim.evidence_snippet == "Shiv Verma, Chief Financial Officer"
+    assert rej.title == "Chief Operating Officer"
 
     far = doc("https://x.test/far", "Jane Doe wrote this.\n" + "filler " * 80 + "\nHead of Sales")
     ex = Extraction(
@@ -372,6 +383,55 @@ def test_reanchor_handles_table_cells_and_refuses_distant_matches():
     )
     claims, (rej,) = validate(far, ex)
     assert not claims and rej.reason == "evidence snippet not found in the source text"
+
+
+def test_team_grid_never_pairs_a_name_with_the_neighbours_title():
+    """Cards in a grid: each <li> is one block. The model pairs Bob with Alice's title; the
+    old 200-character window would have re-anchored 'Chief Executive Officer Bob Jones'."""
+    html = (
+        "<html><body><ul class='grid'>"
+        "<li><strong>Alice Smith</strong> Chief Executive Officer</li>"
+        "<li><strong>Bob Jones</strong> Chief Technology Officer</li>"
+        "</ul>"
+        "<div class='card'><h3>Carol White</h3><p>Chief Financial Officer</p></div>"
+        "</body></html>"
+    )
+    text, _ = html_to_text(html)
+    d = RawDocument("https://x.test/team", "company_site", "t", text, "2026-11-24T00:00:00+00:00",
+                    "x.txt", {}, blocks=html_blocks(html))  # fmt: skip
+    ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
+        person("Bob Jones", "Chief Executive Officer", "Bob Jones, Chief Executive Officer"),
+        person("Bob Jones", "Chief Technology Officer", "Bob Jones, Chief Technology Officer"),
+        # Name in <h3>, title in <p>: different blocks, so not re-anchored either.
+        person("Carol White", "Chief Financial Officer", "Carol White, CFO"),
+    ])  # fmt: skip
+    claims, rejections = validate(d, ex)
+    assert [(c.full_name, c.title, c.evidence_snippet) for c in claims] == [
+        ("Bob Jones", "Chief Technology Officer", "Bob Jones Chief Technology Officer")
+    ]
+    assert sorted((r.full_name, r.title) for r in rejections) == [
+        ("Bob Jones", "Chief Executive Officer"),
+        ("Carol White", "Chief Financial Officer"),
+    ]
+
+
+def test_reanchored_single_source_is_low_and_corroboration_lifts_it():
+    page = doc("https://acme.test/team", "Ann Lee, Head of Data\nAnn Lee leads the data team.")
+    ex = Extraction(
+        page_published_date=None,
+        published_date_snippet=None,
+        people=[person("Ann Lee", "Head of Data", "Ann Lee leads the data team.")],
+    )
+    claims, _ = validate(page, ex)
+    assert claims[0].reanchored
+    res = resolve_claims(claims, today=TODAY)
+    assert by_name(res, "Ann Lee").roles[0].confidence == "low"  # company site would be medium
+
+    other = doc("https://news.test/a", "Acme's Head of Data, Ann Lee, said...", "search")
+    ex2 = Extraction(page_published_date=None, published_date_snippet=None, people=[
+        person("Ann Lee", "Head of Data", "Acme's Head of Data, Ann Lee, said")])  # fmt: skip
+    res = resolve_claims(claims + validate(other, ex2)[0], today=TODAY)
+    assert by_name(res, "Ann Lee").roles[0].confidence == "high"
 
 
 def test_promotion_supersedes_older_title_in_same_function():
@@ -431,7 +491,7 @@ def test_proxy_retired_role_reports_the_retired_claims():
 
 
 def test_reanchored_claims_are_listed_for_review():
-    d = doc("https://x.test/m", "Ann Lee\nHead of Data\nAnn Lee leads the data team.")
+    d = doc("https://x.test/m", "Ann Lee, Head of Data\nAnn Lee leads the data team.")
     ex = Extraction(
         page_published_date=None,
         published_date_snippet=None,
@@ -439,4 +499,285 @@ def test_reanchored_claims_are_listed_for_review():
     )
     claims, _ = validate(d, ex)
     res = resolve_claims(claims, today=TODAY)
-    assert res.review["reanchored"][0]["evidence_snippet"] == "Ann Lee Head of Data"
+    assert res.review["reanchored"][0]["evidence_snippet"] == "Ann Lee, Head of Data"
+
+
+# --------------------------------------------------------------------- affiliation (D22)
+
+CAMPFIRE = Company("Campfire", "meetcampfire.com", "https://campfire.ai/")
+
+
+def _one(d, name, title, snippet, company=CAMPFIRE):
+    ex = Extraction(page_published_date=None, published_date_snippet=None,
+                    people=[person(name, title, snippet)])  # fmt: skip
+    return validate(d, ex, company)
+
+
+def test_byline_on_company_blog_does_not_state_affiliation():
+    d = doc("https://campfire.ai/blog/atlar",
+            "Nick Jezienicki\nHead of Technology Partnerships · May 12, 2026")  # fmt: skip
+    claims, (rej,) = _one(d, "Nick Jezienicki", "Head of Technology Partnerships",
+                          "Nick Jezienicki Head of Technology Partnerships")  # fmt: skip
+    assert not claims and rej.reason == "evidence does not state an affiliation with Campfire"
+
+
+@pytest.mark.parametrize(
+    ("url", "source_type", "text", "name", "title", "snippet"),
+    [
+        ("https://news.test/44993", "search",
+         "Campfire appointed Alexandra Roveda vice president of enterprise Friday.",
+         "Alexandra Roveda", "vice president of enterprise",
+         "Campfire appointed Alexandra Roveda vice president of enterprise"),
+        ("https://campfire.ai/blog/stealth", "company_site",
+         "At the same time, my Co-founder / CTO, Fernando San Martin, led back-end engineering.",
+         "Fernando San Martin", "Co-founder / CTO", "my Co-founder / CTO, Fernando San Martin"),
+        ("https://campfire.ai/team", "company_site", "Paul Nichols\nCTO",
+         "Paul Nichols", "CTO", "Paul Nichols CTO"),
+        ("https://investors.campfire.ai/management/paul-nichols", "search", "Paul Nichols\nCTO",
+         "Paul Nichols", "CTO", "Paul Nichols CTO"),
+        ("https://www.sec.gov/x/def14a.htm", "sec_filing", "Paul Nichols 41 CTO",
+         "Paul Nichols", "CTO", "Paul Nichols 41 CTO"),
+    ],
+)  # fmt: skip
+def test_affiliation_stated_by_name_people_page_first_person_or_own_filing(
+    url, source_type, text, name, title, snippet
+):
+    claims, rejections = _one(doc(url, text, source_type), name, title, snippet)
+    assert claims and not rejections
+
+
+def test_third_party_page_without_the_company_name_is_rejected():
+    d = doc("https://blog.other.test/post", "Paul Nichols, CTO, spoke at the event.", "search")
+    claims, (rej,) = _one(d, "Paul Nichols", "CTO", "Paul Nichols, CTO, spoke at the event.")
+    assert not claims and "affiliation" in rej.reason
+
+
+# ------------------------------------------------------------- legal chiefs (D4) and founders
+
+
+def test_general_counsel_is_c_level_only_when_in_the_proxy():
+    proxy = doc("https://sec.test/def14a", "Dan Gallagher 52 Chief Legal Officer", "sec_filing",
+                form="DEF 14A", filing_date="2026-04-22")  # fmt: skip
+    ir = doc("https://investors.robinhood.test/management/lm",
+             "Lucas Moskowitz, Senior Vice President, General Counsel", "search")  # fmt: skip
+    claims = validate(proxy, Extraction(page_published_date=None, published_date_snippet=None,
+                      people=[person("Dan Gallagher", "Chief Legal Officer",
+                                     "Dan Gallagher 52 Chief Legal Officer")]))[0]  # fmt: skip
+    claims += validate(
+        ir,
+        Extraction(
+            page_published_date=None,
+            published_date_snippet=None,
+            people=[
+                person(
+                    "Lucas Moskowitz",
+                    "Senior Vice President, General Counsel",
+                    "Lucas Moskowitz, Senior Vice President, General Counsel",
+                )
+            ],
+        ),
+    )[0]
+    res = resolve_claims(claims, today=TODAY)
+    (gallagher,) = by_name(res, "Dan Gallagher").roles
+    (moskowitz,) = by_name(res, "Lucas Moskowitz").roles
+    assert (gallagher.seniority, gallagher.function) == ("c_level", "legal")
+    assert (moskowitz.seniority, moskowitz.function, moskowitz.is_current) == (
+        "head",
+        "legal",
+        True,
+    )
+    assert "seat_conflicts" not in res.review
+
+
+def test_founder_without_a_current_operating_role_is_historical():
+    d = doc("https://acme.test/about", "Baiju Bhatt, Co-founder\nJohn Glasgow, CEO & Founder")
+    ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
+        person("Baiju Bhatt", "Co-founder", "Baiju Bhatt, Co-founder"),
+        person("John Glasgow", "CEO & Founder", "John Glasgow, CEO & Founder"),
+    ])  # fmt: skip
+    res = resolve_claims(validate(d, ex)[0], today=TODAY)
+    baiju, john = by_name(res, "Baiju Bhatt"), by_name(res, "John Glasgow")
+    assert not baiju.is_current and "historical" in baiju.roles[0].note
+    assert res.review["founder_historical"][0]["person"] == "Baiju Bhatt"
+    assert john.is_current and all(r.is_current for r in john.roles)
+
+
+def test_sec_8k_departure_after_the_proxy_wins():
+    """Pinner: listed as CTO in the 2026-04-22 proxy; an 8-K filed 2026-05-08 says he is
+    separating. The 8-K is an SEC filing, newer than the proxy: not current."""
+    proxy = doc("https://sec.test/def14a", "Jeffrey Pinner 45 Chief Technology Officer",
+                "sec_filing", form="DEF 14A", filing_date="2026-04-22")  # fmt: skip
+    eightk = doc("https://sec.test/8k", "Jeffrey Pinner, Chief Technology Officer, would be "
+                 "separating from his position.", "sec_filing", form="8-K",
+                 filing_date="2026-05-08")  # fmt: skip
+    claims = validate(
+        proxy,
+        Extraction(
+            page_published_date=None,
+            published_date_snippet=None,
+            people=[
+                person(
+                    "Jeffrey Pinner",
+                    "Chief Technology Officer",
+                    "Jeffrey Pinner 45 Chief Technology Officer",
+                )
+            ],
+        ),
+    )[0]
+    claims += validate(
+        eightk,
+        Extraction(
+            page_published_date=None,
+            published_date_snippet=None,
+            people=[
+                person(
+                    "Jeffrey Pinner",
+                    "Chief Technology Officer",
+                    "Jeffrey Pinner, Chief Technology Officer, would be separating",
+                    status="former",
+                )
+            ],
+        ),
+    )[0]
+    (role,) = by_name(resolve_claims(claims, today=TODAY), "Jeffrey Pinner").roles
+    assert not role.is_current and role.as_of == "2026-05-08" and role.confidence == "high"
+
+
+def test_prefilter_sends_a_whole_8k():
+    d = doc("https://sec.test/8k", "Item 5.02 Departure of Officers\nJane Doe ...\nSIGNATURES",
+            "sec_filing", form="8-K")  # fmt: skip
+    text, note = select_text(d)
+    assert text.startswith("Item 5.02") and "8-K" in note
+
+
+# ------------------------------------------------------- display names and deterministic export
+
+
+def test_credential_suffix_is_dropped_from_the_display_name_but_kept_in_facts(tmp_path):
+    from dataclasses import replace
+
+    from leadership.pipeline.collect import _store, export_json
+    from leadership.storage.db import connect
+    from leadership.storage.repository import Repository
+
+    d = doc("https://investors.robinhood.test/management/sg",
+            "Stephanie Guild, CFA, Chief Investment Officer", "search")  # fmt: skip
+    ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
+        person("Stephanie Guild, CFA", "Chief Investment Officer",
+               "Stephanie Guild, CFA, Chief Investment Officer")])  # fmt: skip
+    claims = [replace(c, extracted_at="2026-11-01T00:00:00+00:00") for c in validate(d, ex)[0]]
+    res = resolve_claims(claims, today=TODAY)
+    assert res.people[0].full_name == "Stephanie Guild"
+
+    company = Company("Robinhood", "robinhood.test", "https://robinhood.test/")
+    db = tmp_path / "leadership.db"
+    outputs = []
+    for _ in range(2):
+        _store(db, company, res, {"duration_s": 0.0, "cost_usd": 0.1, "claims_accepted": 1}, 0)
+        outputs.append(export_json(db, "robinhood.test").read_bytes())
+    assert outputs[0] == outputs[1]  # unchanged data: byte-identical export
+
+    conn = connect(db)
+    try:
+        (p,) = Repository(conn).all_people("robinhood.test")
+    finally:
+        conn.close()
+    assert p["full_name"] == "Stephanie Guild"
+    assert {f["value"] for f in p["facts"] if f["field"] == "full_name"} == {"Stephanie Guild, CFA"}
+    assert p["updated_at"] == "2026-11-01T00:00:00+00:00"
+    assert b'"cost_usd"' not in outputs[0] and b'"duration_s"' not in outputs[0]
+
+
+def test_seat_is_the_c_title_not_the_function():
+    from leadership.pipeline.resolve import c_seat
+
+    assert c_seat("Co-founder / CTO") == c_seat("Chief Technology Officer")
+    assert c_seat("Chief Financial Officer") != c_seat("Chief Accounting Officer")
+    assert c_seat("Chairman and Chief Executive Officer") is None
+
+
+def test_older_s1_found_by_search_is_the_companys_own_filing():
+    rh = Company("Robinhood", "robinhood.com", "https://robinhood.com/", True, "HOOD", "0001783879")
+    d = doc("https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/s1.htm",
+            "Aparna Chennapragada 37 Chief Product Officer", "search")  # fmt: skip
+    snippet = "Aparna Chennapragada 37 Chief Product Officer"
+    claims, rejections = _one(d, "Aparna Chennapragada", "Chief Product Officer", snippet, rh)
+    assert claims and not rejections
+    other = doc("https://www.sec.gov/Archives/edgar/data/99/x/s1.htm", d.text, "search")
+    assert _one(other, "Aparna Chennapragada", "Chief Product Officer",
+                "Aparna Chennapragada 37 Chief Product Officer", company=rh)[1]  # fmt: skip
+
+
+def test_flattened_leadership_line_never_pairs_a_name_with_a_neighbours_title():
+    """The Robinhood IR leadership page arrives from search as one long line."""
+    text = (
+        "Vlad Tenev Chairman & Chief Executive Officer Pooja Anand Vice President, Enterprise "
+        "Risk Management and Internal Audit Robb Baldwin Vice President and General Manager, "
+        "TradePMR"
+    )
+    d = doc("https://investors.robinhood.test/governance/leadership", text, "search")
+    ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
+        person("Robb Baldwin", "Vice President, Enterprise Risk Management and Internal Audit",
+               "Robb Baldwin - VP"),
+        person("Pooja Anand", "Vice President and General Manager, TradePMR", "Pooja Anand - VP"),
+        person("Robb Baldwin", "Vice President and General Manager, TradePMR", "Robb Baldwin - VP"),
+        person("Pooja Anand", "Vice President, Enterprise Risk Management and Internal Audit",
+               "Pooja Anand - VP"),
+    ])  # fmt: skip
+    claims, rejections = validate(d, ex)
+    assert sorted((c.full_name, c.evidence_snippet) for c in claims) == [
+        ("Pooja Anand",
+         "Pooja Anand Vice President, Enterprise Risk Management and Internal Audit"),
+        ("Robb Baldwin", "Robb Baldwin Vice President and General Manager, TradePMR"),
+    ]  # fmt: skip
+    assert len(rejections) == 2
+
+
+def test_html_sentence_with_another_name_between_is_not_reanchored():
+    html = "<p>Jane Doe thanked Bob Ray, our Head of Sales.</p>"
+    text, _ = html_to_text(html)
+    d = RawDocument("https://acme.test/news", "company_site", "t", text, "2026-11-24", "x.txt",
+                    {}, blocks=html_blocks(html))  # fmt: skip
+    ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
+        person("Jane Doe", "Head of Sales", "Jane Doe, Head of Sales"),
+        person("Bob Ray", "Head of Sales", "Bob Ray, our Head of Sales."),
+    ])  # fmt: skip
+    claims, (rej,) = validate(d, ex)
+    assert [c.full_name for c in claims] == ["Bob Ray"] and rej.full_name == "Jane Doe"
+
+
+@pytest.mark.parametrize(
+    ("url", "snippet"),
+    [
+        ("https://campfire.ai/blog/atlar", "Nick Jezienicki, Head of US Partnerships"),
+        (
+            "https://campfire.ai/blog/about-atlar-integration",
+            "Nick Jezienicki, Head of Partnerships",
+        ),
+        ("https://campfire.ai/company/blog/atlar", "Nick Jezienicki, Head of Partnerships"),
+    ],
+)
+def test_affiliation_loopholes_are_closed(url, snippet):
+    d = doc(url, snippet)
+    claims, (rej,) = _one(d, "Nick Jezienicki", snippet.split(", ", 1)[1], snippet)
+    assert not claims and "affiliation" in rej.reason
+
+
+def test_stale_reanchored_role_is_listed_as_stale():
+    d = doc(
+        "https://acme.test/news/old", "April 22, 2021\nChristine Brown, VP of Product Operations"
+    )
+    ex = Extraction(page_published_date="2021-04-22", published_date_snippet="April 22, 2021",
+                    people=[person("Christine Brown", "VP of Product Operations",
+                                   "Christine Brown leads product ops")])  # fmt: skip
+    res = resolve_claims(validate(d, ex)[0], today=TODAY)
+    assert res.review["stale_single_source"][0]["person"] == "Christine Brown"
+    assert res.review["reanchored"][0]["person"] == "Christine Brown"
+
+
+def test_credential_suffixes_do_not_split_a_person():
+    from leadership.models import display_name, normalize_name
+
+    for name in ("Jane Doe, JD", "Jane Doe, M.D.", "Jane Doe CFP", "Jane Doe, PhD"):
+        assert normalize_name(name) == "jane doe" and display_name(name) == "Jane Doe"
+    assert display_name("John Smith Jr.") == "John Smith Jr."

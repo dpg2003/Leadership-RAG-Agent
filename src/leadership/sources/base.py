@@ -25,6 +25,9 @@ class RawDocument:
     fetched_at: str
     raw_path: str  # repo-relative path of the cached text file (`text` above)
     meta: dict = field(default_factory=dict)
+    # Innermost HTML block texts (fetch.html_blocks) for HTML sources; None means each
+    # line (and each markdown table cell) of `text` is a block. Re-anchoring only.
+    blocks: list[str] | None = None
 
 
 @dataclass

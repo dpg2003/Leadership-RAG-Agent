@@ -13,6 +13,7 @@ import json
 import logging
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Literal
 
@@ -20,6 +21,7 @@ import anthropic
 from pydantic import BaseModel, Field
 
 from leadership.config import require_setting
+from leadership.models import utc_now_iso
 from leadership.sources.base import Company, RawDocument
 
 log = logging.getLogger(__name__)
@@ -109,6 +111,7 @@ class ExtractResult:
     output_tokens: int = 0
     from_cache: bool = False
     error: str = ""
+    extracted_at: str | None = None
 
 
 @dataclass
@@ -167,12 +170,17 @@ class Extractor:
         if path.exists() and not self.reextract:
             data = json.loads(path.read_text(encoding="utf-8"))
             usage = data.get("usage", {})
+            if "extracted_at" not in data:  # caches written before this field existed
+                mtime = datetime.fromtimestamp(path.stat().st_mtime, UTC).replace(microsecond=0)
+                data["extracted_at"] = mtime.isoformat()
+                path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
             return ExtractResult(
                 doc,
                 Extraction.model_validate(data["extraction"]),
                 usage.get("input_tokens", 0),
                 usage.get("output_tokens", 0),
                 from_cache=True,
+                extracted_at=data["extracted_at"],
             )
         try:
             response = self._client_lazy().messages.parse(
@@ -194,8 +202,10 @@ class Extractor:
             result.error = f"no structured output (stop_reason={response.stop_reason})"
             return result
         result.extraction = response.parsed_output
+        result.extracted_at = utc_now_iso()
         path.parent.mkdir(parents=True, exist_ok=True)
         payload = {
+            "extracted_at": result.extracted_at,
             "url": doc.url,
             "model": self.model,
             "prompt_version": PROMPT_VERSION,

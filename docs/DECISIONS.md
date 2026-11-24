@@ -30,7 +30,8 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 
 - **Source priority is derived, not stored.** `SOURCE_PRIORITY` in `models.py` maps `sources.source_type` to a priority: company_site (0) beats sec_filing (1), which beats search (2). Rejected: a `facts.source_priority` column, which would duplicate `source_type` and could drift from it.
 - **`source_count` is computed in the query** (distinct `source_id` across the person's facts). Rejected: storing it on `roles`, where it could go stale after a re-resolve.
-- **No `exec` seniority.** President and General Counsel map to `c_level`, because the 10-K lists them as executive officers. `title_raw` always keeps the original title, so nothing is lost. Allowed seniorities: `c_level | vp | head | founder`.
+- **No `exec` seniority.** President maps to `c_level`. `title_raw` always keeps the original title, so nothing is lost. Allowed seniorities: `c_level | vp | head | founder`.
+- **General Counsel / Chief Legal titles (corrected by Daniel after Phase 3):** `c_level` only if the person is listed as an executive officer in the latest proxy (DEF 14A); otherwise `seniority = head`, `function = legal`. This applies to "General Counsel", "Chief Legal Officer", "CLO" and combinations such as "SVP, General Counsel". Without a proxy (private companies), they are always `head`. This applies to past roles too (Anne Hoge, Chief Legal Officer 2019–2020, before the IPO, is stored as `head/legal`, not current), because the test is about the latest proxy. The original rule (always `c_level`) made Lucas Moskowitz (SVP, General Counsel, not in the proxy) a second legal chief next to Dan Gallagher (Chief Legal Officer, in the proxy). Implemented in `resolve._role_keys`; `titles.py` only marks such titles `legal_chief`.
 - **Dedupe key:** `people` is unique on `(company_id, normalized_name)`. `normalize_name` strips accents, case, punctuation, honorifics and suffixes, and middle initials. It deliberately does **not** merge nicknames ("Vlad" vs "Vladimir"). A wrong merge would combine two people's facts, which is worse than a duplicate that shows up in validation.
 - **`facts.field`** is restricted to `full_name | title | location | bio`.
 - **`collection_runs.stats_json`** holds tokens in and out, cost, document counts per source, people found, and rejected extractions with reasons.
@@ -124,7 +125,7 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - People with no current role are kept (with their facts), so "who was the CFO before?" can be answered. Lists and counts include only current roles.
 - **Rejected:** letting the LLM decide currency or confidence. It doesn't know other sources or the proxy date, and its answer isn't auditable.
 
-## D17. Extraction: structured outputs, cached, pre-filtered
+## D17. Extraction: structured outputs, cached, pre-filtered (approved by Daniel after Phase 3)
 
 - **Chosen:** `messages.parse(output_format=Extraction)` (Pydantic, `effort=medium`), one call per pre-filtered document, 4 in parallel.
 - **Rejected:** tool use with a forced tool choice. `claude-sonnet-5-5` rejects forced `tool_choice` (HTTP 400). Structured outputs guarantee the schema without a fake tool. The spec's "tool use + Pydantic" intent (schema-validated output) is unchanged.
@@ -136,19 +137,55 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 ## D18. Evidence check, with literal re-anchoring
 
 - A claim is kept only if all of these hold: the name appears in the cached source text; the snippet appears literally in it (whitespace, curly quotes and dashes don't count); the snippet contains the last name and the exact title; the title passes the title rules (`titles.py`); the model says the role is held at the target company; and the name has at least two tokens.
-- **Re-anchoring:** the model often takes the title from a heading but quotes a sentence that rewords it ("Vice President, Corporate Finance & Investor Relations" vs "Vice President of Corporate Finance and Investor Relations"). When the exact name and exact title are both in the source within 200 characters, the stored snippet becomes that literal span (`Claim.reanchored`). This cut Robinhood's rejections from 22 to 7 without accepting anything not literally on the page. Rejected: fuzzy snippet matching, which would accept paraphrases.
+- **Re-anchoring:** the model often takes the title from a heading but quotes a sentence that rewords it ("Vice President, Corporate Finance & Investor Relations" vs "Vice President of Corporate Finance and Investor Relations"). When the exact name and exact title are both in the source within 200 characters, the stored snippet becomes that literal span (`Claim.reanchored`). This cut Robinhood's rejections from 22 to 7 without accepting anything not literally on the page. **Tightened in D22:** name and title must be in one block, not within 200 characters. Rejected: fuzzy snippet matching, which would accept paraphrases.
 - Location, bio and page date each need their own verified evidence, or they are dropped (NULL). A rejected claim is kept in `stats_json.rejections` with its reason.
 - **Charset fix found here:** SEC filings declare ASCII but contain cp1252 bytes. Decoding them as UTF-8 put `�` in place of apostrophes, so no quote could match. `FetchResult.text_body` now tries the header charset, then UTF-8, then cp1252.
 
-## D19. Schema additions (Phase 3)
+## D19. Schema additions (Phase 3; approved by Daniel)
 
 - `sources.published_at` (page or filing date, when verified), `facts.is_current` (whether that source presented the title as current), and `roles.as_of` / `roles.note` (newest evidence date; why a role is not current, disputed, or low confidence). All nullable. Missing evidence stays NULL.
 - `sources` are rebuilt each run together with people and facts (D3). Only sources that back a stored fact are written.
 
 ## D20. Fixes from the Phase 3 review
 
-- **Title rule refinement (applies D4):** "C-level" means the company's own C-suite. A title that also carries a VP token is VP-level: "Vice President and Chief Information Security Officer" and "Vice President and Chief Operating Officer, Robinhood Financial". So is a subsidiary presidency ("President of Robinhood UK ..."). General Counsel stays C-level, as D4 says, even as "SVP, General Counsel". Company and subsidiary names ("Robinhood Financial") are stripped before a function is assigned, so "Financial" no longer means finance. Without these rules, "how many C-level" was inflated, and there were false seat conflicts (Koller showing up as a second CFO).
+- **Title rule refinement (applies D4):** "C-level" means the company's own C-suite. A title that also carries a VP token is VP-level: "Vice President and Chief Information Security Officer" and "Vice President and Chief Operating Officer, Robinhood Financial". So is a subsidiary presidency ("President of Robinhood UK ..."). General Counsel is handled by D4 (C-level only if in the latest proxy). Company and subsidiary names ("Robinhood Financial") are stripped before a function is assigned, so "Financial" no longer means finance. Without these rules, "how many C-level" was inflated, and there were false seat conflicts (Koller showing up as a second CFO).
 - **One document per canonical URL** (lowercase host, no `www.`, no `/us/en` locale prefix, no trailing slash). Discovery keeps the higher-priority copy. Before this, the same newsroom post under two URL spellings counted as two corroborating sources (Zigaitis and Ashkenas were `high`). It also let a role escape the 18-month single-source rule. Robinhood went from 86 to 79 documents.
 - A role retired by the proxy rule now reports the dated claims that were retired (title, `as_of`), not an unrelated undated claim.
 - Re-anchored evidence (D18) is listed in `review.reanchored` (person, title, URL, snippet), so it can be hand-checked: on a team grid, the nearest title could belong to a neighbour.
 - Prices in `extract.py` cite the pricing page and the date they were checked. The client sets `timeout=120s, max_retries=3` explicitly.
+
+## D21. SEC 8-K Item 5.02 filings (decided by Daniel after Phase 3)
+
+- **Problem:** Jeff Pinner's departure as CTO (May 7, 2026) was known only from Tavily's copy of an 8-K, at search trust. It came after the 2026-04-22 proxy, which still lists him.
+- **Chosen:** the SEC adapter also fetches every 8-K whose `items` include **5.02** (departure or appointment of officers) filed on or after the older of the latest 10-K and DEF 14A (at most 10). They come straight from EDGAR with the SEC User-Agent and are stored as `sec_filing`. Discovery's canonical-URL dedupe makes the SEC copy replace Tavily's copy of the same URL. The pre-filter sends an 8-K whole (they are short; the content is before SIGNATURES).
+- **Result:** the 8-K filed 2026-05-08 confirms the separation ("would be separating from his position, effective the same day"). Pinner is not current, with high confidence. The 8-K filed 2026-06-26 adds Dara Bazzano (Chief Accounting Officer). Cost: 2 LLM calls, $0.02.
+- **Rejected:** trusting the search copy (it is the same document, but provenance should say SEC), and fetching all 8-Ks (most are earnings releases).
+
+## D22. Affiliation must be stated in the evidence; re-anchoring within one block (decided by Daniel after Phase 3)
+
+- **Affiliation:** besides the model's `works_at_target_company` flag, the evidence must itself tie the person to the company. Accepted when:
+  - the source is one of the company's own SEC filings (adapter-fetched, or a sec.gov URL under the company's CIK found by search, such as the 2021 S-1);
+  - the snippet names the company (its name, or the domain/site host stem);
+  - or the page is the company's own (company site, or a search result on a company host) and is a people page (the path is `/team`, `/about`, `/leadership`, `/management`, `/governance`, ..., optionally followed by one slug such as `/management/vlad-tenev`), or the snippet speaks in the first person ("my", "our", "we"; not "us", which also matches "US").
+- **Known looseness:** the company-name match is a whole-word match, so a common noun counts ("around the campfire"). Accepted: it only matters on a page that already passed the model's `works_at_target_company` check.
+- Otherwise the claim is rejected with reason "evidence does not state an affiliation with <Company>", logged in `stats_json.rejections`.
+- **Effect:** Nick Jezienicki (byline on the Atlar partner post) is rejected. **Brendan Doyle (Head of Product) is also rejected:** all eight of his claims are bylines on Campfire's blog that don't name Campfire. Alexandra Roveda stays ("Campfire appointed Alexandra Roveda vice president of enterprise"). A name match alone can't tell two companies named Campfire apart; the phase reviewer checked the cached page, which describes Campfire's AI-native ERP. She is a single-source, low-confidence record for the Phase 4 hand-check. Robinhood loses only redundant claims (quote attributions, Wikipedia); no current person.
+- **Re-anchoring tightened:** when the model's quote rewords the title, the stored span must hold the exact name and exact title inside **one block**: the same text line, one markdown table cell (search text), or the same innermost HTML block element (`fetch.html_blocks`, kept as `RawDocument.blocks` for company-site and SEC pages; `doc.text` and the LLM cache are unchanged). A name in an `<h3>` with the title in the next `<p>` is two blocks and is not paired. **Flattened text** (search results have no HTML structure; the Robinhood IR leadership page arrives as one 1,500-character line) is stricter: the title must directly follow the name with only separators between them. In every case, a span that contains another name extracted from the same page is refused. Found by the phase reviewer: without this, "Robb Baldwin" could be paired with Pooja Anand's title on that line. This is stricter than needed for one-person profile pages (the IR `/management/<name>` pages lost those claims), but no person was lost: each also appears on the IR leadership page in one line. Tests cover an HTML team grid, markdown table cells, the flattened IR line, and a sentence with another name in between.
+- **Confidence:** a role supported only by re-anchored evidence from one source is `low`. Corroboration from another source lifts it. Re-anchored records stay in `review.reanchored`.
+- **Rejected:** accepting company-blog bylines (guest and partner authors are common: the Atlar post), and requiring the company name in every snippet (that would drop the company's own team and IR pages).
+
+## D23. Founders are current leadership only with a current operating role (decided by Daniel after Phase 3)
+
+- A founder role is current only if the person also holds a current non-founder role. Otherwise it is stored as `is_current = false` with the note "founder (historical): no current operating role in the collected data", and the person is excluded from current leadership counts. Listed in `review.founder_historical`.
+- **Effect:** Baiju Bhatt (co-founder; his C-level roles are retired by the proxy rule) is not current. John Glasgow and Vlad Tenev (CEO and founder) are current in both roles.
+
+## D24. Display names and a deterministic export (decided by Daniel after Phase 3)
+
+- **Display names** drop professional credential suffixes (CFA, CPA, PhD, MBA, MD, JD, Esq., ...): "Stephanie Guild, CFA" is shown as "Stephanie Guild". The `full_name` fact keeps the name exactly as the source wrote it. Generational suffixes (Jr., III) stay. The same list is stripped from the dedupe key (`normalize_name`), so "Jane Doe, JD" and "Jane Doe" are one person. Leading "Dr." stays; it is not a suffix.
+- **Seat conflicts** compare the C-suite seat a title names ("Co-founder / CTO" and "Chief Technology Officer" are one seat), not the function. CFO and Chief Accounting Officer are both finance, but they are different seats.
+- **Deterministic `leadership.json`:** re-running on unchanged data gives a byte-identical file (checked for both companies).
+  - Fact `extracted_at` and person `updated_at` come from when each LLM extraction was made, stored in the extraction cache, not from the run time.
+  - The export has a `collection` block with the run's stable statistics. Per-run numbers (duration, this run's calls, tokens and cost, network and search-API counts) stay only in the DB's `collection_runs.stats_json`.
+  - Facts are ordered with a full tie-break.
+  - Extraction caches written before this field existed get `extracted_at` from the cache file's modification time, once (an approximation, written back to the cache).
+- `leadership.db` still changes on each run (a new `collection_runs` row); the JSON is the reviewable diff.

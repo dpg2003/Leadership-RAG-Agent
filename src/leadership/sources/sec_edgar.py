@@ -2,7 +2,8 @@
 
 Uses the free official endpoints with the SEC-required User-Agent (SEC_USER_AGENT):
 - company_tickers.json to map ticker or name to CIK,
-- the submissions API to find the latest 10-K and DEF 14A,
+- the submissions API to find the latest 10-K and DEF 14A, and every 8-K with Item 5.02
+  (departure or appointment of officers) filed since the older of those two (D21),
 - the filing's primary document from the Archives.
 """
 
@@ -14,7 +15,7 @@ import re
 
 from leadership.config import require_setting
 from leadership.sources.base import AdapterReport, Company, RawDocument
-from leadership.sources.fetch import FetchBlocked, Fetcher, html_to_text
+from leadership.sources.fetch import FetchBlocked, Fetcher, html_blocks, html_to_text
 
 log = logging.getLogger(__name__)
 
@@ -24,6 +25,8 @@ TICKERS_URL = "https://www.sec.gov/files/company_tickers.json"
 SUBMISSIONS_URL = "https://data.sec.gov/submissions/CIK{cik}.json"
 ARCHIVE_URL = "https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/{document}"
 FORMS = ("10-K", "DEF 14A")
+OFFICER_CHANGE_ITEM = "5.02"
+MAX_8K = 10
 
 
 def _sec_get(fetcher: Fetcher, url: str):
@@ -116,8 +119,26 @@ class SecEdgarAdapter:
         for form in FORMS:
             if form not in latest:
                 report.notes.append(f"no {form} in recent filings")
-                continue
-            i = latest[form]
+        # 8-Ks reporting officer changes after the 10-K/proxy snapshots: a departure announced
+        # after the proxy must beat the proxy (e.g. a CTO separating weeks later).
+        since = min((recent["filingDate"][i] for i in latest.values()), default="")
+        items = recent.get("items") or [""] * len(recent["form"])
+        changes = [
+            i
+            for i, form in enumerate(recent["form"])
+            if form == "8-K"
+            and recent["filingDate"][i] >= since
+            and OFFICER_CHANGE_ITEM in str(items[i]).split(",")
+        ]
+        if not since:
+            changes = []  # without a 10-K/proxy there is no snapshot to update
+        elif len(changes) > MAX_8K:
+            report.notes.append(f"{len(changes)} Item 5.02 8-Ks; kept the newest {MAX_8K}")
+            changes = changes[:MAX_8K]
+        if since:
+            report.notes.append(f"{len(changes)} 8-K(s) with Item 5.02 filed since {since}")
+        for i in [latest[f] for f in FORMS if f in latest] + changes:
+            form = recent["form"][i]
             doc_url = ARCHIVE_URL.format(
                 cik=int(company.cik),
                 accession=recent["accessionNumber"][i].replace("-", ""),
@@ -131,10 +152,11 @@ class SecEdgarAdapter:
             if not res.ok:
                 report.skip(doc_url, f"HTTP {res.status}")
                 continue
-            text, _ = html_to_text(res.text_body())
+            html = res.text_body()
+            text, _ = html_to_text(html)
             raw_path = self.fetcher.write_text(NAMESPACE, doc_url, text)
-            span = find_section(text)
-            if span is None:
+            span = find_section(text) if form != "8-K" else None
+            if span is None and form != "8-K":
                 report.notes.append(f"{form}: no executive officers section found")
             report.documents.append(
                 RawDocument(
@@ -149,7 +171,9 @@ class SecEdgarAdapter:
                         "filing_date": recent["filingDate"][i],
                         "report_date": recent["reportDate"][i],
                         "executive_officers_span": span,
+                        **({"items": items[i]} if form == "8-K" else {}),
                     },
+                    blocks=html_blocks(html),
                 )
             )
         return report

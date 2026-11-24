@@ -4,12 +4,16 @@
 - Roles: one role per (seniority, function) per person; the best source names it.
 - Currency: 'former' claims, and the proxy rule (D16): for C-level roles, the latest DEF 14A
   beats older newsroom/search claims that it doesn't confirm.
-- Confidence: from source types, corroboration and age (D16).
+- Confidence: from source types, corroboration and age (D16); re-anchored evidence alone
+  is low (D22).
+- General Counsel / Chief Legal: C-level only if in the latest proxy, else Head (D4).
+- Founders: current leadership only with a current operating role (D23).
 - Review lists for VALIDATION.md: merges, possible duplicates, conflicts, stale roles.
 """
 
 from __future__ import annotations
 
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import date
@@ -17,7 +21,7 @@ from difflib import SequenceMatcher
 from enum import StrEnum
 from typing import TYPE_CHECKING, Any
 
-from leadership.models import SOURCE_PRIORITY, normalize_name
+from leadership.models import SOURCE_PRIORITY, display_name, normalize_name
 
 if TYPE_CHECKING:
     from leadership.pipeline.validate import Claim
@@ -169,6 +173,7 @@ class ResolvedPerson:
     location_claim: Claim | None = None
     bio: str | None = None
     bio_claim: Claim | None = None
+    name_claim: Claim | None = None  # the claim the displayed name comes from
 
     @property
     def is_current(self) -> bool:
@@ -198,8 +203,13 @@ def cluster_claims(claims: list[Claim], company_id: int = 0) -> list[list[Claim]
     return clusters
 
 
-def _role_keys(c: Claim) -> list[tuple[str, str]]:
-    keys = [(c.title_class.seniority, c.title_class.function)]
+def _role_keys(c: Claim, in_proxy: bool = False) -> list[tuple[str, str]]:
+    """D4: General Counsel / Chief Legal is C-level only for a person the latest proxy lists
+    as an executive officer; otherwise it is the head of the legal function."""
+    if c.title_class.legal_chief and not in_proxy:
+        keys = [("head", "legal")]
+    else:
+        keys = [(c.title_class.seniority, c.title_class.function)]
     if c.title_class.also_founder:
         keys.append(("founder", "other"))
     return keys
@@ -268,6 +278,12 @@ def _resolve_role(
     ):
         confidence = "low"
         note = note or f"single source, last dated {as_of} (older than 18 months)"
+    # D22: evidence re-anchored from the source (not the model's own quote) is low unless
+    # another source corroborates the role. (Listed in review.reanchored either way, so the
+    # stale note above keeps priority for the review lists.)
+    if single and all(c.reanchored for c in supporting):
+        confidence = "low"
+        note = note or "evidence re-anchored by name and title in one block; single source"
     return ResolvedRole(
         supporting[0].title, function, seniority, is_current, as_of, confidence, claims, note
     )
@@ -318,19 +334,48 @@ def _review_role(review: dict[str, list[dict[str, Any]]], name: str, r: Resolved
         review["stale_single_source"].append(entry)
 
 
+_SEAT_ACRONYMS = {
+    "cfo": "chief financial officer",
+    "cto": "chief technology officer",
+    "coo": "chief operating officer",
+    "cmo": "chief marketing officer",
+    "cpo": "chief product officer",
+    "ciso": "chief information security officer",
+    "cro": "chief revenue officer",
+    "clo": "chief legal officer",
+    "chro": "chief human resources officer",
+    "cio": "chief information officer",
+    "cdo": "chief data officer",
+}
+
+
+def c_seat(title: str) -> str | None:
+    """The C-suite seat a title names: 'Co-founder / CTO' and 'Chief Technology Officer' are
+    one seat; CFO and Chief Accounting Officer are two (same finance function)."""
+    t = " ".join(re.sub(r"[^a-z ]", " ", title.lower()).split())
+    m = re.search(r"\bchief (?!executive)(?:[a-z]+ ){1,4}?officer\b", t)
+    if m:
+        return m.group(0)
+    for word in t.split():
+        if word in _SEAT_ACRONYMS:
+            return _SEAT_ACRONYMS[word]
+    return None
+
+
 def _seat_conflicts(people: list[ResolvedPerson], review: dict[str, list[dict[str, Any]]]):
     """Two people both current in the same C-level seat (e.g. two CTOs). Listed, not decided:
-    the older one may have left, or titles may overlap. Board chairs and 'other' are skipped."""
+    the older one may have left, or titles may overlap. CEO/President/'other' are skipped."""
     seats: dict[str, list[tuple[ResolvedPerson, ResolvedRole]]] = defaultdict(list)
     for p in people:
         for r in p.roles:
-            if r.is_current and r.seniority == "c_level" and r.function != "other":
-                seats[r.function].append((p, r))
-    for function, holders in sorted(seats.items()):
+            seat = c_seat(r.title) if r.is_current and r.seniority == "c_level" else None
+            if seat:
+                seats[seat].append((p, r))
+    for seat, holders in sorted(seats.items()):
         if len({p.full_name for p, _ in holders}) > 1:
             review["seat_conflicts"].append(
                 {
-                    "function": function,
+                    "seat": seat,
                     "holders": [
                         {"person": p.full_name, "title": r.title, "as_of": r.as_of}
                         for p, r in sorted(holders, key=lambda h: h[1].as_of or "", reverse=True)
@@ -352,20 +397,31 @@ def resolve_claims(
         names = sorted({c.full_name for c in cluster})
         if len({normalize_name(n) for n in names}) > 1:
             review["merged_by_nickname_rule"].append({"names": names})
-        proxy_keys = {k for c in cluster if c in proxy_claims for k in _role_keys(c)}
+        in_proxy = any(c in proxy_claims for c in cluster)
+        proxy_keys = {k for c in cluster if c in proxy_claims for k in _role_keys(c, True)}
 
         by_key: dict[tuple[str, str], list[Claim]] = defaultdict(list)
         for c in cluster:
-            for key in _role_keys(c):
+            for key in _role_keys(c, in_proxy):
                 by_key[key].append(c)
         roles = [_resolve_role(k, cs, proxy_date, proxy_keys, today) for k, cs in by_key.items()]
         _apply_promotions(roles)
+        # D23: a founder is current leadership only while holding a current operating role.
+        historical: list[ResolvedRole] = []
+        if not any(r.is_current for r in roles if r.seniority != "founder"):
+            for r in roles:
+                if r.seniority == "founder" and r.is_current:
+                    r.is_current = False
+                    r.note = "founder (historical): no current operating role in the collected data"
+                    historical.append(r)
         roles.sort(key=lambda r: (not r.is_current, _SENIORITY_RANK[r.seniority], r.title))
         live = [r for r in roles if r.is_current] or roles
         confidence = max((r.confidence for r in live), key=_CONFIDENCE_RANK.__getitem__)
         live_claims = [c for r in live for c in r.claims if c.status != "former"] or cluster
         best = min(live_claims, key=_claim_sort_key)
-        person = ResolvedPerson(best.full_name, cluster, roles, confidence, best.doc.url)
+        person = ResolvedPerson(
+            display_name(best.full_name), cluster, roles, confidence, best.doc.url, name_claim=best
+        )
 
         ordered = sorted(cluster, key=_claim_sort_key)
         located = [c for c in ordered if c.location]
@@ -380,6 +436,11 @@ def resolve_claims(
         if bios:
             person.bio, person.bio_claim = bios[0].bio, bios[0]
 
+        for r in historical:
+            review["founder_historical"].append(
+                {"person": person.full_name, "title": r.title,
+                 "urls": sorted({c.doc.url for c in r.claims})}
+            )  # fmt: skip
         for r in roles:
             _review_role(review, person.full_name, r)
         for c in cluster:

@@ -22,6 +22,7 @@ from leadership.models import (
     FUNCTIONS,
     SENIORITIES,
     SOURCE_TYPES,
+    display_name,
     normalize_name,
     utc_now_iso,
 )
@@ -117,6 +118,7 @@ class Repository:
         source_id: int,
         evidence_snippet: str,
         confidence: str = "low",
+        extracted_at: str | None = None,
     ) -> int:
         """Get or create a person by normalized name, recording the name claim as a fact.
 
@@ -135,12 +137,12 @@ class Repository:
             """INSERT INTO people (company_id, full_name, normalized_name, confidence, updated_at)
                VALUES (?, ?, ?, ?, ?)
                ON CONFLICT (company_id, normalized_name) DO NOTHING""",
-            (company_id, full_name, key, confidence, utc_now_iso()),
+            (company_id, full_name, key, confidence, extracted_at or utc_now_iso()),
         )
         person_id = self.conn.execute(
             "SELECT id FROM people WHERE company_id = ? AND normalized_name = ?", (company_id, key)
         ).fetchone()[0]
-        self.add_fact(person_id, "full_name", full_name, source_id, evidence_snippet)
+        self.add_fact(person_id, "full_name", full_name, source_id, evidence_snippet, extracted_at)
         return person_id
 
     def _check_source_company(self, source_id: int, company_id: int) -> None:
@@ -200,11 +202,19 @@ class Repository:
         return _lastrowid(cur)
 
     def _require_fact(self, person_id: int, field: str, value: str) -> None:
-        row = self.conn.execute(
-            "SELECT 1 FROM facts WHERE person_id = ? AND field = ? AND value = ? LIMIT 1",
-            (person_id, field, value.strip()),
-        ).fetchone()
-        if row is None:
+        """The resolved value must come from a stored fact. A displayed name may drop a
+        credential suffix ("Stephanie Guild" from the fact "Stephanie Guild, CFA")."""
+        values = [
+            r[0]
+            for r in self.conn.execute(
+                "SELECT value FROM facts WHERE person_id = ? AND field = ?", (person_id, field)
+            )
+        ]
+        wanted = value.strip()
+        ok = wanted in values or (
+            field == "full_name" and any(display_name(v) == wanted for v in values)
+        )
+        if not ok:
             raise ProvenanceError(f"No {field!r} fact with value {value!r} for person {person_id}")
 
     def update_person_resolved(
@@ -216,6 +226,7 @@ class Repository:
         location: str | None = None,
         bio: str | None = None,
         profile_url: str | None = None,
+        updated_at: str | None = None,
     ) -> None:
         _check_choice("confidence", confidence, CONFIDENCE_LEVELS)
         full_name = full_name.strip()
@@ -237,7 +248,15 @@ class Repository:
         self.conn.execute(
             """UPDATE people SET full_name = ?, location = ?, bio = ?, profile_url = ?,
                  confidence = ?, updated_at = ? WHERE id = ?""",
-            (full_name, location, bio, profile_url, confidence, utc_now_iso(), person_id),
+            (
+                full_name,
+                location,
+                bio,
+                profile_url,
+                confidence,
+                updated_at or utc_now_iso(),
+                person_id,
+            ),  # fmt: skip
         )
 
     def replace_roles(self, person_id: int, roles: list[RoleIn]) -> None:
@@ -408,7 +427,8 @@ class Repository:
             """SELECT f.field, f.value, f.evidence_snippet, f.extracted_at, f.is_current,
                       s.id AS source_id, s.url, s.source_type, s.fetched_at, s.published_at
                FROM facts f JOIN sources s ON s.id = f.source_id
-               WHERE f.person_id = ? ORDER BY f.field, s.source_type, s.url""",
+               WHERE f.person_id = ?
+               ORDER BY f.field, s.source_type, s.url, f.value, f.id""",
             (person["id"],),
         ).fetchall()
         person.pop("normalized_name", None)

@@ -31,6 +31,8 @@ def select_text(doc: RawDocument) -> tuple[str, str]:
     """(text for the model, note). Empty text means: no leadership signal, skip the LLM."""
     text = doc.text
     if doc.source_type == "sec_filing":
+        if doc.meta.get("form") == "8-K":
+            return text[:MAX_CHARS], "SEC 8-K (Item 5.02), whole document"
         span = doc.meta.get("executive_officers_span")
         if span:
             return text[span[0] : span[1]], "SEC executive officers section"

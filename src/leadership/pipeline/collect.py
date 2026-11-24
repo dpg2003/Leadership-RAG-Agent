@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import logging
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -71,8 +71,8 @@ def collect(
     rejections: list[Rejection] = []
     for r in results:
         if r.extraction is not None:
-            c, rj = validate(r.doc, r.extraction, company.name)
-            claims += c
+            c, rj = validate(r.doc, r.extraction, company)
+            claims += [replace(x, extracted_at=r.extracted_at) for x in c]
             rejections += rj
     resolution = resolve_claims(claims, today=today)
 
@@ -137,18 +137,27 @@ def _source_id(repo: Repository, company_id: int, claim: Claim, cache: dict[str,
 
 def _store_person(repo: Repository, company_id: int, person: ResolvedPerson) -> None:
     sources: dict[str, int] = {}
-    best = next(c for c in person.claims if c.full_name == person.full_name)
+    best = person.name_claim or person.claims[0]
+    # Stable timestamps: the person changes when its newest extraction does, not every run.
+    updated_at = max((c.extracted_at for c in person.claims if c.extracted_at), default=None)
     person_id = repo.upsert_person(
         company_id,
-        person.full_name,
+        best.full_name,
         _source_id(repo, company_id, best, sources),
         best.evidence_snippet,
+        extracted_at=best.extracted_at,
     )
     for c in person.claims:
         sid = _source_id(repo, company_id, c, sources)
-        repo.add_fact(person_id, "full_name", c.full_name, sid, c.evidence_snippet)
+        repo.add_fact(person_id, "full_name", c.full_name, sid, c.evidence_snippet, c.extracted_at)
         repo.add_fact(
-            person_id, "title", c.title, sid, c.evidence_snippet, is_current=c.status != "former"
+            person_id,
+            "title",
+            c.title,
+            sid,
+            c.evidence_snippet,
+            c.extracted_at,
+            is_current=c.status != "former",
         )
     if person.location_claim is not None and person.location_claim.location_snippet:
         lc = person.location_claim
@@ -158,11 +167,12 @@ def _store_person(repo: Repository, company_id: int, person: ResolvedPerson) -> 
             person.location or "",
             _source_id(repo, company_id, lc, sources),
             lc.location_snippet or "",
+            lc.extracted_at,
         )
     if person.bio_claim is not None and person.bio:
         bc = person.bio_claim
         sid = _source_id(repo, company_id, bc, sources)
-        repo.add_fact(person_id, "bio", person.bio, sid, person.bio)
+        repo.add_fact(person_id, "bio", person.bio, sid, person.bio, bc.extracted_at)
     repo.replace_roles(
         person_id,
         [
@@ -177,11 +187,37 @@ def _store_person(repo: Repository, company_id: int, person: ResolvedPerson) -> 
         location=person.location,
         bio=person.bio,
         profile_url=person.profile_url,
+        updated_at=updated_at,
     )
 
 
+# Run-specific numbers left out of the JSON export, so re-running on unchanged data
+# produces a byte-identical file. They stay in the DB's runs.stats_json.
+_VOLATILE_STATS = {
+    "duration_s",
+    "llm_calls",
+    "llm_cached_responses",
+    "tokens_in",
+    "tokens_out",
+    "cost_usd",
+}
+_VOLATILE_DISCOVERY = {"network_requests", "search_api_calls"}
+
+
+def stable_stats(stats: dict[str, Any]) -> dict[str, Any]:
+    out = {k: v for k, v in stats.items() if k not in _VOLATILE_STATS}
+    if isinstance(out.get("discovery"), dict):
+        out["discovery"] = {
+            k: v for k, v in out["discovery"].items() if k not in _VOLATILE_DISCOVERY
+        }
+    return out
+
+
 def export_json(path: Path, domain: str) -> Path:
-    """Readable, diff-friendly export of the stored data (committed next to the DB)."""
+    """Readable, diff-friendly export of the stored data (committed next to the DB).
+
+    Deterministic: no run timestamps or per-run counters, and fact/person timestamps come
+    from when each extraction was made, so unchanged data gives an identical file."""
     conn = connect(path)
     try:
         repo = Repository(conn)
@@ -190,7 +226,8 @@ def export_json(path: Path, domain: str) -> Path:
         run = repo.latest_run(domain)
     finally:
         conn.close()
-    out = {"company": company, "latest_run": run, "people": people}
+    stats = (run or {}).get("stats") or {}
+    out = {"company": company, "collection": stable_stats(stats), "people": people}
     json_path = path.with_name("leadership.json")
     json_path.write_text(
         json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"

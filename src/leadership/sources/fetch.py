@@ -109,6 +109,91 @@ def html_to_text(html: str) -> tuple[str, str]:
     return "\n".join(line for line in lines if line), title
 
 
+# Elements that start a new visual block. Inline elements (a, b, strong, span, ...) don't.
+_BLOCK_TAGS = frozenset(
+    {
+        "address",
+        "article",
+        "aside",
+        "blockquote",
+        "body",
+        "br",
+        "caption",
+        "dd",
+        "details",
+        "dialog",
+        "div",
+        "dl",
+        "dt",
+        "fieldset",
+        "figcaption",
+        "figure",
+        "footer",
+        "form",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "header",
+        "hr",
+        "li",
+        "main",
+        "nav",
+        "ol",
+        "p",
+        "pre",
+        "section",
+        "summary",
+        "table",
+        "tbody",
+        "td",
+        "tfoot",
+        "th",
+        "thead",
+        "tr",
+        "ul",
+    }
+)
+
+
+def html_blocks(html: str) -> list[str]:
+    """Text of each innermost block element, inline children joined with spaces.
+
+    Used only to re-anchor evidence (validate.py): a name and a title count as one statement
+    only if they sit in the same block, so a team grid can't pair a name with a neighbour's
+    title. doc.text (what the LLM sees and evidence is checked against) is not changed.
+    """
+    tree = HTMLParser(html)
+    tree.strip_tags(list(_DROP_TAGS))
+    root = tree.body or tree.root
+    blocks: list[str] = []
+    buf: list[str] = []
+
+    def flush() -> None:
+        text = " ".join(" ".join(buf).split())
+        if text:
+            blocks.append(text)
+        buf.clear()
+
+    def walk(node) -> None:
+        for child in node.iter(include_text=True):
+            if child.tag == "-text":
+                buf.append(child.text_content or "")
+            elif child.tag in _BLOCK_TAGS:
+                flush()
+                walk(child)
+                flush()
+            else:
+                walk(child)
+
+    if root is not None:
+        walk(root)
+        flush()
+    return blocks
+
+
 class Fetcher:
     def __init__(
         self,

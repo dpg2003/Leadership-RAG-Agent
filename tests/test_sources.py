@@ -361,3 +361,41 @@ def test_is_company_host():
     assert is_company_host("https://www.meetcampfire.com/", c)
     assert not is_company_host("https://campfire.org/team", c)
     assert not is_company_host("https://notcampfire.ai/", c)
+
+
+def test_sec_adapter_fetches_officer_change_8ks_since_the_snapshots(tmp_path, monkeypatch):
+    from leadership.sources.sec_edgar import SecEdgarAdapter
+
+    monkeypatch.setenv("SEC_USER_AGENT", "Test Person test@example.com")
+    filings = [  # newest first, like the real submissions API
+        ("2026-06-03", "8-K", "5.07", "a5"),
+        ("2026-05-08", "8-K", "5.02", "a4"),
+        ("2026-04-28", "8-K", "2.02,9.01", "a3"),
+        ("2026-04-22", "DEF 14A", "", "a2"),
+        ("2026-02-18", "10-K", "", "a1"),
+        ("2026-02-10", "8-K", "2.02,5.02,9.01", "a0"),  # older than both snapshots
+    ]
+    recent = {
+        "filingDate": [f[0] for f in filings],
+        "form": [f[1] for f in filings],
+        "items": [f[2] for f in filings],
+        "accessionNumber": [f"0000000001-26-{f[3]}" for f in filings],
+        "primaryDocument": [f"{f[3]}.htm" for f in filings],
+        "reportDate": [f[0] for f in filings],
+    }
+    base = "https://www.sec.gov/Archives/edgar/data/1/000000000126"
+    routes = {
+        "https://data.sec.gov/submissions/CIK0000000001.json": (
+            200,
+            json.dumps({"filings": {"recent": recent}}),
+            {"content-type": "application/json"},
+        ),
+    }
+    for f in filings:
+        routes[f"{base}{f[3]}/{f[3]}.htm"] = (200, f"<p>{f[1]} body</p><p>SIGNATURES</p>")
+    company = Company("Acme", "acme.test", "https://acme.test/", True, "ACME", "0000000001")
+    report = SecEdgarAdapter(make_fetcher(tmp_path, routes)).discover(company)
+    got = [(d.meta["form"], d.meta["filing_date"]) for d in report.documents]
+    assert got == [("10-K", "2026-02-18"), ("DEF 14A", "2026-04-22"), ("8-K", "2026-05-08")]
+    assert report.documents[2].meta["items"] == "5.02"
+    assert report.documents[2].blocks == ["8-K body", "SIGNATURES"]

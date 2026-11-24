@@ -14,7 +14,13 @@ from urllib.parse import urljoin, urlsplit, urlunsplit
 from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
 from leadership.sources.base import AdapterReport, Company, RawDocument
-from leadership.sources.fetch import FetchBlocked, Fetcher, FetchResult, html_to_text
+from leadership.sources.fetch import (
+    FetchBlocked,
+    Fetcher,
+    FetchResult,
+    html_blocks,
+    html_to_text,
+)
 
 log = logging.getLogger(__name__)
 
@@ -195,7 +201,8 @@ class CompanySiteAdapter:
             if "html" not in res.content_type:
                 report.skip(cand.url, f"not HTML ({res.content_type or 'unknown type'})")
                 continue
-            text, title = html_to_text(res.text_body())
+            html = res.text_body()
+            text, title = html_to_text(html)
             if len(text) < 200:
                 report.skip(cand.url, "almost no text (soft 404, or rendered by JavaScript)")
                 continue
@@ -209,6 +216,7 @@ class CompanySiteAdapter:
                     fetched_at=res.fetched_at,
                     raw_path=raw_path,
                     meta={"score": cand.score, "via": cand.via, "lastmod": cand.lastmod},
+                    blocks=html_blocks(html),
                 )
             )
         return report

@@ -1,6 +1,8 @@
 """Deterministic title rules (no LLM): is a title in scope, and what seniority/function is it.
 
-In scope: C-level (incl. President and General Counsel, D4), founders, VPs, and Heads.
+In scope: C-level (incl. President, D4), founders, VPs, and Heads. General Counsel and Chief
+Legal titles are marked `legal_chief`; resolve.py makes them C-level only if the latest
+proxy lists the person as an executive officer, otherwise Head of legal (D4).
 Out of scope: board-only roles, plain "Director", managers, individual contributors.
 """
 
@@ -62,6 +64,7 @@ class TitleClass:
     seniority: str  # c_level | vp | head | founder
     function: str
     also_founder: bool = False  # e.g. "Co-founder & CEO": one c_level role plus a founder role
+    legal_chief: bool = False  # General Counsel / Chief Legal Officer: see D4 in resolve.py
 
 
 def _clean(title: str) -> str:
@@ -103,7 +106,8 @@ def classify_title(title: str, company_name: str | None = None) -> TitleClass | 
 
     C-level means the company's own C-suite. A title that also carries a VP token ("Vice
     President and Chief Information Security Officer") or a subsidiary presidency ("President
-    of Robinhood UK") is VP-level. General Counsel stays C-level (D4)."""
+    of Robinhood UK") is VP-level. General Counsel / Chief Legal Officer is returned as
+    C-level with legal_chief=True; resolve.py applies the proxy test (D4)."""
     full = _clean(title)
     if not full or _BOARD_ONLY.match(full):
         return None
@@ -134,7 +138,8 @@ def classify_title(title: str, company_name: str | None = None) -> TitleClass | 
             function = "legal"
         else:
             function = function_for(t.replace("president", ""))
-        return TitleClass("c_level", function, also_founder=founder)
+        legal_chief = bool(counsel or re.search(r"\bchief legal\b", t) or "clo" in words)
+        return TitleClass("c_level", function, also_founder=founder, legal_chief=legal_chief)
 
     if re.search(r"\b(?:vice president|vp|svp|evp|avp)\b", t):
         return TitleClass("vp", function_for(t), also_founder=founder)
