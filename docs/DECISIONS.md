@@ -36,6 +36,11 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 - **`collection_runs.stats_json`** holds tokens in and out, cost, document counts per source, people found, and rejected extractions with reasons.
 - **Counts are of people, not roles.** A CEO who is also a co-founder counts once in "how many leaders".
 
+## D5. Configuration via environment
+
+- `.env` at the repo root is loaded automatically (`python-dotenv`). Variables: `ANTHROPIC_API_KEY`, `TAVILY_API_KEY`, `SEC_USER_AGENT` (used as-is, e.g. `"Jane Doe jane@example.com"`, as SEC requires), and `LLM_MODEL` (blank means `claude-sonnet-5-5`).
+- Only `ANTHROPIC_API_KEY` is needed to run chat, eval, and the UI against the committed data. `TAVILY_API_KEY` and `SEC_USER_AGENT` are only needed for `leadership collect`. A missing key raises an error that names the variable and says where to get it.
+
 ## D6. Narrow nickname merge rule (reviewed with Daniel after Phase 1)
 
 - **Problem:** The same person appears under different first names across sources. Robinhood's site likely says "Vlad Tenev" while the SEC filings say "Vladimir Tenev". Exact normalized-name matching (D4) would create two people.
@@ -49,7 +54,41 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 - **Accepted risk:** The prefix rule merges "Chris Lee" and "Christine Lee" if their functions overlap. A test documents this case. The reviewer-visible merge list is the mitigation.
 - **Rejected:** fuzzy matching (edit distance) as the merge criterion, which risks silently mixing two people's facts. Also rejected: an LLM judging identity, which is non-deterministic and hard to audit. Also rejected: a large nickname database, which goes beyond what two test companies need.
 
-## D5. Configuration via environment
+## D7. Tavily as the one web search API
 
-- `.env` at the repo root is loaded automatically (`python-dotenv`). Variables: `ANTHROPIC_API_KEY`, `TAVILY_API_KEY`, `SEC_USER_AGENT` (used as-is, e.g. `"Jane Doe jane@example.com"`, as SEC requires), and `LLM_MODEL` (blank means `claude-sonnet-5-5`).
-- Only `ANTHROPIC_API_KEY` is needed to run chat, eval, and the UI against the committed data. `TAVILY_API_KEY` and `SEC_USER_AGENT` are only needed for `leadership collect`. A missing key raises an error that names the variable and says where to get it.
+- **Chosen:** Tavily (`search_depth=basic`, 8 results, `include_raw_content=text`), with 10 targeted queries per company (CEO, CTO, CFO, "chief" officer, VP, "vice president", "head of", appoints/hires/names, leadership team, founder).
+- **Rejected:** Brave and Serper. Both return snippets only, so every result page would need a second fetch (more requests, more robots.txt and ToS checks, more code). Tavily returns the page text in the same call.
+- **Disambiguation:** Every query adds the company's site host ("Campfire campfire.ai"), because "Campfire" alone matches unrelated organizations. Results from unrelated organizations still get through (campfire.org, campfire-interactive.com, robinhood.org), so extraction must check that a person works at *this* company (Phase 3).
+- **Trust:** Pages Tavily returns are `source_type=search` even when the URL is on the company's own domain, because we didn't fetch them ourselves. That makes them the lowest priority.
+- **Cost:** 10 API calls (basic = 1 credit each) per company per fresh run. Cached query responses mean re-runs cost nothing.
+
+## D8. Excluded domains
+
+- Search results from domains whose ToS forbids scraping, or that resell scraped profiles, are dropped both at query time (`exclude_domains`) and on cached results: linkedin.com, x.com, twitter.com, facebook.com, instagram.com, zoominfo.com, rocketreach.co, crunchbase.com, glassdoor.com, apollo.io, signalhire.com, contactout.com, lusha.com, theorg.com, comparably.com, salary.com, dealroom.co, clay.com, exa.ai, tavily.com. The last three were added after the Phase 2 review: their pages (tavily.com/knowledge, clay.com/dossier, exa.ai/websets) are profile aggregators, and the Tavily page cites LinkedIn follower counts. They are not primary sources.
+- When a domain is added later, its text is purged from the cache files (so it never gets committed), and its URLs are still reported as skipped.
+- Our own fetcher refuses linkedin.com outright, whatever robots.txt says. **Redirects are followed by hand** (at most 5 hops). Before each hop is requested it is checked against the banned-host list and robots.txt, and rate-limited. A refused hop is cached as `blocked`, so warm runs stay offline. (The Phase 2 review found that letting httpx follow redirects checked the target only *after* requesting it.)
+- robots.txt status handling: 2xx is parsed; 401, 403 or 5xx means disallow everything (5xx per RFC 9309; 401/403 follows CPython's stricter rule); any other 4xx means allow; unreachable means disallow.
+
+## D9. HTML to text with selectolax, not trafilatura
+
+- **Chosen:** `selectolax` (lexbor backend). It drops script, style, noscript, svg, template, iframe and head, then keeps all visible text, one block per line.
+- **Rejected:** trafilatura. It is built to extract an article's main body and treats bylines, nav and team grids as boilerplate. Campfire's leaders appear mostly in blog bylines ("John Glasgow / CEO & Founder"), so trafilatura would discard exactly the evidence we need. The cost of our choice is more text per page; the Phase 3 keyword pre-filter offsets it.
+
+## D10. Raw cache layout (committed)
+
+- Path: `data/<domain>/raw/<source_type>/<sha256(url)[:20]>`, with `.meta.json` (URL, final URL, status, `fetched_at`), `.body.gz` (raw bytes; gzip with `mtime=0` so re-fetching the same content gives the same file), and `.txt` (the extracted text).
+- `sources.raw_path` points to the **`.txt` file**: the exact text that extraction read and that the evidence-snippet check runs against. The source-verifier and the human reviewer check the same text.
+- Errors (404, 403, network) and robots.txt files are cached too, so a re-run with a warm cache makes **zero** network requests (verified: `network requests: 0 · search API calls: 0`). `--refresh` re-fetches.
+- `raw/manifest.json` lists every document plus everything skipped, with the reason, per source. A blocked or empty source shows up there and is never silently dropped.
+- About 11 MB for both companies, mostly the SEC filings. That's acceptable to commit so reviewers can re-run extraction and verification without fetching anything.
+
+## D11. Company resolution and SEC matching
+
+- The input domain names the data folder (`meetcampfire.com`), but crawling uses the final URL after redirects (`https://campfire.ai/`). Both hosts count as "on site".
+- The company name comes from `og:site_name` or the first part of `<title>`, and `--name` overrides it.
+- **The SEC match is deliberately conservative.** Without `--ticker`, a match is accepted only if exactly one registrant's title starts with the company name as a whole word. "Robinhood" matches Robinhood Markets, Inc. *and* Robinhood Ventures Fund I/II, so the lookup refuses to guess, and the collect command passes `--ticker HOOD` explicitly. Rejected: fuzzy name matching, because a generic name like "Campfire" could latch onto an unrelated registrant and import someone else's executives as "authoritative".
+- **Robinhood's 10-K has no executive-officers section.** Item 10 incorporates it by reference from the proxy. The **DEF 14A** is therefore the authoritative SEC source. The 10-K is still kept, because it names officers in its exhibits and signatures.
+
+## D12. Adapters return a report, not a bare list
+
+- `discover(company)` returns an `AdapterReport` (documents, skipped URLs with reasons, notes) instead of `list[RawDocument]`. This departs from the interface in the initial prompt on purpose: the "tell me if a source is blocked or empty" rule needs the skips to be data, not log lines.
