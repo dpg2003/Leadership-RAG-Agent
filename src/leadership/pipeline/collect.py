@@ -74,7 +74,7 @@ def collect(
             c, rj = validate(r.doc, r.extraction, company)
             claims += [replace(x, extracted_at=r.extracted_at) for x in c]
             rejections += rj
-    resolution = resolve_claims(claims, today=today)
+    resolution = resolve_claims(claims, today=today, identity_merges=load_identity_merges(domain))
 
     stats: dict[str, Any] = {
         "model": model,
@@ -211,6 +211,19 @@ def stable_stats(stats: dict[str, Any]) -> dict[str, Any]:
             k: v for k, v in out["discovery"].items() if k not in _VOLATILE_DISCOVERY
         }
     return out
+
+
+def load_identity_merges(domain: str) -> list[dict[str, Any]]:
+    """Hand-curated same-person decisions (D33): data/<domain>/identity_merges.json."""
+    path = company_dir(domain) / "identity_merges.json"
+    if not path.exists():
+        return []
+    merges = json.loads(path.read_text(encoding="utf-8"))
+    for m in merges:
+        missing = {"merge", "into", "evidence", "decided_by"} - set(m)
+        if missing:
+            raise ValueError(f"{path}: merge {m!r} is missing {sorted(missing)}")
+    return merges
 
 
 def load_review_flags(domain: str) -> list[dict[str, Any]]:

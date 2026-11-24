@@ -30,9 +30,11 @@ REVIEW_TITLES = {
     "conflicts": "Conflicts between sources",
     "possible_duplicates": "Possible duplicates (not merged)",
     "merged_by_nickname_rule": "Merged by the nickname rule (D6)",
+    "merged_by_decision": "Merged by Daniel's decision (D33, data/<domain>/identity_merges.json)",
+    "identity_merges_not_applied": "Identity merges that matched no stored person",
     "from_blocked_host": "From a bot-blocked company host: check in your browser (D13)",
     "reanchored": "Evidence re-anchored from the source text (D22)",
-    "stale_single_source": "Single source older than 18 months (low confidence)",
+    "stale_single_source": "Single source older than 18 months: not current (D32)",
     "c_level_not_in_proxy_undated": "C-level title not in the latest proxy, source undated",
     "superseded_by_proxy": "Retired by the proxy rule (D16)",
     "superseded_by_promotion": "Superseded by a later title",
@@ -237,14 +239,15 @@ def company_section(domain: str) -> str:
         )
     out += ["", f"### Not current (kept for history) ({len(former)})", ""]
     out.append(
-        "| # | Name | Role(s) | Why not current | As of | Evidence | Agent verdict | "
-        "Verified by Daniel |"
+        "| # | Name | Role(s) | Seniority / function | Why not current | As of | Evidence | "
+        "Agent verdict | Verified by Daniel |"
     )
-    out.append("|---|---|---|---|---|---|---|---|")
+    out.append("|---|---|---|---|---|---|---|---|---|")
     for i, p in enumerate(former, 1):
         out.append(
             f"| {i} | {_cell(p['full_name'])} | "
             f"{_cell('; '.join(r['title_raw'] for r in p['roles']))} | "
+            f"{_cell('; '.join(r['seniority'] + '/' + r['function'] for r in p['roles']))} | "
             f"{_cell('; '.join(sorted({r['note'] or 'former' for r in p['roles']})))} | "
             f"{_cell(max((r['as_of'] or '' for r in p['roles']), default='') or 'undated')} | "
             f"{_evidence(_former_fact(p), p['full_name'])} | "

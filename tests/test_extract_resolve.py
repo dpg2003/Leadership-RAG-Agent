@@ -274,7 +274,8 @@ def test_vlad_and_vladimir_merge_and_stay_current():
     assert {"names": ["Vlad Tenev", "Vladimir Tenev"]} in res.review["merged_by_nickname_rule"]
 
 
-def test_uncorroborated_single_source_older_than_18_months_is_low_and_listed():
+def test_single_source_older_than_18_months_is_not_current_and_listed():
+    """D32: Daniel's hand-check found all 8 such Robinhood records had departed."""
     d = doc("https://news.test/2023", "May 1, 2023\nAcme hires Bo Park as VP of Data.", "search")
     ex = Extraction(
         page_published_date="2023-05-01",
@@ -284,7 +285,9 @@ def test_uncorroborated_single_source_older_than_18_months_is_low_and_listed():
     claims, _ = validate(d, ex)
     res = resolve_claims(claims, today=TODAY)
     park = by_name(res, "Bo Park")
-    assert park.is_current and park.confidence == "low"
+    assert not park.is_current and park.confidence == "low"
+    note = park.roles[0].note
+    assert "last confirmed 2023-05-01" in note and "no newer confirmation" in note
     assert res.review["stale_single_source"][0]["person"] == "Bo Park"
 
 
@@ -435,14 +438,14 @@ def test_reanchored_single_source_is_low_and_corroboration_lifts_it():
 
 
 def test_promotion_supersedes_older_title_in_same_function():
-    vp = doc("https://rh.test/2018", "November 29, 2018\nGretchen Howard is joining us as "
+    vp = doc("https://rh.test/2018", "November 29, 2025\nGretchen Howard is joining us as "
              "Vice President of Operations.")  # fmt: skip
-    coo = doc("https://rh.test/2019", "June 24, 2019\nGretchen Howard has been elevated to "
+    coo = doc("https://rh.test/2019", "June 24, 2026\nGretchen Howard has been elevated to "
               "Chief Operating Officer.")  # fmt: skip
     claims = []
     for d, title, date_text, iso in [
-        (vp, "Vice President of Operations", "November 29, 2018", "2018-11-29"),
-        (coo, "Chief Operating Officer", "June 24, 2019", "2019-06-24"),
+        (vp, "Vice President of Operations", "November 29, 2025", "2025-11-29"),
+        (coo, "Chief Operating Officer", "June 24, 2026", "2026-06-24"),
     ]:
         snippet = d.text.split("\n", 1)[1]
         ex = Extraction(page_published_date=iso, published_date_snippet=date_text,
@@ -1027,3 +1030,105 @@ def test_former_row_is_not_merged_into_a_current_one():
                        "")  # fmt: skip
     rows, merges = merge_overlapping_roles([old, new])
     assert len(rows) == 2 and merges == []
+
+
+def test_newer_source_keeps_an_old_role_current():
+    old = doc("https://news.test/2020", "May 1, 2020\nAcme hires Bo Park as VP of Data.", "search")
+    new = doc("https://acme.test/team", "Bo Park, VP of Data")
+    claims = _single(old, "Bo Park", "VP of Data", "Acme hires Bo Park as VP of Data.",
+                     date="2020-05-01", date_text="May 1, 2020")  # fmt: skip
+    claims += _single(new, "Bo Park", "VP of Data", "Bo Park, VP of Data")
+    assert by_name(resolve_claims(claims, today=TODAY), "Bo Park").is_current
+
+
+def test_stale_cto_role_leaves_the_cofounder_historical_and_clears_the_seat_conflict():
+    """Campfire: 'Co-founder / CTO' from one 2024 post vs a CTO with 2026 sources."""
+    old = doc("https://acme.test/blog/2024", "February 27, 2024\nmy Co-founder / CTO, Ana Ruiz, "
+              "led engineering.")  # fmt: skip
+    new = doc("https://acme.test/blog/2026", "July 8, 2026\nled by CTO Paul Nichols")
+    claims = _single(old, "Ana Ruiz", "Co-founder / CTO",
+                     "my Co-founder / CTO, Ana Ruiz, led engineering.", date="2024-02-27",
+                     date_text="February 27, 2024")  # fmt: skip
+    claims += _single(new, "Paul Nichols", "CTO", "led by CTO Paul Nichols", date="2026-07-08",
+                      date_text="July 8, 2026")  # fmt: skip
+    res = resolve_claims(claims, today=TODAY)
+    ana = by_name(res, "Ana Ruiz")
+    assert not ana.is_current
+    assert {r.seniority: r.is_current for r in ana.roles} == {"c_level": False, "founder": False}
+    assert "seat_conflicts" not in res.review
+
+
+def test_hand_curated_identity_merge():
+    a = doc("https://acme.test/news/x", "says Steph Lee, Acme's Head of Investment Strategy")
+    b = doc("https://acme.test/team", "Stephanie Lee, CFA Chief Investment Officer")
+    claims = _single(a, "Steph Lee", "Head of Investment Strategy",
+                     "says Steph Lee, Acme's Head of Investment Strategy")  # fmt: skip
+    claims += _single(b, "Stephanie Lee, CFA", "Chief Investment Officer",
+                      "Stephanie Lee, CFA Chief Investment Officer")  # fmt: skip
+    assert len(resolve_claims(claims, today=TODAY).people) == 2  # D6 can't merge them
+    merges = [{"merge": "Steph Lee", "into": "Stephanie Lee", "evidence": "bio",
+               "decided_by": "Daniel"}]  # fmt: skip
+    res = resolve_claims(claims, today=TODAY, identity_merges=merges)
+    (p,) = res.people
+    assert p.full_name == "Stephanie Lee" and len(p.claims) == 2
+    assert res.review["merged_by_decision"][0]["names"] == ["Steph Lee", "Stephanie Lee"]
+    assert "merged_by_nickname_rule" not in res.review  # provenance: Daniel, not D6
+    nobody = [{"merge": "Nobody Here", "into": "Stephanie Lee"}]
+    bad = resolve_claims(claims, today=TODAY, identity_merges=nobody)
+    assert bad.review["identity_merges_not_applied"]
+
+
+def test_location_must_say_where_the_person_lives_or_works():
+    text = ("Kate joins us with CEO Vlad Tenev in San Francisco.\n"
+            "Vlad Tenev, CEO. He lives in the Bay Area of California.")  # fmt: skip
+    d = doc("https://acme.test/x", text)
+    for location, snippet, kept in [
+        ("San Francisco", "Kate joins us with CEO Vlad Tenev in San Francisco.", False),
+        ("Bay Area of California", "He lives in the Bay Area of California.", True),
+    ]:
+        ex = Extraction(page_published_date=None, published_date_snippet=None, people=[
+            person("Vlad Tenev", "CEO", "Vlad Tenev, CEO.", location=location,
+                   location_snippet=snippet)])  # fmt: skip
+        (claim,), _ = validate(d, ex)
+        assert (claim.location == location) is kept
+
+
+def test_identity_merges_file_needs_evidence(tmp_path, monkeypatch):
+    import json
+
+    import leadership.pipeline.collect as collect
+
+    monkeypatch.setattr(collect, "company_dir", lambda d: tmp_path)
+    (tmp_path / "identity_merges.json").write_text(
+        json.dumps([{"merge": "A B", "into": "A C"}]), "utf-8"
+    )
+    with pytest.raises(ValueError, match="evidence"):
+        collect.load_identity_merges("x.test")
+
+
+def test_deduped_rows_from_two_sources_are_not_called_stale():
+    """Same title, two old-and-new sources pooled by dedupe (D29): confirmed, not stale."""
+    old = doc("https://news.test/2020", "May 1, 2020\nBo Park, CEO & Founder of Acme.", "search")
+    new = doc("https://acme.test/team", "Bo Park, CEO & Founder")
+    claims = _single(old, "Bo Park", "CEO & Founder", "Bo Park, CEO & Founder of Acme.",
+                     date="2020-05-01", date_text="May 1, 2020")  # fmt: skip
+    claims += _single(new, "Bo Park", "CEO & Founder", "Bo Park, CEO & Founder")
+    res = resolve_claims(claims, today=TODAY)
+    (role,) = by_name(res, "Bo Park").roles
+    assert role.is_current and "no newer confirmation" not in role.note
+    assert "stale_single_source" not in res.review
+
+
+def test_retire_stale_keeps_earlier_notes():
+    from datetime import date as _date
+
+    from leadership.pipeline.resolve import ResolvedRole, retire_stale
+
+    d = doc("https://news.test/2020", "x", "search")
+    c = _single(doc("https://news.test/2020", "Bo Park, VP of Data", "search"), "Bo Park",
+                "VP of Data", "Bo Park, VP of Data")[0]  # fmt: skip
+    del d
+    r = ResolvedRole("VP of Data", "data", "vp", True, "2020-05-01", "medium", [c],
+                     "merged from 2 rows with overlapping wording (D30): a / b")  # fmt: skip
+    retire_stale([r], _date(2026, 11, 24))
+    assert not r.is_current and "no newer confirmation" in r.note and "merged from 2 rows" in r.note

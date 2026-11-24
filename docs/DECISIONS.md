@@ -120,7 +120,7 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - **Former wins** unless a current claim for that role is strictly newer (undated counts as oldest). A "former" next to the title in the snippet overrides the model's status. Test: Jason Warnick ("former Chief Financial Officer" in the 2026 proxy) is never current, with or without the 2021 newsroom post.
 - **Proxy rule:** for C-level roles, a **dated** newsroom or search claim older than the latest DEF 14A, for a role the proxy doesn't list for that person, is `is_current = false`. SEC claims are exempt. **Undated** claims (e.g. the investors.robinhood.com leadership page) can't be shown to be older: they stay current and are listed in `c_level_not_in_proxy_undated`. The proxy lists only Section 16 officers, so a Chief People Officer or CISO is normally absent from it. (The first run applied the rule to undated claims too and wrongly retired 7 people. Fixed and tested.)
 - **Promotion rule:** an older title is superseded by a later dated title in the same function (Gretchen Howard: VP of Operations in 2018, then COO in 2019). Founder roles are never superseded.
-- **Confidence per role:** `high` = an SEC filing, or 2+ sources including the company site. `medium` = the company site, or 2+ sources. `low` = a single search result. **An uncorroborated single-source role last dated more than 18 months ago is `low`** and listed (`stale_single_source`). A person's confidence is that of their best current role.
+- **Confidence per role:** `high` = an SEC filing, or 2+ sources including the company site. `medium` = the company site, or 2+ sources. `low` = a single search result. **An uncorroborated single-source role last dated more than 18 months ago is `low`** and listed (`stale_single_source`). *Superseded by D32: such a role is now not current.* A person's confidence is that of their best current role.
 - **Listed for review, not decided:** two current holders of the same C-level seat (`seat_conflicts`, e.g. Campfire's two CTOs); sources that disagree on currency (`conflicts`); different locations; nickname merges; possible duplicates; records from bot-blocked hosts (D13).
 - People with no current role are kept (with their facts), so "who was the CFO before?" can be answered. Lists and counts include only current roles.
 - **Rejected:** letting the LLM decide currency or confidence. It doesn't know other sources or the proxy date, and its answer isn't auditable.
@@ -261,5 +261,50 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 
 ## D31. Phase 5 requirement: counts carry a confidence breakdown (decided by Daniel)
 
-- `count_leaders` must return a breakdown, not one number: **confirmed** vs **low-confidence**. Low-confidence covers roles resting on a single source older than 18 months, and the other `low` reasons in the role note.
-- The chat answer must state both numbers. Example: "31 current leaders: 22 confirmed, 9 low-confidence (single source older than 18 months)". It must never give one flat count. Role notes (D27) supply the reasons.
+- `count_leaders` must return a breakdown, not one number: **confirmed** vs **low-confidence**. Low-confidence covers current roles whose confidence is `low` (for example a single search result, a single byline, or re-anchored evidence), with the reason from the role note. Single-source roles older than 18 months are not current (D32), so they are not counted.
+- The chat answer must state both numbers. Example shape: "<N> current leaders: <C> confirmed, <L> low-confidence (<reasons>)". Since D32, single-source roles older than 18 months are no longer current, so they appear among former roles with "last confirmed <date>; no newer confirmation", not in the count. It must never give one flat count. Role notes (D27) supply the reasons.
+
+## D32. A single source older than 18 months is not current (Daniel's hand-check, 2026-11-23)
+
+- **Evidence:** in Daniel's hand-check, every one of the 8 Robinhood roles that rested on a single source older than 18 months had ended, and so had the one Campfire role:
+
+  | Person | Single source | Hand-check finding |
+  |---|---|---|
+  | Adam Wolff | 2020 newsroom post | left (now at Electric Capital) |
+  | Christine Brown | 2021 newsroom post | left Mar 2022 |
+  | Rich Cho | 2019 newsroom post | left Jan 2022 |
+  | Mark Seigle | 2021 newsroom post | left Jul 2022 |
+  | Christina Lai | 2020 newsroom post | left 2025 |
+  | Jim Swartwout | 2019 newsroom post | left Jan 2025 |
+  | Rich Jackson | 2020 newsroom post | left Jan 2021 |
+  | Smeeta Ramarathnam | 2020 newsroom post | left 2020 |
+  | Fernando San Martin (Campfire) | 2024 blog post, "Co-founder / CTO" | CTO is Paul Nichols since Jun 2024; Fernando now co-founder at Thyme |
+
+  8 of 8 at Robinhood and 1 of 1 at Campfire. The old rule (D16: such a role stays current, at low confidence) was wrong every time.
+- **Rule (`resolve.retire_stale`):** a current role whose only source is older than 18 months is **not current** unless a newer source confirms it. It runs after role rows are merged (D30), so pooled sources count as confirmation. Founder roles are exempt; D23 decides those. Undated sources can't be shown to be old and are left alone.
+- **Note the chat agent quotes:** "single source, last confirmed <date> in <source>; no newer confirmation (older than 18 months)". Listed in `review.stale_single_source`.
+- **Effect:** Robinhood goes from 31 to 22 current (the 8 above, plus the Steph Guild merge in D33). Campfire goes from 9 to 8 current: Fernando's CTO role is retired, his co-founder role becomes historical (D23), and the CTO seat conflict is resolved.
+- This supersedes D16's 18-month line (low confidence only).
+
+## D33. Hand-curated identity merges (Daniel's hand-check)
+
+- `data/<domain>/identity_merges.json` holds same-person decisions that the narrow rule (D6) can't make. Each entry has `merge` and `into` (names), `evidence`, and `decided_by`. The merged person keeps every claim, fact and source, and is displayed under the `into` name. Listed in `review.merged_by_decision`. A merge that matches no stored person is listed, not silently ignored.
+- **Entry:** "Steph Guild" into "Stephanie Guild". Her investor-site bio gives both names. D6 couldn't merge them: the shared first-name prefix was there, but "Head of Investment Strategy" (2022) and "Chief Investment Officer" share no function. The 2022 role is kept as history, not current (D32).
+- **Rejected:** loosening D6 (for example, dropping the function-overlap requirement), which would risk wrong automatic merges.
+
+## D34. A location must say where the person lives or works (Daniel's hand-check)
+
+- A location is accepted only if its evidence snippet describes where the person lives or works: "lives in", "based in", "office", "headquartered", "works from", "relocated to", and so on (`validate._LIVES_OR_WORKS`). The other checks are unchanged: the snippet is literal in the source and contains the location.
+- **Why:** Vlad Tenev's "San Francisco" came from a CNBC caption, "… joins us with CEO Vlad Tenev in San Francisco". That is where an interview was filmed. The board-page bio, "He lives in the Bay Area of California", is kept.
+- This is a keyword gate, not understanding. "A San Francisco-based company" would also pass, but the location must still be literal in the snippet, which must be about the person (the model's extraction).
+- A rejected location is NULL ("not found"), never guessed.
+
+## D35. Hand-check outcome (2026-11-23)
+
+- Daniel checked every record in a browser.
+  - **Live page:** the live investors.robinhood.com/governance/leadership page matched our current Robinhood list. Every VP and above on it is in the data, with no misses. Taylor Brown (Chief of Staff) and the Senior Directors are correctly excluded. Norm Ashkenas is not on the live page, so his "not current" status is correct.
+  - **LinkedIn:** Daniel checked some people on LinkedIn manually, outside the pipeline. LinkedIn is never a source (D1), and no LinkedIn URL is stored.
+  - **Merges raise confidence:** confidence comes from the pooled evidence (D30). Daniel accepted this; Billings is confirmed on the live page.
+  - **Koegel:** still current, flagged "departing Dec 31, 2026 to Klarna as CFO (multiple sources)" (D28).
+- The errors found, with their causes and fixes, are listed in VALIDATION.md ("Errors found in hand-check").
+

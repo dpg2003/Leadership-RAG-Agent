@@ -330,20 +330,10 @@ def _resolve_role(
     as_of = max(dated) if dated else None
     confidence = role_confidence(supporting)
     single = len({c.doc.url for c in supporting}) == 1
-    if (
-        is_current
-        and single
-        and as_of
-        and (today - date.fromisoformat(as_of)).days > STALE_AFTER_DAYS
-    ):
-        confidence = "low"
-        note = note or (
-            f"single source, last dated {as_of} (older than 18 months), low confidence: "
-            f"{_cite(supporting[0])}"
-        )
+    # The 18-month single-source rule (D32) is applied once, in retire_stale(), after rows
+    # are deduped and merged, so pooled sources count as confirmation.
     # D22: evidence re-anchored from the source (not the model's own quote) is low unless
-    # another source corroborates the role. (Listed in review.reanchored either way, so the
-    # stale note above keeps priority for the review lists.)
+    # another source corroborates the role. (Listed in review.reanchored either way.)
     if single and all(c.affiliation == "byline" for c in supporting):
         confidence = "low"
         note = note or (
@@ -490,6 +480,29 @@ def merge_overlapping_roles(
     return rows, merges
 
 
+def retire_stale(roles: list[ResolvedRole], today: date) -> None:
+    """D32, from Daniel's hand-check (all 8 such Robinhood records had departed): a current
+    role whose only source is older than 18 months is NOT current unless a newer source
+    confirms it. Runs after rows are merged, so a merged row's pooled sources count as
+    confirmation. Founder roles are exempt (D23 decides their currency); undated sources
+    can't be shown to be old and are left alone."""
+    for r in roles:
+        if not r.is_current or r.seniority == "founder" or not r.as_of:
+            continue
+        supporting = [c for c in r.claims if c.status != "former"] or r.claims
+        if len({c.doc.url for c in supporting}) != 1:
+            continue
+        if (today - date.fromisoformat(r.as_of)).days <= STALE_AFTER_DAYS:
+            continue
+        r.is_current = False
+        r.confidence = "low"
+        stale = (
+            f"single source, last confirmed {r.as_of} in {_cite(supporting[0])}; no newer "
+            f"confirmation (older than 18 months)"
+        )
+        r.note = f"{stale}; {r.note}" if r.note else stale
+
+
 def _apply_promotions(roles: list[ResolvedRole]) -> None:
     """A person's older title is superseded by a newer, dated title in the same function
     (VP of Operations in 2018, then COO from 2019). Founder roles are never superseded."""
@@ -585,8 +598,42 @@ def _seat_conflicts(people: list[ResolvedPerson], review: dict[str, list[dict[st
             )
 
 
+def apply_identity_merges(
+    clusters: list[list[Claim]],
+    merges: list[dict[str, Any]],
+    review: dict[str, list[dict[str, Any]]],
+) -> list[list[Claim]]:
+    """D33: hand-curated "same person" decisions the narrow rule (D6) can't make, e.g. a
+    nickname with no overlapping function. Each merge names both people by name; the merged
+    person keeps every claim (and so every fact and source)."""
+    for m in merges:
+        key_from, key_into = normalize_name(m["merge"]), normalize_name(m["into"])
+        src = next((c for c in clusters if any(normalize_name(x.full_name) == key_from
+                                               for x in c)), None)  # fmt: skip
+        dst = next((c for c in clusters if any(normalize_name(x.full_name) == key_into
+                                               for x in c)), None)  # fmt: skip
+        if src is not None and src is dst:
+            continue  # already the same person
+        if src is None or dst is None:
+            review["identity_merges_not_applied"].append(
+                {"names": [m["merge"], m["into"]], "note": "a name matches no stored person"}
+            )
+            continue
+        dst.extend(src)
+        dst.sort(key=_claim_sort_key)
+        clusters = [c for c in clusters if c is not src]
+        review["merged_by_decision"].append(
+            {"names": sorted([m["merge"], m["into"]]), "note": m.get("evidence", ""),
+             "decided_by": m.get("decided_by", "")}
+        )  # fmt: skip
+    return clusters
+
+
 def resolve_claims(
-    claims: list[Claim], today: date | None = None, company_id: int = 0
+    claims: list[Claim],
+    today: date | None = None,
+    company_id: int = 0,
+    identity_merges: list[dict[str, Any]] | None = None,
 ) -> Resolution:
     today = today or date.today()
     proxy_claims = [c for c in claims if _is_proxy(c) and c.status != "former"]
@@ -594,9 +641,22 @@ def resolve_claims(
 
     review: dict[str, list[dict[str, Any]]] = defaultdict(list)
     people: list[ResolvedPerson] = []
-    for cluster in cluster_claims(claims, company_id):
+    clusters = apply_identity_merges(
+        cluster_claims(claims, company_id), identity_merges or [], review
+    )
+    into_names = {normalize_name(m["into"]) for m in identity_merges or []}
+    merged_keys = [
+        {normalize_name(m["merge"]), normalize_name(m["into"])} for m in identity_merges or []
+    ]
+    for cluster in clusters:
         names = sorted({c.full_name for c in cluster})
-        if len({normalize_name(n) for n in names}) > 1:
+        # Names joined only by a hand-curated merge (D33) are not a D6 nickname merge:
+        # collapse each such pair to one name before counting distinct names.
+        keys = {normalize_name(n) for n in names}
+        for pair in merged_keys:
+            if pair <= keys:
+                keys = (keys - pair) | {min(pair)}
+        if len(keys) > 1:
             review["merged_by_nickname_rule"].append({"names": names})
         in_proxy = any(c in proxy_claims for c in cluster)
         proxy_keys = {k for c in cluster if c in proxy_claims for k in _role_keys(c, True)}
@@ -607,6 +667,9 @@ def resolve_claims(
                 by_key[key].append(c)
         roles = [_resolve_role(k, cs, proxy_date, proxy_keys, today) for k, cs in by_key.items()]
         _apply_promotions(roles)
+        roles = dedupe_roles(roles)
+        roles, role_merges = merge_overlapping_roles(roles)
+        retire_stale(roles, today)
         # D4 applies to current roles only: a past General Counsel / Chief Legal Officer role
         # (e.g. before the company had a proxy) stays historical C-level.
         for r in roles:
@@ -628,13 +691,13 @@ def resolve_claims(
                     r.is_current = False
                     r.note = "founder (historical): no current operating role in the collected data"
                     historical.append(r)
-        roles = dedupe_roles(roles)
-        roles, role_merges = merge_overlapping_roles(roles)
         roles.sort(key=lambda r: (not r.is_current, _SENIORITY_RANK[r.seniority], r.title))
         live = [r for r in roles if r.is_current] or roles
         confidence = max((r.confidence for r in live), key=_CONFIDENCE_RANK.__getitem__)
         live_claims = [c for r in live for c in r.claims if c.status != "former"] or cluster
-        best = min(live_claims, key=_claim_sort_key)
+        # A hand-curated merge (D33) names the person by its "into" name.
+        preferred = [c for c in live_claims if normalize_name(c.full_name) in into_names]
+        best = min(preferred or live_claims, key=_claim_sort_key)
         person = ResolvedPerson(
             display_name(best.full_name), cluster, roles, confidence, best.doc.url, name_claim=best
         )

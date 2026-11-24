@@ -202,6 +202,16 @@ def affiliation_via(
     return ""
 
 
+# D34: a location must describe where the person lives or works, not where an event took
+# place ("... joins us with CEO Vlad Tenev in San Francisco" is where an interview was filmed).
+_LIVES_OR_WORKS = re.compile(
+    r"\b(?:lives?|living|resides?|resident|based|headquarter(?:s|ed)?|hq|offices?|"
+    r"works? (?:in|from|out of)|working (?:in|from|out of)|relocat(?:e|ed|ing)|moved to|"
+    r"home (?:in|is))\b",
+    re.IGNORECASE,
+)
+
+
 def _snippet_problem(snippet: str, last_name: str, title: str, doc_norm: str) -> str:
     if len(snippet) > MAX_SNIPPET_CHARS:
         return "evidence snippet too long"
@@ -326,6 +336,7 @@ def check_person(
         and p.location_snippet
         and in_text(p.location_snippet, doc_norm)
         and in_text(p.location, norm_text(p.location_snippet), casefold=True)
+        and _LIVES_OR_WORKS.search(p.location_snippet)
     ):
         location, location_snippet = p.location.strip(), p.location_snippet.strip()
     bio = None

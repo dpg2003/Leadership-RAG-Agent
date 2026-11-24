@@ -26,8 +26,8 @@
     "documents_sent_to_llm": 67,
     "extraction_errors": [],
     "model": "claude-sonnet-5-5",
-    "people_current": 31,
-    "people_found": 45,
+    "people_current": 22,
+    "people_found": 44,
     "prefilter_skipped": 15,
     "prompt_version": "1",
     "rejections": [
@@ -173,14 +173,6 @@
       ],
       "conflicts": [
         {
-          "field": "location",
-          "person": "Vlad Tenev",
-          "values": [
-            "Bay Area of California",
-            "San Francisco"
-          ]
-        },
-        {
           "field": "is_current",
           "note": "sources disagree on whether this role is current: former per 8-K sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm (2026-05-08); current per DEF 14A sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm (2026-04-22)",
           "person": "Jeff Pinner",
@@ -299,7 +291,7 @@
           ]
         },
         {
-          "only_source": true,
+          "only_source": false,
           "person": "Stephanie Guild",
           "urls": [
             "https://investors.robinhood.com/governance/leadership"
@@ -400,6 +392,16 @@
           ]
         }
       ],
+      "merged_by_decision": [
+        {
+          "decided_by": "Daniel, 2026-11-23",
+          "names": [
+            "Steph Guild",
+            "Stephanie Guild"
+          ],
+          "note": "Same person: her investor-site bio gives both names (Steph Guild / Stephanie Guild, CFA), Chief Investment Officer. Checked by Daniel in a browser, Nov 23, 2026. The pipeline's rule (D6) can't merge them: no overlapping function."
+        }
+      ],
       "merged_by_nickname_rule": [
         {
           "names": [
@@ -437,14 +439,6 @@
           "seniority": "vp"
         }
       ],
-      "possible_duplicates": [
-        {
-          "names": [
-            "Steph Guild",
-            "Stephanie Guild"
-          ]
-        }
-      ],
       "reanchored": [
         {
           "evidence_snippet": "Christine Brown will lead Robinhood Crypto as Chief Operating Officer, where she'll oversee all of our crypto operations and compliance. She'll also keep her current role of Robinhood Markets' VP of Product Operations",
@@ -461,15 +455,7 @@
       ],
       "stale_single_source": [
         {
-          "note": "single source, last dated 2022-10-10 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy (2022-10-10)",
-          "person": "Steph Guild",
-          "title": "Head of Investment Strategy",
-          "urls": [
-            "https://robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy/"
-          ]
-        },
-        {
-          "note": "single source, last dated 2021-04-22 (older than 18 months), low confidence: company site robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo (2021-04-22)",
+          "note": "single source, last confirmed 2021-04-22 in company site robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo (2021-04-22); no newer confirmation (older than 18 months); evidence re-anchored by name and title in one block; single source: company site robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo (2021-04-22)",
           "person": "Christine Brown",
           "title": "VP of Product Operations",
           "urls": [
@@ -477,7 +463,7 @@
           ]
         },
         {
-          "note": "single source, last dated 2021-10-01 (older than 18 months), low confidence: company site robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark (2021-10-01)",
+          "note": "single source, last confirmed 2021-10-01 in company site robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark (2021-10-01); no newer confirmation (older than 18 months)",
           "person": "Mark Seigle",
           "title": "VP of Infrastructure",
           "urls": [
@@ -485,7 +471,7 @@
           ]
         },
         {
-          "note": "single source, last dated 2020-08-19 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-welcomes-christina-lai-and-lucas-moskowitz-to-the-legal-leadership-team (2020-08-19)",
+          "note": "single source, last confirmed 2020-08-19 in company site robinhood.com/newsroom/robinhood-welcomes-christina-lai-and-lucas-moskowitz-to-the-legal-leadership-team (2020-08-19); no newer confirmation (older than 18 months)",
           "person": "Christina Lai",
           "title": "VP and Deputy General Counsel",
           "urls": [
@@ -493,7 +479,7 @@
           ]
         },
         {
-          "note": "single source, last dated 2020-05-21 (older than 18 months), low confidence: company site robinhood.com/newsroom/welcome-to-robinhoods-2020-interns (2020-05-21)",
+          "note": "single source, last confirmed 2020-05-21 in company site robinhood.com/newsroom/welcome-to-robinhoods-2020-interns (2020-05-21); no newer confirmation (older than 18 months)",
           "person": "Adam Wolff",
           "title": "VP of Engineering",
           "urls": [
@@ -501,7 +487,7 @@
           ]
         },
         {
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)",
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)",
           "person": "Smeeta Ramarathnam",
           "title": "Deputy General Counsel, VP-Legal and Regulatory",
           "urls": [
@@ -509,7 +495,7 @@
           ]
         },
         {
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)",
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)",
           "person": "Jim Swartwout",
           "title": "Head of Clearing Operations",
           "urls": [
@@ -517,7 +503,7 @@
           ]
         },
         {
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)",
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)",
           "person": "Rich Cho",
           "title": "Head of Recruiting",
           "urls": [
@@ -525,11 +511,19 @@
           ]
         },
         {
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)",
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)",
           "person": "Rich Jackson",
           "title": "VP of Risk and Compliance",
           "urls": [
             "https://robinhood.com/newsroom/new-additions-to-robinhood-management/"
+          ]
+        },
+        {
+          "note": "single source, last confirmed 2022-10-10 in company site robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy (2022-10-10); no newer confirmation (older than 18 months)",
+          "person": "Stephanie Guild",
+          "title": "Head of Investment Strategy",
+          "urls": [
+            "https://robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy/"
           ]
         }
       ],
@@ -739,9 +733,9 @@
           "title_raw": "VP of Engineering",
           "function": "engineering",
           "seniority": "vp",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2020-05-21",
-          "note": "single source, last dated 2020-05-21 (older than 18 months), low confidence: company site robinhood.com/newsroom/welcome-to-robinhoods-2020-interns (2020-05-21)"
+          "note": "single source, last confirmed 2020-05-21 in company site robinhood.com/newsroom/welcome-to-robinhoods-2020-interns (2020-05-21); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -1333,11 +1327,11 @@
       "review_flags": [
         {
           "person": "Chris Koegel",
-          "flag": "reported departing (secondary source, unconfirmed)",
-          "detail": "A secondary aggregator reports him leaving for Klarna (CFO). Not in any collected source; he stays current until confirmed.",
+          "flag": "departing Dec 31, 2026 to Klarna as CFO (multiple sources)",
+          "detail": "Still current. Confirmed by Daniel's hand-check from multiple sources, including Klarna's announcement (Nov 12, 2026); first surfaced by the coverage scout from a secondary aggregator.",
           "source_url": "https://www.autobound.ai/companies/robinhood/executive-changes",
-          "source_date": "2026-11-19",
-          "found_by": "coverage-scout (docs/validation/robinhood.com-scout.md)",
+          "source_date": "2026-11-12",
+          "found_by": "coverage-scout; confirmed in Daniel's hand-check",
           "decided_by": "Daniel, 2026-11-23"
         }
       ]
@@ -1357,9 +1351,9 @@
           "title_raw": "VP and Deputy General Counsel",
           "function": "legal",
           "seniority": "vp",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2020-08-19",
-          "note": "single source, last dated 2020-08-19 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-welcomes-christina-lai-and-lucas-moskowitz-to-the-legal-leadership-team (2020-08-19)"
+          "note": "single source, last confirmed 2020-08-19 in company site robinhood.com/newsroom/robinhood-welcomes-christina-lai-and-lucas-moskowitz-to-the-legal-leadership-team (2020-08-19); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -1508,8 +1502,8 @@
       "full_name": "Christine Brown",
       "location": null,
       "bio": "Christine has a decade-plus experience in product management and operations.",
-      "profile_url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
-      "confidence": "low",
+      "profile_url": "https://robinhood.com/newsroom/robinhood-crypto-welcomes-cove-markets/",
+      "confidence": "high",
       "updated_at": "2026-11-24T03:11:47+00:00",
       "source_count": 3,
       "roles": [
@@ -1525,9 +1519,9 @@
           "title_raw": "VP of Product Operations",
           "function": "product",
           "seniority": "vp",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2021-04-22",
-          "note": "single source, last dated 2021-04-22 (older than 18 months), low confidence: company site robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo (2021-04-22)"
+          "note": "single source, last confirmed 2021-04-22 in company site robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo (2021-04-22); no newer confirmation (older than 18 months); evidence re-anchored by name and title in one block; single source: company site robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo (2021-04-22)"
         }
       ],
       "facts": [
@@ -1548,7 +1542,7 @@
         {
           "field": "full_name",
           "value": "Christine Brown",
-          "evidence_snippet": "Christine Brown will lead Robinhood Crypto as Chief Operating Officer, where she'll oversee all of our crypto operations and compliance. She'll also keep her current role of Robinhood Markets' VP of Product Operations",
+          "evidence_snippet": "Christine Brown will lead Robinhood Crypto as Chief Operating Officer, where she’ll oversee all of our crypto operations and compliance.",
           "extracted_at": "2026-11-24T02:12:00+00:00",
           "is_current": null,
           "source": {
@@ -2805,9 +2799,9 @@
           "title_raw": "Head of Clearing Operations",
           "function": "operations",
           "seniority": "head",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2019-04-15",
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)"
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -3397,9 +3391,9 @@
           "title_raw": "VP of Infrastructure",
           "function": "engineering",
           "seniority": "vp",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2021-10-01",
-          "note": "single source, last dated 2021-10-01 (older than 18 months), low confidence: company site robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark (2021-10-01)"
+          "note": "single source, last confirmed 2021-10-01 in company site robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark (2021-10-01); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -3779,9 +3773,9 @@
           "title_raw": "Head of Recruiting",
           "function": "people",
           "seniority": "head",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2019-04-15",
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)"
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -3831,9 +3825,9 @@
           "title_raw": "VP of Risk and Compliance",
           "function": "legal",
           "seniority": "vp",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2019-04-15",
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)"
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -4291,9 +4285,9 @@
           "title_raw": "Deputy General Counsel, VP-Legal and Regulatory",
           "function": "legal",
           "seniority": "vp",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2019-04-15",
-          "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)"
+          "note": "single source, last confirmed 2019-04-15 in company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -4345,21 +4339,29 @@
     {
       "id": 41,
       "company_id": 1,
-      "full_name": "Steph Guild",
+      "full_name": "Stephanie Guild",
       "location": null,
       "bio": null,
-      "profile_url": "https://robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy/",
+      "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
       "updated_at": "2026-11-24T03:13:39+00:00",
-      "source_count": 1,
+      "source_count": 2,
       "roles": [
+        {
+          "title_raw": "Chief Investment Officer",
+          "function": "other",
+          "seniority": "c_level",
+          "is_current": true,
+          "as_of": null,
+          "note": "C-level title not in the 2026-04-22 proxy; source is undated: search investors.robinhood.com/governance/leadership (undated)"
+        },
         {
           "title_raw": "Head of Investment Strategy",
           "function": "operations",
           "seniority": "head",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2022-10-10",
-          "note": "single source, last dated 2022-10-10 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy (2022-10-10)"
+          "note": "single source, last confirmed 2022-10-10 in company site robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy (2022-10-10); no newer confirmation (older than 18 months)"
         }
       ],
       "facts": [
@@ -4378,44 +4380,6 @@
           }
         },
         {
-          "field": "title",
-          "value": "Head of Investment Strategy",
-          "evidence_snippet": "says Steph Guild, Robinhood’s Head of Investment Strategy.",
-          "extracted_at": "2026-11-24T03:13:39+00:00",
-          "is_current": true,
-          "source": {
-            "url": "https://robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy/",
-            "source_type": "company_site",
-            "retrieved_at": "2026-11-24T03:13:35+00:00",
-            "published_at": "2022-10-10",
-            "raw_path": "data/robinhood.com/raw/company_site/9811d65860929afc3e10.txt"
-          }
-        }
-      ],
-      "review_flags": []
-    },
-    {
-      "id": 42,
-      "company_id": 1,
-      "full_name": "Stephanie Guild",
-      "location": null,
-      "bio": null,
-      "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
-      "updated_at": "2026-11-24T02:12:33+00:00",
-      "source_count": 1,
-      "roles": [
-        {
-          "title_raw": "Chief Investment Officer",
-          "function": "other",
-          "seniority": "c_level",
-          "is_current": true,
-          "as_of": null,
-          "note": "C-level title not in the 2026-04-22 proxy; source is undated: search investors.robinhood.com/governance/leadership (undated)"
-        }
-      ],
-      "facts": [
-        {
           "field": "full_name",
           "value": "Stephanie Guild, CFA",
           "evidence_snippet": "Stephanie Guild, CFA Chief Investment Officer",
@@ -4427,6 +4391,20 @@
             "retrieved_at": "2026-11-24T01:44:29+00:00",
             "published_at": null,
             "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Investment Strategy",
+          "evidence_snippet": "says Steph Guild, Robinhood’s Head of Investment Strategy.",
+          "extracted_at": "2026-11-24T03:13:39+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy/",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T03:13:35+00:00",
+            "published_at": "2022-10-10",
+            "raw_path": "data/robinhood.com/raw/company_site/9811d65860929afc3e10.txt"
           }
         },
         {
@@ -4447,7 +4425,7 @@
       "review_flags": []
     },
     {
-      "id": 43,
+      "id": 42,
       "company_id": 1,
       "full_name": "Steve Quirk",
       "location": null,
@@ -4625,10 +4603,10 @@
       "review_flags": []
     },
     {
-      "id": 44,
+      "id": 43,
       "company_id": 1,
       "full_name": "Vlad Tenev",
-      "location": "San Francisco",
+      "location": "Bay Area of California",
       "bio": "I was born in Bulgaria, a country with a financial system that was on the verge of collapse.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
       "confidence": "high",
@@ -5005,16 +4983,16 @@
         },
         {
           "field": "location",
-          "value": "San Francisco",
-          "evidence_snippet": "LET'S GET TO OUR KATE ROONEY WHO JOINS US WITH CEO VLAD TENEV IN SAN FRANCISCO.",
-          "extracted_at": "2026-11-24T02:12:25+00:00",
+          "value": "Bay Area of California",
+          "evidence_snippet": "He lives in the Bay Area of California with his wife and three children.",
+          "extracted_at": "2026-11-24T02:12:24+00:00",
           "is_current": null,
           "source": {
-            "url": "https://www.youtube.com/watch?v=6trZS0CylDE",
+            "url": "https://investors.robinhood.com/governance/board-of-directors",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": "2026-10-28",
-            "raw_path": "data/robinhood.com/raw/search/ccdaac5c00d9e8dce639.txt"
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/3ea3e592a8f4154e8231.txt"
           }
         },
         {
@@ -5357,7 +5335,7 @@
       "review_flags": []
     },
     {
-      "id": 45,
+      "id": 44,
       "company_id": 1,
       "full_name": "Walter Koller",
       "location": null,

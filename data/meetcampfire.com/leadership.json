@@ -26,7 +26,7 @@
     "documents_sent_to_llm": 101,
     "extraction_errors": [],
     "model": "claude-sonnet-5-5",
-    "people_current": 9,
+    "people_current": 8,
     "people_found": 9,
     "prefilter_skipped": 13,
     "prompt_version": "1",
@@ -87,26 +87,18 @@
       }
     ],
     "review": {
-      "seat_conflicts": [
+      "founder_historical": [
         {
-          "holders": [
-            {
-              "as_of": "2026-07-08",
-              "person": "Paul Nichols",
-              "title": "CTO"
-            },
-            {
-              "as_of": "2024-02-27",
-              "person": "Fernando San Martin",
-              "title": "Co-founder / CTO"
-            }
-          ],
-          "seat": "chief technology officer"
+          "person": "Fernando San Martin",
+          "title": "Co-founder / CTO",
+          "urls": [
+            "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern"
+          ]
         }
       ],
       "stale_single_source": [
         {
-          "note": "single source, last dated 2024-02-27 (older than 18 months), low confidence: company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27)",
+          "note": "single source, last confirmed 2024-02-27 in company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27); no newer confirmation (older than 18 months)",
           "person": "Fernando San Martin",
           "title": "Co-founder / CTO",
           "urls": [
@@ -542,7 +534,7 @@
       "location": null,
       "bio": "He saw an opportunity to bring enterprise-grade automation to mid-size companies and solve the challenge of large accounting data sets with the growth of FinTech, AI and other high-volume business models.",
       "profile_url": "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:10:06+00:00",
       "source_count": 1,
       "roles": [
@@ -550,17 +542,17 @@
           "title_raw": "Co-founder / CTO",
           "function": "engineering",
           "seniority": "c_level",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2024-02-27",
-          "note": "single source, last dated 2024-02-27 (older than 18 months), low confidence: company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27)"
+          "note": "single source, last confirmed 2024-02-27 in company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27); no newer confirmation (older than 18 months)"
         },
         {
           "title_raw": "Co-founder / CTO",
           "function": "other",
           "seniority": "founder",
-          "is_current": true,
+          "is_current": false,
           "as_of": "2024-02-27",
-          "note": "single source, last dated 2024-02-27 (older than 18 months), low confidence: company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27)"
+          "note": "founder (historical): no current operating role in the collected data"
         }
       ],
       "facts": [
