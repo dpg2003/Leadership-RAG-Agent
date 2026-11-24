@@ -189,3 +189,16 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   - Facts are ordered with a full tie-break.
   - Extraction caches written before this field existed get `extracted_at` from the cache file's modification time, once (an approximation, written back to the cache).
 - `leadership.db` still changes on each run (a new `collection_runs` row); the JSON is the reviewable diff.
+
+## D25. VALIDATION.md is generated (Phase 4)
+
+- `leadership validation-report` builds `docs/VALIDATION.md` from `data/<domain>/leadership.json` and the subagent reports in `docs/validation/`. It is deterministic.
+- **Per company:**
+  - every current person, with their best evidence excerpt centred on the name, a source link, location, review flags, and the source-verifier's verdict ("Agent verdict": the worst verdict across that person's facts, plus counts);
+  - every person who is not current, with the reason and evidence;
+  - the pipeline's review lists ("Possible duplicates" always appears, even when empty);
+  - people whose every claim was rejected.
+- **Hand-written sections** (Known misses from the blind coverage scout, scout vs. pipeline diff) live in `docs/validation/<domain>-notes.md`. They are included verbatim.
+- **Daniel's "Verified by Daniel" cells** are carried over on regeneration, keyed by company, table and name. Re-running after fixes never loses the hand-check.
+- Subagent verdicts are inputs, not approvals. No data was changed from them without Daniel's decision.
+

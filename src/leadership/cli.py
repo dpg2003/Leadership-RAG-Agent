@@ -141,5 +141,18 @@ def collect(
     console.print(f"wrote {result.db_path.as_posix()} and {result.json_path.name}")
 
 
+@app.command("validation-report")
+def validation_report(
+    domains: list[str] = typer.Argument(  # noqa: B008
+        None, help="Company domains (default: robinhood.com meetcampfire.com)"
+    ),
+) -> None:
+    """Regenerate docs/VALIDATION.md from the committed data and docs/validation/ reports."""
+    from leadership.validation_report import build
+
+    path = build(domains or ["robinhood.com", "meetcampfire.com"])
+    console.print(f"wrote {path}")
+
+
 if __name__ == "__main__":
     app()
