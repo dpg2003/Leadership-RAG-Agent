@@ -193,6 +193,7 @@ def export_json(path: Path, domain: str) -> Path:
     out = {"company": company, "latest_run": run, "people": people}
     json_path = path.with_name("leadership.json")
     json_path.write_text(
-        json.dumps(out, indent=2, ensure_ascii=False, sort_keys=False) + "\n", encoding="utf-8"
+        json.dumps(out, indent=2, ensure_ascii=False, sort_keys=False) + "\n", encoding="utf-8", newline="
+"
     )
     return json_path
