@@ -141,6 +141,69 @@ def collect(
     console.print(f"wrote {result.db_path.as_posix()} and {result.json_path.name}")
 
 
+@app.command()
+def chat(
+    domain: str | None = typer.Argument(None, help="Company domain, e.g. robinhood.com"),
+    question: list[str] | None = typer.Option(  # noqa: B008
+        None, "--question", "-q", help="Ask these in order (one conversation), then exit"
+    ),
+    steps: bool = typer.Option(True, help="Show the tool calls behind each answer"),
+) -> None:
+    """Chat about a company's leadership, answered only from the collected data."""
+    import anthropic
+    from rich.markdown import Markdown
+
+    from leadership.chat.agent import ChatAgent
+
+    try:
+        agent = ChatAgent(domain)
+    except ValueError as exc:
+        console.print(f"[red]{exc}[/]")
+        raise typer.Exit(2) from exc
+
+    def answer(q: str) -> None:
+        try:
+            reply = agent.ask(q)
+        except MissingSettingError as exc:
+            console.print(f"[red]{exc}[/]")
+            raise typer.Exit(2) from exc
+        except (RuntimeError, anthropic.APIError) as exc:
+            console.print(f"[red]{exc}[/]")
+            return
+        if steps:
+            for s in reply.steps:
+                args = ", ".join(f"{k}={v!r}" for k, v in s.input.items())
+                console.print(f"[dim]  → {s.tool}({args}){' [error]' if s.is_error else ''}[/]")
+        console.print(Markdown(reply.text, hyperlinks=False))
+        if reply.sources:
+            console.print("[dim]  Sources:[/]")
+            for url in reply.sources:
+                console.print(f"[dim]  - {url}[/]", soft_wrap=True)
+        console.print(
+            f"[dim]  {reply.input_tokens:,} tokens in / {reply.output_tokens:,} out · "
+            f"${reply.cost_usd}[/]\n"
+        )
+
+    hint = "" if question else " · Ctrl+C or 'exit' to quit"
+    console.print(
+        f"[bold]Leadership chat[/] · {domain or 'no company selected'} · model {agent.model}{hint}"
+    )
+    if question:
+        for q in question:
+            console.print(f"[bold cyan]> {q}[/]")
+            answer(q)
+        return
+    while True:
+        try:
+            q = console.input("[bold cyan]> [/]").strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+        if q.lower() in {"exit", "quit"}:
+            break
+        if q:
+            answer(q)
+
+
 @app.command("validation-report")
 def validation_report(
     domains: list[str] = typer.Argument(  # noqa: B008

@@ -159,3 +159,15 @@ def classify_title(title: str, company_name: str | None = None) -> TitleClass | 
     if founder:
         return TitleClass("founder", function_for(t.replace("founder", "")))
     return None
+
+
+def seat_functions(title: str) -> set[str]:
+    """Functions of every C-suite seat a title names: "CEO & CFO" -> {"other", "finance"}.
+
+    Resolution keeps one role row per title, filed under its first seat (D29/D30), so the
+    chat tools use this to surface a second seat named in a source's wording (D36)."""
+    t = _clean(title)
+    seats = {_C_ACRONYMS[w] for w in re.findall(r"[a-z]+", t) if w in _C_ACRONYMS}
+    for phrase in re.findall(r"\bchief\b(?:\s+[a-z&,']+){1,5}?\s+officer\b", t):
+        seats.add("other" if "executive" in phrase else function_for(phrase))
+    return seats

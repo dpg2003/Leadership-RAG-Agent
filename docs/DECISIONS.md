@@ -308,3 +308,28 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   - **Koegel:** still current, flagged "departing Dec 31, 2026 to Klarna as CFO (multiple sources)" (D28).
 - The errors found, with their causes and fixes, are listed in VALIDATION.md ("Errors found in hand-check").
 
+
+## D36. Phase 5: the chat agent
+
+- **Loop:** a manual tool-use loop over the Anthropic Messages API (`chat/agent.py`), model `LLM_MODEL`, adaptive thinking, at most 8 tool rounds per question. The whole conversation, tool calls and results included, stays in `history`, so follow-ups ("and the CFO?") work. On an API error the question's partial turns are dropped, so the history stays valid. Each answer returns its tool steps and the tool-result URLs it cites, for the CLI and the UI.
+- **Tools (`chat/tools.py`):** `list_leaders`, `count_leaders` and `get_person`, each taking `company` (domain or name). Function and seniority are enums in the JSON schema and are also checked in code. The tools reuse the parameterized queries in `repository.py` on a **read-only** SQLite connection (`mode=ro`). A bad argument comes back as an `is_error` tool result, which the model can correct; it does not crash.
+- **Additions to the spec's signatures:**
+  - `list_leaders(include_former=true)` returns people whose matching role is not current, with the reason (the role note) and the last-confirmed date. Without it, "Who's the CTO?" couldn't say *why* the seat is empty.
+  - `count_leaders` returns the confirmed (high/medium) vs low-confidence split with reasons (D31).
+  - Every result carries `sources_checked` (document counts by source type and the collection date), for "not found … sources checked".
+  - Every person carries their review flags (D28).
+- **`also_titled` (combined titles):** resolution keeps one role row per title, filed under its first seat (D29/D30). So John Glasgow's "CEO & CFO" (Campfire blog, 2026-02-24) and "CEO, CFO and founder" (CFO Dive, undated) sit inside his CEO row, and a finance query missed them. `list_leaders` for a function at C-level (or any seniority) now also returns current people whose title wording names a C-suite seat in that function (`titles.seat_functions`), when no role of theirs (current or past) is already in that seat. The wording comes with its sources and dates. It also surfaces VP-level "Vice President and Chief Information Security Officer" (McHenry) and "VP and COO, Robinhood Financial" (Koller), labelled with their resolved VP role.
+  - **Rejected for now:** splitting combined titles into one role row per seat in `resolve.py`. That would change the approved Phase 4 data (Glasgow would gain a CFO row), so it is Daniel's call. `also_titled` reads the stored facts and changes nothing.
+- **Prompt rules (`chat/prompts.py`):**
+  - Answer only from tool results, never from model knowledge, and cite source URLs.
+  - When the data doesn't have it, say "Not found in the collected data", plus the sources checked.
+  - Never present a not-current role as current; give its reason and last-confirmed date.
+  - State the count breakdown, low confidence, conflicts and flags.
+  - For seat questions, use `include_former`, and report the seat as vacant/unknown if no current holder.
+  - Ask which company when it's unclear.
+- **Rejected:** text-to-SQL (spec), and putting the whole JSON export in the prompt. That loses typed filters and the counting guarantee, and costs more tokens per turn.
+- **Added after the phase review:**
+  - **Exact source URLs:** each role carries `sources`, the exact stored URLs for its own wording, the sources its note cites, and the source dated `last_confirmed`. Each `count_leaders` row has a `source_url`. Notes shorten URLs, and without these the model rebuilt URLs that didn't match the stored ones.
+  - **Former roles of current people:** in `not_current`, a person who left that role but holds another says "STILL CURRENT in another role" and lists `current_roles`.
+  - **Cost:** each answer's tokens and cost (from `extract.PRICES`) are logged and shown in the CLI.
+
