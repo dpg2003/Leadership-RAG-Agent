@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS sources (
     source_type TEXT    NOT NULL CHECK (source_type IN ('company_site', 'sec_filing', 'search')),
     fetched_at  TEXT    NOT NULL,
     raw_path    TEXT    NOT NULL,   -- repo-relative path to the cached raw document
+    published_at TEXT,              -- page/filing date (YYYY-MM-DD) when known; NULL if not
     UNIQUE (company_id, url)
 );
 
@@ -45,7 +46,9 @@ CREATE TABLE IF NOT EXISTS roles (
                     'engineering', 'product', 'finance', 'marketing', 'sales', 'operations',
                     'legal', 'people', 'security', 'design', 'data', 'other')),
     seniority   TEXT    NOT NULL CHECK (seniority IN ('c_level', 'vp', 'head', 'founder')),
-    is_current  INTEGER NOT NULL DEFAULT 1 CHECK (is_current IN (0, 1))
+    is_current  INTEGER NOT NULL DEFAULT 1 CHECK (is_current IN (0, 1)),
+    as_of       TEXT,               -- newest dated evidence for this role (YYYY-MM-DD)
+    note        TEXT                -- why a role is not current, disputed, or low confidence
 );
 
 CREATE TABLE IF NOT EXISTS facts (
@@ -55,6 +58,8 @@ CREATE TABLE IF NOT EXISTS facts (
     value            TEXT    NOT NULL,
     source_id        INTEGER NOT NULL REFERENCES sources (id) ON DELETE CASCADE,
     evidence_snippet TEXT    NOT NULL CHECK (length(trim(evidence_snippet)) > 0),
+    is_current       INTEGER CHECK (is_current IN (0, 1)),  -- title facts: did the source
+                                                            -- present it as current?
     extracted_at     TEXT    NOT NULL
 );
 

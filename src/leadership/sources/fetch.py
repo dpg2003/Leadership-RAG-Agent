@@ -60,7 +60,24 @@ class FetchResult:
         return 200 <= self.status < 300
 
     def text_body(self) -> str:
-        return self.body.decode("utf-8", errors="replace")
+        """Decode the body: the header charset if given, else UTF-8, else Windows-1252.
+
+        The fallback matters for evidence checks: SEC filings often declare ASCII but contain
+        cp1252 bytes (0x92 for a curly apostrophe). Decoding those as UTF-8 would turn
+        "company's" into "company�s", and no quoted snippet would match the text.
+        """
+        charset = ""
+        if "charset=" in self.content_type:
+            charset = self.content_type.split("charset=")[-1].split(";")[0].strip(" \"'")
+        if charset:
+            try:
+                return self.body.decode(charset)
+            except (LookupError, UnicodeDecodeError):
+                pass
+        try:
+            return self.body.decode("utf-8")
+        except UnicodeDecodeError:
+            return self.body.decode("cp1252", errors="replace")
 
 
 def is_banned(url: str) -> bool:

@@ -28,7 +28,24 @@ CONFIDENCE_LEVELS = ("high", "medium", "low")
 # Lower number wins a conflict. Derived from sources.source_type; never stored.
 SOURCE_PRIORITY = {"company_site": 0, "sec_filing": 1, "search": 2}
 
-_HONORIFICS = {"mr", "mrs", "ms", "dr", "prof", "jr", "sr", "ii", "iii", "iv", "phd", "md", "mba"}
+_HONORIFICS = {
+    "mr",
+    "mrs",
+    "ms",
+    "dr",
+    "prof",
+    "jr",
+    "sr",
+    "ii",
+    "iii",
+    "iv",
+    "phd",
+    "md",
+    "mba",
+    "cfa",
+    "cpa",
+    "esq",
+}
 
 
 def normalize_name(name: str) -> str:

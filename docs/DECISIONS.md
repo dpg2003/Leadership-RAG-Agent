@@ -111,3 +111,44 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 ## D15. Company-site crawl limit is per run
 
 - `--max-pages` (default 60) sets how many top-ranked company-site URLs are fetched. Campfire is collected with `--max-pages 120`: its leaders appear mostly in blog bylines, and the default left 35 posts unfetched. With 120 it fetched 86 pages and hit no cap. Robinhood keeps 60: more newsroom pages there mostly add stale appointment posts and LLM cost.
+
+## D16. Currency and confidence rules (Phase 3; proxy and 18-month rules decided by Daniel)
+
+All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page says (`status`: current / former / incoming / unclear).
+- **One role per (seniority, function) per person.** The best claim names it: source priority (company_site > sec_filing > search), then newest date.
+- **Former wins** unless a current claim for that role is strictly newer (undated counts as oldest). A "former" next to the title in the snippet overrides the model's status. Test: Jason Warnick ("former Chief Financial Officer" in the 2026 proxy) is never current, with or without the 2021 newsroom post.
+- **Proxy rule:** for C-level roles, a **dated** newsroom or search claim older than the latest DEF 14A, for a role the proxy doesn't list for that person, is `is_current = false`. SEC claims are exempt. **Undated** claims (e.g. the investors.robinhood.com leadership page) can't be shown to be older: they stay current and are listed in `c_level_not_in_proxy_undated`. The proxy lists only Section 16 officers, so a Chief People Officer or CISO is normally absent from it. (The first run applied the rule to undated claims too and wrongly retired 7 people. Fixed and tested.)
+- **Promotion rule:** an older title is superseded by a later dated title in the same function (Gretchen Howard: VP of Operations in 2018, then COO in 2019). Founder roles are never superseded.
+- **Confidence per role:** `high` = an SEC filing, or 2+ sources including the company site. `medium` = the company site, or 2+ sources. `low` = a single search result. **An uncorroborated single-source role last dated more than 18 months ago is `low`** and listed (`stale_single_source`). A person's confidence is that of their best current role.
+- **Listed for review, not decided:** two current holders of the same C-level seat (`seat_conflicts`, e.g. Campfire's two CTOs); sources that disagree on currency (`conflicts`); different locations; nickname merges; possible duplicates; records from bot-blocked hosts (D13).
+- People with no current role are kept (with their facts), so "who was the CFO before?" can be answered. Lists and counts include only current roles.
+- **Rejected:** letting the LLM decide currency or confidence. It doesn't know other sources or the proxy date, and its answer isn't auditable.
+
+## D17. Extraction: structured outputs, cached, pre-filtered
+
+- **Chosen:** `messages.parse(output_format=Extraction)` (Pydantic, `effort=medium`), one call per pre-filtered document, 4 in parallel.
+- **Rejected:** tool use with a forced tool choice. `claude-sonnet-5-5` rejects forced `tool_choice` (HTTP 400). Structured outputs guarantee the schema without a fake tool. The spec's "tool use + Pydantic" intent (schema-validated output) is unchanged.
+- **Pre-filter:** keep ±3 lines around role words (chief, officer, VP, head of, founder, ...) plus date lines. For SEC filings, use the executive-officers section, else the signatures. Pages with no role word skip the LLM. About 12% of documents are skipped.
+- **Context:** the prompt names the target company and domain, and asks for the employer plus a `works_at_target_company` flag. That flag rejects customers, partners, and homonymous organizations (campfire.org, robinhood.org).
+- **Cache:** responses are cached at `data/<domain>/raw/_extractions/` (gitignored with the rest of the raw data), keyed by model, prompt version, URL and exact input. Re-resolving costs $0. `--reextract` forces new calls. `stats_json` reports both this run's cost and the cost of the cached responses.
+- **Refusals / truncation:** a response without structured output is recorded in `extraction_errors` and that document is skipped. No server-side fallback model: a refusal is unlikely on public leadership text, and a silent model switch would muddy cost and provenance.
+
+## D18. Evidence check, with literal re-anchoring
+
+- A claim is kept only if all of these hold: the name appears in the cached source text; the snippet appears literally in it (whitespace, curly quotes and dashes don't count); the snippet contains the last name and the exact title; the title passes the title rules (`titles.py`); the model says the role is held at the target company; and the name has at least two tokens.
+- **Re-anchoring:** the model often takes the title from a heading but quotes a sentence that rewords it ("Vice President, Corporate Finance & Investor Relations" vs "Vice President of Corporate Finance and Investor Relations"). When the exact name and exact title are both in the source within 200 characters, the stored snippet becomes that literal span (`Claim.reanchored`). This cut Robinhood's rejections from 22 to 7 without accepting anything not literally on the page. Rejected: fuzzy snippet matching, which would accept paraphrases.
+- Location, bio and page date each need their own verified evidence, or they are dropped (NULL). A rejected claim is kept in `stats_json.rejections` with its reason.
+- **Charset fix found here:** SEC filings declare ASCII but contain cp1252 bytes. Decoding them as UTF-8 put `�` in place of apostrophes, so no quote could match. `FetchResult.text_body` now tries the header charset, then UTF-8, then cp1252.
+
+## D19. Schema additions (Phase 3)
+
+- `sources.published_at` (page or filing date, when verified), `facts.is_current` (whether that source presented the title as current), and `roles.as_of` / `roles.note` (newest evidence date; why a role is not current, disputed, or low confidence). All nullable. Missing evidence stays NULL.
+- `sources` are rebuilt each run together with people and facts (D3). Only sources that back a stored fact are written.
+
+## D20. Fixes from the Phase 3 review
+
+- **Title rule refinement (applies D4):** "C-level" means the company's own C-suite. A title that also carries a VP token is VP-level: "Vice President and Chief Information Security Officer" and "Vice President and Chief Operating Officer, Robinhood Financial". So is a subsidiary presidency ("President of Robinhood UK ..."). General Counsel stays C-level, as D4 says, even as "SVP, General Counsel". Company and subsidiary names ("Robinhood Financial") are stripped before a function is assigned, so "Financial" no longer means finance. Without these rules, "how many C-level" was inflated, and there were false seat conflicts (Koller showing up as a second CFO).
+- **One document per canonical URL** (lowercase host, no `www.`, no `/us/en` locale prefix, no trailing slash). Discovery keeps the higher-priority copy. Before this, the same newsroom post under two URL spellings counted as two corroborating sources (Zigaitis and Ashkenas were `high`). It also let a role escape the 18-month single-source rule. Robinhood went from 86 to 79 documents.
+- A role retired by the proxy rule now reports the dated claims that were retired (title, `as_of`), not an unrelated undated claim.
+- Re-anchored evidence (D18) is listed in `review.reanchored` (person, title, URL, snippet), so it can be hand-checked: on a team grid, the nearest title could belong to a neighbour.
+- Prices in `extract.py` cite the pricing page and the date they were checked. The client sets `timeout=120s, max_retries=3` explicitly.

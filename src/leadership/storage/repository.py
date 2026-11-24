@@ -37,6 +37,8 @@ class RoleIn:
     function: str
     seniority: str
     is_current: bool = True
+    as_of: str | None = None
+    note: str | None = None
 
 
 # Module constant interpolated into SQL (never user or LLM input); all values are bound params.
@@ -82,17 +84,25 @@ class Repository:
         return dict(row) if row else None
 
     def add_source(
-        self, company_id: int, url: str, source_type: str, fetched_at: str, raw_path: str
+        self,
+        company_id: int,
+        url: str,
+        source_type: str,
+        fetched_at: str,
+        raw_path: str,
+        published_at: str | None = None,
     ) -> int:
         _check_choice("source_type", source_type, SOURCE_TYPES)
         self.conn.execute(
-            """INSERT INTO sources (company_id, url, source_type, fetched_at, raw_path)
-               VALUES (?, ?, ?, ?, ?)
+            """INSERT INTO sources
+                 (company_id, url, source_type, fetched_at, raw_path, published_at)
+               VALUES (?, ?, ?, ?, ?, ?)
                ON CONFLICT (company_id, url) DO UPDATE SET
                  source_type = excluded.source_type,
                  fetched_at = excluded.fetched_at,
-                 raw_path = excluded.raw_path""",
-            (company_id, url, source_type, fetched_at, raw_path),
+                 raw_path = excluded.raw_path,
+                 published_at = excluded.published_at""",
+            (company_id, url, source_type, fetched_at, raw_path, published_at),
         )
         return self.conn.execute(
             "SELECT id FROM sources WHERE company_id = ? AND url = ?", (company_id, url)
@@ -148,8 +158,12 @@ class Repository:
         source_id: int,
         evidence_snippet: str,
         extracted_at: str | None = None,
+        is_current: bool | None = None,
     ) -> int:
-        """Record a claim. An identical (person, field, value, source) claim is stored once."""
+        """Record a claim. An identical (person, field, value, source) claim is stored once.
+
+        `is_current` is for title facts: whether that source presented the title as current.
+        """
         _check_choice("field", field, FACT_FIELDS)
         if not value or not value.strip():
             raise ProvenanceError(f"Fact {field!r} has an empty value")
@@ -170,10 +184,18 @@ class Repository:
         if existing is not None:
             return existing[0]
         cur = self.conn.execute(
-            """INSERT INTO facts
-                 (person_id, field, value, source_id, evidence_snippet, extracted_at)
-               VALUES (?, ?, ?, ?, ?, ?)""",
-            (person_id, field, value, source_id, evidence_snippet, extracted_at or utc_now_iso()),
+            """INSERT INTO facts (person_id, field, value, source_id, evidence_snippet,
+                                  extracted_at, is_current)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            (
+                person_id,
+                field,
+                value,
+                source_id,
+                evidence_snippet,
+                extracted_at or utc_now_iso(),
+                None if is_current is None else int(is_current),
+            ),
         )
         return _lastrowid(cur)
 
@@ -219,23 +241,38 @@ class Repository:
         )
 
     def replace_roles(self, person_id: int, roles: list[RoleIn]) -> None:
-        roles = [RoleIn(r.title_raw.strip(), r.function, r.seniority, r.is_current) for r in roles]
+        roles = [
+            RoleIn(r.title_raw.strip(), r.function, r.seniority, r.is_current, r.as_of, r.note)
+            for r in roles
+        ]
         for role in roles:
             _check_choice("function", role.function, FUNCTIONS)
             _check_choice("seniority", role.seniority, SENIORITIES)
             self._require_fact(person_id, "title", role.title_raw)
         self.conn.execute("DELETE FROM roles WHERE person_id = ?", (person_id,))
         self.conn.executemany(
-            """INSERT INTO roles (person_id, title_raw, function, seniority, is_current)
-               VALUES (?, ?, ?, ?, ?)""",
-            [(person_id, r.title_raw, r.function, r.seniority, int(r.is_current)) for r in roles],
+            """INSERT INTO roles
+                 (person_id, title_raw, function, seniority, is_current, as_of, note)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+            [
+                (
+                    person_id,
+                    r.title_raw,
+                    r.function,
+                    r.seniority,
+                    int(r.is_current),
+                    r.as_of,
+                    r.note,
+                )
+                for r in roles
+            ],
         )
 
     def clear_people(self, company_id: int) -> None:
         """Drop people, roles and facts before a full re-resolve.
 
-        Facts are rebuilt every run from the cached raw documents, which (with `sources`)
-        are the durable record. See DECISIONS.md D3.
+        Facts (and, in collect.py, sources) are rebuilt every run from the cached raw
+        documents and LLM extractions, which are the durable record. See D3, D19.
         """
         self.conn.execute("DELETE FROM people WHERE company_id = ?", (company_id,))
 
@@ -282,7 +319,7 @@ class Repository:
 
     def _roles_for(self, person_id: int) -> list[dict[str, Any]]:
         rows = self.conn.execute(
-            f"""SELECT title_raw, function, seniority, is_current FROM roles r
+            f"""SELECT title_raw, function, seniority, is_current, as_of, note FROM roles r
                 WHERE r.person_id = ? ORDER BY {_SENIORITY_ORDER}, r.title_raw""",
             (person_id,),
         ).fetchall()
@@ -356,10 +393,20 @@ class Repository:
         ]
         return [self._person_detail(dict(p)) for p in matches]
 
+    def all_people(self, domain: str) -> list[dict[str, Any]]:
+        """Every stored person (current or not) with roles and facts, for export/validation."""
+        rows = self.conn.execute(
+            f"""SELECT p.*, {_SOURCE_COUNT_SQL} AS source_count
+               FROM people p JOIN companies c ON c.id = p.company_id
+               WHERE c.domain = ? ORDER BY p.full_name""",
+            (domain,),
+        ).fetchall()
+        return [self._person_detail(dict(r)) for r in rows]
+
     def _person_detail(self, person: dict[str, Any]) -> dict[str, Any]:
         facts = self.conn.execute(
-            """SELECT f.field, f.value, f.evidence_snippet, f.extracted_at,
-                      s.id AS source_id, s.url, s.source_type, s.fetched_at
+            """SELECT f.field, f.value, f.evidence_snippet, f.extracted_at, f.is_current,
+                      s.id AS source_id, s.url, s.source_type, s.fetched_at, s.published_at
                FROM facts f JOIN sources s ON s.id = f.source_id
                WHERE f.person_id = ? ORDER BY f.field, s.source_type, s.url""",
             (person["id"],),
@@ -372,10 +419,12 @@ class Repository:
                 "value": f["value"],
                 "evidence_snippet": f["evidence_snippet"],
                 "extracted_at": f["extracted_at"],
+                "is_current": None if f["is_current"] is None else bool(f["is_current"]),
                 "source": {
                     "url": f["url"],
                     "source_type": f["source_type"],
-                    "fetched_at": f["fetched_at"],
+                    "retrieved_at": f["fetched_at"],
+                    "published_at": f["published_at"],
                 },
             }
             for f in facts

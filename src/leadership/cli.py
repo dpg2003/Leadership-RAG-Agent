@@ -27,7 +27,8 @@ def _setup_logging(verbose: bool) -> None:
         format="%(message)s",
         handlers=[RichHandler(console=console, show_path=False)],
     )
-    logging.getLogger("httpx").setLevel(logging.WARNING)
+    for noisy in ("httpx", "httpx2", "httpcore", "anthropic"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)
 
 
 @app.command()
@@ -78,6 +79,66 @@ def discover(
         f"search API calls: {result.stats['search_api_calls']} · "
         f"manifest: data/{company.domain}/raw/manifest.json"
     )
+
+
+@app.command()
+def collect(
+    url: str = typer.Argument(..., help="Company domain or URL, e.g. robinhood.com"),
+    name: str | None = typer.Option(None, help="Company name (default: read from the site)"),
+    ticker: str | None = typer.Option(None, help="Stock ticker, if public (default: look up)"),
+    private: bool = typer.Option(False, help="Skip the SEC lookup"),
+    max_pages: int = typer.Option(MAX_PAGES, help="Company-site pages to fetch (top-ranked)"),
+    refresh: bool = typer.Option(False, help="Ignore the fetch cache and re-fetch"),
+    reextract: bool = typer.Option(False, help="Ignore cached LLM extractions"),
+    verbose: bool = typer.Option(False, "--verbose", "-v"),
+) -> None:
+    """Full run: discover, extract with the LLM, validate, resolve, store."""
+    from leadership.pipeline.collect import collect as run_collect
+    from leadership.sources.fetch import FetchBlocked
+
+    _setup_logging(verbose)
+    try:
+        result = run_collect(
+            url,
+            name=name,
+            ticker=ticker,
+            private=private,
+            max_pages=max_pages,
+            refresh=refresh,
+            reextract=reextract,
+        )
+    except MissingSettingError as exc:
+        console.print(f"[red]{exc}[/]")
+        raise typer.Exit(2) from exc
+    except (FetchBlocked, RuntimeError, ValueError) as exc:
+        console.print(f"[red]Collection failed: {exc}[/]")
+        raise typer.Exit(1) from exc
+
+    s = result.stats
+    table = Table("name", "current roles", "confidence", "sources")
+    for p in result.resolution.people:
+        current = list(dict.fromkeys(r.title for r in p.roles if r.is_current))
+        if current:
+            table.add_row(p.full_name, "; ".join(current), p.confidence,
+                          str(len({c.doc.url for c in p.claims})))  # fmt: skip
+    console.print(table)
+    former = [p.full_name for p in result.resolution.people if not p.is_current]
+    if former:
+        console.print(f"Not current (kept for history): {', '.join(former)}")
+    console.print(
+        f"documents {s['documents']} · sent to LLM {s['documents_sent_to_llm']} · "
+        f"LLM calls {s['llm_calls']} (cached {s['llm_cached_responses']}) · "
+        f"tokens {s['tokens_in']:,} in / {s['tokens_out']:,} out · cost ${s['cost_usd']} "
+        f"(incl. cached: ${s['cost_usd_including_cached']})"
+    )
+    console.print(
+        f"claims accepted {s['claims_accepted']} · rejected {s['claims_rejected']} · "
+        f"people {s['people_found']} ({s['people_current']} current) · "
+        + " · ".join(f"{k} {len(v)}" for k, v in sorted(s["review"].items()))
+    )
+    if s["extraction_errors"]:
+        console.print(f"[yellow]{len(s['extraction_errors'])} extraction errors (see stats)[/]")
+    console.print(f"wrote {result.db_path.as_posix()} and {result.json_path.name}")
 
 
 if __name__ == "__main__":

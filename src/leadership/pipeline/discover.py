@@ -80,6 +80,18 @@ class DiscoveryResult:
     stats: dict = field(default_factory=dict)
 
 
+_LOCALE = re.compile(r"^/[a-z]{2}/[a-z]{2}(?=/)")
+
+
+def canonical_url(url: str) -> str:
+    """Comparison key only (stored URLs are unchanged): lowercase host without www., no
+    locale prefix like /us/en, no query/fragment, no trailing slash."""
+    parts = urlsplit(url)
+    host = (parts.hostname or "").lower().removeprefix("www.")
+    path = _LOCALE.sub("", parts.path).rstrip("/")
+    return f"{host}{path}"
+
+
 def discover(
     company: Company,
     fetcher: Fetcher,
@@ -96,10 +108,12 @@ def discover(
     reports = [a.discover(company) for a in adapters]
 
     # One document per URL; the higher-priority source keeps it.
+    # Keyed by canonical URL, so the same article under robinhood.com and
+    # www.robinhood.com/us/en/ (or with a trailing slash) is one source, not corroboration.
     by_url: dict[str, RawDocument] = {}
     for report in sorted(reports, key=lambda r: SOURCE_PRIORITY[r.source_type]):
         for doc in report.documents:
-            by_url.setdefault(doc.url, doc)
+            by_url.setdefault(canonical_url(doc.url), doc)
     documents = list(by_url.values())
 
     search = next((a for a in adapters if isinstance(a, SearchAdapter)), None)
