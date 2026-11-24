@@ -7,10 +7,10 @@
     "ticker": "HOOD"
   },
   "latest_run": {
-    "id": 5,
+    "id": 6,
     "company_id": 1,
-    "started_at": "2026-11-24T02:23:33+00:00",
-    "finished_at": "2026-11-24T02:23:33+00:00",
+    "started_at": "2026-11-24T02:24:38+00:00",
+    "finished_at": "2026-11-24T02:24:38+00:00",
     "stats": {
       "claims_accepted": 127,
       "claims_rejected": 5,
@@ -578,7 +578,7 @@
       "bio": "Since joining Robinhood in May 2016, he has played a key role in building and evolving the brokerage platform.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -595,7 +595,7 @@
           "field": "bio",
           "value": "Since joining Robinhood in May 2016, he has played a key role in building and evolving the brokerage platform.",
           "evidence_snippet": "Since joining Robinhood in May 2016, he has played a key role in building and evolving the brokerage platform.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/abhishek-fatehpuria",
@@ -608,7 +608,7 @@
           "field": "full_name",
           "value": "Abhishek Fatehpuria",
           "evidence_snippet": "Abhishek Fatehpuria Vice President, Product Management",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -621,7 +621,7 @@
           "field": "full_name",
           "value": "Abhishek Fatehpuria",
           "evidence_snippet": "Abhishek Fatehpuria Vice President, Product Management",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/abhishek-fatehpuria",
@@ -634,7 +634,7 @@
           "field": "title",
           "value": "Vice President, Product Management",
           "evidence_snippet": "Abhishek Fatehpuria Vice President, Product Management",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -647,7 +647,7 @@
           "field": "title",
           "value": "Vice President, Product Management",
           "evidence_snippet": "Abhishek Fatehpuria Vice President, Product Management",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/abhishek-fatehpuria",
@@ -666,7 +666,7 @@
       "bio": null,
       "profile_url": "https://robinhood.com/newsroom/welcome-to-robinhoods-2020-interns/",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -683,7 +683,7 @@
           "field": "full_name",
           "value": "Adam Wolff",
           "evidence_snippet": "a virtual speaker series with key influencers all across our company from past interns to our VP of Engineering, Adam Wolff, to our Co-Founders and Co-CEOs, Baiju and Vlad.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-robinhoods-2020-interns/",
@@ -696,7 +696,7 @@
           "field": "title",
           "value": "VP of Engineering",
           "evidence_snippet": "a virtual speaker series with key influencers all across our company from past interns to our VP of Engineering, Adam Wolff, to our Co-Founders and Co-CEOs, Baiju and Vlad.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-robinhoods-2020-interns/",
@@ -715,7 +715,7 @@
       "bio": "She served as General Counsel at WhatsApp where she led the global legal team responsible for all legal matters and compliance and prior to that, Anne held senior legal roles at NetApp and Yahoo.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -732,7 +732,7 @@
           "field": "bio",
           "value": "She served as General Counsel at WhatsApp where she led the global legal team responsible for all legal matters and compliance and prior to that, Anne held senior legal roles at NetApp and Yahoo.",
           "evidence_snippet": "She served as General Counsel at WhatsApp where she led the global legal team responsible for all legal matters and compliance and prior to that, Anne held senior legal roles at NetApp and Yahoo.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -745,7 +745,7 @@
           "field": "full_name",
           "value": "Anne Hoge",
           "evidence_snippet": "Dan is replacing Anne Hoge, our current Chief Legal Officer, who is leaving Robinhood later this month to attend to an illness in the family which is requiring more of her energy.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -758,7 +758,7 @@
           "field": "full_name",
           "value": "Anne Hoge",
           "evidence_snippet": "We are excited to announce that Anne Hoge has joined Robinhood as Chief Legal Officer, overseeing our entire legal team which includes all global legal functions.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -771,7 +771,7 @@
           "field": "title",
           "value": "Chief Legal Officer",
           "evidence_snippet": "Dan is replacing Anne Hoge, our current Chief Legal Officer, who is leaving Robinhood later this month to attend to an illness in the family which is requiring more of her energy.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": false,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -784,7 +784,7 @@
           "field": "title",
           "value": "Chief Legal Officer",
           "evidence_snippet": "We are excited to announce that Anne Hoge has joined Robinhood as Chief Legal Officer, overseeing our entire legal team which includes all global legal functions.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -803,7 +803,7 @@
       "bio": "Aparna is a tech industry veteran and brings over 20 years of experience in product development, design and strategy.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -820,7 +820,7 @@
           "field": "bio",
           "value": "Aparna is a tech industry veteran and brings over 20 years of experience in product development, design and strategy.",
           "evidence_snippet": "Aparna is a tech industry veteran and brings over 20 years of experience in product development, design and strategy.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
@@ -833,7 +833,7 @@
           "field": "full_name",
           "value": "Aparna Chennapragada",
           "evidence_snippet": "We’re excited to share that Aparna Chennapragada is joining Robinhood as our first Chief Product Officer overseeing all of product, design and research.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
@@ -846,7 +846,7 @@
           "field": "full_name",
           "value": "Aparna Chennapragada",
           "evidence_snippet": "| Aparna Chennapragada | | | | | | 44 | | | | | | Chief Product Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -859,7 +859,7 @@
           "field": "title",
           "value": "Chief Product Officer",
           "evidence_snippet": "We’re excited to share that Aparna Chennapragada is joining Robinhood as our first Chief Product Officer overseeing all of product, design and research.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
@@ -872,7 +872,7 @@
           "field": "title",
           "value": "Chief Product Officer",
           "evidence_snippet": "| Aparna Chennapragada | | | | | | 44 | | | | | | Chief Product Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -891,7 +891,7 @@
       "bio": "Robinhood was founded in April 2013 by Vladimir Tenev and Baiju Bhatt, two former Stanford classmates who had previously built high-frequency trading platforms for financial institutions in New York City.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-christopher-payne-to-its-board-of-directors/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 15,
       "roles": [
         {
@@ -924,7 +924,7 @@
           "field": "bio",
           "value": "Robinhood was founded in April 2013 by Vladimir Tenev and Baiju Bhatt, two former Stanford classmates who had previously built high-frequency trading platforms for financial institutions in New York City.",
           "evidence_snippet": "Robinhood was founded in April 2013 by Vladimir Tenev and Baiju Bhatt, two former Stanford classmates who had previously built high-frequency trading platforms for financial institutions in New York City.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://en.wikipedia.org/wiki/Robinhood_(company)",
@@ -937,7 +937,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -950,7 +950,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -963,7 +963,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "said Baiju Bhatt, Co-Founder and Co-CEO of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/former-sec-commissioner-dan-gallagher-joins-robinhoods-board-of-directors/",
@@ -976,7 +976,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Baiju Bhatt, Co-Founder, and currently Founder and Chief Executive Officer of Aetherflux;",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-christopher-payne-to-its-board-of-directors/",
@@ -989,7 +989,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Other members of Robinhood Markets’ Board of Directors include CEO and Co-Founder Vlad Tenev, Chief Creative Officer and Co-Founder Baiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
@@ -1002,7 +1002,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Other members of Robinhood Markets’ Board of Directors are CEO and Co-Founder\nVlad Tenev\n, Chief Creative Officer and Co-Founder\nBaiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
@@ -1015,7 +1015,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Other members of Robinhood Markets’ Board of Directors are CEO and Co-Founder\nVlad Tenev\nand Chief Creative Officer and Co-Founder\nBaiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
@@ -1028,7 +1028,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Chief Creative Officer and Co-Founder\nBaiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-susan-segal-to-its-board-of-directors/",
@@ -1041,7 +1041,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Other members of Robinhood’s Board of Directors include CEO and Co-Founder Vlad Tenev, Chief Creative Officer and Co-Founder Baiju Bhatt,",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
@@ -1054,7 +1054,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Anne will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Financial Officer Jason Warnick, and Chief Operating Officer Gretchen Howard.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -1067,7 +1067,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Vlad Tenev, CEO and Co-Founder, Robinhood Markets and Baiju Bhatt, Chief Creative Officer and Co-Founder, Robinhood Markets",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
@@ -1080,7 +1080,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Tenev and Bhatt served as co-CEOs from 2013 to 2020, when Tenev became the sole CEO and Bhatt became chief creative officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://en.wikipedia.org/wiki/Robinhood_(company)",
@@ -1093,7 +1093,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Baiju Bhatt is a Co-Founder of Robinhood and has served as a member of our board of directors since our founding.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/board-member/baiju-bhatt",
@@ -1106,7 +1106,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "Baiju Bhatt is a Co-Founder of Robinhood and has served as a member of our board of directors since our founding.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/board-of-directors",
@@ -1119,7 +1119,7 @@
           "field": "full_name",
           "value": "Baiju Bhatt",
           "evidence_snippet": "| Baiju Bhatt | | | | | | 36 | | | | | | Co-Founder, Chief Creative Officer and Director |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -1132,7 +1132,7 @@
           "field": "title",
           "value": "Co-Founders and Co-CEOs",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -1145,7 +1145,7 @@
           "field": "title",
           "value": "Co-Founders and Co-CEOs",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -1158,7 +1158,7 @@
           "field": "title",
           "value": "Co-Founder and Co-CEO",
           "evidence_snippet": "said Baiju Bhatt, Co-Founder and Co-CEO of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/former-sec-commissioner-dan-gallagher-joins-robinhoods-board-of-directors/",
@@ -1171,7 +1171,7 @@
           "field": "title",
           "value": "Co-Founder",
           "evidence_snippet": "Baiju Bhatt, Co-Founder, and currently Founder and Chief Executive Officer of Aetherflux;",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-christopher-payne-to-its-board-of-directors/",
@@ -1184,7 +1184,7 @@
           "field": "title",
           "value": "Chief Creative Officer and Co-Founder",
           "evidence_snippet": "Other members of Robinhood Markets’ Board of Directors include CEO and Co-Founder Vlad Tenev, Chief Creative Officer and Co-Founder Baiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
@@ -1197,7 +1197,7 @@
           "field": "title",
           "value": "Chief Creative Officer and Co-Founder",
           "evidence_snippet": "Other members of Robinhood Markets’ Board of Directors are CEO and Co-Founder\nVlad Tenev\n, Chief Creative Officer and Co-Founder\nBaiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
@@ -1210,7 +1210,7 @@
           "field": "title",
           "value": "Chief Creative Officer and Co-Founder",
           "evidence_snippet": "Other members of Robinhood Markets’ Board of Directors are CEO and Co-Founder\nVlad Tenev\nand Chief Creative Officer and Co-Founder\nBaiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
@@ -1223,7 +1223,7 @@
           "field": "title",
           "value": "Chief Creative Officer and Co-Founder",
           "evidence_snippet": "Chief Creative Officer and Co-Founder\nBaiju Bhatt",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-susan-segal-to-its-board-of-directors/",
@@ -1236,7 +1236,7 @@
           "field": "title",
           "value": "Chief Creative Officer and Co-Founder",
           "evidence_snippet": "Other members of Robinhood’s Board of Directors include CEO and Co-Founder Vlad Tenev, Chief Creative Officer and Co-Founder Baiju Bhatt,",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
@@ -1249,7 +1249,7 @@
           "field": "title",
           "value": "Co-Founders and Co-CEOs",
           "evidence_snippet": "Anne will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Financial Officer Jason Warnick, and Chief Operating Officer Gretchen Howard.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -1262,7 +1262,7 @@
           "field": "title",
           "value": "Chief Creative Officer and Co-Founder",
           "evidence_snippet": "Vlad Tenev, CEO and Co-Founder, Robinhood Markets and Baiju Bhatt, Chief Creative Officer and Co-Founder, Robinhood Markets",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
@@ -1275,7 +1275,7 @@
           "field": "title",
           "value": "chief creative officer",
           "evidence_snippet": "Tenev and Bhatt served as co-CEOs from 2013 to 2020, when Tenev became the sole CEO and Bhatt became chief creative officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": false,
           "source": {
             "url": "https://en.wikipedia.org/wiki/Robinhood_(company)",
@@ -1288,7 +1288,7 @@
           "field": "title",
           "value": "Co-Founder",
           "evidence_snippet": "Baiju Bhatt is a Co-Founder of Robinhood and has served as a member of our board of directors since our founding.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/board-member/baiju-bhatt",
@@ -1301,7 +1301,7 @@
           "field": "title",
           "value": "Co-Founder",
           "evidence_snippet": "Baiju Bhatt is a Co-Founder of Robinhood and has served as a member of our board of directors since our founding.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/board-of-directors",
@@ -1314,7 +1314,7 @@
           "field": "title",
           "value": "Co-Founder, Chief Creative Officer and Director",
           "evidence_snippet": "| Baiju Bhatt | | | | | | 36 | | | | | | Co-Founder, Chief Creative Officer and Director |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -1333,7 +1333,7 @@
       "bio": "Cathy Southwick is a proven engineering leader with over 25 years of experience defining and scaling engineering and corporate IT functions.",
       "profile_url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -1350,7 +1350,7 @@
           "field": "bio",
           "value": "Cathy Southwick is a proven engineering leader with over 25 years of experience defining and scaling engineering and corporate IT functions.",
           "evidence_snippet": "Cathy Southwick is a proven engineering leader with over 25 years of experience defining and scaling engineering and corporate IT functions.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
@@ -1363,7 +1363,7 @@
           "field": "full_name",
           "value": "Cathy Southwick",
           "evidence_snippet": "Cathy Southwick, Robinhood’s first Chief Information Officer, and Mark Seigle, VP of Infrastructure.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
@@ -1376,7 +1376,7 @@
           "field": "title",
           "value": "Chief Information Officer",
           "evidence_snippet": "Cathy Southwick, Robinhood’s first Chief Information Officer, and Mark Seigle, VP of Infrastructure.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
@@ -1395,7 +1395,7 @@
       "bio": "Prior to joining Robinhood in 2022, Chris was the Head of Investor Relations at LPL Financial and a Principal at Bain & Company.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -1412,7 +1412,7 @@
           "field": "bio",
           "value": "Prior to joining Robinhood in 2022, Chris was the Head of Investor Relations at LPL Financial and a Principal at Bain & Company.",
           "evidence_snippet": "Prior to joining Robinhood in 2022, Chris was the Head of Investor Relations at LPL Financial and a Principal at Bain & Company.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/chris-koegel",
@@ -1425,7 +1425,7 @@
           "field": "full_name",
           "value": "Chris Koegel",
           "evidence_snippet": "Chris Koegel Vice President, Corporate Finance & Investor Relations",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -1438,7 +1438,7 @@
           "field": "full_name",
           "value": "Chris Koegel",
           "evidence_snippet": "Chris Koegel Vice President, Corporate Finance & Investor Relations",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/chris-koegel",
@@ -1451,7 +1451,7 @@
           "field": "title",
           "value": "Vice President, Corporate Finance & Investor Relations",
           "evidence_snippet": "Chris Koegel Vice President, Corporate Finance & Investor Relations",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -1464,7 +1464,7 @@
           "field": "title",
           "value": "Vice President, Corporate Finance & Investor Relations",
           "evidence_snippet": "Chris Koegel Vice President, Corporate Finance & Investor Relations",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/chris-koegel",
@@ -1483,7 +1483,7 @@
       "bio": "She led PayPal into Interbrand's Top 100 Best Global Brands, pioneering social customer care and building their global marketing campaigns.",
       "profile_url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -1500,7 +1500,7 @@
           "field": "bio",
           "value": "She led PayPal into Interbrand's Top 100 Best Global Brands, pioneering social customer care and building their global marketing campaigns.",
           "evidence_snippet": "She led PayPal into Interbrand's Top 100 Best Global Brands, pioneering social customer care and building their global marketing campaigns.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -1513,7 +1513,7 @@
           "field": "full_name",
           "value": "Christina Smedley",
           "evidence_snippet": "We’re excited to announce that Christina Smedley will join Robinhood as Chief Marketing Officer!",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -1526,7 +1526,7 @@
           "field": "full_name",
           "value": "Christina Smedley",
           "evidence_snippet": "| Christina Smedley | | | | | | 54 | | | | | | Chief Marketing and Communications Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -1539,7 +1539,7 @@
           "field": "title",
           "value": "Chief Marketing Officer",
           "evidence_snippet": "We’re excited to announce that Christina Smedley will join Robinhood as Chief Marketing Officer!",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -1552,7 +1552,7 @@
           "field": "title",
           "value": "Chief Marketing and Communications Officer",
           "evidence_snippet": "| Christina Smedley | | | | | | 54 | | | | | | Chief Marketing and Communications Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -1571,7 +1571,7 @@
       "bio": "Christine has a decade-plus experience in product management and operations.",
       "profile_url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -1596,7 +1596,7 @@
           "field": "bio",
           "value": "Christine has a decade-plus experience in product management and operations.",
           "evidence_snippet": "Christine has a decade-plus experience in product management and operations.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
@@ -1609,7 +1609,7 @@
           "field": "full_name",
           "value": "Christine Brown",
           "evidence_snippet": "Christine Brown will lead Robinhood Crypto as Chief Operating Officer, where she’ll oversee all of our crypto operations and compliance.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
@@ -1622,7 +1622,7 @@
           "field": "full_name",
           "value": "Christine Brown",
           "evidence_snippet": "Fireside Chat with Robinhood’s CEO Vlad Tenev and Crypto COO Christine Brown",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
@@ -1635,7 +1635,7 @@
           "field": "title",
           "value": "Chief Operating Officer",
           "evidence_snippet": "Christine Brown will lead Robinhood Crypto as Chief Operating Officer, where she’ll oversee all of our crypto operations and compliance.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
@@ -1648,7 +1648,7 @@
           "field": "title",
           "value": "VP of Product Operations",
           "evidence_snippet": "Christine Brown will lead Robinhood Crypto as Chief Operating Officer, where she'll oversee all of our crypto operations and compliance. She'll also keep her current role of Robinhood Markets' VP of Product Operations",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
@@ -1661,7 +1661,7 @@
           "field": "title",
           "value": "Crypto COO",
           "evidence_snippet": "Fireside Chat with Robinhood’s CEO Vlad Tenev and Crypto COO Christine Brown",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
@@ -1680,7 +1680,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -1697,7 +1697,7 @@
           "field": "full_name",
           "value": "Connie Schan",
           "evidence_snippet": "Connie Schan Chief People Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -1710,7 +1710,7 @@
           "field": "title",
           "value": "Chief People Officer",
           "evidence_snippet": "Connie Schan Chief People Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -1729,7 +1729,7 @@
       "bio": "He served as a SEC Commissioner from 2011 to 2015 and held several other positions on the SEC staff prior to being appointed commissioner, including deputy director and co-acting director of the division of trading and markets.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-welcomes-dr-naomi-boyd-as-chief-economic-advisor/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 7,
       "roles": [
         {
@@ -1746,7 +1746,7 @@
           "field": "bio",
           "value": "He served as a SEC Commissioner from 2011 to 2015 and held several other positions on the SEC staff prior to being appointed commissioner, including deputy director and co-acting director of the division of trading and markets.",
           "evidence_snippet": "He served as a SEC Commissioner from 2011 to 2015 and held several other positions on the SEC staff prior to being appointed commissioner, including deputy director and co-acting director of the division of trading and markets.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -1759,7 +1759,7 @@
           "field": "full_name",
           "value": "Dan Gallagher",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -1772,7 +1772,7 @@
           "field": "full_name",
           "value": "Dan Gallagher",
           "evidence_snippet": "Today, we’re thrilled to announce that Dan Gallagher will be joining Robinhood as Chief Legal Officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -1785,7 +1785,7 @@
           "field": "full_name",
           "value": "Dan Gallagher",
           "evidence_snippet": "said Dan Gallagher, Chief Legal, Compliance and Corporate Affairs Officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-dr-naomi-boyd-as-chief-economic-advisor/",
@@ -1798,7 +1798,7 @@
           "field": "full_name",
           "value": "Dan Gallagher",
           "evidence_snippet": "Dan Gallagher Chief Legal, Compliance and Corporate Affairs Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -1811,7 +1811,7 @@
           "field": "full_name",
           "value": "Dan Gallagher",
           "evidence_snippet": "Dan Gallagher is Chief Legal, Compliance and Corporate Affairs Officer of Robinhood Markets.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/dan-gallagher",
@@ -1824,7 +1824,7 @@
           "field": "full_name",
           "value": "Daniel Gallagher",
           "evidence_snippet": "| Daniel Gallagher | | | | | | 49 | | | | | | Chief Legal Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -1837,7 +1837,7 @@
           "field": "full_name",
           "value": "Daniel Gallagher",
           "evidence_snippet": "Daniel Gallagher has been our Chief Legal, Compliance, and Corporate Affairs Officer since January 2022 and our Chief Legal Officer since May 2020",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -1850,7 +1850,7 @@
           "field": "title",
           "value": "Chief Legal Officer",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -1863,7 +1863,7 @@
           "field": "title",
           "value": "Chief Legal Officer",
           "evidence_snippet": "Today, we’re thrilled to announce that Dan Gallagher will be joining Robinhood as Chief Legal Officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -1876,7 +1876,7 @@
           "field": "title",
           "value": "Chief Legal, Compliance and Corporate Affairs Officer",
           "evidence_snippet": "said Dan Gallagher, Chief Legal, Compliance and Corporate Affairs Officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-dr-naomi-boyd-as-chief-economic-advisor/",
@@ -1889,7 +1889,7 @@
           "field": "title",
           "value": "Chief Legal, Compliance and Corporate Affairs Officer",
           "evidence_snippet": "Dan Gallagher Chief Legal, Compliance and Corporate Affairs Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -1902,7 +1902,7 @@
           "field": "title",
           "value": "Chief Legal, Compliance and Corporate Affairs Officer",
           "evidence_snippet": "Dan Gallagher is Chief Legal, Compliance and Corporate Affairs Officer of Robinhood Markets.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/dan-gallagher",
@@ -1915,7 +1915,7 @@
           "field": "title",
           "value": "Chief Legal Officer",
           "evidence_snippet": "| Daniel Gallagher | | | | | | 49 | | | | | | Chief Legal Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -1928,7 +1928,7 @@
           "field": "title",
           "value": "Chief Legal, Compliance, and Corporate Affairs Officer",
           "evidence_snippet": "Daniel Gallagher has been our Chief Legal, Compliance, and Corporate Affairs Officer since January 2022 and our Chief Legal Officer since May 2020",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -1947,7 +1947,7 @@
       "bio": "Before starting X1, Deepak was a Group Product Manager at Twitter where he led Twitter's core consumer product and was responsible for news feed, messaging, tweeting, and growth.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -1964,7 +1964,7 @@
           "field": "bio",
           "value": "Before starting X1, Deepak was a Group Product Manager at Twitter where he led Twitter's core consumer product and was responsible for news feed, messaging, tweeting, and growth.",
           "evidence_snippet": "Before starting X1, Deepak was a Group Product Manager at Twitter where he led Twitter's core consumer product and was responsible for news feed, messaging, tweeting, and growth.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/deepak-rao",
@@ -1977,7 +1977,7 @@
           "field": "full_name",
           "value": "Deepak Rao",
           "evidence_snippet": "Deepak Rao Senior Vice President and General Manager, Robinhood Money, Robinhood Gold, Growth, and Marketing",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -1990,7 +1990,7 @@
           "field": "full_name",
           "value": "Deepak Rao",
           "evidence_snippet": "Deepak Rao is the Senior Vice President and General Manager, Robinhood Money, Robinhood Gold, Growth, and Marketing.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/deepak-rao",
@@ -2003,7 +2003,7 @@
           "field": "title",
           "value": "Senior Vice President and General Manager, Robinhood Money, Robinhood Gold, Growth, and Marketing",
           "evidence_snippet": "Deepak Rao Senior Vice President and General Manager, Robinhood Money, Robinhood Gold, Growth, and Marketing",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2016,7 +2016,7 @@
           "field": "title",
           "value": "Senior Vice President and General Manager, Robinhood Money, Robinhood Gold, Growth, and Marketing",
           "evidence_snippet": "Deepak Rao is the Senior Vice President and General Manager, Robinhood Money, Robinhood Gold, Growth, and Marketing.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/deepak-rao",
@@ -2035,7 +2035,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -2052,7 +2052,7 @@
           "field": "full_name",
           "value": "Evan McHenry",
           "evidence_snippet": "Evan McHenry Vice President and Chief Information Security Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2065,7 +2065,7 @@
           "field": "title",
           "value": "Vice President and Chief Information Security Officer",
           "evidence_snippet": "Evan McHenry Vice President and Chief Information Security Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2084,7 +2084,7 @@
       "bio": "As COO, she’ll continue to leverage her expertise in scaling businesses and help Robinhood expand our financial services offerings.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 7,
       "roles": [
         {
@@ -2109,7 +2109,7 @@
           "field": "bio",
           "value": "As COO, she’ll continue to leverage her expertise in scaling businesses and help Robinhood expand our financial services offerings.",
           "evidence_snippet": "As COO, she’ll continue to leverage her expertise in scaling businesses and help Robinhood expand our financial services offerings.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
@@ -2122,7 +2122,7 @@
           "field": "full_name",
           "value": "Gretchen Howard",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -2135,7 +2135,7 @@
           "field": "full_name",
           "value": "Gretchen Howard",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -2148,7 +2148,7 @@
           "field": "full_name",
           "value": "Gretchen Howard",
           "evidence_snippet": "We’re delighted to share that Gretchen Howard has been elevated to Chief Operating Officer at Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
@@ -2161,7 +2161,7 @@
           "field": "full_name",
           "value": "Gretchen Howard",
           "evidence_snippet": "We’re excited to announce that Gretchen Howard is joining us as Vice President of Operations.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
@@ -2174,7 +2174,7 @@
           "field": "full_name",
           "value": "Gretchen Howard",
           "evidence_snippet": "said Gretchen Howard, Robinhood’s Chief Operating Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
@@ -2187,7 +2187,7 @@
           "field": "full_name",
           "value": "Gretchen Howard",
           "evidence_snippet": "Anne will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Financial Officer Jason Warnick, and Chief Operating Officer Gretchen Howard.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -2200,7 +2200,7 @@
           "field": "full_name",
           "value": "Gretchen Howard",
           "evidence_snippet": "| Gretchen Howard | | | | | | 48 | | | | | | Chief Operating Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -2213,7 +2213,7 @@
           "field": "title",
           "value": "Chief Operating Officer",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -2226,7 +2226,7 @@
           "field": "title",
           "value": "Chief Operating Officer",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -2239,7 +2239,7 @@
           "field": "title",
           "value": "Chief Operating Officer",
           "evidence_snippet": "We’re delighted to share that Gretchen Howard has been elevated to Chief Operating Officer at Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
@@ -2252,7 +2252,7 @@
           "field": "title",
           "value": "Vice President of Operations",
           "evidence_snippet": "We’re excited to announce that Gretchen Howard is joining us as Vice President of Operations.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
@@ -2265,7 +2265,7 @@
           "field": "title",
           "value": "Chief Operating Officer",
           "evidence_snippet": "said Gretchen Howard, Robinhood’s Chief Operating Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
@@ -2278,7 +2278,7 @@
           "field": "title",
           "value": "Chief Operating Officer",
           "evidence_snippet": "Anne will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Financial Officer Jason Warnick, and Chief Operating Officer Gretchen Howard.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -2291,7 +2291,7 @@
           "field": "title",
           "value": "Chief Operating Officer",
           "evidence_snippet": "| Gretchen Howard | | | | | | 48 | | | | | | Chief Operating Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -2310,7 +2310,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -2327,7 +2327,7 @@
           "field": "full_name",
           "value": "JB Mackenzie",
           "evidence_snippet": "JB Mackenzie Vice President and General Manager, Futures and Prediction Markets",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2340,7 +2340,7 @@
           "field": "title",
           "value": "Vice President and General Manager, Futures and Prediction Markets",
           "evidence_snippet": "JB Mackenzie Vice President and General Manager, Futures and Prediction Markets",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2359,7 +2359,7 @@
       "bio": "Jason is joining us from Amazon where he spent nearly 20 years, most recently as VP of Finance and Chief of Staff to their CFO.",
       "profile_url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 6,
       "roles": [
         {
@@ -2376,7 +2376,7 @@
           "field": "bio",
           "value": "Jason is joining us from Amazon where he spent nearly 20 years, most recently as VP of Finance and Chief of Staff to their CFO.",
           "evidence_snippet": "Jason is joining us from Amazon where he spent nearly 20 years, most recently as VP of Finance and Chief of Staff to their CFO.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
@@ -2389,7 +2389,7 @@
           "field": "full_name",
           "value": "Jason Warnick",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -2402,7 +2402,7 @@
           "field": "full_name",
           "value": "Jason Warnick",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -2415,7 +2415,7 @@
           "field": "full_name",
           "value": "Jason Warnick",
           "evidence_snippet": "We’re thrilled to welcome Jason Warnick as our Chief Financial Officer and member of the leadership team.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
@@ -2428,7 +2428,7 @@
           "field": "full_name",
           "value": "Jason Warnick",
           "evidence_snippet": "Anne will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Financial Officer Jason Warnick, and Chief Operating Officer Gretchen Howard.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -2441,7 +2441,7 @@
           "field": "full_name",
           "value": "Jason Warnick",
           "evidence_snippet": "| Jason Warnick | | | | | | 49 | | | | | | Chief Financial Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -2454,7 +2454,7 @@
           "field": "full_name",
           "value": "Jason Warnick",
           "evidence_snippet": "Jason Warnick, former Chief Financial Officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -2467,7 +2467,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -2480,7 +2480,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -2493,7 +2493,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "We’re thrilled to welcome Jason Warnick as our Chief Financial Officer and member of the leadership team.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
@@ -2506,7 +2506,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Anne will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Financial Officer Jason Warnick, and Chief Operating Officer Gretchen Howard.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -2519,7 +2519,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "| Jason Warnick | | | | | | 49 | | | | | | Chief Financial Officer |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -2532,7 +2532,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Jason Warnick, former Chief Financial Officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": false,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -2551,7 +2551,7 @@
       "bio": "Jeff has held key roles at leading tech companies, leveraging his deep technical knowledge to transform the way businesses operate.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 3,
       "roles": [
         {
@@ -2568,7 +2568,7 @@
           "field": "bio",
           "value": "Jeff has held key roles at leading tech companies, leveraging his deep technical knowledge to transform the way businesses operate.",
           "evidence_snippet": "Jeff has held key roles at leading tech companies, leveraging his deep technical knowledge to transform the way businesses operate.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
@@ -2581,7 +2581,7 @@
           "field": "full_name",
           "value": "Jeff Pinner",
           "evidence_snippet": "We are thrilled to announce that Jeff Pinner has joined Robinhood as Chief Technology Officer (CTO).",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
@@ -2594,7 +2594,7 @@
           "field": "full_name",
           "value": "Jeffrey Pinner",
           "evidence_snippet": "On May 7, 2026, Robinhood Markets, Inc. (the \"Company\") determined that Jeffrey Pinner, Chief Technology Officer, would be separating from his position, effective the same day.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
@@ -2607,7 +2607,7 @@
           "field": "full_name",
           "value": "Jeffrey Pinner",
           "evidence_snippet": "Jeffrey Pinner has been our Chief Technology Officer since August 2024.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -2620,7 +2620,7 @@
           "field": "title",
           "value": "Chief Technology Officer",
           "evidence_snippet": "We are thrilled to announce that Jeff Pinner has joined Robinhood as Chief Technology Officer (CTO).",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
@@ -2633,7 +2633,7 @@
           "field": "title",
           "value": "Chief Technology Officer",
           "evidence_snippet": "On May 7, 2026, Robinhood Markets, Inc. (the \"Company\") determined that Jeffrey Pinner, Chief Technology Officer, would be separating from his position, effective the same day.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": false,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
@@ -2646,7 +2646,7 @@
           "field": "title",
           "value": "Chief Technology Officer",
           "evidence_snippet": "Jeffrey Pinner has been our Chief Technology Officer since August 2024.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -2665,7 +2665,7 @@
       "bio": "Prior to joining Robinhood, he held engineering roles at Airbnb, privacy-focused cryptocurrency startup Iron Fish, and founded an e-commerce and payments platform company.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 3,
       "roles": [
         {
@@ -2690,7 +2690,7 @@
           "field": "bio",
           "value": "Prior to joining Robinhood, he held engineering roles at Airbnb, privacy-focused cryptocurrency startup Iron Fish, and founded an e-commerce and payments platform company.",
           "evidence_snippet": "Prior to joining Robinhood, he held engineering roles at Airbnb, privacy-focused cryptocurrency startup Iron Fish, and founded an e-commerce and payments platform company.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/johann-kerbrat",
@@ -2703,7 +2703,7 @@
           "field": "full_name",
           "value": "Johann Kerbrat",
           "evidence_snippet": "said Johann Kerbrat, Chief Technology Officer and GM of Robinhood Crypto.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-and-circle-join-forces-to-bring-usdc-to-customers/",
@@ -2716,7 +2716,7 @@
           "field": "full_name",
           "value": "Johann Kerbrat",
           "evidence_snippet": "Johann Kerbrat Senior Vice President and General Manager, Crypto and International",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2729,7 +2729,7 @@
           "field": "full_name",
           "value": "Johann Kerbrat",
           "evidence_snippet": "Johann Kerbrat Senior Vice President and General Manager, Crypto and International",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/johann-kerbrat",
@@ -2742,7 +2742,7 @@
           "field": "title",
           "value": "Chief Technology Officer and GM of Robinhood Crypto",
           "evidence_snippet": "said Johann Kerbrat, Chief Technology Officer and GM of Robinhood Crypto.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-and-circle-join-forces-to-bring-usdc-to-customers/",
@@ -2755,7 +2755,7 @@
           "field": "title",
           "value": "Senior Vice President and General Manager, Crypto and International",
           "evidence_snippet": "Johann Kerbrat Senior Vice President and General Manager, Crypto and International",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2768,7 +2768,7 @@
           "field": "title",
           "value": "Senior Vice President and General Manager, Crypto and International",
           "evidence_snippet": "Johann Kerbrat Senior Vice President and General Manager, Crypto and International",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/johann-kerbrat",
@@ -2787,7 +2787,7 @@
       "bio": "Jordan has wide ranging financial services experience and is a qualified Chartered Accountant.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -2804,7 +2804,7 @@
           "field": "bio",
           "value": "Jordan has wide ranging financial services experience and is a qualified Chartered Accountant.",
           "evidence_snippet": "Jordan has wide ranging financial services experience and is a qualified Chartered Accountant.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/jordan-sinclair",
@@ -2817,7 +2817,7 @@
           "field": "full_name",
           "value": "Jordan Sinclair",
           "evidence_snippet": "Jordan Sinclair President of Robinhood UK and General Manager of Bitstamp UK",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2830,7 +2830,7 @@
           "field": "full_name",
           "value": "Jordan Sinclair",
           "evidence_snippet": "Jordan Sinclair is the President of Robinhood UK Ltd and the General Manager of Bitstamp UK Ltd, leading the UK’s brokerage and crypto business.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/jordan-sinclair",
@@ -2843,7 +2843,7 @@
           "field": "title",
           "value": "President of Robinhood UK and General Manager of Bitstamp UK",
           "evidence_snippet": "Jordan Sinclair President of Robinhood UK and General Manager of Bitstamp UK",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2856,7 +2856,7 @@
           "field": "title",
           "value": "President of Robinhood UK",
           "evidence_snippet": "Jordan Sinclair is the President of Robinhood UK Ltd and the General Manager of Bitstamp UK Ltd, leading the UK’s brokerage and crypto business.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/jordan-sinclair",
@@ -2875,7 +2875,7 @@
       "bio": "Kelly practiced law in St. Louis for several years before joining a local full service advisory firm as their sole in-house legal and compliance attorney.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -2892,7 +2892,7 @@
           "field": "bio",
           "value": "Kelly practiced law in St. Louis for several years before joining a local full service advisory firm as their sole in-house legal and compliance attorney.",
           "evidence_snippet": "Kelly practiced law in St. Louis for several years before joining a local full service advisory firm as their sole in-house legal and compliance attorney.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
@@ -2905,7 +2905,7 @@
           "field": "full_name",
           "value": "Kelly Zigaitis",
           "evidence_snippet": "Kelly Zigaitis will serve as Chief Compliance Officer for Robinhood Securities.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
@@ -2918,7 +2918,7 @@
           "field": "title",
           "value": "Chief Compliance Officer",
           "evidence_snippet": "Kelly Zigaitis will serve as Chief Compliance Officer for Robinhood Securities.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
@@ -2937,7 +2937,7 @@
       "bio": "Before Robinhood, Lucas held several roles with the U.S. Securities and Exchange Commission, including as the agency's Chief of Staff under Chairman Jay Clayton and as a senior counsel in the Division of Enforcement.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -2954,7 +2954,7 @@
           "field": "bio",
           "value": "Before Robinhood, Lucas held several roles with the U.S. Securities and Exchange Commission, including as the agency's Chief of Staff under Chairman Jay Clayton and as a senior counsel in the Division of Enforcement.",
           "evidence_snippet": "Before Robinhood, Lucas held several roles with the U.S. Securities and Exchange Commission, including as the agency's Chief of Staff under Chairman Jay Clayton and as a senior counsel in the Division of Enforcement.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/lucas-moskowitz",
@@ -2967,7 +2967,7 @@
           "field": "full_name",
           "value": "Lucas Moskowitz",
           "evidence_snippet": "Lucas Moskowitz Senior Vice President, General Counsel and Corporate Secretary",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -2980,7 +2980,7 @@
           "field": "full_name",
           "value": "Lucas Moskowitz",
           "evidence_snippet": "Lucas Moskowitz Senior Vice President, General Counsel and Corporate Secretary",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/lucas-moskowitz",
@@ -2993,7 +2993,7 @@
           "field": "title",
           "value": "Senior Vice President, General Counsel and Corporate Secretary",
           "evidence_snippet": "Lucas Moskowitz Senior Vice President, General Counsel and Corporate Secretary",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3006,7 +3006,7 @@
           "field": "title",
           "value": "Senior Vice President, General Counsel and Corporate Secretary",
           "evidence_snippet": "Lucas Moskowitz Senior Vice President, General Counsel and Corporate Secretary",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/lucas-moskowitz",
@@ -3025,7 +3025,7 @@
       "bio": null,
       "profile_url": "https://robinhood.com/newsroom/welcome-to-robinhood-binc/",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3042,7 +3042,7 @@
           "field": "full_name",
           "value": "Marcelo Modica",
           "evidence_snippet": "said Marcelo Modica, Chief People Officer at Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-robinhood-binc/",
@@ -3055,7 +3055,7 @@
           "field": "title",
           "value": "Chief People Officer",
           "evidence_snippet": "said Marcelo Modica, Chief People Officer at Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-robinhood-binc/",
@@ -3074,7 +3074,7 @@
       "bio": "Mark has over 18 years of experience scaling technology companies like Google, Amazon, and Oracle.",
       "profile_url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3091,7 +3091,7 @@
           "field": "bio",
           "value": "Mark has over 18 years of experience scaling technology companies like Google, Amazon, and Oracle.",
           "evidence_snippet": "Mark has over 18 years of experience scaling technology companies like Google, Amazon, and Oracle.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
@@ -3104,7 +3104,7 @@
           "field": "full_name",
           "value": "Mark Seigle",
           "evidence_snippet": "Cathy Southwick, Robinhood’s first Chief Information Officer, and Mark Seigle, VP of Infrastructure.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
@@ -3117,7 +3117,7 @@
           "field": "title",
           "value": "VP of Infrastructure",
           "evidence_snippet": "Cathy Southwick, Robinhood’s first Chief Information Officer, and Mark Seigle, VP of Infrastructure.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
@@ -3136,7 +3136,7 @@
       "bio": "Matt oversees the broker/dealer operations of these entities.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -3153,7 +3153,7 @@
           "field": "bio",
           "value": "Matt oversees the broker/dealer operations of these entities.",
           "evidence_snippet": "Matt oversees the broker/dealer operations of these entities.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/matt-billings",
@@ -3166,7 +3166,7 @@
           "field": "full_name",
           "value": "Matt Billings",
           "evidence_snippet": "Matt Billings Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3179,7 +3179,7 @@
           "field": "full_name",
           "value": "Matt Billings",
           "evidence_snippet": "Matt Billings Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/matt-billings",
@@ -3192,7 +3192,7 @@
           "field": "title",
           "value": "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
           "evidence_snippet": "Matt Billings Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3205,7 +3205,7 @@
           "field": "title",
           "value": "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
           "evidence_snippet": "Matt Billings Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/matt-billings",
@@ -3224,7 +3224,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3241,7 +3241,7 @@
           "field": "full_name",
           "value": "Nicola White",
           "evidence_snippet": "Nicola White Vice President, Institutional Crypto, General Manager, Bitstamp",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3254,7 +3254,7 @@
           "field": "title",
           "value": "Vice President, Institutional Crypto, General Manager, Bitstamp",
           "evidence_snippet": "Nicola White Vice President, Institutional Crypto, General Manager, Bitstamp",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3273,7 +3273,7 @@
       "bio": "He joined Fidelity in 2003 and has held various compliance leadership roles including Head of Compliance for Fidelity Personal Investments, CCO for Fidelity Brokerage Services, and CCO for Fidelity Personal and Workplace Advisors, and Fidelity Personal Trust.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3290,7 +3290,7 @@
           "field": "bio",
           "value": "He joined Fidelity in 2003 and has held various compliance leadership roles including Head of Compliance for Fidelity Personal Investments, CCO for Fidelity Brokerage Services, and CCO for Fidelity Personal and Workplace Advisors, and Fidelity Personal Trust.",
           "evidence_snippet": "He joined Fidelity in 2003 and has held various compliance leadership roles including Head of Compliance for Fidelity Personal Investments, CCO for Fidelity Brokerage Services, and CCO for Fidelity Personal and Workplace Advisors, and Fidelity Personal Trust.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
@@ -3303,7 +3303,7 @@
           "field": "full_name",
           "value": "Norm Ashkenas",
           "evidence_snippet": "Norm Ashkenas will be joining as Chief Compliance Officer for Robinhood Financial",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
@@ -3316,7 +3316,7 @@
           "field": "title",
           "value": "Chief Compliance Officer",
           "evidence_snippet": "Norm Ashkenas will be joining as Chief Compliance Officer for Robinhood Financial",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
@@ -3335,7 +3335,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3352,7 +3352,7 @@
           "field": "full_name",
           "value": "Pooja Anand",
           "evidence_snippet": "Pooja Anand Vice President, Enterprise Risk Management and Internal Audit",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3365,7 +3365,7 @@
           "field": "title",
           "value": "Vice President, Enterprise Risk Management and Internal Audit",
           "evidence_snippet": "Pooja Anand Vice President, Enterprise Risk Management and Internal Audit",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3384,7 +3384,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3401,7 +3401,7 @@
           "field": "full_name",
           "value": "Ravi Mehta",
           "evidence_snippet": "Ravi Mehta Vice President, Credit Cards and Chief Credit Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3414,7 +3414,7 @@
           "field": "title",
           "value": "Vice President, Credit Cards and Chief Credit Officer",
           "evidence_snippet": "Ravi Mehta Vice President, Credit Cards and Chief Credit Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3433,7 +3433,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3450,7 +3450,7 @@
           "field": "full_name",
           "value": "Robb Baldwin",
           "evidence_snippet": "Robb Baldwin Vice President and General Manager, TradePMR",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3463,7 +3463,7 @@
           "field": "title",
           "value": "Vice President and General Manager, TradePMR",
           "evidence_snippet": "Robb Baldwin Vice President and General Manager, TradePMR",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3482,7 +3482,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3499,7 +3499,7 @@
           "field": "full_name",
           "value": "Seok Lee",
           "evidence_snippet": "Seok Lee Vice President, Total Rewards",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3512,7 +3512,7 @@
           "field": "title",
           "value": "Vice President, Total Rewards",
           "evidence_snippet": "Seok Lee Vice President, Total Rewards",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3531,7 +3531,7 @@
       "bio": "Prior to joining Robinhood, Shiv held roles at Oportun, PIMCO, Franklin Templeton Investments, Symphony Asset Management, JPMorgan, and the Oakland A’s.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-board-of-directors-authorizes-1.5-billion-in-share-repurchases",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 9,
       "roles": [
         {
@@ -3548,7 +3548,7 @@
           "field": "bio",
           "value": "Prior to joining Robinhood, Shiv held roles at Oportun, PIMCO, Franklin Templeton Investments, Symphony Asset Management, JPMorgan, and the Oakland A’s.",
           "evidence_snippet": "Prior to joining Robinhood, Shiv held roles at Oportun, PIMCO, Franklin Templeton Investments, Symphony Asset Management, JPMorgan, and the Oakland A’s.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -3561,7 +3561,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "said Shiv Verma, Chief Financial Officer of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-board-of-directors-authorizes-1.5-billion-in-share-repurchases",
@@ -3574,7 +3574,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "In this episode, Jack is joined by Shiv Verma, CFO of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://cfothoughtleader.com/cfopodcasts/the-best-trade-you-dont-make-shiv-verma-cfo-robin-hood",
@@ -3587,7 +3587,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "Shiv Verma, Chief Financial Officer of Robinhood Markets (NASDAQ:HOOD), disclosed a sale of 11,472 shares of Class A common stock on Sept. 15, 2026, according to a recent SEC Form 4 filing.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://finance.yahoo.com/markets/stocks/articles/robinhood-cfo-shiv-verma-sells-220501855.html",
@@ -3600,7 +3600,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "Shiv Verma Chief Financial Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3613,7 +3613,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "Shiv Verma is the Chief Financial Officer at Robinhood Markets.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/shiv-verma",
@@ -3626,7 +3626,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "said Shiv Verma, Chief Financial Officer of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/node/16381/pdf",
@@ -3639,7 +3639,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "Shiv Verma | | | | | Title: Chief Financial Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
@@ -3652,7 +3652,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "/s/ Shiv Verma\nName:\nShiv Verma\nTitle:\nChief Financial Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
@@ -3665,7 +3665,7 @@
           "field": "full_name",
           "value": "Shiv Verma",
           "evidence_snippet": "Shiv Verma has been our Chief Financial Officer since February 2026.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -3678,7 +3678,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "said Shiv Verma, Chief Financial Officer of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-board-of-directors-authorizes-1.5-billion-in-share-repurchases",
@@ -3691,7 +3691,7 @@
           "field": "title",
           "value": "CFO",
           "evidence_snippet": "In this episode, Jack is joined by Shiv Verma, CFO of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://cfothoughtleader.com/cfopodcasts/the-best-trade-you-dont-make-shiv-verma-cfo-robin-hood",
@@ -3704,7 +3704,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Shiv Verma, Chief Financial Officer of Robinhood Markets (NASDAQ:HOOD), disclosed a sale of 11,472 shares of Class A common stock on Sept. 15, 2026, according to a recent SEC Form 4 filing.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://finance.yahoo.com/markets/stocks/articles/robinhood-cfo-shiv-verma-sells-220501855.html",
@@ -3717,7 +3717,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Shiv Verma Chief Financial Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3730,7 +3730,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Shiv Verma is the Chief Financial Officer at Robinhood Markets.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/shiv-verma",
@@ -3743,7 +3743,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "said Shiv Verma, Chief Financial Officer of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/node/16381/pdf",
@@ -3756,7 +3756,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Shiv Verma | | | | | Title: Chief Financial Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
@@ -3769,7 +3769,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "/s/ Shiv Verma\nName:\nShiv Verma\nTitle:\nChief Financial Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
@@ -3782,7 +3782,7 @@
           "field": "title",
           "value": "Chief Financial Officer",
           "evidence_snippet": "Shiv Verma has been our Chief Financial Officer since February 2026.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -3801,7 +3801,7 @@
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "low",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 1,
       "roles": [
         {
@@ -3818,7 +3818,7 @@
           "field": "full_name",
           "value": "Stephanie Guild, CFA",
           "evidence_snippet": "Stephanie Guild, CFA Chief Investment Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3831,7 +3831,7 @@
           "field": "title",
           "value": "Chief Investment Officer",
           "evidence_snippet": "Stephanie Guild, CFA Chief Investment Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3850,7 +3850,7 @@
       "bio": "Prior to joining Robinhood, Mr. Quirk oversaw the strategy and deployment of initiatives for Trading at TD Ameritrade.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 4,
       "roles": [
         {
@@ -3867,7 +3867,7 @@
           "field": "bio",
           "value": "Prior to joining Robinhood, Mr. Quirk oversaw the strategy and deployment of initiatives for Trading at TD Ameritrade.",
           "evidence_snippet": "Prior to joining Robinhood, Mr. Quirk oversaw the strategy and deployment of initiatives for Trading at TD Ameritrade.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -3880,7 +3880,7 @@
           "field": "full_name",
           "value": "Steve Quirk",
           "evidence_snippet": "We’re thrilled to announce Steve Quirk is joining Robinhood Markets as Chief Brokerage Officer to oversee our broker-dealers, Robinhood Financial and Robinhood Securities, effective January 10, 2022.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
@@ -3893,7 +3893,7 @@
           "field": "full_name",
           "value": "Steve Quirk",
           "evidence_snippet": "Steve Quirk Chief Brokerage Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3906,7 +3906,7 @@
           "field": "full_name",
           "value": "Steve Quirk",
           "evidence_snippet": "Steve Quirk is Chief Brokerage Officer at Robinhood Markets.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/steve-quirk",
@@ -3919,7 +3919,7 @@
           "field": "full_name",
           "value": "Steven Quirk",
           "evidence_snippet": "Steven Quirk has been our Chief Brokerage Officer since January 2022.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -3932,7 +3932,7 @@
           "field": "title",
           "value": "Chief Brokerage Officer",
           "evidence_snippet": "We’re thrilled to announce Steve Quirk is joining Robinhood Markets as Chief Brokerage Officer to oversee our broker-dealers, Robinhood Financial and Robinhood Securities, effective January 10, 2022.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
@@ -3945,7 +3945,7 @@
           "field": "title",
           "value": "Chief Brokerage Officer",
           "evidence_snippet": "Steve Quirk Chief Brokerage Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -3958,7 +3958,7 @@
           "field": "title",
           "value": "Chief Brokerage Officer",
           "evidence_snippet": "Steve Quirk is Chief Brokerage Officer at Robinhood Markets.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/steve-quirk",
@@ -3971,7 +3971,7 @@
           "field": "title",
           "value": "Chief Brokerage Officer",
           "evidence_snippet": "Steven Quirk has been our Chief Brokerage Officer since January 2022.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -3990,7 +3990,7 @@
       "bio": "I was born in Bulgaria, a country with a financial system that was on the verge of collapse.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-john-hegeman-to-its-board-of-directors/",
       "confidence": "high",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 35,
       "roles": [
         {
@@ -4015,7 +4015,7 @@
           "field": "bio",
           "value": "I was born in Bulgaria, a country with a financial system that was on the verge of collapse.",
           "evidence_snippet": "I was born in Bulgaria, a country with a financial system that was on the verge of collapse.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/a-note-from-our-ceo/",
@@ -4028,7 +4028,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vlad Tenev\nCo-Founder and CEO",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://careers.robinhood.com/",
@@ -4041,7 +4041,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "A Letter From Robinhood Co-Founder & Co-CEO Vlad Tenev",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/a-letter-from-robinhood-co-founder-co-ceo-vlad-tenev/",
@@ -4054,7 +4054,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "A Message from our CEO and Co-Founder Vlad Tenev",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/a-message-from-our-ceo-and-co-founder-vlad-tenev/",
@@ -4067,7 +4067,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "By Vlad Tenev, CEO and Co-Founder, Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/a-note-from-our-ceo/",
@@ -4080,7 +4080,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -4093,7 +4093,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
@@ -4106,7 +4106,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -4119,7 +4119,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Fireside Chat with Robinhood’s CEO Vlad Tenev and Crypto COO Christine Brown",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
@@ -4132,7 +4132,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Fireside Chat with Vlad Tenev, Robinhood CEO",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/fireside-chat-with-vlad-tenev-robinhood-ceo/",
@@ -4145,7 +4145,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vlad Tenev, Co-Founder & Co-CEO at Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
@@ -4158,7 +4158,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "– Vlad Tenev, Co-Founder & Co-CEO at Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
@@ -4171,7 +4171,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "He’s joining us next week, reporting to Co-Founder and Co-CEO Vlad Tenev.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
@@ -4184,7 +4184,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "This week, our CEO Vlad Tenev sat down with two of our customers to talk about recent events and what the future holds.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/qa-with-robinhood-ceo-vlad-tenev/",
@@ -4197,7 +4197,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vlad Tenev, Chairman and Chief Executive Officer of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-christopher-payne-to-its-board-of-directors/",
@@ -4210,7 +4210,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
@@ -4223,7 +4223,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
@@ -4236,7 +4236,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, Chairman and Chief Executive Officer of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-john-hegeman-to-its-board-of-directors/",
@@ -4249,7 +4249,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
@@ -4262,7 +4262,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-susan-segal-to-its-board-of-directors/",
@@ -4275,7 +4275,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
@@ -4288,7 +4288,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, Co-Founder and Co-CEO at Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -4301,7 +4301,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
@@ -4314,7 +4314,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
@@ -4327,7 +4327,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vlad Tenev, CEO and Co-Founder, Robinhood Markets and Baiju Bhatt, Chief Creative Officer and Co-Founder, Robinhood Markets",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
@@ -4340,7 +4340,7 @@
           "field": "full_name",
           "value": "Vladimir Tenev",
           "evidence_snippet": "Key people | Vladimir Tenev (CEO)",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://en.wikipedia.org/wiki/Robinhood_(company)",
@@ -4353,7 +4353,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vladimir Tenev (Bulgarian: Владимир Тенев; born 13 February 1987) is a Bulgarian-American entrepreneur who is most notably the co-founder, Chairman, and CEO of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://en.wikipedia.org/wiki/Vlad_Tenev",
@@ -4366,7 +4366,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vlad Tenev is Chairman, CEO, and President of Robinhood Markets, a global leader in financial services offering retail brokerage, crypto, advisory, digital banking, and private markets access to a new generation of investors.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/board-of-directors",
@@ -4379,7 +4379,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vlad Tenev Chairman & Chief Executive Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -4392,7 +4392,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Vlad Tenev Chairman & Chief Executive Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/vlad-tenev",
@@ -4405,7 +4405,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "said Vlad Tenev, Chairman and CEO of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/node/16381/pdf",
@@ -4418,7 +4418,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "CEO: Vlad Tenev",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://sequoiacap.com/podcast/the-wartime-ceo-vlad-tenev-of-robinhood",
@@ -4431,7 +4431,7 @@
           "field": "full_name",
           "value": "Vladimir Tenev",
           "evidence_snippet": "| Vladimir Tenev | | | | | | 34 | | | | | | Co-Founder, Chief Executive Officer, President and Director |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -4444,7 +4444,7 @@
           "field": "full_name",
           "value": "Vlad Tenev",
           "evidence_snippet": "Robinhood CEO Vlad Tenev sits down with CNBC's Kate Rooney to discuss the company's latest earnings results, prediction markets, and more.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.youtube.com/watch?v=6trZS0CylDE",
@@ -4457,7 +4457,7 @@
           "field": "full_name",
           "value": "Vladimir Tenev",
           "evidence_snippet": "/s/ Vladimir Tenev\nName:\nVladimir Tenev\nTitle:\nChief Executive Officer and President",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
@@ -4470,7 +4470,7 @@
           "field": "full_name",
           "value": "Vladimir Tenev",
           "evidence_snippet": "Vladimir Tenev\n39\nChair and Chief Executive Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -4483,7 +4483,7 @@
           "field": "location",
           "value": "San Francisco",
           "evidence_snippet": "LET'S GET TO OUR KATE ROONEY WHO JOINS US WITH CEO VLAD TENEV IN SAN FRANCISCO.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://www.youtube.com/watch?v=6trZS0CylDE",
@@ -4496,7 +4496,7 @@
           "field": "title",
           "value": "Co-Founder and CEO",
           "evidence_snippet": "Vlad Tenev\nCo-Founder and CEO",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://careers.robinhood.com/",
@@ -4509,7 +4509,7 @@
           "field": "title",
           "value": "Co-Founder & Co-CEO",
           "evidence_snippet": "A Letter From Robinhood Co-Founder & Co-CEO Vlad Tenev",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/a-letter-from-robinhood-co-founder-co-ceo-vlad-tenev/",
@@ -4522,7 +4522,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "A Message from our CEO and Co-Founder Vlad Tenev",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/a-message-from-our-ceo-and-co-founder-vlad-tenev/",
@@ -4535,7 +4535,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "By Vlad Tenev, CEO and Co-Founder, Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/a-note-from-our-ceo/",
@@ -4548,7 +4548,7 @@
           "field": "title",
           "value": "Co-Founders and Co-CEOs",
           "evidence_snippet": "Christina will work alongside our Co-Founders and Co-CEOs Baiju Bhatt and Vlad Tenev, Chief Financial Officer Jason Warnick, Chief Operating Officer Gretchen Howard, Chief Legal Officer Dan Gallagher",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
@@ -4561,7 +4561,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
@@ -4574,7 +4574,7 @@
           "field": "title",
           "value": "Co-Founders and Co-CEOs",
           "evidence_snippet": "Dan will serve on our executive leadership team, which includes Co-Founders and Co-CEOs Vlad Tenev and Baiju Bhatt, Chief Operating Officer Gretchen Howard, and Chief Financial Officer Jason Warnick.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
@@ -4587,7 +4587,7 @@
           "field": "title",
           "value": "CEO",
           "evidence_snippet": "Fireside Chat with Robinhood’s CEO Vlad Tenev and Crypto COO Christine Brown",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
@@ -4600,7 +4600,7 @@
           "field": "title",
           "value": "CEO",
           "evidence_snippet": "Fireside Chat with Vlad Tenev, Robinhood CEO",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/fireside-chat-with-vlad-tenev-robinhood-ceo/",
@@ -4613,7 +4613,7 @@
           "field": "title",
           "value": "Co-Founder & Co-CEO",
           "evidence_snippet": "Vlad Tenev, Co-Founder & Co-CEO at Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
@@ -4626,7 +4626,7 @@
           "field": "title",
           "value": "Co-Founder & Co-CEO",
           "evidence_snippet": "– Vlad Tenev, Co-Founder & Co-CEO at Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
@@ -4639,7 +4639,7 @@
           "field": "title",
           "value": "Co-Founder and Co-CEO",
           "evidence_snippet": "He’s joining us next week, reporting to Co-Founder and Co-CEO Vlad Tenev.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
@@ -4652,7 +4652,7 @@
           "field": "title",
           "value": "CEO",
           "evidence_snippet": "This week, our CEO Vlad Tenev sat down with two of our customers to talk about recent events and what the future holds.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/qa-with-robinhood-ceo-vlad-tenev/",
@@ -4665,7 +4665,7 @@
           "field": "title",
           "value": "Chairman and Chief Executive Officer",
           "evidence_snippet": "Vlad Tenev, Chairman and Chief Executive Officer of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-christopher-payne-to-its-board-of-directors/",
@@ -4678,7 +4678,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
@@ -4691,7 +4691,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
@@ -4704,7 +4704,7 @@
           "field": "title",
           "value": "Chairman and Chief Executive Officer",
           "evidence_snippet": "said Vlad Tenev, Chairman and Chief Executive Officer of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-john-hegeman-to-its-board-of-directors/",
@@ -4717,7 +4717,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
@@ -4730,7 +4730,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-susan-segal-to-its-board-of-directors/",
@@ -4743,7 +4743,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
@@ -4756,7 +4756,7 @@
           "field": "title",
           "value": "Co-Founder and Co-CEO",
           "evidence_snippet": "said Vlad Tenev, Co-Founder and Co-CEO at Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
@@ -4769,7 +4769,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
@@ -4782,7 +4782,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "said Vlad Tenev, CEO and Co-Founder of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
@@ -4795,7 +4795,7 @@
           "field": "title",
           "value": "CEO and Co-Founder",
           "evidence_snippet": "Vlad Tenev, CEO and Co-Founder, Robinhood Markets and Baiju Bhatt, Chief Creative Officer and Co-Founder, Robinhood Markets",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
@@ -4808,7 +4808,7 @@
           "field": "title",
           "value": "CEO",
           "evidence_snippet": "Key people | Vladimir Tenev (CEO)",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://en.wikipedia.org/wiki/Robinhood_(company)",
@@ -4821,7 +4821,7 @@
           "field": "title",
           "value": "CEO",
           "evidence_snippet": "Vladimir Tenev (Bulgarian: Владимир Тенев; born 13 February 1987) is a Bulgarian-American entrepreneur who is most notably the co-founder, Chairman, and CEO of Robinhood",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://en.wikipedia.org/wiki/Vlad_Tenev",
@@ -4834,7 +4834,7 @@
           "field": "title",
           "value": "Chairman, CEO, and President",
           "evidence_snippet": "Vlad Tenev is Chairman, CEO, and President of Robinhood Markets, a global leader in financial services offering retail brokerage, crypto, advisory, digital banking, and private markets access to a new generation of investors.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/board-of-directors",
@@ -4847,7 +4847,7 @@
           "field": "title",
           "value": "Chairman & Chief Executive Officer",
           "evidence_snippet": "Vlad Tenev Chairman & Chief Executive Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -4860,7 +4860,7 @@
           "field": "title",
           "value": "Chairman & Chief Executive Officer",
           "evidence_snippet": "Vlad Tenev Chairman & Chief Executive Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/vlad-tenev",
@@ -4873,7 +4873,7 @@
           "field": "title",
           "value": "Chairman and CEO",
           "evidence_snippet": "said Vlad Tenev, Chairman and CEO of Robinhood.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/node/16381/pdf",
@@ -4886,7 +4886,7 @@
           "field": "title",
           "value": "CEO",
           "evidence_snippet": "CEO: Vlad Tenev",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://sequoiacap.com/podcast/the-wartime-ceo-vlad-tenev-of-robinhood",
@@ -4899,7 +4899,7 @@
           "field": "title",
           "value": "Co-Founder, Chief Executive Officer, President and Director",
           "evidence_snippet": "| Vladimir Tenev | | | | | | 34 | | | | | | Co-Founder, Chief Executive Officer, President and Director |",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
@@ -4912,7 +4912,7 @@
           "field": "title",
           "value": "CEO",
           "evidence_snippet": "Robinhood CEO Vlad Tenev sits down with CNBC's Kate Rooney to discuss the company's latest earnings results, prediction markets, and more.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.youtube.com/watch?v=6trZS0CylDE",
@@ -4925,7 +4925,7 @@
           "field": "title",
           "value": "Chief Executive Officer and President",
           "evidence_snippet": "/s/ Vladimir Tenev\nName:\nVladimir Tenev\nTitle:\nChief Executive Officer and President",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
@@ -4938,7 +4938,7 @@
           "field": "title",
           "value": "Chair and Chief Executive Officer",
           "evidence_snippet": "Vladimir Tenev\n39\nChair and Chief Executive Officer",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
@@ -4957,7 +4957,7 @@
       "bio": "Walter has 35 years of securities industry experience, including serving as Fiserv Securities Inc.'s Chief Executive Officer and Chief Operating Officer.",
       "profile_url": "https://investors.robinhood.com/governance/leadership",
       "confidence": "medium",
-      "updated_at": "2026-11-24T02:23:33+00:00",
+      "updated_at": "2026-11-24T02:24:38+00:00",
       "source_count": 2,
       "roles": [
         {
@@ -4974,7 +4974,7 @@
           "field": "bio",
           "value": "Walter has 35 years of securities industry experience, including serving as Fiserv Securities Inc.'s Chief Executive Officer and Chief Operating Officer.",
           "evidence_snippet": "Walter has 35 years of securities industry experience, including serving as Fiserv Securities Inc.'s Chief Executive Officer and Chief Operating Officer.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/walter-koller",
@@ -4987,7 +4987,7 @@
           "field": "full_name",
           "value": "Walter Koller",
           "evidence_snippet": "Walter Koller Vice President and Chief Operating Officer, Robinhood Financial",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -5000,7 +5000,7 @@
           "field": "full_name",
           "value": "Walter Koller",
           "evidence_snippet": "Walter Koller is Vice President and Chief Operating Officer of Robinhood Financial, joining in 2021.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": null,
           "source": {
             "url": "https://investors.robinhood.com/management/walter-koller",
@@ -5013,7 +5013,7 @@
           "field": "title",
           "value": "Vice President and Chief Operating Officer, Robinhood Financial",
           "evidence_snippet": "Walter Koller Vice President and Chief Operating Officer, Robinhood Financial",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/governance/leadership",
@@ -5026,7 +5026,7 @@
           "field": "title",
           "value": "Vice President and Chief Operating Officer",
           "evidence_snippet": "Walter Koller is Vice President and Chief Operating Officer of Robinhood Financial, joining in 2021.",
-          "extracted_at": "2026-11-24T02:23:33+00:00",
+          "extracted_at": "2026-11-24T02:24:38+00:00",
           "is_current": true,
           "source": {
             "url": "https://investors.robinhood.com/management/walter-koller",
