@@ -36,6 +36,19 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 - **`collection_runs.stats_json`** holds tokens in and out, cost, document counts per source, people found, and rejected extractions with reasons.
 - **Counts are of people, not roles.** A CEO who is also a co-founder counts once in "how many leaders".
 
+## D6. Narrow nickname merge rule (reviewed with Daniel after Phase 1)
+
+- **Problem:** The same person appears under different first names across sources. Robinhood's site likely says "Vlad Tenev" while the SEC filings say "Vladimir Tenev". Exact normalized-name matching (D4) would create two people.
+- **Chosen:** `compare_identity` in `pipeline/resolve.py` merges two records (SAME) only when **all** of these hold:
+  - same company;
+  - same last name;
+  - the first names match: identical, one is a prefix of the other (shorter one at least 3 letters, e.g. Vlad/Vladimir), or both are in a small, explicit nickname map (Bob/Robert, Bill/William, ...);
+  - at least one overlapping role `function`.
+- **Close but not merged** is returned as POSSIBLE_DUPLICATE and listed in `VALIDATION.md` for Daniel to decide. This covers: same last name with matching first names but no overlapping function; same last name and same first initial; same first initial and last names at least 0.8 similar (e.g. Steven Quirk / Stephen Quirke); or whole-name similarity of 0.85 or higher.
+- **Every non-exact merge is also listed** in `VALIDATION.md` ("merged by nickname rule"), so a wrong merge is visible.
+- **Accepted risk:** The prefix rule merges "Chris Lee" and "Christine Lee" if their functions overlap. A test documents this case. The reviewer-visible merge list is the mitigation.
+- **Rejected:** fuzzy matching (edit distance) as the merge criterion, which risks silently mixing two people's facts. Also rejected: an LLM judging identity, which is non-deterministic and hard to audit. Also rejected: a large nickname database, which goes beyond what two test companies need.
+
 ## D5. Configuration via environment
 
 - `.env` at the repo root is loaded automatically (`python-dotenv`). Variables: `ANTHROPIC_API_KEY`, `TAVILY_API_KEY`, `SEC_USER_AGENT` (used as-is, e.g. `"Jane Doe jane@example.com"`, as SEC requires), and `LLM_MODEL` (blank means `claude-sonnet-5-5`).
