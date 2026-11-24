@@ -178,6 +178,17 @@ class Fetcher:
         parser = self._robots_for(base + "/", DEFAULT_USER_AGENT)
         return list(parser.site_maps() or []) if parser is not None else []
 
+    def robots_verdict(self, url: str, user_agent: str = DEFAULT_USER_AGENT) -> tuple[int, bool]:
+        """(robots.txt HTTP status, may we fetch url). Status 0 means unreachable.
+
+        Lets callers tell an explicit Disallow (2xx robots.txt that forbids the path) apart
+        from bot protection (robots.txt itself answered 401/403/5xx or was unreachable).
+        """
+        allowed = self.allowed(url, user_agent)
+        parts = urlsplit(url)
+        res = self._load("_robots", f"{parts.scheme}://{parts.netloc}/robots.txt")
+        return (res.status if res is not None else 0), allowed
+
     def allowed(self, url: str, user_agent: str) -> bool:
         parser = self._robots_for(url, user_agent)
         return parser is not None and parser.can_fetch(user_agent, url)

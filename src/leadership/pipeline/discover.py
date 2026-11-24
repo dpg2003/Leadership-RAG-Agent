@@ -13,7 +13,7 @@ from selectolax.lexbor import LexborHTMLParser as HTMLParser
 from leadership.config import company_dir
 from leadership.models import SOURCE_PRIORITY, utc_now_iso
 from leadership.sources.base import AdapterReport, Company, RawDocument, SourceAdapter
-from leadership.sources.company_site import CompanySiteAdapter
+from leadership.sources.company_site import MAX_PAGES, CompanySiteAdapter
 from leadership.sources.fetch import Fetcher
 from leadership.sources.search import SearchAdapter
 from leadership.sources.sec_edgar import SecEdgarAdapter, lookup_cik
@@ -80,9 +80,14 @@ class DiscoveryResult:
     stats: dict = field(default_factory=dict)
 
 
-def discover(company: Company, fetcher: Fetcher, sources: tuple[str, ...] | None = None):
+def discover(
+    company: Company,
+    fetcher: Fetcher,
+    sources: tuple[str, ...] | None = None,
+    max_pages: int = MAX_PAGES,
+):
     adapters: list[SourceAdapter] = [
-        CompanySiteAdapter(fetcher),
+        CompanySiteAdapter(fetcher, max_pages),
         SecEdgarAdapter(fetcher),
         SearchAdapter(fetcher),
     ]

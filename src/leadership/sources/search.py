@@ -80,6 +80,13 @@ def _write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
+def is_company_host(url: str, company: Company) -> bool:
+    host = (urlsplit(url).hostname or "").lower()
+    roots = {company.domain.lower(), (urlsplit(company.site_url).hostname or "").lower()}
+    roots = {r.removeprefix("www.") for r in roots if r}
+    return any(host == r or host.endswith("." + r) for r in roots)
+
+
 class SearchAdapter:
     source_type = SOURCE_TYPE
 
@@ -137,6 +144,13 @@ class SearchAdapter:
                     # Don't keep (or commit) text from a domain excluded after it was cached.
                     self.fetcher.text_path(NAMESPACE, url).unlink(missing_ok=True)
                     continue
+                direct_fetch = ""
+                if is_company_host(url, company):
+                    direct_fetch = self._direct_fetch_status(url)
+                    if direct_fetch.startswith("disallowed"):
+                        report.skip(url, f"company robots.txt {direct_fetch} (D13)")
+                        self.fetcher.text_path(NAMESPACE, url).unlink(missing_ok=True)
+                        continue
                 text = (r.get("raw_content") or r.get("content") or "").strip()
                 if len(text) < 100:
                     report.skip(url, "search result has no usable text")
@@ -157,7 +171,24 @@ class SearchAdapter:
                             "score": r.get("score"),
                             "published_date": r.get("published_date"),
                             "raw_content": bool(r.get("raw_content")),
-                        },
+                        }
+                        | ({"direct_fetch": direct_fetch} if direct_fetch else {}),
                     )
                 )
         return report
+
+    def _direct_fetch_status(self, url: str) -> str:
+        """For a result on the company's own hosts: could we have fetched it ourselves?
+
+        'disallowed ...' means robots.txt explicitly forbids the path: the result is dropped.
+        'blocked ...' means the host refuses bots wholesale (robots.txt itself is 401/403/5xx
+        or unreachable): the result is kept at search trust and flagged in VALIDATION.md.
+        '' means a direct fetch would have been allowed. Only robots.txt is requested.
+        """
+        status, allowed = self.fetcher.robots_verdict(url)
+        host = urlsplit(url).hostname
+        if status == 0:
+            return f"blocked: {host}/robots.txt unreachable"
+        if status in (401, 403) or status >= 500:
+            return f"blocked: {host}/robots.txt returned HTTP {status} (bot protection)"
+        return "" if allowed else f"disallowed by {host}/robots.txt"

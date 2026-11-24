@@ -301,3 +301,63 @@ def test_build_queries_disambiguate_with_site_host():
     queries = build_queries(company)
     assert all(q.endswith(" campfire.ai") for q in queries)
     assert '"Campfire" "head of" campfire.ai' in queries
+
+
+def _seed_search_cache(fetcher, company, results):
+    for q in build_queries(company):
+        key = hashlib.sha256(q.encode("utf-8")).hexdigest()[:20]
+        path = fetcher.cache_dir / "search" / "_queries" / f"{key}.json"
+        data = {
+            "query": q,
+            "fetched_at": "2026-01-01T00:00:00+00:00",
+            "response": {"results": results},
+        }
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(data), encoding="utf-8")
+
+
+def test_company_host_search_results_checked_against_robots(tmp_path):
+    """D13: bot protection (robots.txt 403) keeps and flags; an explicit Disallow drops."""
+    company = Company("Acme", "acme.test", "https://www.acme.test/")
+    routes = {
+        "https://investors.acme.test/robots.txt": (403, "Access Denied"),
+        "https://blog.acme.test/robots.txt": (200, "User-agent: *\nDisallow: /private/"),
+    }
+    calls: list[str] = []
+    fetcher = make_fetcher(tmp_path, routes, calls)
+    body = "Acme names Jane Doe Vice President of Engineering. " * 5
+    _seed_search_cache(fetcher, company, [
+        {"url": "https://investors.acme.test/management/jane-doe", "raw_content": body},
+        {"url": "https://blog.acme.test/private/team", "raw_content": body},
+        {"url": "https://blog.acme.test/news/jane", "raw_content": body},
+        {"url": "https://news.test/acme", "raw_content": body},
+    ])  # fmt: skip
+    report = SearchAdapter(fetcher).discover(company)
+
+    docs = {d.url: d for d in report.documents}
+    assert set(docs) == {
+        "https://investors.acme.test/management/jane-doe",
+        "https://blog.acme.test/news/jane",
+        "https://news.test/acme",
+    }
+    flag = docs["https://investors.acme.test/management/jane-doe"].meta["direct_fetch"]
+    assert flag.startswith("blocked:") and "HTTP 403" in flag
+    assert "direct_fetch" not in docs["https://blog.acme.test/news/jane"].meta
+    assert "direct_fetch" not in docs["https://news.test/acme"].meta  # third party: unchecked
+    assert any(
+        s["url"] == "https://blog.acme.test/private/team" and "disallowed" in s["reason"]
+        for s in report.skipped
+    )
+    # Only robots.txt is requested; never the pages themselves, never third-party hosts.
+    assert calls and all(c.endswith("/robots.txt") and "acme.test" in c for c in calls)
+    assert not any("news.test" in c for c in calls)
+
+
+def test_is_company_host():
+    from leadership.sources.search import is_company_host
+
+    c = Company("Campfire", "meetcampfire.com", "https://campfire.ai/")
+    assert is_company_host("https://campfire.ai/blog/x", c)
+    assert is_company_host("https://www.meetcampfire.com/", c)
+    assert not is_company_host("https://campfire.org/team", c)
+    assert not is_company_host("https://notcampfire.ai/", c)

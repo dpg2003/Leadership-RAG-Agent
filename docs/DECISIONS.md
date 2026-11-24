@@ -74,13 +74,13 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 - **Chosen:** `selectolax` (lexbor backend). It drops script, style, noscript, svg, template, iframe and head, then keeps all visible text, one block per line.
 - **Rejected:** trafilatura. It is built to extract an article's main body and treats bylines, nav and team grids as boilerplate. Campfire's leaders appear mostly in blog bylines ("John Glasgow / CEO & Founder"), so trafilatura would discard exactly the evidence we need. The cost of our choice is more text per page; the Phase 3 keyword pre-filter offsets it.
 
-## D10. Raw cache layout (committed)
+## D10. Raw cache layout
 
 - Path: `data/<domain>/raw/<source_type>/<sha256(url)[:20]>`, with `.meta.json` (URL, final URL, status, `fetched_at`), `.body.gz` (raw bytes; gzip with `mtime=0` so re-fetching the same content gives the same file), and `.txt` (the extracted text).
-- `sources.raw_path` points to the **`.txt` file**: the exact text that extraction read and that the evidence-snippet check runs against. The source-verifier and the human reviewer check the same text.
+- `sources.raw_path` points to the **`.txt` file**: the exact text that extraction read and that the evidence-snippet check runs against.
 - Errors (404, 403, network) and robots.txt files are cached too, so a re-run with a warm cache makes **zero** network requests (verified: `network requests: 0 · search API calls: 0`). `--refresh` re-fetches.
 - `raw/manifest.json` lists every document plus everything skipped, with the reason, per source. A blocked or empty source shows up there and is never silently dropped.
-- About 11 MB for both companies, mostly the SEC filings. That's acceptable to commit so reviewers can re-run extraction and verification without fetching anything.
+- The cache is local only and is **not committed** (D14).
 
 ## D11. Company resolution and SEC matching
 
@@ -92,3 +92,22 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 ## D12. Adapters return a report, not a bare list
 
 - `discover(company)` returns an `AdapterReport` (documents, skipped URLs with reasons, notes) instead of `list[RawDocument]`. This departs from the interface in the initial prompt on purpose: the "tell me if a source is blocked or empty" rule needs the skips to be data, not log lines.
+
+## D13. investors.robinhood.com: keep Tavily's copies, flagged (decided by Daniel after Phase 2)
+
+- **Finding:** investors.robinhood.com answers every non-browser client, including requests for `/robots.txt` itself, with an Akamai "Access Denied" 403 (`errors.edgesuite.net` reference). Checked with our User-Agent and with curl's default one (2026-11-24). No robots.txt is ever served, so there is **no explicit Disallow**; it is generic bot protection. robinhood.com's own robots.txt does not mention the investors host.
+- **Chosen:** Keep the 18 pages Tavily returned from that host, at `source_type=search` (lowest trust). We never request those pages ourselves: our robots rule treats a 403 robots.txt as "disallow everything" (D8). We did not retry with a browser User-Agent, which would be evading the block.
+- **General rule, in code:** for every search result on one of the company's own hosts, `SearchAdapter` checks that host's robots.txt (only robots.txt is requested). An explicit Disallow for the path drops the result; a 401/403/5xx or unreachable robots.txt keeps it with `meta.direct_fetch = "blocked: ..."`. Third-party hosts are not checked: Tavily fetched them, not us.
+- **Review:** every record whose only evidence comes from a `direct_fetch` = blocked page is marked in `VALIDATION.md` for Daniel to hand-check in a browser.
+- **Rejected:** excluding them. These pages are the only source for Robinhood's VP-level people (Kerbrat, Rao, Fatehpuria and others), and the block is not a stated crawling policy.
+
+## D14. Raw cache is not committed (decided by Daniel after Phase 2)
+
+- **Chosen:** `data/*/raw/` is gitignored. Each company commits only `leadership.db` and a readable `leadership.json` export. Every fact in them carries its source URL, an evidence snippet and `retrieved_at`, which is enough for a reviewer to check a claim against the live page.
+- **Why:** The cache holds full copies of third-party news pages and SEC filings. Redistributing those in a public repo is a copyright problem; the short evidence snippets are not.
+- **Cost:** a fresh clone cannot re-run extraction offline. Re-collection (`leadership collect`) needs `ANTHROPIC_API_KEY`, `TAVILY_API_KEY` and `SEC_USER_AGENT`; the README says so. Chat, eval and the UI need only `ANTHROPIC_API_KEY`.
+- **Rejected:** committing the ~11 MB cache (supersedes the earlier plan in D10).
+
+## D15. Company-site crawl limit is per run
+
+- `--max-pages` (default 60) sets how many top-ranked company-site URLs are fetched. Campfire is collected with `--max-pages 120`: its leaders appear mostly in blog bylines, and the default left 35 posts unfetched. With 120 it fetched 86 pages and hit no cap. Robinhood keeps 60: more newsroom pages there mostly add stale appointment posts and LLM cost.

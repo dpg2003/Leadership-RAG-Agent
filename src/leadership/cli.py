@@ -10,6 +10,7 @@ from rich.logging import RichHandler
 from rich.table import Table
 
 from leadership.config import MissingSettingError
+from leadership.sources.company_site import MAX_PAGES
 
 app = typer.Typer(add_completion=False, no_args_is_help=True, help=__doc__)
 console = Console()
@@ -36,6 +37,7 @@ def discover(
     ticker: str | None = typer.Option(None, help="Stock ticker, if public (default: look up)"),
     private: bool = typer.Option(False, help="Skip the SEC lookup"),
     source: list[str] | None = typer.Option(None, help="Only these sources (repeatable)"),  # noqa: B008
+    max_pages: int = typer.Option(MAX_PAGES, help="Company-site pages to fetch (top-ranked)"),
     refresh: bool = typer.Option(False, help="Ignore the cache and re-fetch"),
     verbose: bool = typer.Option(False, "--verbose", "-v"),
 ) -> None:
@@ -54,7 +56,7 @@ def discover(
             console.print(
                 f"[bold]{company.name}[/] · {company.domain} → {company.site_url} · {status}"
             )
-            result = run_discover(company, fetcher, tuple(source) if source else None)
+            result = run_discover(company, fetcher, tuple(source) if source else None, max_pages)
     except MissingSettingError as exc:
         console.print(f"[red]{exc}[/]")
         raise typer.Exit(2) from exc

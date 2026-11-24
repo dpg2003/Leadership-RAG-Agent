@@ -9,3 +9,7 @@ __pycache__/
 *.db-journal
 *.db-wal
 *.db-shm
+
+# Raw source cache: copies of third-party pages (DECISIONS.md D14). Only the resolved
+# leadership.db / leadership.json per company are committed.
+data/*/raw/
