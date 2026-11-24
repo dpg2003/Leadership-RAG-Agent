@@ -626,15 +626,7 @@
           "seniority": "c_level",
           "is_current": true,
           "as_of": "2026-11-18",
-          "note": null
-        },
-        {
-          "title_raw": "CEO & Founder",
-          "function": "other",
-          "seniority": "founder",
-          "is_current": true,
-          "as_of": "2026-11-18",
-          "note": null
+          "note": "one row for: c_level, founder"
         }
       ],
       "facts": [

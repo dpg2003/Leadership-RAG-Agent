@@ -358,6 +358,46 @@ def _resolve_role(
     return ResolvedRole(title, function, seniority, is_current, as_of, confidence, claims, note)
 
 
+def _title_key(title: str) -> str:
+    """'CEO & Founder' and 'ceo and founder' are the same title."""
+    return " ".join(re.sub(r"[^a-z0-9 ]", " ", title.lower().replace("&", " and ")).split())
+
+
+def dedupe_roles(roles: list[ResolvedRole]) -> list[ResolvedRole]:
+    """D29: one row per (normalized title, function) per person; sources are merged.
+
+    "CEO & Founder" resolves to a C-level role and a founder role (D4/D23); shown as two
+    identical rows. The merged row keeps the most senior seniority, is current if either
+    was, and keeps every claim, the newest as_of, the best confidence, and both notes."""
+    groups: dict[tuple[str, str], list[ResolvedRole]] = {}
+    for r in roles:
+        groups.setdefault((_title_key(r.title), r.function), []).append(r)
+    out = []
+    for group in groups.values():
+        if len(group) == 1:
+            out.append(group[0])
+            continue
+        lead = min(group, key=lambda r: (not r.is_current, _SENIORITY_RANK[r.seniority]))
+        claims = list({id(c): c for r in group for c in r.claims}.values())
+        notes = [r.note for r in group if r.note]
+        seniorities = sorted({r.seniority for r in group}, key=_SENIORITY_RANK.__getitem__)
+        if len(seniorities) > 1:
+            notes.append(f"one row for: {', '.join(seniorities)}")
+        out.append(
+            ResolvedRole(
+                lead.title,
+                lead.function,
+                lead.seniority,
+                any(r.is_current for r in group),
+                max((r.as_of for r in group if r.as_of), default=None),
+                max((r.confidence for r in group), key=_CONFIDENCE_RANK.__getitem__),
+                claims,
+                "; ".join(dict.fromkeys(notes)),
+            )
+        )
+    return out
+
+
 def _apply_promotions(roles: list[ResolvedRole]) -> None:
     """A person's older title is superseded by a newer, dated title in the same function
     (VP of Operations in 2018, then COO from 2019). Founder roles are never superseded."""
@@ -496,6 +536,7 @@ def resolve_claims(
                     r.is_current = False
                     r.note = "founder (historical): no current operating role in the collected data"
                     historical.append(r)
+        roles = dedupe_roles(roles)
         roles.sort(key=lambda r: (not r.is_current, _SENIORITY_RANK[r.seniority], r.title))
         live = [r for r in roles if r.is_current] or roles
         confidence = max((r.confidence for r in live), key=_CONFIDENCE_RANK.__getitem__)

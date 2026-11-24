@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 VERDICT_RANK = {"UNSUPPORTED": 0, "PARTIAL": 1, "STALE": 2, "SOURCE_UNAVAILABLE": 3, "SUPPORTED": 4}
 DANIEL = "✅ / ❌ / note"
 # The collection the source-verifier reports were made from (update when it is re-run).
-VERIFIER_RUN = "from the collection in commit 60a6431"
+VERIFIER_RUN = "from the collection in commit 60a6431, plus an addendum for the people added since"
 
 REVIEW_TITLES = {
     "seat_conflicts": "Seat conflicts (two current holders of one C-suite seat; not decided)",

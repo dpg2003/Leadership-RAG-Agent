@@ -51,3 +51,17 @@ None found among the 7 people. Glasgow and Fernando each have two role rows for 
 4. Confidence "high" for Paul Nichols and John Glasgow counts derivative pages (a third-party review that restates the Anthropic case study) as independent sources. Nichols has effectively one origin.
 5. Timestamps: retrieved_at/extracted_at are 2026-11-24 UTC while the run date is 2026-11-23. Likely a timezone artifact; confirm.
 6. Function "other" is over-used for executive and sales roles.
+
+## Addendum: records added after the byline rule (checked 2026-11-23)
+| # | Person | Field | Stored value | Verdict | Reason (1 line) | Source |
+|---|---|---|---|---|---|---|
+| A1 | Brendan Doyle | full_name (8 facts) | Brendan Doyle | SUPPORTED | All 8 snippets found in cache (7 post bylines + category page); name is a real byline on campfire.ai; only a "Zach Doyle" (Advisor360 customer quote) is a different person, no collision | campfire.ai/blog/ (august-product-update, byo-csv-..., forecast-..., askember-in-slack, migration-agent-..., lease-accounting-..., multi-book-...; blog?category=Finance) |
+| A2 | Brendan Doyle | title (8 facts) | Head of Product | PARTIAL | Title verbatim in all 8 snippets (May 27 to Sept 18, 2026), consistent, first-party host; but no page says "Head of Product at Campfire" or gives an author bio, so employer is inferred from the byline host only. Live fetch of august-product-update: byline and title still present, no employer line | same |
+| A3 | Brendan Doyle | role classification | product / head | SUPPORTED | Correct for "Head of Product". Caveats: as_of 2026-11-04 comes from the category-page date, not a dated statement; the category page is a search-type source and not independent of the blog posts, so effectively one origin | n/a |
+| A4 | Nick Jezienicki | full_name | Nick Jezienicki | PARTIAL | Snippet found in cache (twice on page); person is real and named, but nothing shows which company he belongs to | campfire.ai/blog/atlar (live OK) |
+| A5 | Nick Jezienicki | title | Head of Technology Partnerships | UNSUPPORTED | Snippet found verbatim, but it does not establish "at Campfire". Post is the joint "Campfire + Atlar" post; the title could be Atlar's (partner) or Campfire's. Live fetch: no employer or bio line; single byline, single source, 2026-05-12 (6 months old) | campfire.ai/blog/atlar |
+| A6 | Nick Jezienicki | role classification | sales / head | PARTIAL | Seniority head is right. Function "sales" is a guess; technology partnerships is closer to business development/partnerships (use that if taxonomy has it, else "other"). The stored note admits the single-byline basis | n/a |
+
+Does the cache show Jezienicki's employer? No. The cached page (93ead9aeec2c3fd72181.txt) shows only the headline "Campfire + Atlar: ...", his name, the title, and the date. Campfire and Atlar are both named as parties in the body ("Campfire and Atlar have teamed up ..."), the post is on campfire.ai, and the CTA is aimed at Campfire customers, but no sentence ties him to either company. No other cached source mentions him. Appearing on Campfire's blog makes Campfire more likely but does not prove it, since partner-authored guest posts are common. Confidence "low" in leadership.json is appropriate; the record should not be treated as verified.
+
+Live fetches for this addendum: 2 (campfire.ai/blog/atlar, campfire.ai/blog/august-product-update). linkedin.com not touched.

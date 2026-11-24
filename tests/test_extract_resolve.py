@@ -927,3 +927,30 @@ def test_former_deputy_general_counsel_is_not_restored_to_c_level():
                      status="former", date="2020-08-19", date_text="August 19, 2020")  # fmt: skip
     (role,) = by_name(resolve_claims(claims, today=TODAY), "Christina Lai").roles
     assert (role.seniority, role.is_current) == ("head", False)
+
+
+def test_same_title_and_function_is_one_role_row_with_merged_sources():
+    """D29: 'CEO & Founder' (C-level + founder) on two pages is one row, both sources kept."""
+    a = doc("https://acme.test/team", "John Glasgow, CEO & Founder")
+    b = doc("https://acme.test/blog/x", "John Glasgow, CEO and Founder")
+    claims = _single(a, "John Glasgow", "CEO & Founder", "John Glasgow, CEO & Founder")
+    claims += _single(b, "John Glasgow", "CEO and Founder", "John Glasgow, CEO and Founder")
+    person = by_name(resolve_claims(claims, today=TODAY), "John Glasgow")
+    (role,) = person.roles
+    assert (role.seniority, role.function, role.is_current) == ("c_level", "other", True)
+    assert {c.doc.url for c in role.claims} == {
+        "https://acme.test/team",
+        "https://acme.test/blog/x",
+    }
+    assert "founder" in role.note
+
+
+def test_different_titles_stay_separate_rows():
+    from leadership.pipeline.resolve import ResolvedRole, dedupe_roles
+
+    def role(title, function):
+        return ResolvedRole(title, function, "vp", True, None, "low", [], "")
+
+    rows = dedupe_roles([role("VP of Sales", "sales"), role("VP of Product", "product"),
+                         role("vp of sales", "sales")])  # fmt: skip
+    assert sorted(r.title for r in rows) == ["VP of Product", "VP of Sales"]

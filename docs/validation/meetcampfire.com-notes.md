@@ -17,4 +17,4 @@ Restored after Phase 4: a byline with a title on the company's own domain now co
   - Erik Leavell (Head of Finance & Applied AI, campfire.ai/basecamp).
 - **CFO:** John Glasgow is also called "CEO & CFO". The Daily Upside (2026-11-09) reports the CFO role is open, with a hire expected soon. That may need a re-collect later.
 - campfire.ai has no team or about page, so coverage depends on the blog, press, and search.
-- **Source-verifier verdicts** are from the collection in commit 60a6431. Brendan Doyle and Nick Jezienicki were rejected then, so they show "not checked".
+- **Source-verifier verdicts** are from the collection in commit 60a6431. Brendan Doyle and Nick Jezienicki were rejected then; they were checked afterwards, in the addendum at the end of `meetcampfire.com-verifier.md`.

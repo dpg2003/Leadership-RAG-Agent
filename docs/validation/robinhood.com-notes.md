@@ -22,7 +22,7 @@ No known misses remain.
 - **The scout found no head of:** engineering/CTO (after Pinner), product, marketing, people, design, data, operations. The pipeline has Connie Schan (Chief People Officer, undated) and Adam Wolff (VP Engineering, stale).
 - **Scout candidates it couldn't confirm** (not counted as misses): Sivaa Subramanian (VP Engineering 2024 to about May 2026, likely departed) and Gaetan Thabot (head of crypto partnerships, undated secondary sources).
 - **Note:** the source-verifier's line "people_found=36 but 35 people are exported" is wrong. The export has 36 people, and its own records table covers 36.
-- **Source-verifier verdicts** are from the collection in commit 60a6431. People added by the crawler fix (D26) show "not checked". Changed records (such as titles now using the newest wording) may differ from what the verifier saw.
+- **Source-verifier verdicts** are from the collection in commit 60a6431. The 9 people added by the crawler fix (D26) were checked afterwards, in the addendum at the end of `robinhood.com-verifier.md`. Changed records (such as titles now using the newest wording) may differ from what the verifier saw.
 - **Known limits in this data:**
   - Matt Billings has two current role rows for one position (`vp/other` from a 2023 post, `vp/operations` from the IR listing). Roles are split by function, and the two titles map to different functions.
   - "Steph Guild" (Head of Investment Strategy) is stored separately from Stephanie Guild (Chief Investment Officer) and listed as a possible duplicate. If they are the same person, the current count (31) is one too high.

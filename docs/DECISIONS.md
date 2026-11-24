@@ -238,3 +238,9 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - Flags never change stored facts, roles or `is_current`. Koegel stays current, as decided. Flags are attached to the person in `leadership.json`, shown in VALIDATION.md, and will be shown by the chat agent.
 - A flag without a `source_url` or `decided_by` is an error. A flag that matches no stored person is logged.
 - **Rejected:** writing the scout's claim into the facts. It was not collected by the pipeline, and the source is a secondary aggregator.
+
+## D29. One role row per title and function (decided by Daniel before the hand-check)
+
+- Per person, roles with the same normalized title (case, punctuation and "&"/"and" ignored) and the same function are one row, with their sources merged (`resolve.dedupe_roles`). The row keeps the most senior seniority, is current if any merged row was, and records the merged seniorities in its note.
+- **Effect:** John Glasgow's "CEO & Founder" was two rows, C-level and founder (D4/D23); it is now one C-level row noted "one row for: c_level, founder". No count changed.
+- **Not covered:** Matt Billings's two rows have different titles ("VP and President of Robinhood Financial LLC and Robinhood Securities, LLC" vs "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities") and different functions (other vs operations), so this rule keeps them separate. Open question for Daniel.
