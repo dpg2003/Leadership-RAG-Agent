@@ -425,7 +425,8 @@ class Repository:
     def _person_detail(self, person: dict[str, Any]) -> dict[str, Any]:
         facts = self.conn.execute(
             """SELECT f.field, f.value, f.evidence_snippet, f.extracted_at, f.is_current,
-                      s.id AS source_id, s.url, s.source_type, s.fetched_at, s.published_at
+                      s.id AS source_id, s.url, s.source_type, s.fetched_at, s.published_at,
+                      s.raw_path
                FROM facts f JOIN sources s ON s.id = f.source_id
                WHERE f.person_id = ?
                ORDER BY f.field, s.source_type, s.url, f.value, f.id""",
@@ -445,6 +446,8 @@ class Repository:
                     "source_type": f["source_type"],
                     "retrieved_at": f["fetched_at"],
                     "published_at": f["published_at"],
+                    # Local cache file (gitignored, D14); re-created by `leadership collect`.
+                    "raw_path": f["raw_path"],
                 },
             }
             for f in facts

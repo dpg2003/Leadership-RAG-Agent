@@ -615,7 +615,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -628,7 +629,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -664,7 +666,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-robinhoods-2020-interns/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:32+00:00",
-            "published_at": "2020-05-21"
+            "published_at": "2020-05-21",
+            "raw_path": "data/robinhood.com/raw/company_site/5c178d8397f78d6e5bdc.txt"
           }
         },
         {
@@ -677,7 +680,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-robinhoods-2020-interns/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:32+00:00",
-            "published_at": "2020-05-21"
+            "published_at": "2020-05-21",
+            "raw_path": "data/robinhood.com/raw/company_site/5c178d8397f78d6e5bdc.txt"
           }
         }
       ]
@@ -713,7 +717,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -726,7 +731,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -739,7 +745,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -752,7 +759,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -765,7 +773,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         }
       ]
@@ -801,7 +810,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:27+00:00",
-            "published_at": "2021-03-17"
+            "published_at": "2021-03-17",
+            "raw_path": "data/robinhood.com/raw/company_site/7d285810880cd8b68fa7.txt"
           }
         },
         {
@@ -814,7 +824,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:27+00:00",
-            "published_at": "2021-03-17"
+            "published_at": "2021-03-17",
+            "raw_path": "data/robinhood.com/raw/company_site/7d285810880cd8b68fa7.txt"
           }
         },
         {
@@ -827,7 +838,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -840,7 +852,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:27+00:00",
-            "published_at": "2021-03-17"
+            "published_at": "2021-03-17",
+            "raw_path": "data/robinhood.com/raw/company_site/7d285810880cd8b68fa7.txt"
           }
         },
         {
@@ -853,7 +866,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         }
       ]
@@ -905,7 +919,8 @@
             "url": "https://investors.robinhood.com/board-member/baiju-bhatt",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:43+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/e87f3577d0fe256041ac.txt"
           }
         },
         {
@@ -918,7 +933,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -931,7 +947,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -944,7 +961,8 @@
             "url": "https://robinhood.com/newsroom/former-sec-commissioner-dan-gallagher-joins-robinhoods-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:07+00:00",
-            "published_at": "2019-10-07"
+            "published_at": "2019-10-07",
+            "raw_path": "data/robinhood.com/raw/company_site/e4ce35e9b930a049c982.txt"
           }
         },
         {
@@ -957,7 +975,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:18+00:00",
-            "published_at": "2021-10-21"
+            "published_at": "2021-10-21",
+            "raw_path": "data/robinhood.com/raw/company_site/eb56d8dbf21f79ff7312.txt"
           }
         },
         {
@@ -970,7 +989,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:19+00:00",
-            "published_at": "2021-11-16"
+            "published_at": "2021-11-16",
+            "raw_path": "data/robinhood.com/raw/company_site/d11ffa957fae07296744.txt"
           }
         },
         {
@@ -983,7 +1003,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:21+00:00",
-            "published_at": "2022-03-23"
+            "published_at": "2022-03-23",
+            "raw_path": "data/robinhood.com/raw/company_site/e864c6953963dd579189.txt"
           }
         },
         {
@@ -996,7 +1017,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:24+00:00",
-            "published_at": "2021-06-01"
+            "published_at": "2021-06-01",
+            "raw_path": "data/robinhood.com/raw/company_site/6322d0a0503d6923b06b.txt"
           }
         },
         {
@@ -1009,7 +1031,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -1022,7 +1045,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:34+00:00",
-            "published_at": "2021-07-29"
+            "published_at": "2021-07-29",
+            "raw_path": "data/robinhood.com/raw/company_site/746ca8d74f9ae41beb12.txt"
           }
         },
         {
@@ -1035,7 +1059,8 @@
             "url": "https://investors.robinhood.com/board-member/baiju-bhatt",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:43+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/e87f3577d0fe256041ac.txt"
           }
         },
         {
@@ -1048,7 +1073,8 @@
             "url": "https://investors.robinhood.com/governance/board-of-directors",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/3ea3e592a8f4154e8231.txt"
           }
         },
         {
@@ -1061,7 +1087,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -1074,7 +1101,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -1087,7 +1115,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -1100,7 +1129,8 @@
             "url": "https://robinhood.com/newsroom/former-sec-commissioner-dan-gallagher-joins-robinhoods-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:07+00:00",
-            "published_at": "2019-10-07"
+            "published_at": "2019-10-07",
+            "raw_path": "data/robinhood.com/raw/company_site/e4ce35e9b930a049c982.txt"
           }
         },
         {
@@ -1113,7 +1143,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:18+00:00",
-            "published_at": "2021-10-21"
+            "published_at": "2021-10-21",
+            "raw_path": "data/robinhood.com/raw/company_site/eb56d8dbf21f79ff7312.txt"
           }
         },
         {
@@ -1126,7 +1157,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:19+00:00",
-            "published_at": "2021-11-16"
+            "published_at": "2021-11-16",
+            "raw_path": "data/robinhood.com/raw/company_site/d11ffa957fae07296744.txt"
           }
         },
         {
@@ -1139,7 +1171,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:21+00:00",
-            "published_at": "2022-03-23"
+            "published_at": "2022-03-23",
+            "raw_path": "data/robinhood.com/raw/company_site/e864c6953963dd579189.txt"
           }
         },
         {
@@ -1152,7 +1185,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:24+00:00",
-            "published_at": "2021-06-01"
+            "published_at": "2021-06-01",
+            "raw_path": "data/robinhood.com/raw/company_site/6322d0a0503d6923b06b.txt"
           }
         },
         {
@@ -1165,7 +1199,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -1178,7 +1213,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:34+00:00",
-            "published_at": "2021-07-29"
+            "published_at": "2021-07-29",
+            "raw_path": "data/robinhood.com/raw/company_site/746ca8d74f9ae41beb12.txt"
           }
         },
         {
@@ -1191,7 +1227,8 @@
             "url": "https://investors.robinhood.com/board-member/baiju-bhatt",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:43+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/e87f3577d0fe256041ac.txt"
           }
         },
         {
@@ -1204,7 +1241,8 @@
             "url": "https://investors.robinhood.com/governance/board-of-directors",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/3ea3e592a8f4154e8231.txt"
           }
         },
         {
@@ -1217,7 +1255,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         }
       ]
@@ -1253,7 +1292,8 @@
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:30+00:00",
-            "published_at": "2021-10-01"
+            "published_at": "2021-10-01",
+            "raw_path": "data/robinhood.com/raw/company_site/822956dd94ee00ae1e4e.txt"
           }
         },
         {
@@ -1266,7 +1306,8 @@
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:30+00:00",
-            "published_at": "2021-10-01"
+            "published_at": "2021-10-01",
+            "raw_path": "data/robinhood.com/raw/company_site/822956dd94ee00ae1e4e.txt"
           }
         },
         {
@@ -1279,7 +1320,8 @@
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:30+00:00",
-            "published_at": "2021-10-01"
+            "published_at": "2021-10-01",
+            "raw_path": "data/robinhood.com/raw/company_site/822956dd94ee00ae1e4e.txt"
           }
         }
       ]
@@ -1315,7 +1357,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -1328,7 +1371,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -1364,7 +1408,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -1377,7 +1422,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -1390,7 +1436,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -1403,7 +1450,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -1416,7 +1464,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         }
       ]
@@ -1460,7 +1509,8 @@
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:03+00:00",
-            "published_at": "2021-04-22"
+            "published_at": "2021-04-22",
+            "raw_path": "data/robinhood.com/raw/company_site/ff98ef659c9b629bacc2.txt"
           }
         },
         {
@@ -1473,7 +1523,8 @@
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:03+00:00",
-            "published_at": "2021-04-22"
+            "published_at": "2021-04-22",
+            "raw_path": "data/robinhood.com/raw/company_site/ff98ef659c9b629bacc2.txt"
           }
         },
         {
@@ -1486,7 +1537,8 @@
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:05+00:00",
-            "published_at": "2021-05-06"
+            "published_at": "2021-05-06",
+            "raw_path": "data/robinhood.com/raw/company_site/675dc53db70f4deddf30.txt"
           }
         },
         {
@@ -1499,7 +1551,8 @@
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:03+00:00",
-            "published_at": "2021-04-22"
+            "published_at": "2021-04-22",
+            "raw_path": "data/robinhood.com/raw/company_site/ff98ef659c9b629bacc2.txt"
           }
         },
         {
@@ -1512,7 +1565,8 @@
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:03+00:00",
-            "published_at": "2021-04-22"
+            "published_at": "2021-04-22",
+            "raw_path": "data/robinhood.com/raw/company_site/ff98ef659c9b629bacc2.txt"
           }
         },
         {
@@ -1525,7 +1579,8 @@
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:05+00:00",
-            "published_at": "2021-05-06"
+            "published_at": "2021-05-06",
+            "raw_path": "data/robinhood.com/raw/company_site/675dc53db70f4deddf30.txt"
           }
         }
       ]
@@ -1561,7 +1616,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -1574,7 +1630,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -1610,7 +1667,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -1623,7 +1681,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -1636,7 +1695,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -1649,7 +1709,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -1662,7 +1723,8 @@
             "url": "https://investors.robinhood.com/management/dan-gallagher",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:33+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/f05af862781e24829f05.txt"
           }
         },
         {
@@ -1675,7 +1737,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -1688,7 +1751,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -1701,7 +1765,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -1714,7 +1779,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -1727,7 +1793,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -1740,7 +1807,8 @@
             "url": "https://investors.robinhood.com/management/dan-gallagher",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:33+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/f05af862781e24829f05.txt"
           }
         },
         {
@@ -1753,7 +1821,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -1766,7 +1835,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         }
       ]
@@ -1802,7 +1872,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:10+00:00",
-            "published_at": "2026-06-26"
+            "published_at": "2026-06-26",
+            "raw_path": "data/robinhood.com/raw/sec_filing/9f41c0ce63f10e764f74.txt"
           }
         },
         {
@@ -1815,7 +1886,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:10+00:00",
-            "published_at": "2026-06-26"
+            "published_at": "2026-06-26",
+            "raw_path": "data/robinhood.com/raw/sec_filing/9f41c0ce63f10e764f74.txt"
           }
         },
         {
@@ -1828,7 +1900,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:10+00:00",
-            "published_at": "2026-06-26"
+            "published_at": "2026-06-26",
+            "raw_path": "data/robinhood.com/raw/sec_filing/9f41c0ce63f10e764f74.txt"
           }
         }
       ]
@@ -1864,7 +1937,8 @@
             "url": "https://investors.robinhood.com/management/deepak-rao",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:35+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/bc30957dd977e3ba2d48.txt"
           }
         },
         {
@@ -1877,7 +1951,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -1890,7 +1965,8 @@
             "url": "https://investors.robinhood.com/management/deepak-rao",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:35+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/bc30957dd977e3ba2d48.txt"
           }
         },
         {
@@ -1903,7 +1979,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -1916,7 +1993,8 @@
             "url": "https://investors.robinhood.com/management/deepak-rao",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:35+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/bc30957dd977e3ba2d48.txt"
           }
         }
       ]
@@ -1952,7 +2030,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -1965,7 +2044,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -2009,7 +2089,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:08+00:00",
-            "published_at": "2019-06-24"
+            "published_at": "2019-06-24",
+            "raw_path": "data/robinhood.com/raw/company_site/9ad848480ebda1f34dfd.txt"
           }
         },
         {
@@ -2022,7 +2103,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -2035,7 +2117,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -2048,7 +2131,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:08+00:00",
-            "published_at": "2019-06-24"
+            "published_at": "2019-06-24",
+            "raw_path": "data/robinhood.com/raw/company_site/9ad848480ebda1f34dfd.txt"
           }
         },
         {
@@ -2061,7 +2145,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:10+00:00",
-            "published_at": "2018-11-29"
+            "published_at": "2018-11-29",
+            "raw_path": "data/robinhood.com/raw/company_site/76146b328dd933005ffd.txt"
           }
         },
         {
@@ -2074,7 +2159,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:22+00:00",
-            "published_at": "2022-01-06"
+            "published_at": "2022-01-06",
+            "raw_path": "data/robinhood.com/raw/company_site/cb4c133c71f72c7d22a5.txt"
           }
         },
         {
@@ -2087,7 +2173,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -2100,7 +2187,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -2113,7 +2201,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -2126,7 +2215,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -2139,7 +2229,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:08+00:00",
-            "published_at": "2019-06-24"
+            "published_at": "2019-06-24",
+            "raw_path": "data/robinhood.com/raw/company_site/9ad848480ebda1f34dfd.txt"
           }
         },
         {
@@ -2152,7 +2243,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:10+00:00",
-            "published_at": "2018-11-29"
+            "published_at": "2018-11-29",
+            "raw_path": "data/robinhood.com/raw/company_site/76146b328dd933005ffd.txt"
           }
         },
         {
@@ -2165,7 +2257,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:22+00:00",
-            "published_at": "2022-01-06"
+            "published_at": "2022-01-06",
+            "raw_path": "data/robinhood.com/raw/company_site/cb4c133c71f72c7d22a5.txt"
           }
         },
         {
@@ -2178,7 +2271,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -2191,7 +2285,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         }
       ]
@@ -2227,7 +2322,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -2240,7 +2336,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -2276,7 +2373,8 @@
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:11+00:00",
-            "published_at": "2018-11-26"
+            "published_at": "2018-11-26",
+            "raw_path": "data/robinhood.com/raw/company_site/4650847c352417d16688.txt"
           }
         },
         {
@@ -2289,7 +2387,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -2302,7 +2401,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -2315,7 +2415,8 @@
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:11+00:00",
-            "published_at": "2018-11-26"
+            "published_at": "2018-11-26",
+            "raw_path": "data/robinhood.com/raw/company_site/4650847c352417d16688.txt"
           }
         },
         {
@@ -2328,7 +2429,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -2341,7 +2443,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -2354,7 +2457,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -2367,7 +2471,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -2380,7 +2485,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -2393,7 +2499,8 @@
             "url": "https://robinhood.com/newsroom/jason-warnick-joins-robinhood-as-chief-financial-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:11+00:00",
-            "published_at": "2018-11-26"
+            "published_at": "2018-11-26",
+            "raw_path": "data/robinhood.com/raw/company_site/4650847c352417d16688.txt"
           }
         },
         {
@@ -2406,7 +2513,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -2419,7 +2527,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -2432,7 +2541,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         }
       ]
@@ -2468,7 +2578,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:29+00:00",
-            "published_at": "2024-08-12"
+            "published_at": "2024-08-12",
+            "raw_path": "data/robinhood.com/raw/company_site/ab1cd63e0c622eaff350.txt"
           }
         },
         {
@@ -2481,7 +2592,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:29+00:00",
-            "published_at": "2024-08-12"
+            "published_at": "2024-08-12",
+            "raw_path": "data/robinhood.com/raw/company_site/ab1cd63e0c622eaff350.txt"
           }
         },
         {
@@ -2494,7 +2606,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -2507,7 +2620,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:11+00:00",
-            "published_at": "2026-05-08"
+            "published_at": "2026-05-08",
+            "raw_path": "data/robinhood.com/raw/sec_filing/0034b457e0544e9a04f8.txt"
           }
         },
         {
@@ -2520,7 +2634,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:29+00:00",
-            "published_at": "2024-08-12"
+            "published_at": "2024-08-12",
+            "raw_path": "data/robinhood.com/raw/company_site/ab1cd63e0c622eaff350.txt"
           }
         },
         {
@@ -2533,7 +2648,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -2546,7 +2662,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:11+00:00",
-            "published_at": "2026-05-08"
+            "published_at": "2026-05-08",
+            "raw_path": "data/robinhood.com/raw/sec_filing/0034b457e0544e9a04f8.txt"
           }
         }
       ]
@@ -2590,7 +2707,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-and-circle-join-forces-to-bring-usdc-to-customers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:14+00:00",
-            "published_at": "2022-09-28"
+            "published_at": "2022-09-28",
+            "raw_path": "data/robinhood.com/raw/company_site/48b19efa5e99c9582ff4.txt"
           }
         },
         {
@@ -2603,7 +2721,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -2616,7 +2735,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-and-circle-join-forces-to-bring-usdc-to-customers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:14+00:00",
-            "published_at": "2022-09-28"
+            "published_at": "2022-09-28",
+            "raw_path": "data/robinhood.com/raw/company_site/48b19efa5e99c9582ff4.txt"
           }
         },
         {
@@ -2629,7 +2749,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -2665,7 +2786,8 @@
             "url": "https://investors.robinhood.com/management/jordan-sinclair",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:38+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/89e4867100f1e65f824b.txt"
           }
         },
         {
@@ -2678,7 +2800,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -2691,7 +2814,8 @@
             "url": "https://investors.robinhood.com/management/jordan-sinclair",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:38+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/89e4867100f1e65f824b.txt"
           }
         },
         {
@@ -2704,7 +2828,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -2717,7 +2842,8 @@
             "url": "https://investors.robinhood.com/management/jordan-sinclair",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:38+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/89e4867100f1e65f824b.txt"
           }
         }
       ]
@@ -2753,7 +2879,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:15+00:00",
-            "published_at": "2020-08-27"
+            "published_at": "2020-08-27",
+            "raw_path": "data/robinhood.com/raw/company_site/71f75e9d593b47ce1b97.txt"
           }
         },
         {
@@ -2766,7 +2893,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:15+00:00",
-            "published_at": "2020-08-27"
+            "published_at": "2020-08-27",
+            "raw_path": "data/robinhood.com/raw/company_site/71f75e9d593b47ce1b97.txt"
           }
         },
         {
@@ -2779,7 +2907,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:15+00:00",
-            "published_at": "2020-08-27"
+            "published_at": "2020-08-27",
+            "raw_path": "data/robinhood.com/raw/company_site/71f75e9d593b47ce1b97.txt"
           }
         }
       ]
@@ -2815,7 +2944,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -2828,7 +2958,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -2864,7 +2995,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-robinhood-binc/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:31+00:00",
-            "published_at": "2021-03-15"
+            "published_at": "2021-03-15",
+            "raw_path": "data/robinhood.com/raw/company_site/c05ba71fc0b6081a9878.txt"
           }
         },
         {
@@ -2877,7 +3009,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-robinhood-binc/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:31+00:00",
-            "published_at": "2021-03-15"
+            "published_at": "2021-03-15",
+            "raw_path": "data/robinhood.com/raw/company_site/c05ba71fc0b6081a9878.txt"
           }
         }
       ]
@@ -2913,7 +3046,8 @@
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:30+00:00",
-            "published_at": "2021-10-01"
+            "published_at": "2021-10-01",
+            "raw_path": "data/robinhood.com/raw/company_site/822956dd94ee00ae1e4e.txt"
           }
         },
         {
@@ -2926,7 +3060,8 @@
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:30+00:00",
-            "published_at": "2021-10-01"
+            "published_at": "2021-10-01",
+            "raw_path": "data/robinhood.com/raw/company_site/822956dd94ee00ae1e4e.txt"
           }
         },
         {
@@ -2939,7 +3074,8 @@
             "url": "https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:30+00:00",
-            "published_at": "2021-10-01"
+            "published_at": "2021-10-01",
+            "raw_path": "data/robinhood.com/raw/company_site/822956dd94ee00ae1e4e.txt"
           }
         }
       ]
@@ -2975,7 +3111,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -2988,7 +3125,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -3024,7 +3162,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3037,7 +3176,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -3073,7 +3213,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:15+00:00",
-            "published_at": "2020-08-27"
+            "published_at": "2020-08-27",
+            "raw_path": "data/robinhood.com/raw/company_site/71f75e9d593b47ce1b97.txt"
           }
         },
         {
@@ -3086,7 +3227,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:15+00:00",
-            "published_at": "2020-08-27"
+            "published_at": "2020-08-27",
+            "raw_path": "data/robinhood.com/raw/company_site/71f75e9d593b47ce1b97.txt"
           }
         },
         {
@@ -3099,7 +3241,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-appoints-norm-ashkenas-and-kelly-zigaitis-as-chief-compliance-officers/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:15+00:00",
-            "published_at": "2020-08-27"
+            "published_at": "2020-08-27",
+            "raw_path": "data/robinhood.com/raw/company_site/71f75e9d593b47ce1b97.txt"
           }
         }
       ]
@@ -3135,7 +3278,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3148,7 +3292,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -3184,7 +3329,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3197,7 +3343,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -3233,7 +3380,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3246,7 +3394,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -3282,7 +3431,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3295,7 +3445,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -3331,7 +3482,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -3344,7 +3496,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-board-of-directors-authorizes-1.5-billion-in-share-repurchases",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:16+00:00",
-            "published_at": "2026-03-24"
+            "published_at": "2026-03-24",
+            "raw_path": "data/robinhood.com/raw/company_site/4a2b43804c0d5048bd20.txt"
           }
         },
         {
@@ -3357,7 +3510,8 @@
             "url": "https://cfothoughtleader.com/cfopodcasts/the-best-trade-you-dont-make-shiv-verma-cfo-robin-hood",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/fc72e81ccbfb268af4a8.txt"
           }
         },
         {
@@ -3370,7 +3524,8 @@
             "url": "https://finance.yahoo.com/markets/stocks/articles/robinhood-cfo-shiv-verma-sells-220501855.html",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/aae22e3a9853eba6b881.txt"
           }
         },
         {
@@ -3383,7 +3538,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3396,7 +3552,8 @@
             "url": "https://investors.robinhood.com/management/shiv-verma",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/0ebc88b4ba88578ec081.txt"
           }
         },
         {
@@ -3409,7 +3566,8 @@
             "url": "https://investors.robinhood.com/node/16381/pdf",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": "2026-07-29"
+            "published_at": "2026-07-29",
+            "raw_path": "data/robinhood.com/raw/search/6303d60039f5d13439bd.txt"
           }
         },
         {
@@ -3422,7 +3580,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:49+00:00",
-            "published_at": "2026-02-18"
+            "published_at": "2026-02-18",
+            "raw_path": "data/robinhood.com/raw/sec_filing/823ab2ca2d598d1e4974.txt"
           }
         },
         {
@@ -3435,7 +3594,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -3448,7 +3608,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:11+00:00",
-            "published_at": "2026-05-08"
+            "published_at": "2026-05-08",
+            "raw_path": "data/robinhood.com/raw/sec_filing/0034b457e0544e9a04f8.txt"
           }
         },
         {
@@ -3461,7 +3622,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:10+00:00",
-            "published_at": "2026-06-26"
+            "published_at": "2026-06-26",
+            "raw_path": "data/robinhood.com/raw/sec_filing/9f41c0ce63f10e764f74.txt"
           }
         },
         {
@@ -3474,7 +3636,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-board-of-directors-authorizes-1.5-billion-in-share-repurchases",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:16+00:00",
-            "published_at": "2026-03-24"
+            "published_at": "2026-03-24",
+            "raw_path": "data/robinhood.com/raw/company_site/4a2b43804c0d5048bd20.txt"
           }
         },
         {
@@ -3487,7 +3650,8 @@
             "url": "https://cfothoughtleader.com/cfopodcasts/the-best-trade-you-dont-make-shiv-verma-cfo-robin-hood",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/fc72e81ccbfb268af4a8.txt"
           }
         },
         {
@@ -3500,7 +3664,8 @@
             "url": "https://finance.yahoo.com/markets/stocks/articles/robinhood-cfo-shiv-verma-sells-220501855.html",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/aae22e3a9853eba6b881.txt"
           }
         },
         {
@@ -3513,7 +3678,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3526,7 +3692,8 @@
             "url": "https://investors.robinhood.com/management/shiv-verma",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/0ebc88b4ba88578ec081.txt"
           }
         },
         {
@@ -3539,7 +3706,8 @@
             "url": "https://investors.robinhood.com/node/16381/pdf",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": "2026-07-29"
+            "published_at": "2026-07-29",
+            "raw_path": "data/robinhood.com/raw/search/6303d60039f5d13439bd.txt"
           }
         },
         {
@@ -3552,7 +3720,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:49+00:00",
-            "published_at": "2026-02-18"
+            "published_at": "2026-02-18",
+            "raw_path": "data/robinhood.com/raw/sec_filing/823ab2ca2d598d1e4974.txt"
           }
         },
         {
@@ -3565,7 +3734,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -3578,7 +3748,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:11+00:00",
-            "published_at": "2026-05-08"
+            "published_at": "2026-05-08",
+            "raw_path": "data/robinhood.com/raw/sec_filing/0034b457e0544e9a04f8.txt"
           }
         },
         {
@@ -3591,7 +3762,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T02:38:10+00:00",
-            "published_at": "2026-06-26"
+            "published_at": "2026-06-26",
+            "raw_path": "data/robinhood.com/raw/sec_filing/9f41c0ce63f10e764f74.txt"
           }
         }
       ]
@@ -3627,7 +3799,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3640,7 +3813,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         }
       ]
@@ -3676,7 +3850,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -3689,7 +3864,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:22+00:00",
-            "published_at": "2022-01-06"
+            "published_at": "2022-01-06",
+            "raw_path": "data/robinhood.com/raw/company_site/cb4c133c71f72c7d22a5.txt"
           }
         },
         {
@@ -3702,7 +3878,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3715,7 +3892,8 @@
             "url": "https://investors.robinhood.com/management/steve-quirk",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:33+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/ec91fcf6df1374b4e813.txt"
           }
         },
         {
@@ -3728,7 +3906,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -3741,7 +3920,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-steve-quirk-as-chief-brokerage-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:22+00:00",
-            "published_at": "2022-01-06"
+            "published_at": "2022-01-06",
+            "raw_path": "data/robinhood.com/raw/company_site/cb4c133c71f72c7d22a5.txt"
           }
         },
         {
@@ -3754,7 +3934,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -3767,7 +3948,8 @@
             "url": "https://investors.robinhood.com/management/steve-quirk",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:33+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/ec91fcf6df1374b4e813.txt"
           }
         },
         {
@@ -3780,7 +3962,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         }
       ]
@@ -3824,7 +4007,8 @@
             "url": "https://robinhood.com/newsroom/a-note-from-our-ceo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:01+00:00",
-            "published_at": "2021-02-18"
+            "published_at": "2021-02-18",
+            "raw_path": "data/robinhood.com/raw/company_site/f6c36045e90f8c13a385.txt"
           }
         },
         {
@@ -3837,7 +4021,8 @@
             "url": "https://robinhood.com/newsroom/a-letter-from-robinhood-co-founder-co-ceo-vlad-tenev/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:39:58+00:00",
-            "published_at": "2018-10-12"
+            "published_at": "2018-10-12",
+            "raw_path": "data/robinhood.com/raw/company_site/f037643e291aa1f356d3.txt"
           }
         },
         {
@@ -3850,7 +4035,8 @@
             "url": "https://robinhood.com/newsroom/a-message-from-our-ceo-and-co-founder-vlad-tenev/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:39:59+00:00",
-            "published_at": "2022-04-26"
+            "published_at": "2022-04-26",
+            "raw_path": "data/robinhood.com/raw/company_site/d45fd726e865f94d0534.txt"
           }
         },
         {
@@ -3863,7 +4049,8 @@
             "url": "https://robinhood.com/newsroom/a-note-from-our-ceo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:01+00:00",
-            "published_at": "2021-02-18"
+            "published_at": "2021-02-18",
+            "raw_path": "data/robinhood.com/raw/company_site/f6c36045e90f8c13a385.txt"
           }
         },
         {
@@ -3876,7 +4063,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -3889,7 +4077,8 @@
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:03+00:00",
-            "published_at": "2021-04-22"
+            "published_at": "2021-04-22",
+            "raw_path": "data/robinhood.com/raw/company_site/ff98ef659c9b629bacc2.txt"
           }
         },
         {
@@ -3902,7 +4091,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -3915,7 +4105,8 @@
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:05+00:00",
-            "published_at": "2021-05-06"
+            "published_at": "2021-05-06",
+            "raw_path": "data/robinhood.com/raw/company_site/675dc53db70f4deddf30.txt"
           }
         },
         {
@@ -3928,7 +4119,8 @@
             "url": "https://robinhood.com/newsroom/fireside-chat-with-vlad-tenev-robinhood-ceo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:06+00:00",
-            "published_at": "2021-03-18"
+            "published_at": "2021-03-18",
+            "raw_path": "data/robinhood.com/raw/company_site/7ecb64547fd13d47f1bd.txt"
           }
         },
         {
@@ -3941,7 +4133,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:08+00:00",
-            "published_at": "2019-06-24"
+            "published_at": "2019-06-24",
+            "raw_path": "data/robinhood.com/raw/company_site/9ad848480ebda1f34dfd.txt"
           }
         },
         {
@@ -3954,7 +4147,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:10+00:00",
-            "published_at": "2018-11-29"
+            "published_at": "2018-11-29",
+            "raw_path": "data/robinhood.com/raw/company_site/76146b328dd933005ffd.txt"
           }
         },
         {
@@ -3967,7 +4161,8 @@
             "url": "https://robinhood.com/newsroom/qa-with-robinhood-ceo-vlad-tenev/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:13+00:00",
-            "published_at": "2021-02-19"
+            "published_at": "2021-02-19",
+            "raw_path": "data/robinhood.com/raw/company_site/1bf4df8699188024644a.txt"
           }
         },
         {
@@ -3980,7 +4175,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-christopher-payne-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:17+00:00",
-            "published_at": "2024-12-18"
+            "published_at": "2024-12-18",
+            "raw_path": "data/robinhood.com/raw/company_site/fd54d8b884b21a72629e.txt"
           }
         },
         {
@@ -3993,7 +4189,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:18+00:00",
-            "published_at": "2021-10-21"
+            "published_at": "2021-10-21",
+            "raw_path": "data/robinhood.com/raw/company_site/eb56d8dbf21f79ff7312.txt"
           }
         },
         {
@@ -4006,7 +4203,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:19+00:00",
-            "published_at": "2021-11-16"
+            "published_at": "2021-11-16",
+            "raw_path": "data/robinhood.com/raw/company_site/d11ffa957fae07296744.txt"
           }
         },
         {
@@ -4019,7 +4217,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-john-hegeman-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:20+00:00",
-            "published_at": "2025-03-25"
+            "published_at": "2025-03-25",
+            "raw_path": "data/robinhood.com/raw/company_site/748e31dd78ab74931331.txt"
           }
         },
         {
@@ -4032,7 +4231,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:21+00:00",
-            "published_at": "2022-03-23"
+            "published_at": "2022-03-23",
+            "raw_path": "data/robinhood.com/raw/company_site/e864c6953963dd579189.txt"
           }
         },
         {
@@ -4045,7 +4245,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-susan-segal-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:23+00:00",
-            "published_at": "2024-03-21"
+            "published_at": "2024-03-21",
+            "raw_path": "data/robinhood.com/raw/company_site/e559c4038ae28030f4ef.txt"
           }
         },
         {
@@ -4058,7 +4259,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:24+00:00",
-            "published_at": "2021-06-01"
+            "published_at": "2021-06-01",
+            "raw_path": "data/robinhood.com/raw/company_site/6322d0a0503d6923b06b.txt"
           }
         },
         {
@@ -4071,7 +4273,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -4084,7 +4287,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:27+00:00",
-            "published_at": "2021-03-17"
+            "published_at": "2021-03-17",
+            "raw_path": "data/robinhood.com/raw/company_site/7d285810880cd8b68fa7.txt"
           }
         },
         {
@@ -4097,7 +4301,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:29+00:00",
-            "published_at": "2024-08-12"
+            "published_at": "2024-08-12",
+            "raw_path": "data/robinhood.com/raw/company_site/ab1cd63e0c622eaff350.txt"
           }
         },
         {
@@ -4110,7 +4315,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:34+00:00",
-            "published_at": "2021-07-29"
+            "published_at": "2021-07-29",
+            "raw_path": "data/robinhood.com/raw/company_site/746ca8d74f9ae41beb12.txt"
           }
         },
         {
@@ -4123,7 +4329,8 @@
             "url": "https://en.wikipedia.org/wiki/Vlad_Tenev",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/2997690a381a3b1b2fb9.txt"
           }
         },
         {
@@ -4136,7 +4343,8 @@
             "url": "https://investors.robinhood.com/governance/board-of-directors",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/3ea3e592a8f4154e8231.txt"
           }
         },
         {
@@ -4149,7 +4357,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -4162,7 +4371,8 @@
             "url": "https://investors.robinhood.com/node/16381/pdf",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": "2026-07-29"
+            "published_at": "2026-07-29",
+            "raw_path": "data/robinhood.com/raw/search/6303d60039f5d13439bd.txt"
           }
         },
         {
@@ -4175,7 +4385,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -4188,7 +4399,8 @@
             "url": "https://www.youtube.com/watch?v=6trZS0CylDE",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": "2026-10-28"
+            "published_at": "2026-10-28",
+            "raw_path": "data/robinhood.com/raw/search/ccdaac5c00d9e8dce639.txt"
           }
         },
         {
@@ -4201,7 +4413,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:49+00:00",
-            "published_at": "2026-02-18"
+            "published_at": "2026-02-18",
+            "raw_path": "data/robinhood.com/raw/sec_filing/823ab2ca2d598d1e4974.txt"
           }
         },
         {
@@ -4214,7 +4427,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         },
         {
@@ -4227,7 +4441,8 @@
             "url": "https://www.youtube.com/watch?v=6trZS0CylDE",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": "2026-10-28"
+            "published_at": "2026-10-28",
+            "raw_path": "data/robinhood.com/raw/search/ccdaac5c00d9e8dce639.txt"
           }
         },
         {
@@ -4240,7 +4455,8 @@
             "url": "https://robinhood.com/newsroom/a-letter-from-robinhood-co-founder-co-ceo-vlad-tenev/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:39:58+00:00",
-            "published_at": "2018-10-12"
+            "published_at": "2018-10-12",
+            "raw_path": "data/robinhood.com/raw/company_site/f037643e291aa1f356d3.txt"
           }
         },
         {
@@ -4253,7 +4469,8 @@
             "url": "https://robinhood.com/newsroom/a-message-from-our-ceo-and-co-founder-vlad-tenev/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:39:59+00:00",
-            "published_at": "2022-04-26"
+            "published_at": "2022-04-26",
+            "raw_path": "data/robinhood.com/raw/company_site/d45fd726e865f94d0534.txt"
           }
         },
         {
@@ -4266,7 +4483,8 @@
             "url": "https://robinhood.com/newsroom/a-note-from-our-ceo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:01+00:00",
-            "published_at": "2021-02-18"
+            "published_at": "2021-02-18",
+            "raw_path": "data/robinhood.com/raw/company_site/f6c36045e90f8c13a385.txt"
           }
         },
         {
@@ -4279,7 +4497,8 @@
             "url": "https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:02+00:00",
-            "published_at": "2020-08-04"
+            "published_at": "2020-08-04",
+            "raw_path": "data/robinhood.com/raw/company_site/d148f9f813e616acaa69.txt"
           }
         },
         {
@@ -4292,7 +4511,8 @@
             "url": "https://robinhood.com/newsroom/christine-brown-to-lead-robinhood-crypto-as-coo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:03+00:00",
-            "published_at": "2021-04-22"
+            "published_at": "2021-04-22",
+            "raw_path": "data/robinhood.com/raw/company_site/ff98ef659c9b629bacc2.txt"
           }
         },
         {
@@ -4305,7 +4525,8 @@
             "url": "https://robinhood.com/newsroom/dan-gallagher-robinhood-board-member-and-former-sec-commissioner-joins-robinhood-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:04+00:00",
-            "published_at": "2020-05-05"
+            "published_at": "2020-05-05",
+            "raw_path": "data/robinhood.com/raw/company_site/d59573609b663cf8653e.txt"
           }
         },
         {
@@ -4318,7 +4539,8 @@
             "url": "https://robinhood.com/newsroom/fireside-chat-with-robinhoods-ceo-vlad-tenev-and-crypto-coo-christine-brown/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:05+00:00",
-            "published_at": "2021-05-06"
+            "published_at": "2021-05-06",
+            "raw_path": "data/robinhood.com/raw/company_site/675dc53db70f4deddf30.txt"
           }
         },
         {
@@ -4331,7 +4553,8 @@
             "url": "https://robinhood.com/newsroom/fireside-chat-with-vlad-tenev-robinhood-ceo/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:06+00:00",
-            "published_at": "2021-03-18"
+            "published_at": "2021-03-18",
+            "raw_path": "data/robinhood.com/raw/company_site/7ecb64547fd13d47f1bd.txt"
           }
         },
         {
@@ -4344,7 +4567,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-elevated-to-chief-operating-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:08+00:00",
-            "published_at": "2019-06-24"
+            "published_at": "2019-06-24",
+            "raw_path": "data/robinhood.com/raw/company_site/9ad848480ebda1f34dfd.txt"
           }
         },
         {
@@ -4357,7 +4581,8 @@
             "url": "https://robinhood.com/newsroom/gretchen-howard-joins-robinhood-as-vice-president-of-operations/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:10+00:00",
-            "published_at": "2018-11-29"
+            "published_at": "2018-11-29",
+            "raw_path": "data/robinhood.com/raw/company_site/76146b328dd933005ffd.txt"
           }
         },
         {
@@ -4370,7 +4595,8 @@
             "url": "https://robinhood.com/newsroom/qa-with-robinhood-ceo-vlad-tenev/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:13+00:00",
-            "published_at": "2021-02-19"
+            "published_at": "2021-02-19",
+            "raw_path": "data/robinhood.com/raw/company_site/1bf4df8699188024644a.txt"
           }
         },
         {
@@ -4383,7 +4609,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-christopher-payne-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:17+00:00",
-            "published_at": "2024-12-18"
+            "published_at": "2024-12-18",
+            "raw_path": "data/robinhood.com/raw/company_site/fd54d8b884b21a72629e.txt"
           }
         },
         {
@@ -4396,7 +4623,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-dara-treseder-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:18+00:00",
-            "published_at": "2021-10-21"
+            "published_at": "2021-10-21",
+            "raw_path": "data/robinhood.com/raw/company_site/eb56d8dbf21f79ff7312.txt"
           }
         },
         {
@@ -4409,7 +4637,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-frances-frei-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:19+00:00",
-            "published_at": "2021-11-16"
+            "published_at": "2021-11-16",
+            "raw_path": "data/robinhood.com/raw/company_site/d11ffa957fae07296744.txt"
           }
         },
         {
@@ -4422,7 +4651,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-john-hegeman-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:20+00:00",
-            "published_at": "2025-03-25"
+            "published_at": "2025-03-25",
+            "raw_path": "data/robinhood.com/raw/company_site/748e31dd78ab74931331.txt"
           }
         },
         {
@@ -4435,7 +4665,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-meyer-micky-malka-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:21+00:00",
-            "published_at": "2022-03-23"
+            "published_at": "2022-03-23",
+            "raw_path": "data/robinhood.com/raw/company_site/e864c6953963dd579189.txt"
           }
         },
         {
@@ -4448,7 +4679,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-susan-segal-to-its-board-of-directors/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:23+00:00",
-            "published_at": "2024-03-21"
+            "published_at": "2024-03-21",
+            "raw_path": "data/robinhood.com/raw/company_site/e559c4038ae28030f4ef.txt"
           }
         },
         {
@@ -4461,7 +4693,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-markets-welcomes-three-new-directors-to-board/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:24+00:00",
-            "published_at": "2021-06-01"
+            "published_at": "2021-06-01",
+            "raw_path": "data/robinhood.com/raw/company_site/6322d0a0503d6923b06b.txt"
           }
         },
         {
@@ -4474,7 +4707,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-anne-hoge-as-chief-legal-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:26+00:00",
-            "published_at": "2019-11-21"
+            "published_at": "2019-11-21",
+            "raw_path": "data/robinhood.com/raw/company_site/444514e79d20f88d812a.txt"
           }
         },
         {
@@ -4487,7 +4721,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-aparna-chennapragada-as-first-chief-product-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:27+00:00",
-            "published_at": "2021-03-17"
+            "published_at": "2021-03-17",
+            "raw_path": "data/robinhood.com/raw/company_site/7d285810880cd8b68fa7.txt"
           }
         },
         {
@@ -4500,7 +4735,8 @@
             "url": "https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:29+00:00",
-            "published_at": "2024-08-12"
+            "published_at": "2024-08-12",
+            "raw_path": "data/robinhood.com/raw/company_site/ab1cd63e0c622eaff350.txt"
           }
         },
         {
@@ -4513,7 +4749,8 @@
             "url": "https://robinhood.com/newsroom/welcome-to-the-new-wall-street/",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:40:34+00:00",
-            "published_at": "2021-07-29"
+            "published_at": "2021-07-29",
+            "raw_path": "data/robinhood.com/raw/company_site/746ca8d74f9ae41beb12.txt"
           }
         },
         {
@@ -4526,7 +4763,8 @@
             "url": "https://en.wikipedia.org/wiki/Vlad_Tenev",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/2997690a381a3b1b2fb9.txt"
           }
         },
         {
@@ -4539,7 +4777,8 @@
             "url": "https://investors.robinhood.com/governance/board-of-directors",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/3ea3e592a8f4154e8231.txt"
           }
         },
         {
@@ -4552,7 +4791,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -4565,7 +4805,8 @@
             "url": "https://investors.robinhood.com/node/16381/pdf",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": "2026-07-29"
+            "published_at": "2026-07-29",
+            "raw_path": "data/robinhood.com/raw/search/6303d60039f5d13439bd.txt"
           }
         },
         {
@@ -4578,7 +4819,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:40+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/c8e0ee4d82c2d6ed474f.txt"
           }
         },
         {
@@ -4591,7 +4833,8 @@
             "url": "https://www.youtube.com/watch?v=6trZS0CylDE",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": "2026-10-28"
+            "published_at": "2026-10-28",
+            "raw_path": "data/robinhood.com/raw/search/ccdaac5c00d9e8dce639.txt"
           }
         },
         {
@@ -4604,7 +4847,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000023/hood-20251231.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:49+00:00",
-            "published_at": "2026-02-18"
+            "published_at": "2026-02-18",
+            "raw_path": "data/robinhood.com/raw/sec_filing/823ab2ca2d598d1e4974.txt"
           }
         },
         {
@@ -4617,7 +4861,8 @@
             "url": "https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm",
             "source_type": "sec_filing",
             "retrieved_at": "2026-11-24T01:40:51+00:00",
-            "published_at": "2026-04-22"
+            "published_at": "2026-04-22",
+            "raw_path": "data/robinhood.com/raw/sec_filing/58d1d11d96b106dd06e9.txt"
           }
         }
       ]
@@ -4653,7 +4898,8 @@
             "url": "https://investors.robinhood.com/management/walter-koller",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/7109797ec80b6dcd37a6.txt"
           }
         },
         {
@@ -4666,7 +4912,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -4679,7 +4926,8 @@
             "url": "https://investors.robinhood.com/management/walter-koller",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/7109797ec80b6dcd37a6.txt"
           }
         },
         {
@@ -4692,7 +4940,8 @@
             "url": "https://investors.robinhood.com/governance/leadership",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:29+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/9cef3cabe0ffe88b19e1.txt"
           }
         },
         {
@@ -4705,7 +4954,8 @@
             "url": "https://investors.robinhood.com/management/walter-koller",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:32+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/robinhood.com/raw/search/7109797ec80b6dcd37a6.txt"
           }
         }
       ]

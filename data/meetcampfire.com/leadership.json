@@ -556,7 +556,8 @@
             "url": "https://www.tokenpost.com/news/people/44993",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:19+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/c687c6f93954a0a819a7.txt"
           }
         },
         {
@@ -569,7 +570,8 @@
             "url": "https://www.tokenpost.com/news/people/44993",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:19+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/c687c6f93954a0a819a7.txt"
           }
         }
       ]
@@ -605,7 +607,8 @@
             "url": "https://thegtmnewsletter.substack.com/p/gtm-205-ai-native-sales-organization-chris-mcdonough-campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/ca94c40027f71fde4062.txt"
           }
         },
         {
@@ -618,7 +621,8 @@
             "url": "https://thegtmnewsletter.substack.com/p/gtm-205-ai-native-sales-organization-chris-mcdonough-campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/ca94c40027f71fde4062.txt"
           }
         },
         {
@@ -631,7 +635,8 @@
             "url": "https://thegtmnewsletter.substack.com/p/gtm-205-ai-native-sales-organization-chris-mcdonough-campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/ca94c40027f71fde4062.txt"
           }
         }
       ]
@@ -667,7 +672,8 @@
             "url": "https://campfire.ai/basecamp",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:15+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/675f32c356168011c761.txt"
           }
         },
         {
@@ -680,7 +686,8 @@
             "url": "https://campfire.ai/basecamp",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:15+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/675f32c356168011c761.txt"
           }
         }
       ]
@@ -724,7 +731,8 @@
             "url": "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:38:19+00:00",
-            "published_at": "2024-02-27"
+            "published_at": "2024-02-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b0a1ff5cb054d040aa71.txt"
           }
         },
         {
@@ -737,7 +745,8 @@
             "url": "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:38:19+00:00",
-            "published_at": "2024-02-27"
+            "published_at": "2024-02-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b0a1ff5cb054d040aa71.txt"
           }
         },
         {
@@ -750,7 +759,8 @@
             "url": "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:38:19+00:00",
-            "published_at": "2024-02-27"
+            "published_at": "2024-02-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b0a1ff5cb054d040aa71.txt"
           }
         }
       ]
@@ -794,7 +804,8 @@
             "url": "https://campfire.ai/blog/from-cpa-to-cfo-ron-wangerin-cfo-trust-and-will",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:37:50+00:00",
-            "published_at": "2025-02-21"
+            "published_at": "2025-02-21",
+            "raw_path": "data/meetcampfire.com/raw/company_site/884df4c1b6cabc4b0f53.txt"
           }
         },
         {
@@ -807,7 +818,8 @@
             "url": "https://campfire.ai/blog/announcing-soc-1-type-1-compliance-at-campfire",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:38:27+00:00",
-            "published_at": "2025-08-12"
+            "published_at": "2025-08-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/41af79ca2026530a8797.txt"
           }
         },
         {
@@ -820,7 +832,8 @@
             "url": "https://campfire.ai/blog/campfire-accelerates-accounting-with-claude",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:51+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2790b100ea58b72e6e60.txt"
           }
         },
         {
@@ -833,7 +846,8 @@
             "url": "https://campfire.ai/blog/campfire-and-doss-partner-to-connect-real-time-operations-with-ai-native-accounting",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:39+00:00",
-            "published_at": "2026-02-24"
+            "published_at": "2026-02-24",
+            "raw_path": "data/meetcampfire.com/raw/company_site/4e0e098a12f24eb6de52.txt"
           }
         },
         {
@@ -846,7 +860,8 @@
             "url": "https://campfire.ai/blog/from-cpa-to-cfo-ron-wangerin-cfo-trust-and-will",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:37:50+00:00",
-            "published_at": "2025-02-21"
+            "published_at": "2025-02-21",
+            "raw_path": "data/meetcampfire.com/raw/company_site/884df4c1b6cabc4b0f53.txt"
           }
         },
         {
@@ -859,7 +874,8 @@
             "url": "https://campfire.ai/blog/insights-from-around-the-campfire-august-2024",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:54+00:00",
-            "published_at": "2024-08-28"
+            "published_at": "2024-08-28",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d23862139d08f436a1b0.txt"
           }
         },
         {
@@ -872,7 +888,8 @@
             "url": "https://campfire.ai/blog/partnerships-cbiz",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:40+00:00",
-            "published_at": "2025-10-20"
+            "published_at": "2025-10-20",
+            "raw_path": "data/meetcampfire.com/raw/company_site/91e43051659a68fa5eb9.txt"
           }
         },
         {
@@ -885,7 +902,8 @@
             "url": "https://campfire.ai/blog/rakib-azad-lessons-for-scaling-finance",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:59:04+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a6cbd51cf496f5efc2ac.txt"
           }
         },
         {
@@ -898,7 +916,8 @@
             "url": "https://campfire.ai/blog/webinar-or-building-better-usage-based-billing-systems",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:38:47+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/960bb7b248eb836120ff.txt"
           }
         },
         {
@@ -911,7 +930,8 @@
             "url": "https://campfire.ai/webinars/finance-forward-2025/ai-public-company-playbook",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:37:54+00:00",
-            "published_at": "2025-10-07"
+            "published_at": "2025-10-07",
+            "raw_path": "data/meetcampfire.com/raw/company_site/07f01065198428d45e56.txt"
           }
         },
         {
@@ -924,7 +944,8 @@
             "url": "https://campfire.ai/basecamp",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:15+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/675f32c356168011c761.txt"
           }
         },
         {
@@ -937,7 +958,8 @@
             "url": "https://claude.com/customers/campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/06296c12eb4e8785ba15.txt"
           }
         },
         {
@@ -950,7 +972,8 @@
             "url": "https://fortune.com/press-releases/campfire-appoints-former-apollo-cmo-marcio-arnecke-global-marketing-2026-10-16",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": "2026-10-16"
+            "published_at": "2026-10-16",
+            "raw_path": "data/meetcampfire.com/raw/search/c9a2162d78022f970667.txt"
           }
         },
         {
@@ -963,7 +986,8 @@
             "url": "https://www.accel.com/news/our-investment-in-campfire-building-the-future-of-ai-native-erp",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:12+00:00",
-            "published_at": "2025-06-30"
+            "published_at": "2025-06-30",
+            "raw_path": "data/meetcampfire.com/raw/search/939cda85e73db36b27af.txt"
           }
         },
         {
@@ -976,7 +1000,8 @@
             "url": "https://www.benchmarkit.ai/next-gen-solution-showcase-1/campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:18+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/de2f5b4291f332db85a5.txt"
           }
         },
         {
@@ -989,7 +1014,8 @@
             "url": "https://www.cfodive.com/news/campfire-ceo-targets-systems-first-accounting-approach/805732",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:15+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/3b2dc238250a82d04166.txt"
           }
         },
         {
@@ -1002,7 +1028,8 @@
             "url": "https://www.prnewswire.com/news-releases/campfire-raises-65-million-series-b-to-redefine-how-finance-works-in-the-ai-era-302585077.html",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": "2025-10-15"
+            "published_at": "2025-10-15",
+            "raw_path": "data/meetcampfire.com/raw/search/9136d286a40b9debb44f.txt"
           }
         },
         {
@@ -1015,7 +1042,8 @@
             "url": "https://www.youtube.com/watch?v=X1NXnLRNIfM",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:12+00:00",
-            "published_at": "2026-05-20"
+            "published_at": "2026-05-20",
+            "raw_path": "data/meetcampfire.com/raw/search/18a48916497eff3a19d4.txt"
           }
         },
         {
@@ -1028,7 +1056,8 @@
             "url": "https://campfire.ai/blog/announcing-soc-1-type-1-compliance-at-campfire",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:38:27+00:00",
-            "published_at": "2025-08-12"
+            "published_at": "2025-08-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/41af79ca2026530a8797.txt"
           }
         },
         {
@@ -1041,7 +1070,8 @@
             "url": "https://campfire.ai/blog/campfire-accelerates-accounting-with-claude",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:51+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2790b100ea58b72e6e60.txt"
           }
         },
         {
@@ -1054,7 +1084,8 @@
             "url": "https://campfire.ai/blog/campfire-and-doss-partner-to-connect-real-time-operations-with-ai-native-accounting",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:39+00:00",
-            "published_at": "2026-02-24"
+            "published_at": "2026-02-24",
+            "raw_path": "data/meetcampfire.com/raw/company_site/4e0e098a12f24eb6de52.txt"
           }
         },
         {
@@ -1067,7 +1098,8 @@
             "url": "https://campfire.ai/blog/from-cpa-to-cfo-ron-wangerin-cfo-trust-and-will",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:37:50+00:00",
-            "published_at": "2025-02-21"
+            "published_at": "2025-02-21",
+            "raw_path": "data/meetcampfire.com/raw/company_site/884df4c1b6cabc4b0f53.txt"
           }
         },
         {
@@ -1080,7 +1112,8 @@
             "url": "https://campfire.ai/blog/insights-from-around-the-campfire-august-2024",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:54+00:00",
-            "published_at": "2024-08-28"
+            "published_at": "2024-08-28",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d23862139d08f436a1b0.txt"
           }
         },
         {
@@ -1093,7 +1126,8 @@
             "url": "https://campfire.ai/blog/partnerships-cbiz",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:40+00:00",
-            "published_at": "2025-10-20"
+            "published_at": "2025-10-20",
+            "raw_path": "data/meetcampfire.com/raw/company_site/91e43051659a68fa5eb9.txt"
           }
         },
         {
@@ -1106,7 +1140,8 @@
             "url": "https://campfire.ai/blog/rakib-azad-lessons-for-scaling-finance",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:59:04+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a6cbd51cf496f5efc2ac.txt"
           }
         },
         {
@@ -1119,7 +1154,8 @@
             "url": "https://campfire.ai/blog/webinar-or-building-better-usage-based-billing-systems",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:38:47+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/960bb7b248eb836120ff.txt"
           }
         },
         {
@@ -1132,7 +1168,8 @@
             "url": "https://campfire.ai/webinars/finance-forward-2025/ai-public-company-playbook",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:37:54+00:00",
-            "published_at": "2025-10-07"
+            "published_at": "2025-10-07",
+            "raw_path": "data/meetcampfire.com/raw/company_site/07f01065198428d45e56.txt"
           }
         },
         {
@@ -1145,7 +1182,8 @@
             "url": "https://campfire.ai/basecamp",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:15+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/675f32c356168011c761.txt"
           }
         },
         {
@@ -1158,7 +1196,8 @@
             "url": "https://claude.com/customers/campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/06296c12eb4e8785ba15.txt"
           }
         },
         {
@@ -1171,7 +1210,8 @@
             "url": "https://fortune.com/press-releases/campfire-appoints-former-apollo-cmo-marcio-arnecke-global-marketing-2026-10-16",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": "2026-10-16"
+            "published_at": "2026-10-16",
+            "raw_path": "data/meetcampfire.com/raw/search/c9a2162d78022f970667.txt"
           }
         },
         {
@@ -1184,7 +1224,8 @@
             "url": "https://www.accel.com/news/our-investment-in-campfire-building-the-future-of-ai-native-erp",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:12+00:00",
-            "published_at": "2025-06-30"
+            "published_at": "2025-06-30",
+            "raw_path": "data/meetcampfire.com/raw/search/939cda85e73db36b27af.txt"
           }
         },
         {
@@ -1197,7 +1238,8 @@
             "url": "https://www.benchmarkit.ai/next-gen-solution-showcase-1/campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:18+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/de2f5b4291f332db85a5.txt"
           }
         },
         {
@@ -1210,7 +1252,8 @@
             "url": "https://www.cfodive.com/news/campfire-ceo-targets-systems-first-accounting-approach/805732",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:15+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/3b2dc238250a82d04166.txt"
           }
         },
         {
@@ -1223,7 +1266,8 @@
             "url": "https://www.prnewswire.com/news-releases/campfire-raises-65-million-series-b-to-redefine-how-finance-works-in-the-ai-era-302585077.html",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": "2025-10-15"
+            "published_at": "2025-10-15",
+            "raw_path": "data/meetcampfire.com/raw/search/9136d286a40b9debb44f.txt"
           }
         },
         {
@@ -1236,7 +1280,8 @@
             "url": "https://www.youtube.com/watch?v=X1NXnLRNIfM",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:12+00:00",
-            "published_at": "2026-05-20"
+            "published_at": "2026-05-20",
+            "raw_path": "data/meetcampfire.com/raw/search/18a48916497eff3a19d4.txt"
           }
         }
       ]
@@ -1272,7 +1317,8 @@
             "url": "https://fortune.com/press-releases/campfire-appoints-former-apollo-cmo-marcio-arnecke-global-marketing-2026-10-16",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": "2026-10-16"
+            "published_at": "2026-10-16",
+            "raw_path": "data/meetcampfire.com/raw/search/c9a2162d78022f970667.txt"
           }
         },
         {
@@ -1285,7 +1331,8 @@
             "url": "https://fortune.com/press-releases/campfire-appoints-former-apollo-cmo-marcio-arnecke-global-marketing-2026-10-16",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": "2026-10-16"
+            "published_at": "2026-10-16",
+            "raw_path": "data/meetcampfire.com/raw/search/c9a2162d78022f970667.txt"
           }
         },
         {
@@ -1298,7 +1345,8 @@
             "url": "https://fortune.com/press-releases/campfire-appoints-former-apollo-cmo-marcio-arnecke-global-marketing-2026-10-16",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:23+00:00",
-            "published_at": "2026-10-16"
+            "published_at": "2026-10-16",
+            "raw_path": "data/meetcampfire.com/raw/search/c9a2162d78022f970667.txt"
           }
         }
       ]
@@ -1334,7 +1382,8 @@
             "url": "https://campfire.ai/blog/campfire-accelerates-accounting-with-claude",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:51+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2790b100ea58b72e6e60.txt"
           }
         },
         {
@@ -1347,7 +1396,8 @@
             "url": "https://claude.com/customers/campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/06296c12eb4e8785ba15.txt"
           }
         },
         {
@@ -1360,7 +1410,8 @@
             "url": "https://zanovoy.com/blog/campfire-ember-ai-reviewed",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": "2026-07-08"
+            "published_at": "2026-07-08",
+            "raw_path": "data/meetcampfire.com/raw/search/dcdfc356dd81bf01948f.txt"
           }
         },
         {
@@ -1373,7 +1424,8 @@
             "url": "https://campfire.ai/blog/campfire-accelerates-accounting-with-claude",
             "source_type": "company_site",
             "retrieved_at": "2026-11-24T01:58:51+00:00",
-            "published_at": "2025-02-06"
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2790b100ea58b72e6e60.txt"
           }
         },
         {
@@ -1386,7 +1438,8 @@
             "url": "https://claude.com/customers/campfire",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": null
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/search/06296c12eb4e8785ba15.txt"
           }
         },
         {
@@ -1399,7 +1452,8 @@
             "url": "https://zanovoy.com/blog/campfire-ember-ai-reviewed",
             "source_type": "search",
             "retrieved_at": "2026-11-24T01:44:14+00:00",
-            "published_at": "2026-07-08"
+            "published_at": "2026-07-08",
+            "raw_path": "data/meetcampfire.com/raw/search/dcdfc356dd81bf01948f.txt"
           }
         }
       ]
