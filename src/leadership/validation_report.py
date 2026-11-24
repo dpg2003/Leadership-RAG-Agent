@@ -37,6 +37,7 @@ REVIEW_TITLES = {
     "superseded_by_proxy": "Retired by the proxy rule (D16)",
     "superseded_by_promotion": "Superseded by a later title",
     "founder_historical": "Founders without a current operating role (D23)",
+    "merged_role_rows": "Role rows merged because the wording mostly overlaps (D30)",
 }
 
 
@@ -300,6 +301,11 @@ def _describe(key: str, e: dict) -> str:
     if "names" in e:
         return " / ".join(e["names"])
     parts = [e.get("person", ""), e.get("title", ""), e.get("field", "")]
+    if "kept" in e:
+        parts.append(
+            f"kept '{e['kept']}' ({e['seniority']}); merged {', '.join(e['merged'])} "
+            f"(word overlap {e['overlap']})"
+        )
     if "values" in e:
         parts.append(" vs ".join(e["values"]))
     if e.get("note"):

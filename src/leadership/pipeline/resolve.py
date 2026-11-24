@@ -252,9 +252,11 @@ def cluster_claims(claims: list[Claim], company_id: int = 0) -> list[list[Claim]
 
 def _role_keys(c: Claim, in_proxy: bool = False) -> list[tuple[str, str]]:
     """D4: General Counsel / Chief Legal is C-level only for a person the latest proxy lists
-    as an executive officer; otherwise it is the head of the legal function."""
-    if c.title_class.legal_chief and not in_proxy:
-        keys = [("head", "legal")]
+    as an executive officer; otherwise VP if the title has a VP token (D30), else Head."""
+    if c.title_class.legal_chief and in_proxy:
+        keys = [("c_level", "legal")]
+    elif c.title_class.legal_chief:
+        keys = [("vp" if c.title_class.seniority == "vp" else "head", "legal")]
     else:
         keys = [(c.title_class.seniority, c.title_class.function)]
     if c.title_class.also_founder:
@@ -398,6 +400,96 @@ def dedupe_roles(roles: list[ResolvedRole]) -> list[ResolvedRole]:
     return out
 
 
+_TITLE_STOP = frozenset({"and", "of", "the", "llc", "inc", "for", "at", "to", "a"})
+OVERLAP_MIN = 0.6  # Jaccard similarity of title words for "the wording mostly overlaps"
+
+
+# Seniority words don't count toward overlap: "VP of Product" and "VP of Product Marketing"
+# share only "product", so they stay two roles.
+_SENIORITY_WORDS = frozenset(
+    {"vp", "svp", "evp", "avp", "senior", "executive", "chief", "officer", "head"}
+)
+
+
+def _title_words(title: str) -> frozenset[str]:
+    t = _title_key(title)
+    t = re.sub(r"\bvice president\b", "vp", t)
+    return frozenset(w for w in t.split() if w not in _TITLE_STOP | _SENIORITY_WORDS)
+
+
+def title_overlap(a: str, b: str) -> float:
+    wa, wb = _title_words(a), _title_words(b)
+    if len(wa) < 2 or len(wb) < 2:
+        return 0.0
+    return len(wa & wb) / len(wa | wb)
+
+
+def merge_overlapping_roles(
+    roles: list[ResolvedRole],
+) -> tuple[list[ResolvedRole], list[dict[str, Any]]]:
+    """D30: rows of one person with the same seniority whose wording mostly overlaps are one
+    role (Matt Billings: "VP and President of Robinhood Financial LLC and Robinhood
+    Securities, LLC" and "Vice President, Brokerage and President, Robinhood Financial and
+    Robinhood Securities"). The newest wording is kept (with its function); sources merged.
+    Returns the rows and one record per merge, for VALIDATION.md."""
+    rows = list(roles)
+    merges: list[dict[str, Any]] = []
+    changed = True
+    while changed:
+        changed = False
+        for i, a in enumerate(rows):
+            for b in rows[i + 1 :]:
+                # Same seniority and the same currency: a former role is history, not a
+                # duplicate of the current one.
+                if (
+                    a.seniority != b.seniority
+                    or a.seniority == "founder"
+                    or a.is_current != b.is_current
+                ):
+                    continue
+                score = title_overlap(a.title, b.title)
+                if score < OVERLAP_MIN:
+                    continue
+                claims = list({id(c): c for c in a.claims + b.claims}.values())
+                newest = _title_claim(claims)
+                keep = a if any(c is newest for c in a.claims) else b
+                # The merged row has the sources of both: a "single source" note (18-month or
+                # re-anchored) no longer applies, and confidence is recomputed from them.
+                supporting = [c for c in claims if c.status != "former"] or claims
+                multi = len({c.doc.url for c in supporting}) > 1
+                notes = [
+                    n for n in (a.note, b.note)
+                    if n and not (multi and "single source" in n)
+                ]  # fmt: skip
+                notes.append(
+                    f"merged from 2 rows with overlapping wording (D30): {a.title} / {b.title}"
+                )
+                confidence = max(
+                    (a.confidence, b.confidence, role_confidence(supporting)),
+                    key=_CONFIDENCE_RANK.__getitem__,
+                )
+                merged = ResolvedRole(
+                    newest.title,
+                    keep.function,
+                    keep.seniority,
+                    a.is_current,
+                    max((r.as_of for r in (a, b) if r.as_of), default=None),
+                    confidence,
+                    claims,
+                    "; ".join(dict.fromkeys(notes)),
+                )
+                merges.append(
+                    {"kept": newest.title, "merged": sorted({a.title, b.title} - {newest.title}),
+                     "overlap": round(score, 2), "seniority": keep.seniority}
+                )  # fmt: skip
+                rows = [r for r in rows if r is not a and r is not b] + [merged]
+                changed = True
+                break
+            if changed:
+                break
+    return rows, merges
+
+
 def _apply_promotions(roles: list[ResolvedRole]) -> None:
     """A person's older title is superseded by a newer, dated title in the same function
     (VP of Operations in 2018, then COO from 2019). Founder roles are never superseded."""
@@ -537,6 +629,7 @@ def resolve_claims(
                     r.note = "founder (historical): no current operating role in the collected data"
                     historical.append(r)
         roles = dedupe_roles(roles)
+        roles, role_merges = merge_overlapping_roles(roles)
         roles.sort(key=lambda r: (not r.is_current, _SENIORITY_RANK[r.seniority], r.title))
         live = [r for r in roles if r.is_current] or roles
         confidence = max((r.confidence for r in live), key=_CONFIDENCE_RANK.__getitem__)
@@ -559,6 +652,8 @@ def resolve_claims(
         if bios:
             person.bio, person.bio_claim = bios[0].bio, bios[0]
 
+        for m in role_merges:
+            review["merged_role_rows"].append({"person": person.full_name, **m})
         for r in historical:
             review["founder_historical"].append(
                 {"person": person.full_name, "title": r.title,

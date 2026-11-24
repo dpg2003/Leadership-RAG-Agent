@@ -24,5 +24,5 @@ No known misses remain.
 - **Note:** the source-verifier's line "people_found=36 but 35 people are exported" is wrong. The export has 36 people, and its own records table covers 36.
 - **Source-verifier verdicts** are from the collection in commit 60a6431. The 9 people added by the crawler fix (D26) were checked afterwards, in the addendum at the end of `robinhood.com-verifier.md`. Changed records (such as titles now using the newest wording) may differ from what the verifier saw.
 - **Known limits in this data:**
-  - Matt Billings has two current role rows for one position (`vp/other` from a 2023 post, `vp/operations` from the IR listing). Roles are split by function, and the two titles map to different functions.
+  - Matt Billings's two wordings of one position are now one row, with both sources (D30; listed under "Role rows merged").
   - "Steph Guild" (Head of Investment Strategy) is stored separately from Stephanie Guild (Chief Investment Officer) and listed as a possible duplicate. If they are the same person, the current count (31) is one too high.

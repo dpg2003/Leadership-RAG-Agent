@@ -244,3 +244,22 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - Per person, roles with the same normalized title (case, punctuation and "&"/"and" ignored) and the same function are one row, with their sources merged (`resolve.dedupe_roles`). The row keeps the most senior seniority, is current if any merged row was, and records the merged seniorities in its note.
 - **Effect:** John Glasgow's "CEO & Founder" was two rows, C-level and founder (D4/D23); it is now one C-level row noted "one row for: c_level, founder". No count changed.
 - **Not covered:** Matt Billings's two rows have different titles ("VP and President of Robinhood Financial LLC and Robinhood Securities, LLC" vs "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities") and different functions (other vs operations), so this rule keeps them separate. Open question for Daniel.
+
+## D30. VP titles are VP-level; overlapping role rows are merged (decided by Daniel during the hand-check)
+
+- **VP token wins (titles.py):** a title with VP / SVP / EVP / Vice President is seniority `vp`, also when it names a legal or General Counsel role ("VP-Legal", "VP and Deputy General Counsel", "Senior Vice President, General Counsel and Corporate Secretary"). D4 still makes a General Counsel / Chief Legal Officer `c_level` when the latest proxy lists the person as an executive officer. Without a VP token and not in the proxy, it stays `head`.
+  - **Effect:** Lucas Moskowitz, Christina Lai and Smeeta Ramarathnam went from `head/legal` to `vp/legal`. This matches the source-verifier's classification findings.
+- **Overlapping rows (resolve.merge_overlapping_roles):** two rows of one person with the same seniority whose title words mostly overlap are one role.
+  - **Overlap test:** Jaccard similarity of 0.6 or more on title words, ignoring case, punctuation, "and/of/the/LLC", and with "Vice President" read as "VP". Each title needs at least 2 words. Founder rows are never merged this way.
+  - **The kept row:** the newest wording wins (`_title_claim`) along with its function, and sources are merged.
+  - Every merge is listed in `review.merged_role_rows` and in VALIDATION.md.
+  - **Only rows with the same currency merge.** A former role stays in the history; it is not folded into a current one.
+  - **Seniority words are ignored** in the overlap (VP, SVP, EVP, AVP, Chief, Officer, Head, Senior, Executive). "VP of Product" and "VP of Product Marketing" stay two roles.
+  - **The merged row has the sources of both.** Confidence is recomputed from them, and a "single source" note no longer applies. The note records "merged from 2 rows …". Found by the phase reviewer: before this fix, Billings's merged row was listed as single-source although it had 2 sources.
+  - **Effect:** Matt Billings is one row, keeping "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities" (overlap 0.8), with 2 sources (the 2023 newsroom post and the investor-site listing). There are no other merges in either company's data.
+- **Rejected:** merging on function alone. The same person really can hold two VP roles in different functions.
+
+## D31. Phase 5 requirement: counts carry a confidence breakdown (decided by Daniel)
+
+- `count_leaders` must return a breakdown, not one number: **confirmed** vs **low-confidence**. Low-confidence covers roles resting on a single source older than 18 months, and the other `low` reasons in the role note.
+- The chat answer must state both numbers. Example: "31 current leaders: 22 confirmed, 9 low-confidence (single source older than 18 months)". It must never give one flat count. Role notes (D27) supply the reasons.

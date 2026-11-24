@@ -466,7 +466,10 @@ def test_plural_shared_titles_classify():
         ("Vice President and Chief Operating Officer, Robinhood Financial", "vp", "operations"),
         ("Vice President and Chief Information Security Officer", "vp", "security"),
         ("President of Robinhood UK and General Manager of Bitstamp UK", "vp", "other"),
-        ("Senior Vice President, General Counsel and Corporate Secretary", "c_level", "legal"),
+        ("Senior Vice President, General Counsel and Corporate Secretary", "vp", "legal"),
+        ("Deputy General Counsel, VP-Legal and Regulatory", "vp", "legal"),
+        ("VP and Deputy General Counsel", "vp", "legal"),
+        ("General Counsel", "c_level", "legal"),
         ("President and Chief Executive Officer", "c_level", "other"),
     ],
 )
@@ -593,8 +596,9 @@ def test_general_counsel_is_c_level_only_when_in_the_proxy():
     (gallagher,) = by_name(res, "Dan Gallagher").roles
     (moskowitz,) = by_name(res, "Lucas Moskowitz").roles
     assert (gallagher.seniority, gallagher.function) == ("c_level", "legal")
+    # "Senior Vice President, General Counsel": not in the proxy, and a VP token (D30).
     assert (moskowitz.seniority, moskowitz.function, moskowitz.is_current) == (
-        "head",
+        "vp",
         "legal",
         True,
     )
@@ -926,7 +930,7 @@ def test_former_deputy_general_counsel_is_not_restored_to_c_level():
                      "Christina Lai, VP and Deputy General Counsel, has left Robinhood.",
                      status="former", date="2020-08-19", date_text="August 19, 2020")  # fmt: skip
     (role,) = by_name(resolve_claims(claims, today=TODAY), "Christina Lai").roles
-    assert (role.seniority, role.is_current) == ("head", False)
+    assert (role.seniority, role.is_current) == ("vp", False)  # VP token (D30), not C-level
 
 
 def test_same_title_and_function_is_one_role_row_with_merged_sources():
@@ -954,3 +958,72 @@ def test_different_titles_stay_separate_rows():
     rows = dedupe_roles([role("VP of Sales", "sales"), role("VP of Product", "product"),
                          role("vp of sales", "sales")])  # fmt: skip
     assert sorted(r.title for r in rows) == ["VP of Product", "VP of Sales"]
+
+
+def test_general_counsel_without_vp_token_and_not_in_proxy_is_head():
+    d = doc("https://acme.test/team", "Ann Lee, General Counsel")
+    (role,) = by_name(resolve_claims(_single(d, "Ann Lee", "General Counsel",
+                                             "Ann Lee, General Counsel"), today=TODAY),
+                      "Ann Lee").roles  # fmt: skip
+    assert (role.seniority, role.function) == ("head", "legal")
+
+
+def test_overlapping_wording_merges_rows_and_keeps_the_newest():
+    """D30: Matt Billings, two wordings of one position with different functions."""
+    from leadership.pipeline.resolve import title_overlap
+
+    old_t = "VP and President of Robinhood Financial LLC and Robinhood Securities, LLC"
+    new_t = "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities"
+    assert title_overlap(old_t, new_t) >= 0.6
+    assert title_overlap("VP of Engineering", "VP of Product") < 0.6
+    assert title_overlap("VP of Product", "VP of Product Marketing") < 0.6
+    assert (
+        title_overlap("Chief Operating Officer", "Chief Operating Officer, Robinhood Crypto") < 0.6
+    )
+    rh = Company("Robinhood", "robinhood.test", "https://robinhood.test/")
+    post = doc("https://robinhood.test/newsroom/billings",
+               f"We welcome Matt Billings as {old_t}.", published_date="2023-09-18")  # fmt: skip
+    listing = doc("https://investors.robinhood.test/governance/leadership",
+                  f"Matt Billings {new_t}", "search")  # fmt: skip
+    claims = _one(post, "Matt Billings", old_t, f"We welcome Matt Billings as {old_t}.", rh)[0]
+    claims += _one(listing, "Matt Billings", new_t, f"Matt Billings {new_t}", rh)[0]
+    assert {c.title_class.function for c in claims} == {"other", "operations"}
+    res = resolve_claims(claims, today=TODAY)
+    (role,) = by_name(res, "Matt Billings").roles
+    assert role.title == new_t and role.is_current
+    assert {c.doc.url for c in role.claims} == {post.url, listing.url}
+    (merge,) = res.review["merged_role_rows"]
+    assert merge["person"] == "Matt Billings" and merge["merged"] == [old_t]
+    # Two sources now: no "single source" note, not in the stale list.
+    assert "single source" not in role.note and "merged from 2 rows" in role.note
+    assert role.confidence == "high"  # 2 sources incl. the company site (role_confidence)
+    assert "stale_single_source" not in res.review
+
+
+def test_different_roles_of_one_person_are_not_merged():
+    d = doc("https://acme.test/team", "Ann Lee, VP of Engineering\nAnn Lee, VP of Product")
+    claims = _single(d, "Ann Lee", "VP of Engineering", "Ann Lee, VP of Engineering")
+    claims += _single(d, "Ann Lee", "VP of Product", "Ann Lee, VP of Product")
+    res = resolve_claims(claims, today=TODAY)
+    assert len(by_name(res, "Ann Lee").roles) == 2 and "merged_role_rows" not in res.review
+
+
+def test_svp_general_counsel_listed_in_the_proxy_is_c_level():
+    """D4 overrides the VP token (D30) for an executive officer named in the latest proxy."""
+    title = "Senior Vice President, General Counsel"
+    proxy = doc("https://sec.test/def14a", f"Lucas Moskowitz 45 {title}", "sec_filing",
+                form="DEF 14A", filing_date="2026-04-22")  # fmt: skip
+    claims = _single(proxy, "Lucas Moskowitz", title, f"Lucas Moskowitz 45 {title}")
+    (role,) = by_name(resolve_claims(claims, today=TODAY), "Lucas Moskowitz").roles
+    assert (role.seniority, role.function) == ("c_level", "legal")
+
+
+def test_former_row_is_not_merged_into_a_current_one():
+    from leadership.pipeline.resolve import ResolvedRole, merge_overlapping_roles
+
+    old = ResolvedRole("VP, Brokerage Operations", "operations", "vp", False, "2020-01-01",
+                       "low", [], "stated as former")  # fmt: skip
+    new = ResolvedRole("VP, Brokerage and Operations", "other", "vp", True, None, "medium", [],
+                       "")  # fmt: skip
+    rows, merges = merge_overlapping_roles([old, new])
+    assert len(rows) == 2 and merges == []

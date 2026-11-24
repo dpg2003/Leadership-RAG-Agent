@@ -426,6 +426,17 @@
           ]
         }
       ],
+      "merged_role_rows": [
+        {
+          "kept": "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
+          "merged": [
+            "VP and President of Robinhood Financial LLC and Robinhood Securities, LLC"
+          ],
+          "overlap": 0.8,
+          "person": "Matt Billings",
+          "seniority": "vp"
+        }
+      ],
       "possible_duplicates": [
         {
           "names": [
@@ -449,14 +460,6 @@
         }
       ],
       "stale_single_source": [
-        {
-          "note": "single source, last dated 2023-09-18 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-welcomes-matt-billings-to-lead-robinhood-financial-and-robinhood-securities (2023-09-18)",
-          "person": "Matt Billings",
-          "title": "VP and President of Robinhood Financial LLC and Robinhood Securities, LLC",
-          "urls": [
-            "https://robinhood.com/newsroom/robinhood-welcomes-matt-billings-to-lead-robinhood-financial-and-robinhood-securities/"
-          ]
-        },
         {
           "note": "single source, last dated 2022-10-10 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-financial-wellness-study-finds-that-84-of-americans-are-stressed-about-money-but-over-half-are-still-spending-on-what-makes-them-happy (2022-10-10)",
           "person": "Steph Guild",
@@ -1353,7 +1356,7 @@
         {
           "title_raw": "VP and Deputy General Counsel",
           "function": "legal",
-          "seniority": "head",
+          "seniority": "vp",
           "is_current": true,
           "as_of": "2020-08-19",
           "note": "single source, last dated 2020-08-19 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-welcomes-christina-lai-and-lucas-moskowitz-to-the-legal-leadership-team (2020-08-19)"
@@ -3247,7 +3250,7 @@
         {
           "title_raw": "Senior Vice President, General Counsel and Corporate Secretary",
           "function": "legal",
-          "seniority": "head",
+          "seniority": "vp",
           "is_current": true,
           "as_of": "2020-08-19",
           "note": null
@@ -3452,25 +3455,17 @@
       "location": null,
       "bio": "Matt joins Robinhood from Two Sigma Securities, where he oversaw the trade and service desks, client relationships, and market structure with a particular emphasis on market data.",
       "profile_url": "https://robinhood.com/newsroom/robinhood-welcomes-matt-billings-to-lead-robinhood-financial-and-robinhood-securities/",
-      "confidence": "low",
+      "confidence": "high",
       "updated_at": "2026-11-24T03:11:49+00:00",
       "source_count": 2,
       "roles": [
-        {
-          "title_raw": "VP and President of Robinhood Financial LLC and Robinhood Securities, LLC",
-          "function": "other",
-          "seniority": "vp",
-          "is_current": true,
-          "as_of": "2023-09-18",
-          "note": "single source, last dated 2023-09-18 (older than 18 months), low confidence: company site robinhood.com/newsroom/robinhood-welcomes-matt-billings-to-lead-robinhood-financial-and-robinhood-securities (2023-09-18)"
-        },
         {
           "title_raw": "Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities",
           "function": "operations",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
-          "note": null
+          "as_of": "2023-09-18",
+          "note": "merged from 2 rows with overlapping wording (D30): VP and President of Robinhood Financial LLC and Robinhood Securities, LLC / Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities"
         }
       ],
       "facts": [
@@ -4295,7 +4290,7 @@
         {
           "title_raw": "Deputy General Counsel, VP-Legal and Regulatory",
           "function": "legal",
-          "seniority": "head",
+          "seniority": "vp",
           "is_current": true,
           "as_of": "2019-04-15",
           "note": "single source, last dated 2019-04-15 (older than 18 months), low confidence: company site robinhood.com/newsroom/new-additions-to-robinhood-management (2019-04-15)"

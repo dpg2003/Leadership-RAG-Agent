@@ -130,9 +130,14 @@ def classify_title(title: str, company_name: str | None = None) -> TitleClass | 
         and not _QUALIFIED_PRESIDENT.search(full)
     )
     counsel = re.search(r"\bgeneral counsel\b", t)
-    if (chief or acronyms) and _VP_TOKEN.search(t) and not counsel:
-        return TitleClass("vp", function_for(t.replace("chief executive officer", "")),
-                          also_founder=founder)  # fmt: skip
+    legal_chief = bool(counsel or re.search(r"\bchief legal\b", t) or "clo" in words)
+    # A VP token makes the title VP-level, also when it names a C-suite or legal-chief role:
+    # "VP and Chief Information Security Officer", "VP-Legal", "VP and Deputy General
+    # Counsel", "SVP, General Counsel". resolve.py may still make a General Counsel C-level
+    # when the latest proxy lists the person as an executive officer (D4).
+    if _VP_TOKEN.search(t) and (chief or acronyms or counsel or function_for(t) == "legal"):
+        function = "legal" if counsel else function_for(t.replace("chief executive officer", ""))
+        return TitleClass("vp", function, also_founder=founder, legal_chief=legal_chief)
     if not (chief or acronyms or president or counsel) and _QUALIFIED_PRESIDENT.search(full):
         return TitleClass("vp", function_for(t.replace("president", "")), also_founder=founder)
     if chief or acronyms or president or counsel:
@@ -145,7 +150,6 @@ def classify_title(title: str, company_name: str | None = None) -> TitleClass | 
             function = "legal"
         else:
             function = function_for(t.replace("president", ""))
-        legal_chief = bool(counsel or re.search(r"\bchief legal\b", t) or "clo" in words)
         return TitleClass("c_level", function, also_founder=founder, legal_chief=legal_chief)
 
     if re.search(r"\b(?:vice president|vp|svp|evp|avp)\b", t):
