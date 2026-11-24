@@ -20,6 +20,7 @@ from datetime import date
 from difflib import SequenceMatcher
 from enum import StrEnum
 from typing import TYPE_CHECKING, Any
+from urllib.parse import urlsplit
 
 from leadership.models import SOURCE_PRIORITY, display_name, normalize_name
 
@@ -146,6 +147,52 @@ def _is_proxy(c: Claim) -> bool:
     return c.doc.source_type == "sec_filing" and c.doc.meta.get("form") == PROXY_FORM
 
 
+def _cite(c: Claim) -> str:
+    """'robinhood.com/newsroom/x (2021-03-01)' for role notes the chat agent can quote."""
+    parts = urlsplit(c.doc.url)
+    where = (parts.hostname or "").removeprefix("www.") + parts.path.rstrip("/")
+    kind = c.doc.meta.get("form") or c.doc.source_type.replace("_", " ")
+    return f"{kind} {where} ({c.published_at or 'undated'})"
+
+
+def _newest(claims: list[Claim]) -> Claim:
+    return max(
+        claims, key=lambda c: (_ordinal(c.published_at), -SOURCE_PRIORITY[c.doc.source_type])
+    )
+
+
+# An undated page whose LAST path segment is a people word (/governance/leadership, /team,
+# /about) is the company's current listing: for choosing a title, it counts as newer than
+# any dated claim. /management/<name> profiles and /about/<product> pages are not listings.
+_LISTING_PATH = re.compile(
+    r"/(?:team|our-team|about|about-us|leadership|people|management|executives?|founders|"
+    r"who-we-are)/?$"
+)
+
+
+# Deputy / Associate / Assistant General Counsel are not the legal chief.
+_DEPUTY = re.compile(r"\b(?:deputy|associate|assistant)\b", re.IGNORECASE)
+
+
+def _title_claim(claims: list[Claim]) -> Claim:
+    """The claim whose wording is displayed: the newest one (a 2026 proxy beats a 2021
+    newsroom post; an undated current leadership listing beats a 2020 announcement), then
+    source priority, then the fuller wording ("..., Robinhood Financial" keeps its scope).
+    Superseded wording stays in the facts."""
+
+    def key(c: Claim) -> tuple:
+        listing = not c.published_at and bool(_LISTING_PATH.search(urlsplit(c.doc.url).path))
+        return (
+            listing,
+            _ordinal(c.published_at),
+            -SOURCE_PRIORITY[c.doc.source_type],
+            len(c.title),
+            c.doc.url,
+        )
+
+    return max(claims, key=key)
+
+
 def _blocked_host(c: Claim) -> bool:
     return str(c.doc.meta.get("direct_fetch", "")).startswith("blocked")
 
@@ -245,7 +292,12 @@ def _resolve_role(
     # A 'former' statement wins unless a current claim is strictly newer (undated = oldest).
     is_current = bool(current) and (not former or newest_current > newest_former)
     if former and current:
-        note = "sources disagree on whether this role is current"
+        note = (
+            f"sources disagree on whether this role is current: former per "
+            f"{_cite(_newest(former))}; current per {_cite(_newest(current))}"
+        )
+    elif former:
+        note = f"stated as former in {_cite(_newest(former))}"
 
     # D16 proxy rule: a dated C-level newsroom/search claim older than the latest proxy, for a
     # role the proxy doesn't list for this person, is not current. SEC claims are exempt.
@@ -259,11 +311,17 @@ def _resolve_role(
         and not any(c.doc.source_type == "sec_filing" for c in current)
     ):
         if newest_current <= 0:
-            note = f"C-level title not in the {proxy_date} proxy; source is undated"
+            note = (
+                f"C-level title not in the {proxy_date} proxy; source is undated: "
+                f"{_cite(current[0])}"
+            )
         elif newest_current < _ordinal(proxy_date):
             is_current = False
             retired_by_proxy = True
-            note = f"not listed in the {proxy_date} proxy, which is newer than this claim"
+            note = (
+                f"not listed in the {proxy_date} proxy, which is newer than this claim; "
+                f"last confirmed in {_cite(_newest(current))}"
+            )
 
     supporting = current if is_current or retired_by_proxy else (former or claims)
     dated = [c.published_at for c in supporting if c.published_at]
@@ -277,16 +335,27 @@ def _resolve_role(
         and (today - date.fromisoformat(as_of)).days > STALE_AFTER_DAYS
     ):
         confidence = "low"
-        note = note or f"single source, last dated {as_of} (older than 18 months)"
+        note = note or (
+            f"single source, last dated {as_of} (older than 18 months), low confidence: "
+            f"{_cite(supporting[0])}"
+        )
     # D22: evidence re-anchored from the source (not the model's own quote) is low unless
     # another source corroborates the role. (Listed in review.reanchored either way, so the
     # stale note above keeps priority for the review lists.)
+    if single and all(c.affiliation == "byline" for c in supporting):
+        confidence = "low"
+        note = note or (
+            f"affiliation rests on a single author byline on the company's site: "
+            f"{_cite(supporting[0])}"
+        )
     if single and all(c.reanchored for c in supporting):
         confidence = "low"
-        note = note or "evidence re-anchored by name and title in one block; single source"
-    return ResolvedRole(
-        supporting[0].title, function, seniority, is_current, as_of, confidence, claims, note
-    )
+        note = note or (
+            f"evidence re-anchored by name and title in one block; single source: "
+            f"{_cite(supporting[0])}"
+        )
+    title = _title_claim(supporting).title
+    return ResolvedRole(title, function, seniority, is_current, as_of, confidence, claims, note)
 
 
 def _apply_promotions(roles: list[ResolvedRole]) -> None:
@@ -406,6 +475,19 @@ def resolve_claims(
                 by_key[key].append(c)
         roles = [_resolve_role(k, cs, proxy_date, proxy_keys, today) for k, cs in by_key.items()]
         _apply_promotions(roles)
+        # D4 applies to current roles only: a past General Counsel / Chief Legal Officer role
+        # (e.g. before the company had a proxy) stays historical C-level.
+        for r in roles:
+            if (
+                not r.is_current
+                and (r.seniority, r.function) == ("head", "legal")
+                and all(c.title_class.legal_chief for c in r.claims)
+                and not any(_DEPUTY.search(c.title) for c in r.claims)
+            ):
+                r.seniority = "c_level"
+                r.note = (r.note + "; " if r.note else "") + (
+                    "historical C-level (the General Counsel rule applies to current roles only)"
+                )
         # D23: a founder is current leadership only while holding a current operating role.
         historical: list[ResolvedRole] = []
         if not any(r.is_current for r in roles if r.seniority != "founder"):

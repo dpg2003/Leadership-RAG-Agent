@@ -7,7 +7,7 @@ import httpx
 import pytest
 
 from leadership.pipeline.discover import normalize_domain, site_name_from_html
-from leadership.sources.base import Company
+from leadership.sources.base import AdapterReport, Company
 from leadership.sources.company_site import _locale_prefix, parse_sitemap, score_url
 from leadership.sources.fetch import FetchBlocked, Fetcher, html_to_text, is_banned
 from leadership.sources.search import SearchAdapter, _drop_excluded, build_queries, is_excluded
@@ -165,10 +165,41 @@ def test_html_to_text_drops_scripts_and_keeps_title():
         ("https://ex.test/blog/q3-product-update", 2),
         ("https://ex.test/pricing", 0),
         ("https://ex.test/blog", 0),
+        ("https://ex.test/about/gold/", 4),  # product page under /about
+        ("https://ex.test/newsroom/a-chat-between-our-security-team-leaders", 8),  # plural
+        ("https://ex.test/newsroom/acme-welcomes-jane-doe-to-its-board-of-directors", 2),
+        ("https://ex.test/newsroom/board-member-jane-doe-joins-as-chief-legal-officer", 8),
     ],
 )
 def test_score_url(url, score):
     assert score_url(url) == score
+
+
+def test_link_text_ranks_a_post_whose_slug_says_nothing():
+    url = "https://ex.test/newsroom/safety-first"
+    assert score_url(url) == 2
+    assert score_url(url, "Safety first: a conversation with our Chief Security Officer") == 8
+
+
+def test_newsroom_index_link_text_reaches_the_ranking(tmp_path):
+    from leadership.sources.company_site import CompanySiteAdapter
+
+    index = (
+        '<a href="/newsroom/q3-update">Q3 product update</a>'
+        '<a href="/newsroom/safety-first">Meet our security leaders</a>'
+    )
+    routes = {
+        "https://ex.test/": (200, "<a href='/pricing'>Pricing</a>"),
+        "https://ex.test/newsroom": (200, index),
+    }
+    adapter = CompanySiteAdapter(make_fetcher(tmp_path, routes), max_pages=50)
+    report = AdapterReport("company_site")
+    cands = {
+        c.url: c for c in adapter.candidates(Company("Ex", "ex.test", "https://ex.test/"), report)
+    }
+    assert cands["https://ex.test/newsroom/safety-first"].score == 8
+    assert cands["https://ex.test/newsroom/safety-first"].link_text == "Meet our security leaders"
+    assert cands["https://ex.test/newsroom/q3-update"].score == 2
 
 
 def test_parse_sitemap_urls_and_children():

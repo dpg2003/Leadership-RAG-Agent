@@ -513,12 +513,24 @@ def _one(d, name, title, snippet, company=CAMPFIRE):
     return validate(d, ex, company)
 
 
-def test_byline_on_company_blog_does_not_state_affiliation():
-    d = doc("https://campfire.ai/blog/atlar",
-            "Nick Jezienicki\nHead of Technology Partnerships · May 12, 2026")  # fmt: skip
-    claims, (rej,) = _one(d, "Nick Jezienicki", "Head of Technology Partnerships",
-                          "Nick Jezienicki Head of Technology Partnerships")  # fmt: skip
+def test_byline_with_title_on_company_domain_states_affiliation():
+    """Decided by Daniel after Phase 4: an author byline with a title on the company's own
+    domain counts (Brendan Doyle's Campfire blog posts)."""
+    d = doc("https://campfire.ai/blog/forecast",
+            "Brendan Doyle\nHead of Product · September 18, 2026")  # fmt: skip
+    claims, rejections = _one(d, "Brendan Doyle", "Head of Product",
+                              "Brendan Doyle Head of Product · September 18, 2026")  # fmt: skip
+    assert claims and not rejections
+
+
+def test_quoted_outsider_on_company_blog_is_not_a_byline():
+    text = "said Nick Jezienicki, Head of Partnerships at the partner bank."
+    claims, (rej,) = _one(doc("https://campfire.ai/blog/atlar", text), "Nick Jezienicki",
+                          "Head of Partnerships", text)  # fmt: skip
     assert not claims and rej.reason == "evidence does not state an affiliation with Campfire"
+    # The same byline on a third-party site is not enough either.
+    other = doc("https://blog.other.test/post", "Brendan Doyle\nHead of Product", "search")
+    assert _one(other, "Brendan Doyle", "Head of Product", "Brendan Doyle Head of Product")[1]
 
 
 @pytest.mark.parametrize(
@@ -758,8 +770,8 @@ def test_html_sentence_with_another_name_between_is_not_reanchored():
     ],
 )
 def test_affiliation_loopholes_are_closed(url, snippet):
-    d = doc(url, snippet)
-    claims, (rej,) = _one(d, "Nick Jezienicki", snippet.split(", ", 1)[1], snippet)
+    quote = f"{snippet}, told the audience."  # a quote, not a byline
+    claims, (rej,) = _one(doc(url, quote), "Nick Jezienicki", snippet.split(", ", 1)[1], quote)
     assert not claims and "affiliation" in rej.reason
 
 
@@ -781,3 +793,137 @@ def test_credential_suffixes_do_not_split_a_person():
     for name in ("Jane Doe, JD", "Jane Doe, M.D.", "Jane Doe CFP", "Jane Doe, PhD"):
         assert normalize_name(name) == "jane doe" and display_name(name) == "Jane Doe"
     assert display_name("John Smith Jr.") == "John Smith Jr."
+
+
+def test_advisor_titles_are_out_of_scope():
+    for title in ("Chief Economic Advisor", "Senior Advisor to the CEO", "Strategic Adviser"):
+        assert classify_title(title) is None
+    assert classify_title("Vice President, Total Rewards").function == "people"
+
+
+def _single(d, name, title, snippet, status="current", date=None, date_text=None):
+    ex = Extraction(page_published_date=date, published_date_snippet=date_text,
+                    people=[person(name, title, snippet, status=status)])  # fmt: skip
+    return validate(d, ex)[0]
+
+
+def test_past_general_counsel_stays_historical_c_level():
+    """D4 applies to current roles only: Anne Hoge, CLO before the company had a proxy."""
+    proxy = doc("https://sec.test/def14a", "Dan Gallagher 52 Chief Legal Officer", "sec_filing",
+                form="DEF 14A", filing_date="2026-04-22")  # fmt: skip
+    news = doc("https://robinhood.test/news/hoge",
+               "May 1, 2020\nAnne Hoge, Chief Legal Officer, is leaving Robinhood.")  # fmt: skip
+    claims = _single(proxy, "Dan Gallagher", "Chief Legal Officer",
+                     "Dan Gallagher 52 Chief Legal Officer")  # fmt: skip
+    claims += _single(news, "Anne Hoge", "Chief Legal Officer",
+                      "Anne Hoge, Chief Legal Officer, is leaving Robinhood.", status="former",
+                      date="2020-05-01", date_text="May 1, 2020")  # fmt: skip
+    (hoge,) = by_name(resolve_claims(claims, today=TODAY), "Anne Hoge").roles
+    assert (hoge.seniority, hoge.function, hoge.is_current) == ("c_level", "legal", False)
+    assert "historical C-level" in hoge.note and "2020-05-01" in hoge.note
+
+
+def test_role_notes_name_the_source_and_date():
+    res = resolve_claims(proxy_claims() + news_claims(), today=TODAY)
+    (howard,) = by_name(res, "Gretchen Howard").roles
+    assert "not listed in the 2026-04-22 proxy" in howard.note
+    assert "last confirmed in company site robinhood.test/news/2021 (2021-03-01)" in howard.note
+
+
+def test_displayed_title_is_the_newest_wording():
+    long_title = "Chief Legal, Compliance and Corporate Affairs Officer"
+    proxy = doc("https://sec.test/def14a", f"Dan Gallagher 52 {long_title}", "sec_filing",
+                form="DEF 14A", filing_date="2026-04-22")  # fmt: skip
+    news = doc(
+        "https://robinhood.test/news/dg", "Robinhood names Dan Gallagher Chief Legal Officer."
+    )
+    claims = _single(proxy, "Dan Gallagher", long_title, f"Dan Gallagher 52 {long_title}")
+    claims += _single(news, "Dan Gallagher", "Chief Legal Officer",
+                      "Robinhood names Dan Gallagher Chief Legal Officer.")  # fmt: skip
+    (role,) = by_name(resolve_claims(claims, today=TODAY), "Dan Gallagher").roles
+    assert role.title == long_title
+
+
+def test_current_listing_title_beats_an_old_announcement():
+    """Moskowitz: 'VP and Deputy General Counsel' in a 2020 post; the undated IR leadership
+    listing says 'Senior Vice President, General Counsel and Corporate Secretary'."""
+    old = doc("https://robinhood.test/newsroom/legal-team",
+              "August 19, 2020\nsaid Lucas Moskowitz, VP and Deputy General Counsel at "
+              "Robinhood.")  # fmt: skip
+    listing = doc("https://investors.robinhood.test/governance/leadership",
+                  "Lucas Moskowitz Senior Vice President, General Counsel and Corporate Secretary",
+                  "search")  # fmt: skip
+    claims = _single(old, "Lucas Moskowitz", "VP and Deputy General Counsel",
+                     "said Lucas Moskowitz, VP and Deputy General Counsel at Robinhood.",
+                     date="2020-08-19", date_text="August 19, 2020")  # fmt: skip
+    claims += _single(listing, "Lucas Moskowitz",
+                      "Senior Vice President, General Counsel and Corporate Secretary",
+                      "Lucas Moskowitz Senior Vice President, General Counsel and Corporate "
+                      "Secretary")  # fmt: skip
+    roles = by_name(resolve_claims(claims, today=TODAY), "Lucas Moskowitz").roles
+    assert [r.title for r in roles if r.is_current] == [
+        "Senior Vice President, General Counsel and Corporate Secretary"
+    ]
+
+
+def test_listing_wording_beats_a_profile_page_and_keeps_its_scope():
+    """Koller: the IR leadership listing has '..., Robinhood Financial'; his /management/
+    profile page shortens it. The listing (last segment 'leadership') wins."""
+    listing = doc("https://investors.robinhood.test/governance/leadership",
+                  "Walter Koller Vice President and Chief Operating Officer, Robinhood Financial",
+                  "search")  # fmt: skip
+    profile = doc("https://investors.robinhood.test/management/walter-koller",
+                  "Walter Koller Vice President and Chief Operating Officer", "search")  # fmt: skip
+    rh = Company("Robinhood", "robinhood.test", "https://robinhood.test/")
+    long_t = "Vice President and Chief Operating Officer, Robinhood Financial"
+    claims = _one(listing, "Walter Koller", long_t, f"Walter Koller {long_t}", rh)[0]
+    claims += _one(profile, "Walter Koller", "Vice President and Chief Operating Officer",
+                   "Walter Koller Vice President and Chief Operating Officer", rh)[0]  # fmt: skip
+    (role,) = by_name(resolve_claims(claims, today=TODAY), "Walter Koller").roles
+    assert role.title == "Vice President and Chief Operating Officer, Robinhood Financial"
+
+
+@pytest.mark.parametrize(
+    ("snippet", "title"),
+    [
+        ("Jane Doe, Founder at Atlar · May 1, 2026", "Founder at Atlar"),
+        ("Jane Doe CEO, Atlar", "CEO, Atlar"),
+        ("Jane Doe, Head of Partnerships at Atlar", "Head of Partnerships at Atlar"),
+        ("Jane Doe · VP of Engineering at Acme Bank", "VP of Engineering at Acme Bank"),
+    ],
+)
+def test_byline_naming_another_employer_is_rejected(snippet, title):
+    d = doc("https://campfire.ai/blog/partner-post", snippet)
+    claims, (rej,) = _one(d, "Jane Doe", title, snippet)
+    assert not claims and "affiliation" in rej.reason
+
+
+def test_byline_naming_the_company_or_a_function_is_accepted():
+    for snippet, title in [
+        ("Jane Doe, Head of Product at Campfire", "Head of Product at Campfire"),
+        ("Jane Doe · VP, Engineering · May 1, 2026", "VP, Engineering"),
+        ("Jane Doe, Head of Sales, EMEA", "Head of Sales, EMEA"),
+        ("Jane Doe · VP, EMEA", "VP, EMEA"),
+    ]:
+        claims, rejections = _one(doc("https://campfire.ai/blog/p", snippet), "Jane Doe",
+                                  title, snippet)  # fmt: skip
+        assert claims and not rejections, snippet
+
+
+def test_single_byline_is_low_confidence():
+    d = doc("https://campfire.ai/blog/atlar", "Nick Jezienicki\nHead of Technology Partnerships")
+    claims, _ = _one(d, "Nick Jezienicki", "Head of Technology Partnerships",
+                     "Nick Jezienicki Head of Technology Partnerships")  # fmt: skip
+    assert claims[0].affiliation == "byline"
+    (role,) = by_name(resolve_claims(claims, today=TODAY), "Nick Jezienicki").roles
+    assert role.confidence == "low" and "single author byline" in role.note
+
+
+def test_former_deputy_general_counsel_is_not_restored_to_c_level():
+    d = doc("https://robinhood.test/news/legal", "August 19, 2020\nChristina Lai, VP and Deputy "
+            "General Counsel, has left Robinhood.")  # fmt: skip
+    claims = _single(d, "Christina Lai", "VP and Deputy General Counsel",
+                     "Christina Lai, VP and Deputy General Counsel, has left Robinhood.",
+                     status="former", date="2020-08-19", date_text="August 19, 2020")  # fmt: skip
+    (role,) = by_name(resolve_claims(claims, today=TODAY), "Christina Lai").roles
+    assert (role.seniority, role.is_current) == ("head", False)

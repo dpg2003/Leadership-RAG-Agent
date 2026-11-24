@@ -213,6 +213,20 @@ def stable_stats(stats: dict[str, Any]) -> dict[str, Any]:
     return out
 
 
+def load_review_flags(domain: str) -> list[dict[str, Any]]:
+    """Hand-curated flags (D28): data/<domain>/review_flags.json. They never change stored
+    facts or roles; they are shown next to the person (export, VALIDATION.md, chat)."""
+    path = company_dir(domain) / "review_flags.json"
+    if not path.exists():
+        return []
+    flags = json.loads(path.read_text(encoding="utf-8"))
+    for f in flags:
+        missing = {"person", "flag", "source_url", "decided_by"} - set(f)
+        if missing:
+            raise ValueError(f"{path}: flag {f!r} is missing {sorted(missing)}")
+    return flags
+
+
 def export_json(path: Path, domain: str) -> Path:
     """Readable, diff-friendly export of the stored data (committed next to the DB).
 
@@ -227,6 +241,12 @@ def export_json(path: Path, domain: str) -> Path:
     finally:
         conn.close()
     stats = (run or {}).get("stats") or {}
+    flags = load_review_flags(domain)
+    for p in people:
+        p["review_flags"] = [f for f in flags if f["person"] == p["full_name"]]
+    unknown = sorted({f["person"] for f in flags} - {p["full_name"] for p in people})
+    for name in unknown:
+        log.warning("review flag for %r matches no stored person", name)
     out = {"company": company, "collection": stable_stats(stats), "people": people}
     json_path = path.with_name("leadership.json")
     json_path.write_text(

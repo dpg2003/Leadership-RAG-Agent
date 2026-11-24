@@ -11,6 +11,7 @@ name, so re-running after the hand-check never loses them (D25).
 from __future__ import annotations
 
 import json
+import logging
 import re
 from pathlib import Path
 from typing import Any
@@ -18,8 +19,11 @@ from typing import Any
 from leadership.config import REPO_ROOT
 
 DOCS = REPO_ROOT / "docs"
+log = logging.getLogger(__name__)
 VERDICT_RANK = {"UNSUPPORTED": 0, "PARTIAL": 1, "STALE": 2, "SOURCE_UNAVAILABLE": 3, "SUPPORTED": 4}
 DANIEL = "✅ / ❌ / note"
+# The collection the source-verifier reports were made from (update when it is re-run).
+VERIFIER_RUN = "from the collection in commit 60a6431"
 
 REVIEW_TITLES = {
     "seat_conflicts": "Seat conflicts (two current holders of one C-suite seat; not decided)",
@@ -114,6 +118,63 @@ def _former_fact(person: dict) -> dict | None:
     return max(pool, key=lambda f: f["source"]["published_at"] or "", default=None)
 
 
+def _manual(person: dict) -> list[str]:
+    """Hand-curated flags (D28), e.g. 'reported departing (secondary source, unconfirmed)'."""
+    return [
+        f"FLAG: {f['flag']} ([source]({f['source_url']}), {f.get('source_date', 'undated')})"
+        for f in person.get("review_flags", [])
+    ]
+
+
+# Words in the verifier's reason that mean "is this still current?" rather than "is the
+# evidence right?" or "is the title classified right?". A heuristic, labelled as such.
+_CURRENCY = re.compile(
+    r"not current|is_current|still current|currently|no longer|stale|proxy|inferred|"
+    r"\bformer\b|\bleft\b|depart|separat|18 months|outdated|absent|retired|old source|"
+    r"\b(?:19|20)\d\d source\b|nothing (?:shows|establishes)",
+    re.IGNORECASE,
+)
+_CLASSIFICATION = re.compile(
+    r"function|seniority|classif|c_level|\bhead\b|\bvp\b|stored title|title is|older title",
+    re.IGNORECASE,
+)
+
+
+def verifier_summary(
+    verdicts: dict[str, list[tuple[str, str, str]]], caveat: str = ""
+) -> list[str]:
+    """Split the verifier's verdicts so a low 'precision' is explained: was the evidence
+    wrong, or is only the currency (or the classification) disputed?"""
+    rows = [r for rs in verdicts.values() for r in rs]
+    if not rows:
+        return ["Source-verifier: no report."]
+    supported = [r for r in rows if r[1] == "SUPPORTED"]
+    rest = [r for r in rows if r[1] != "SUPPORTED"]
+    # Classification first: "title and company correct and current; function should be
+    # sales" is a classification dispute, not a currency one.
+    classification = [r for r in rest if _CLASSIFICATION.search(r[2])]
+    currency = [r for r in rest if r not in classification and _CURRENCY.search(r[2])]
+    unavailable = [r for r in rest if r[1] in ("SOURCE_UNAVAILABLE", "STALE") and r not in currency]
+    evidence = [r for r in rest if r not in currency + classification + unavailable]
+    n = len(rows)
+    return [
+        f"Source-verifier, {n} records{caveat}:",
+        "",
+        f"- **Evidence supported** (the quoted evidence is in the source and states this "
+        f"person and title): {n - len(evidence)} of {n}.",
+        f"  - fully SUPPORTED (evidence, classification and currency all agree): {len(supported)}",
+        f"  - **currency disputed** (evidence fine; the verifier doubts the role is still "
+        f"current, or that it ended, e.g. the proxy and 18-month rules): {len(currency)}",
+        f"  - classification or displayed title disputed: {len(classification)}",
+        f"  - live source unavailable: {len(unavailable)}",
+        f"- **Evidence not establishing the claim:** {len(evidence)}"
+        + (": " + "; ".join(_cell(f"{r[0]} ({r[2]})", 120) for r in evidence) if evidence else ""),
+        "",
+        "The split is a keyword heuristic over the verifier's one-line reasons; the per-person"
+        " verdicts are in the tables.",
+    ]
+
+
 def _flags(name: str, review: dict[str, list[dict]]) -> list[str]:
     flags = []
     for key, entries in review.items():
@@ -149,6 +210,13 @@ def company_section(domain: str) -> str:
         f"{stats.get('claims_rejected')} · people {len(people)} ({len(current)} current) · "
         f"extraction cost ${stats.get('cost_usd_including_cached')} · model {stats.get('model')}"
     )
+    unchecked = [p["full_name"] for p in people if p["full_name"] not in verdicts]
+    caveat = (
+        f" ({VERIFIER_RUN}"
+        + (f"; {len(unchecked)} people added since are not checked" if unchecked else "")
+        + ")"
+    )
+    out += ["", *verifier_summary(verdicts, caveat)]
     out += ["", f"### Current leadership ({len(current)})", ""]
     out.append(
         "| # | Name | Current role(s) | Seniority / function | Confidence | Sources | "
@@ -163,7 +231,7 @@ def company_section(domain: str) -> str:
             f"{_cell('; '.join(r['title_raw'] for r in roles))} | "
             f"{_cell('; '.join(r['seniority'] + '/' + r['function'] for r in roles))} | "
             f"{p['confidence']} | {p['source_count']} | {evidence} | {_location(p)} | "
-            f"{_cell(', '.join(_flags(p['full_name'], review)))} | "
+            f"{_cell(', '.join(_flags(p['full_name'], review) + _manual(p)), 300)} | "
             f"{_cell(_agent_verdict(verdicts.get(p['full_name'])), 220)} | {DANIEL} |"
         )
     out += ["", f"### Not current (kept for history) ({len(former)})", ""]
@@ -245,7 +313,7 @@ def _describe(key: str, e: dict) -> str:
     return " · ".join(p for p in parts if p)
 
 
-HEADER = """# Validation
+HEADER = r"""# Validation
 
 Generated by `leadership validation-report` from `data/<domain>/leadership.json` and the
 subagent reports in `docs/validation/`. **Agent verdict** is the source-verifier's verdict
@@ -254,13 +322,26 @@ hand-check: ✅ correct, ❌ wrong, or a note.
 
 How to hand-check: open the evidence link, find the quoted snippet, and confirm the person,
 the title, and that it is current. Records from investors.robinhood.com must be checked in a
-browser (the host blocks automated clients; D13).
+browser (the host blocks automated clients; D13). A `|` inside a note is fine: it is kept
+in the note and written back escaped as `\|`.
 """
 
 
+_UNESCAPED_PIPE = re.compile(r"(?<!\\)\|")
+
+
+def _split_row(line: str, width: int | None) -> list[str]:
+    r"""Cells of a markdown table row. `\|` is a literal pipe. If a hand-written note in the
+    last column contains a bare `|`, the extra pieces are joined back into that cell."""
+    cells = [c.strip() for c in _UNESCAPED_PIPE.split(line.strip().strip("|"))]
+    if width and len(cells) > width:
+        cells = cells[: width - 1] + [" | ".join(cells[width - 1 :])]
+    return cells
+
+
 def _row_keys(text: str):
-    """Yield (key, line_index, cells) for rows of tables with a 'Verified by Daniel' column.
-    Key: (company heading, table heading without its count, first non-number cell)."""
+    """Yield (company, table, name, line_index, cells) for rows of tables that have a
+    'Verified by Daniel' column. The table heading is stripped of its count."""
     company = table = ""
     header: list[str] | None = None
     for i, line in enumerate(text.splitlines()):
@@ -271,23 +352,51 @@ def _row_keys(text: str):
         if not line.startswith("|"):
             header = None
             continue
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
         if header is None:
-            header = cells
+            header = _split_row(line, None)
             continue
+        cells = _split_row(line, len(header))
         if header[-1] != "Verified by Daniel" or set("".join(cells)) <= set("-: "):
             continue
         name = next((c for c in cells if c and not c.isdigit()), "")
-        yield (company, table, name), i, cells
+        yield company, table, name, i, cells
+
+
+def _escape_pipes(text: str) -> str:
+    return _UNESCAPED_PIPE.sub(r"\\|", text)
 
 
 def carry_over_ticks(old: str, new: str) -> str:
-    """Put Daniel's edited cells from the old file into the regenerated one."""
-    saved = {k: cells[-1] for k, _, cells in _row_keys(old) if cells[-1] != DANIEL}
+    """Put Daniel's edited cells from the old file into the regenerated one.
+
+    Matched by (company, table, name); if the person moved to another table (e.g. from
+    current to not current after a fix), by (company, name) when that name is unique.
+    A note that can't be placed is logged, never silently dropped from the log."""
+    exact: dict[tuple[str, str, str], str] = {}
+    by_name: dict[tuple[str, str], list[str]] = {}
+    for company, table, name, _, cells in _row_keys(old):
+        if cells[-1] != DANIEL:
+            exact[(company, table, name)] = cells[-1]
+            by_name.setdefault((company, name), []).append(cells[-1])
     lines = new.splitlines()
-    for key, i, cells in _row_keys(new):
-        if key in saved and cells[-1] == DANIEL:
-            lines[i] = lines[i].rstrip()[: -len(f" {DANIEL} |")] + f" {saved[key]} |"
+    used: set[tuple[str, str]] = set()
+    rows = list(_row_keys(new))
+    new_names: dict[tuple[str, str], int] = {}
+    for company, _, name, _, _ in rows:
+        new_names[(company, name)] = new_names.get((company, name), 0) + 1
+    for company, table, name, i, cells in rows:
+        if cells[-1] != DANIEL:
+            continue
+        value = exact.get((company, table, name))
+        if value is None and new_names[(company, name)] == 1:
+            candidates = by_name.get((company, name), [])
+            value = candidates[0] if len(candidates) == 1 else None
+        if value is not None:
+            lines[i] = lines[i].rstrip()[: -len(f" {DANIEL} |")] + f" {_escape_pipes(value)} |"
+            used.add((company, name))
+    for company, name in sorted(set(by_name) - used):
+        log.warning("hand-check note not carried over: %s / %s -> %s", company, name,
+                    by_name[(company, name)])  # fmt: skip
     return "\n".join(lines) + "\n"
 
 

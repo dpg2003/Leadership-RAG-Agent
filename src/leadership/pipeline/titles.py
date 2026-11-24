@@ -3,7 +3,8 @@
 In scope: C-level (incl. President, D4), founders, VPs, and Heads. General Counsel and Chief
 Legal titles are marked `legal_chief`; resolve.py makes them C-level only if the latest
 proxy lists the person as an executive officer, otherwise Head of legal (D4).
-Out of scope: board-only roles, plain "Director", managers, individual contributors.
+Out of scope: board-only roles, advisors ("Chief Economic Advisor", "Senior Advisor"; D27),
+plain "Director", managers, individual contributors.
 """
 
 from __future__ import annotations
@@ -34,7 +35,11 @@ _FUNCTION_PATTERNS: tuple[tuple[str, str], ...] = (
     ("security", r"secur|trust|\bciso\b"),
     ("legal", r"legal|counsel|complian|regulat|corporate affairs|policy|privacy"),
     ("finance", r"financ|account|treasur|controller|investor relations|tax\b|\bfp&a\b"),
-    ("people", r"\bpeople\b|human resources|\bhr\b|talent|recruit|culture|workplace"),
+    (
+        "people",
+        r"\bpeople\b|human resources|\bhr\b|talent|recruit|culture|workplace|total rewards"
+        r"|compensation|benefits",
+    ),
     ("data", r"\bdata\b|analytics|machine learning|\bai\b|artificial intelligence"),
     ("design", r"design|\bux\b|creative"),
     ("product", r"product"),
@@ -56,6 +61,8 @@ _BOARD_ONLY = re.compile(
     r"(?:director|board member|member of the board|chair(?:man|woman|person)?"
     r"(?: of the board)?)$"
 )
+# An advisor is not an operating leader, whatever the prefix ("Chief Economic Advisor").
+_ADVISOR = re.compile(r"\badvis[eo]rs?\b")
 _FORMER = re.compile(r"\b(?:former(?:ly)?|ex-|previously|retired|outgoing)\b")
 
 
@@ -109,7 +116,7 @@ def classify_title(title: str, company_name: str | None = None) -> TitleClass | 
     of Robinhood UK") is VP-level. General Counsel / Chief Legal Officer is returned as
     C-level with legal_chief=True; resolve.py applies the proxy test (D4)."""
     full = _clean(title)
-    if not full or _BOARD_ONLY.match(full):
+    if not full or _BOARD_ONLY.match(full) or _ADVISOR.search(full):
         return None
     t = strip_company(full, company_name) or full
     founder = bool(re.search(r"\b(?:co-?)?founder\b", t))

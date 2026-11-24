@@ -1,0 +1,11 @@
+[
+  {
+    "person": "Chris Koegel",
+    "flag": "reported departing (secondary source, unconfirmed)",
+    "detail": "A secondary aggregator reports him leaving for Klarna (CFO). Not in any collected source; he stays current until confirmed.",
+    "source_url": "https://www.autobound.ai/companies/robinhood/executive-changes",
+    "source_date": "2026-11-19",
+    "found_by": "coverage-scout (docs/validation/robinhood.com-scout.md)",
+    "decided_by": "Daniel, 2026-11-23"
+  }
+]

@@ -31,7 +31,7 @@ Each entry: what we chose, what we rejected, and why. Newest at the bottom.
 - **Source priority is derived, not stored.** `SOURCE_PRIORITY` in `models.py` maps `sources.source_type` to a priority: company_site (0) beats sec_filing (1), which beats search (2). Rejected: a `facts.source_priority` column, which would duplicate `source_type` and could drift from it.
 - **`source_count` is computed in the query** (distinct `source_id` across the person's facts). Rejected: storing it on `roles`, where it could go stale after a re-resolve.
 - **No `exec` seniority.** President maps to `c_level`. `title_raw` always keeps the original title, so nothing is lost. Allowed seniorities: `c_level | vp | head | founder`.
-- **General Counsel / Chief Legal titles (corrected by Daniel after Phase 3):** `c_level` only if the person is listed as an executive officer in the latest proxy (DEF 14A); otherwise `seniority = head`, `function = legal`. This applies to "General Counsel", "Chief Legal Officer", "CLO" and combinations such as "SVP, General Counsel". Without a proxy (private companies), they are always `head`. This applies to past roles too (Anne Hoge, Chief Legal Officer 2019–2020, before the IPO, is stored as `head/legal`, not current), because the test is about the latest proxy. The original rule (always `c_level`) made Lucas Moskowitz (SVP, General Counsel, not in the proxy) a second legal chief next to Dan Gallagher (Chief Legal Officer, in the proxy). Implemented in `resolve._role_keys`; `titles.py` only marks such titles `legal_chief`.
+- **General Counsel / Chief Legal titles (corrected by Daniel after Phase 3):** `c_level` only if the person is listed as an executive officer in the latest proxy (DEF 14A); otherwise `seniority = head`, `function = legal`. This applies to "General Counsel", "Chief Legal Officer", "CLO" and combinations such as "SVP, General Counsel". Without a proxy (private companies), they are always `head`. **Current roles only (decided by Daniel after Phase 4):** a past General Counsel / Chief Legal role stays historical `c_level` (Anne Hoge, Chief Legal Officer 2019–2020, before the IPO). Deputy, Associate and Assistant General Counsel are not legal chiefs, so they stay `head`. The original rule (always `c_level`) made Lucas Moskowitz (SVP, General Counsel, not in the proxy) a second legal chief next to Dan Gallagher (Chief Legal Officer, in the proxy). Implemented in `resolve._role_keys`; `titles.py` only marks such titles `legal_chief`.
 - **Dedupe key:** `people` is unique on `(company_id, normalized_name)`. `normalize_name` strips accents, case, punctuation, honorifics and suffixes, and middle initials. It deliberately does **not** merge nicknames ("Vlad" vs "Vladimir"). A wrong merge would combine two people's facts, which is worse than a duplicate that shows up in validation.
 - **`facts.field`** is restricted to `full_name | title | location | bio`.
 - **`collection_runs.stats_json`** holds tokens in and out, cost, document counts per source, people found, and rejected extractions with reasons.
@@ -172,7 +172,8 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - **Effect:** Nick Jezienicki (byline on the Atlar partner post) is rejected. **Brendan Doyle (Head of Product) is also rejected:** all eight of his claims are bylines on Campfire's blog that don't name Campfire. Alexandra Roveda stays ("Campfire appointed Alexandra Roveda vice president of enterprise"). A name match alone can't tell two companies named Campfire apart; the phase reviewer checked the cached page, which describes Campfire's AI-native ERP. She is a single-source, low-confidence record for the Phase 4 hand-check. Robinhood loses only redundant claims (quote attributions, Wikipedia); no current person.
 - **Re-anchoring tightened:** when the model's quote rewords the title, the stored span must hold the exact name and exact title inside **one block**: the same text line, one markdown table cell (search text), or the same innermost HTML block element (`fetch.html_blocks`, kept as `RawDocument.blocks` for company-site and SEC pages; `doc.text` and the LLM cache are unchanged). A name in an `<h3>` with the title in the next `<p>` is two blocks and is not paired. **Flattened text** (search results have no HTML structure; the Robinhood IR leadership page arrives as one 1,500-character line) is stricter: the title must directly follow the name with only separators between them. In every case, a span that contains another name extracted from the same page is refused. Found by the phase reviewer: without this, "Robb Baldwin" could be paired with Pooja Anand's title on that line. This is stricter than needed for one-person profile pages (the IR `/management/<name>` pages lost those claims), but no person was lost: each also appears on the IR leadership page in one line. Tests cover an HTML team grid, markdown table cells, the flattened IR line, and a sentence with another name in between.
 - **Confidence:** a role supported only by re-anchored evidence from one source is `low`. Corroboration from another source lifts it. Re-anchored records stay in `review.reanchored`.
-- **Rejected:** accepting company-blog bylines (guest and partner authors are common: the Atlar post), and requiring the company name in every snippet (that would drop the company's own team and IR pages).
+- **Changed after Phase 4 (Daniel):** a **byline with a title on the company's own domain** counts as affiliation. A byline is a snippet that is only the name, the title, and perhaps a date, "by" or "min read" (`validate.is_byline`). A quoted outsider ("said Jane Doe, CFO of Acme") is not a byline, and a byline on a third-party site doesn't count. A byline whose title names another organisation ("Founder at Atlar", "CEO, Atlar") is refused; a function after a comma ("VP, Engineering") is not an organisation. A role whose affiliation rests on a **single** byline is `low` confidence. This restores Brendan Doyle (Head of Product, 8 posts, high). By the same rule it also restores Nick Jezienicki (Head of Technology Partnerships, low: one byline on a joint Campfire + Atlar post, so his employer is uncertain).
+- **Rejected:** requiring the company name in every snippet (that would drop the company's own team and IR pages).
 
 ## D23. Founders are current leadership only with a current operating role (decided by Daniel after Phase 3)
 
@@ -202,3 +203,38 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - **Daniel's "Verified by Daniel" cells** are carried over on regeneration, keyed by company, table and name. Re-running after fixes never loses the hand-check.
 - Subagent verdicts are inputs, not approvals. No data was changed from them without Daniel's decision.
 
+## D26. Company-site ranking: slug words, link text, no product pages (decided by Daniel after Phase 4)
+
+- **Problem:** Robinhood's newsroom post naming its security leaders (Erika Dean, Katelyn Perna) ranked 78th against a 60-page cap. There were two general causes:
+  - `/about/gold`, `/about/options` and similar product pages scored as top-ranked leadership pages, because "about" appeared anywhere in the path;
+  - the people-word list missed plurals and verb forms ("leaders", "appoints", "welcomes").
+- **Chosen:**
+  - A leadership path scores highest only when it is the last segment. Pages under it score 4.
+  - Slug and link text are matched as whole words, including plurals and verb forms (`company_site.people_words`).
+  - Anchor text from the homepage and up to 4 newsroom/blog index pages raises a post whose URL says nothing about people.
+  - Board-of-directors posts that name no executive role rank like any other post. Board members are out of scope, and those 9 posts were pushing out real leadership posts. One demoted post is about a share buyback, not the board's membership ("board of directors authorizes ..."). It only backed a redundant fact for Shiv Verma.
+- **Not targeted:** no person, URL or company is special-cased. The plural fix and the product-page demotion are what brought the security-leaders post into the crawl.
+- **Limits:**
+  - Robinhood's newsroom index pages yield no link text (the listing is probably rendered by JavaScript). The link-text signal is implemented and tested, but did nothing for Robinhood.
+  - Page titles are known only after fetching. Using them for ranking would spend the crawl budget, so they aren't used.
+- **Result (Robinhood):**
+  - Erika Dean and Katelyn Perna are found. Both are marked not current by the proxy rule (D16): the post is from 2024-06-10 and their C-level titles are not in the 2026 proxy.
+  - The crawl also found Jim Swartwout, Rich Cho, Rich Jackson, Smeeta Ramarathnam, Christina Lai, John Castelly and "Steph Guild" (listed as a possible duplicate of Stephanie Guild). Most come from older posts, so they are low confidence and listed as stale.
+  - People went from 36 to 45. New LLM cost was $0.07.
+
+## D27. Advisors are out of scope; titles use the newest wording; notes give reasons (decided by Daniel after Phase 4)
+
+- **Advisor titles** ("Chief Economic Advisor", "Senior Advisor", "Adviser") are out of scope in `titles.py`, whatever their prefix. An advisor is not an operating leader. Naomi Boyd is excluded on this rule.
+- **Displayed title:** the newest wording among a role's supporting claims (`resolve._title_claim`). An undated page whose **last** path segment is a people word (`/governance/leadership`, `/team`, `/about`) counts as the current listing and wins over dated announcements. A `/management/<name>` profile or `/about/<product>` page doesn't count. Ties go to source priority, then the fuller wording, so "Vice President and Chief Operating Officer, Robinhood Financial" keeps its scope. That one was found by the phase reviewer. This replaces "best source by priority", which showed Dan Gallagher's 2021 "Chief Legal Officer" instead of the 2026 proxy's "Chief Legal, Compliance and Corporate Affairs Officer". Older wording stays in the facts.
+- **Role notes give the reason with a source and date,** so the chat agent never reports a bare status. Examples:
+  - "not listed in the 2026-04-22 proxy, which is newer than this claim; last confirmed in company site robinhood.com/newsroom/... (2021-03-01)"
+  - "single source, last dated 2020-05-21 (older than 18 months), low confidence: company site ..."
+  - "stated as former in 8-K sec.gov/... (2026-05-08)"
+- "Total Rewards", "compensation" and "benefits" are the people function.
+
+## D28. Hand-curated review flags (decided by Daniel after Phase 4)
+
+- `data/<domain>/review_flags.json` holds flags Daniel decided on, each with a person, the flag text, a source URL, and who decided it. Example: Chris Koegel, "reported departing (secondary source, unconfirmed)", from the coverage scout's aggregator source.
+- Flags never change stored facts, roles or `is_current`. Koegel stays current, as decided. Flags are attached to the person in `leadership.json`, shown in VALIDATION.md, and will be shown by the chat agent.
+- A flag without a `source_url` or `decided_by` is an error. A flag that matches no stored person is logged.
+- **Rejected:** writing the scout's claim into the facts. It was not collected by the pipeline, and the source is a secondary aggregator.

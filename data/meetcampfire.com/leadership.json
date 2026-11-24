@@ -7,84 +7,30 @@
     "ticker": null
   },
   "collection": {
-    "claims_accepted": 25,
-    "claims_rejected": 77,
-    "cost_usd_including_cached": 0.6663,
+    "claims_accepted": 93,
+    "claims_rejected": 9,
+    "cost_usd_including_cached": 0.6702,
     "discovery": {
       "documents_by_source": {
-        "company_site": 86,
-        "search": 27,
+        "company_site": 88,
+        "search": 26,
         "sec_filing": 0
       },
       "skipped_by_source": {
-        "company_site": 9,
+        "company_site": 12,
         "search": 1,
         "sec_filing": 0
       }
     },
-    "documents": 113,
-    "documents_sent_to_llm": 100,
+    "documents": 114,
+    "documents_sent_to_llm": 101,
     "extraction_errors": [],
     "model": "claude-sonnet-5-5",
-    "people_current": 7,
-    "people_found": 7,
+    "people_current": 9,
+    "people_found": 9,
     "prefilter_skipped": 13,
     "prompt_version": "1",
     "rejections": [
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/how-the-secret-cfo-runs-his-own-books-on-campfire"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/tips-for-landing-the-cfo-role-w-cfo-trust-and-will"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/how-i-built-out-our-buyside-m-and-a-at-a-series-c-tech-company"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/the-spend-management-wars"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/meet-ember-the-newest-member-of-your-team"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/controllers-tech-stack-a-2026-playbook-for-modern-finance-teams"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/revenue-recognition-for-startups-and-beyond-the-complete-asc-606-guide"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/the-best-ai-native-erp-software-in-2026-a-guide-for-modern-finance-teams"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/campfire-chatgpt-for-accounting"
-      },
       {
         "full_name": "John Glasgow",
         "reason": "evidence does not state an affiliation with Campfire",
@@ -101,253 +47,13 @@
         "full_name": "John Glasgow",
         "reason": "evidence does not state an affiliation with Campfire",
         "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/introducing-ember-agents"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/january-2026-product-updates-automation-intelligence-and-global-scale"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/owning-our-superpower"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/introducing-custom-dashboards"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/build-custom-reports-with-ember"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/introducing-campfire-stripe-revenue-automation-with-stripe-data"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/announcing-campfire-s-basecamp-2026-the-largest-ai-conference-for-corporate-finance-and-accounting-leaders"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/tabs-campfire-billing-and-the-erp-in-sync"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog/campfire-announces-forecast-an-end-to-the-mid-month-guessing-game"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/campfire-announces-forecast-an-end-to-the-mid-month-guessing-game"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog/byo-csv-any-format-how-campfire-s-ai-native-erp-cleans-up-your-uploads"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/byo-csv-any-format-how-campfire-s-ai-native-erp-cleans-up-your-uploads"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog/introducing-migration-agent-erp-data-migration-in-minutes"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/introducing-migration-agent-erp-data-migration-in-minutes"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog/august-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/august-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/integrations-anrok"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/campfire-65-million-series-b-co-led-by-accel-and-ribbit"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/campfire-raises-35m-series-a-from-accel"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/february-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/january-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/july-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
         "url": "https://campfire.ai/blog/kongbasileconsulting-modernized-accounting-for-its-clients"
       },
       {
         "full_name": "John Glasgow",
         "reason": "evidence does not state an affiliation with Campfire",
         "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/may-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/november-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/suger-migrates-from-quickbooks-to-campfire-for-improved-financial-reporting"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/standardize-close-process-ember-skills"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/automating-month-end-accruals"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog/introducing-askember-in-slack"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/introducing-askember-in-slack"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/campfire-london-office"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog/lease-accounting-is-now-live-in-campfire"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/lease-accounting-is-now-live-in-campfire"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog/multi-book-accounting-is-now-live-in-campfire"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/multi-book-accounting-is-now-live-in-campfire"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/multi-book-accounting-what-it-is-and-why-it-matters"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/campfire-is-the-first-erp-with-an-mcp-store"
-      },
-      {
-        "full_name": "Nick Jezienicki",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Technology Partnerships",
         "url": "https://campfire.ai/blog/atlar"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/atlar"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/april-product-updates"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/march-product-updates"
       },
       {
         "full_name": "John Glasgow",
@@ -359,127 +65,13 @@
         "full_name": "John Glasgow",
         "reason": "evidence does not state an affiliation with Campfire",
         "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/introducing-LAM-the-first-erp-native-ai-model-built-for-accounting"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/announcing-campfire-x-rho-partnering-to-accelerate-accounting-workflows"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/april-2024-insights-from-around-the-campfire"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/campsites-the-community-for-accounting-finance-leaders"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/june-product-update"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/navigating-the-path-to-professional-fulfillment-lessons-from-the-operators"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/themes-from-campground-2023"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/partnerships-rippling"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/chatgpt-vs-product-integrated-ai"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/finance-leaders-guide-to-being-acquired"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
         "url": "https://campfire.ai/blog/insights-from-around-the-campfire-july-2024"
       },
       {
         "full_name": "John Glasgow",
         "reason": "evidence does not state an affiliation with Campfire",
         "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/insights-from-around-the-campfire-may-2024"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/merger-mastery-for-finance-leaders"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/the-modern-finance-tech-stack"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
         "url": "https://campfire.ai/blog/insights-from-around-the-campfire-september-2024"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/announcing-soc-2-type-2-compliance-at-campfire"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/vibe-accounting-the-future-of-finance-is-here"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/how-to-maximize-efficiency-in-2025"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog/why-modern-finance-teams-are-reconsidering-netsuite"
-      },
-      {
-        "full_name": "John Glasgow",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "CEO & Founder",
-        "url": "https://campfire.ai/blog?category=Finance"
-      },
-      {
-        "full_name": "Brendan Doyle",
-        "reason": "evidence does not state an affiliation with Campfire",
-        "title": "Head of Product",
-        "url": "https://campfire.ai/blog?category=Finance"
       },
       {
         "full_name": "Paul Nichols",
@@ -514,7 +106,7 @@
       ],
       "stale_single_source": [
         {
-          "note": "single source, last dated 2024-02-27 (older than 18 months)",
+          "note": "single source, last dated 2024-02-27 (older than 18 months), low confidence: company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27)",
           "person": "Fernando San Martin",
           "title": "Co-founder / CTO",
           "urls": [
@@ -574,10 +166,259 @@
             "raw_path": "data/meetcampfire.com/raw/search/c687c6f93954a0a819a7.txt"
           }
         }
-      ]
+      ],
+      "review_flags": []
     },
     {
       "id": 2,
+      "company_id": 1,
+      "full_name": "Brendan Doyle",
+      "location": null,
+      "bio": null,
+      "profile_url": "https://campfire.ai/blog/campfire-announces-forecast-an-end-to-the-mid-month-guessing-game",
+      "confidence": "high",
+      "updated_at": "2026-11-24T02:10:36+00:00",
+      "source_count": 8,
+      "roles": [
+        {
+          "title_raw": "Head of Product",
+          "function": "product",
+          "seniority": "head",
+          "is_current": true,
+          "as_of": "2026-11-04",
+          "note": null
+        }
+      ],
+      "facts": [
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle Head of Product • September 02, 2026",
+          "extracted_at": "2026-11-24T02:10:08+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/august-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:25+00:00",
+            "published_at": "2026-09-02",
+            "raw_path": "data/meetcampfire.com/raw/company_site/cf4ecc0f3963ea6a3ba8.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle\nHead of Product • September 09, 2026",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/byo-csv-any-format-how-campfire-s-ai-native-erp-cleans-up-your-uploads",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:23+00:00",
+            "published_at": "2026-09-09",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a623a4985ce5e743403a.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle Head of Product • September 18, 2026",
+          "extracted_at": "2026-11-24T02:10:07+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-announces-forecast-an-end-to-the-mid-month-guessing-game",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:22+00:00",
+            "published_at": "2026-09-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b3a51f55b101488f2fd9.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle Head of Product • June 25, 2026",
+          "extracted_at": "2026-11-24T02:10:16+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-askember-in-slack",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:50+00:00",
+            "published_at": "2026-06-25",
+            "raw_path": "data/meetcampfire.com/raw/company_site/891323819edb07d85457.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle Head of Product • September 03, 2026",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-migration-agent-erp-data-migration-in-minutes",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:24+00:00",
+            "published_at": "2026-09-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/ff80f2eeef231df382d2.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle Head of Product • June 08, 2026",
+          "extracted_at": "2026-11-24T02:10:19+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/lease-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:52+00:00",
+            "published_at": "2026-06-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/054d6e0984564617da37.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle\nHead of Product\nMay 27, 2026",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/multi-book-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:53+00:00",
+            "published_at": "2026-05-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/17a917e69a6e7dc7716c.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "Brendan Doyle",
+          "evidence_snippet": "Brendan Doyle • Head of Product",
+          "extracted_at": "2026-11-24T02:10:36+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog?category=Finance",
+            "source_type": "search",
+            "retrieved_at": "2026-11-24T01:44:12+00:00",
+            "published_at": "2026-11-04",
+            "raw_path": "data/meetcampfire.com/raw/search/dbed4a1b34099a6c8ae2.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle Head of Product • September 02, 2026",
+          "extracted_at": "2026-11-24T02:10:08+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/august-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:25+00:00",
+            "published_at": "2026-09-02",
+            "raw_path": "data/meetcampfire.com/raw/company_site/cf4ecc0f3963ea6a3ba8.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle\nHead of Product • September 09, 2026",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/byo-csv-any-format-how-campfire-s-ai-native-erp-cleans-up-your-uploads",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:23+00:00",
+            "published_at": "2026-09-09",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a623a4985ce5e743403a.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle Head of Product • September 18, 2026",
+          "extracted_at": "2026-11-24T02:10:07+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-announces-forecast-an-end-to-the-mid-month-guessing-game",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:22+00:00",
+            "published_at": "2026-09-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b3a51f55b101488f2fd9.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle Head of Product • June 25, 2026",
+          "extracted_at": "2026-11-24T02:10:16+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-askember-in-slack",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:50+00:00",
+            "published_at": "2026-06-25",
+            "raw_path": "data/meetcampfire.com/raw/company_site/891323819edb07d85457.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle Head of Product • September 03, 2026",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-migration-agent-erp-data-migration-in-minutes",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:24+00:00",
+            "published_at": "2026-09-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/ff80f2eeef231df382d2.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle Head of Product • June 08, 2026",
+          "extracted_at": "2026-11-24T02:10:19+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/lease-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:52+00:00",
+            "published_at": "2026-06-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/054d6e0984564617da37.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle\nHead of Product\nMay 27, 2026",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/multi-book-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:53+00:00",
+            "published_at": "2026-05-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/17a917e69a6e7dc7716c.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Product",
+          "evidence_snippet": "Brendan Doyle • Head of Product",
+          "extracted_at": "2026-11-24T02:10:36+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog?category=Finance",
+            "source_type": "search",
+            "retrieved_at": "2026-11-24T01:44:12+00:00",
+            "published_at": "2026-11-04",
+            "raw_path": "data/meetcampfire.com/raw/search/dbed4a1b34099a6c8ae2.txt"
+          }
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "id": 3,
       "company_id": 1,
       "full_name": "Chris McDonough",
       "location": null,
@@ -639,10 +480,11 @@
             "raw_path": "data/meetcampfire.com/raw/search/ca94c40027f71fde4062.txt"
           }
         }
-      ]
+      ],
+      "review_flags": []
     },
     {
-      "id": 3,
+      "id": 4,
       "company_id": 1,
       "full_name": "Erik Leavell",
       "location": null,
@@ -690,10 +532,11 @@
             "raw_path": "data/meetcampfire.com/raw/search/675f32c356168011c761.txt"
           }
         }
-      ]
+      ],
+      "review_flags": []
     },
     {
-      "id": 4,
+      "id": 5,
       "company_id": 1,
       "full_name": "Fernando San Martin",
       "location": null,
@@ -709,7 +552,7 @@
           "seniority": "c_level",
           "is_current": true,
           "as_of": "2024-02-27",
-          "note": "single source, last dated 2024-02-27 (older than 18 months)"
+          "note": "single source, last dated 2024-02-27 (older than 18 months), low confidence: company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27)"
         },
         {
           "title_raw": "Co-founder / CTO",
@@ -717,7 +560,7 @@
           "seniority": "founder",
           "is_current": true,
           "as_of": "2024-02-27",
-          "note": "single source, last dated 2024-02-27 (older than 18 months)"
+          "note": "single source, last dated 2024-02-27 (older than 18 months), low confidence: company site campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern (2024-02-27)"
         }
       ],
       "facts": [
@@ -763,25 +606,26 @@
             "raw_path": "data/meetcampfire.com/raw/company_site/b0a1ff5cb054d040aa71.txt"
           }
         }
-      ]
+      ],
+      "review_flags": []
     },
     {
-      "id": 5,
+      "id": 6,
       "company_id": 1,
       "full_name": "John Glasgow",
       "location": null,
-      "bio": "Prior to Campfire, John served 15+ years as a career finance veteran, during which he led the sale of Invoice2go to Bill.com for $625 million.",
-      "profile_url": "https://campfire.ai/blog/campfire-and-doss-partner-to-connect-real-time-operations-with-ai-native-accounting",
+      "bio": "I used to build CFO dashboards with general-purpose AI tools.",
+      "profile_url": "https://campfire.ai/blog/campfire-chatgpt-for-accounting",
       "confidence": "high",
       "updated_at": "2026-11-24T02:10:46+00:00",
-      "source_count": 17,
+      "source_count": 76,
       "roles": [
         {
-          "title_raw": "CEO & CFO",
+          "title_raw": "CEO & Founder",
           "function": "other",
           "seniority": "c_level",
           "is_current": true,
-          "as_of": "2026-10-16",
+          "as_of": "2026-11-18",
           "note": null
         },
         {
@@ -789,23 +633,51 @@
           "function": "other",
           "seniority": "founder",
           "is_current": true,
-          "as_of": "2026-10-16",
+          "as_of": "2026-11-18",
           "note": null
         }
       ],
       "facts": [
         {
           "field": "bio",
-          "value": "Prior to Campfire, John served 15+ years as a career finance veteran, during which he led the sale of Invoice2go to Bill.com for $625 million.",
-          "evidence_snippet": "Prior to Campfire, John served 15+ years as a career finance veteran, during which he led the sale of Invoice2go to Bill.com for $625 million.",
-          "extracted_at": "2026-11-24T02:09:56+00:00",
+          "value": "I used to build CFO dashboards with general-purpose AI tools.",
+          "evidence_snippet": "I used to build CFO dashboards with general-purpose AI tools.",
+          "extracted_at": "2026-11-24T02:10:04+00:00",
           "is_current": null,
           "source": {
-            "url": "https://campfire.ai/blog/from-cpa-to-cfo-ron-wangerin-cfo-trust-and-will",
+            "url": "https://campfire.ai/blog/introducing-custom-dashboards",
             "source_type": "company_site",
-            "retrieved_at": "2026-11-24T01:37:50+00:00",
-            "published_at": "2025-02-21",
-            "raw_path": "data/meetcampfire.com/raw/company_site/884df4c1b6cabc4b0f53.txt"
+            "retrieved_at": "2026-11-24T01:38:15+00:00",
+            "published_at": "2026-11-17",
+            "raw_path": "data/meetcampfire.com/raw/company_site/548210b90890cfb7fe69.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow CEO & Founder • October 08, 2026",
+          "extracted_at": "2026-11-24T02:10:06+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/announcing-campfire-s-basecamp-2026-the-largest-ai-conference-for-corporate-finance-and-accounting-leaders",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:20+00:00",
+            "published_at": "2026-10-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d40d81106835796dbc1b.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:22+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/announcing-campfire-x-rho-partnering-to-accelerate-accounting-workflows",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:42+00:00",
+            "published_at": "2024-03-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/374508dda478da318cd2.txt"
           }
         },
         {
@@ -820,6 +692,118 @@
             "retrieved_at": "2026-11-24T01:38:27+00:00",
             "published_at": "2025-08-12",
             "raw_path": "data/meetcampfire.com/raw/company_site/41af79ca2026530a8797.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nJanuary 16, 2025",
+          "extracted_at": "2026-11-24T02:10:31+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/announcing-soc-2-type-2-compliance-at-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:01+00:00",
+            "published_at": "2025-01-16",
+            "raw_path": "data/meetcampfire.com/raw/company_site/365d4863f6d21d601fef.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/april-2024-insights-from-around-the-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:43+00:00",
+            "published_at": "2024-04-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/978e65abf9ed53a8b73f.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:20+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/april-product-updates",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:36+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/ae9504f97721eaf64e51.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:08+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/august-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:25+00:00",
+            "published_at": "2026-09-02",
+            "raw_path": "data/meetcampfire.com/raw/company_site/cf4ecc0f3963ea6a3ba8.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:15+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/automating-month-end-accruals",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:49+00:00",
+            "published_at": "2026-06-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d8cbf58352f951f95966.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:04+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/build-custom-reports-with-ember",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:16+00:00",
+            "published_at": "2026-11-04",
+            "raw_path": "data/meetcampfire.com/raw/company_site/5d3cbdf27834404e2455.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/byo-csv-any-format-how-campfire-s-ai-native-erp-cleans-up-your-uploads",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:23+00:00",
+            "published_at": "2026-09-09",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a623a4985ce5e743403a.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • October 15, 2025",
+          "extracted_at": "2026-11-24T02:10:10+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-65-million-series-b-co-led-by-accel-and-ribbit",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:29+00:00",
+            "published_at": "2025-10-15",
+            "raw_path": "data/meetcampfire.com/raw/company_site/fc4f2d81600e31f5a16c.txt"
           }
         },
         {
@@ -853,6 +837,146 @@
         {
           "field": "full_name",
           "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:07+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-announces-forecast-an-end-to-the-mid-month-guessing-game",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:22+00:00",
+            "published_at": "2026-09-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b3a51f55b101488f2fd9.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:01+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-chatgpt-for-accounting",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:09+00:00",
+            "published_at": "2026-11-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/65910041de75776b0fb8.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nMay 14, 2026",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-is-the-first-erp-with-an-mcp-store",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:35+00:00",
+            "published_at": "2026-05-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/f82624bd49c9b718662c.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nJune 22, 2026",
+          "extracted_at": "2026-11-24T02:10:17+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-london-office",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:51+00:00",
+            "published_at": "2026-06-22",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d0e8c724ddef69e5d76f.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • August 27, 2025",
+          "extracted_at": "2026-11-24T02:10:11+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-raises-35m-series-a-from-accel",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:30+00:00",
+            "published_at": "2025-08-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/95adff80e81d9e7fcad8.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/campsites-the-community-for-accounting-finance-leaders",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:45+00:00",
+            "published_at": "2024-10-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/fec10d60aa629658816a.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:26+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/chatgpt-vs-product-integrated-ai",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:52+00:00",
+            "published_at": "2025-05-21",
+            "raw_path": "data/meetcampfire.com/raw/company_site/62225b3ef0da0fbe22d1.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:09:59+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/controllers-tech-stack-a-2026-playbook-for-modern-finance-teams",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:06+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/44f66205c2cbc6479b24.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:11+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/february-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:31+00:00",
+            "published_at": "2025-02-28",
+            "raw_path": "data/meetcampfire.com/raw/company_site/49718f12cbcfe435b089.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nAugust 14, 2024",
+          "extracted_at": "2026-11-24T02:10:28+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/finance-leaders-guide-to-being-acquired",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:53+00:00",
+            "published_at": "2024-08-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/82f85060283e275f64a6.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
           "evidence_snippet": "John Glasgow is the CEO and Founder of Campfire, the modern accounting software for tech companies.",
           "extracted_at": "2026-11-24T02:09:56+00:00",
           "is_current": null,
@@ -862,6 +986,48 @@
             "retrieved_at": "2026-11-24T01:37:50+00:00",
             "published_at": "2025-02-21",
             "raw_path": "data/meetcampfire.com/raw/company_site/884df4c1b6cabc4b0f53.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • February 01, 2025",
+          "extracted_at": "2026-11-24T02:09:58+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/how-i-built-out-our-buyside-m-and-a-at-a-series-c-tech-company",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:37:59+00:00",
+            "published_at": "2025-02-01",
+            "raw_path": "data/meetcampfire.com/raw/company_site/1da00f7cb89f93a721a8.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • October 08, 2026",
+          "extracted_at": "2026-11-24T02:09:56+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/how-the-secret-cfo-runs-his-own-books-on-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:37:49+00:00",
+            "published_at": "2026-10-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/12a255041ecb95bff38c.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nNovember 20, 2024",
+          "extracted_at": "2026-11-24T02:10:32+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/how-to-maximize-efficiency-in-2025",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:03+00:00",
+            "published_at": "2024-11-20",
+            "raw_path": "data/meetcampfire.com/raw/company_site/bf92defc820ea50e8120.txt"
           }
         },
         {
@@ -881,6 +1047,314 @@
         {
           "field": "full_name",
           "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:28+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/insights-from-around-the-campfire-may-2024",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:56+00:00",
+            "published_at": "2024-05-17",
+            "raw_path": "data/meetcampfire.com/raw/company_site/10b12e2b8f930e1d24a8.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/integrations-anrok",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:26+00:00",
+            "published_at": "2025-11-13",
+            "raw_path": "data/meetcampfire.com/raw/company_site/0bea4bcc24046f86383f.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:22+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-LAM-the-first-erp-native-ai-model-built-for-accounting",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:42+00:00",
+            "published_at": "2025-10-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/ba8c03b404a075b38b47.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:16+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-askember-in-slack",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:50+00:00",
+            "published_at": "2026-06-25",
+            "raw_path": "data/meetcampfire.com/raw/company_site/891323819edb07d85457.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:05+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-campfire-stripe-revenue-automation-with-stripe-data",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:17+00:00",
+            "published_at": "2024-02-23",
+            "raw_path": "data/meetcampfire.com/raw/company_site/677072cb15e3926f798e.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow CEO & Founder • November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:04+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-custom-dashboards",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:15+00:00",
+            "published_at": "2026-11-17",
+            "raw_path": "data/meetcampfire.com/raw/company_site/548210b90890cfb7fe69.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow CEO & Founder March 12, 2026",
+          "extracted_at": "2026-11-24T02:10:02+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-ember-agents",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:12+00:00",
+            "published_at": "2026-03-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2f94471ce4c2769bdb91.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-migration-agent-erp-data-migration-in-minutes",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:24+00:00",
+            "published_at": "2026-09-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/ff80f2eeef231df382d2.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:03+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/january-2026-product-updates-automation-intelligence-and-global-scale",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:13+00:00",
+            "published_at": "2026-02-10",
+            "raw_path": "data/meetcampfire.com/raw/company_site/bf136858eb3cb3911bb9.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:11+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/january-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:35+00:00",
+            "published_at": "2025-01-31",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b4c59961c2c1b7a32f1a.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:12+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/july-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:37+00:00",
+            "published_at": "2025-08-01",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b1ff00a621a1b325c2e1.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/june-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:46+00:00",
+            "published_at": "2024-06-23",
+            "raw_path": "data/meetcampfire.com/raw/company_site/bfa7b78398c6187c0294.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:19+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/lease-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:52+00:00",
+            "published_at": "2026-06-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/054d6e0984564617da37.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:20+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/march-product-updates",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:37+00:00",
+            "published_at": "2026-03-31",
+            "raw_path": "data/meetcampfire.com/raw/company_site/56f96b8818e6a5768d9e.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:13+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/may-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:41+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/3a0a53dea56736d31682.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:09:58+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/meet-ember-the-newest-member-of-your-team",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:01+00:00",
+            "published_at": "2024-12-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/51d5941a63a08b951ff2.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • January 14, 2025",
+          "extracted_at": "2026-11-24T02:10:30+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/merger-mastery-for-finance-leaders",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:57+00:00",
+            "published_at": "2025-01-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/720a68141a2d0f112077.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/multi-book-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:53+00:00",
+            "published_at": "2026-05-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/17a917e69a6e7dc7716c.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/multi-book-accounting-what-it-is-and-why-it-matters",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:34+00:00",
+            "published_at": "2026-05-22",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a58e56b6173fcef20be4.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/navigating-the-path-to-professional-fulfillment-lessons-from-the-operators",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:48+00:00",
+            "published_at": "2024-05-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/db02a6c4e0289c35dcbf.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:13+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/november-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:42+00:00",
+            "published_at": "2024-12-04",
+            "raw_path": "data/meetcampfire.com/raw/company_site/e3d1999b0706adc5c50d.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • March 03, 2026",
+          "extracted_at": "2026-11-24T02:10:03+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/owning-our-superpower",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:14+00:00",
+            "published_at": "2026-03-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b22bbc6f1d31eef6b3ec.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
           "evidence_snippet": "John Glasgow, CEO & Founder at Campfire",
           "extracted_at": "2026-11-24T02:10:22+00:00",
           "is_current": null,
@@ -890,6 +1364,20 @@
             "retrieved_at": "2026-11-24T01:58:40+00:00",
             "published_at": "2025-10-20",
             "raw_path": "data/meetcampfire.com/raw/company_site/91e43051659a68fa5eb9.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:26+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/partnerships-rippling",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:50+00:00",
+            "published_at": "2025-05-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/82b5dd8057e89bd3e44e.txt"
           }
         },
         {
@@ -909,6 +1397,146 @@
         {
           "field": "full_name",
           "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:00+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/revenue-recognition-for-startups-and-beyond-the-complete-asc-606-guide",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:07+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/232aec817b4221568f6c.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:15+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/standardize-close-process-ember-skills",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:48+00:00",
+            "published_at": "2026-07-21",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2b66fb1d419680d2a84e.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:14+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/suger-migrates-from-quickbooks-to-campfire-for-improved-financial-reporting",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:46+00:00",
+            "published_at": "2024-09-05",
+            "raw_path": "data/meetcampfire.com/raw/company_site/0b9c901bad2baff5dae9.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nOctober 06, 2026",
+          "extracted_at": "2026-11-24T02:10:06+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/tabs-campfire-billing-and-the-erp-in-sync",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:21+00:00",
+            "published_at": "2026-10-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/01e60364554cb386db44.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nAugust 26, 2026",
+          "extracted_at": "2026-11-24T02:10:01+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/the-best-ai-native-erp-software-in-2026-a-guide-for-modern-finance-teams",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:08+00:00",
+            "published_at": "2026-08-26",
+            "raw_path": "data/meetcampfire.com/raw/company_site/110e6f575f04e490b203.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:30+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/the-modern-finance-tech-stack",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:59+00:00",
+            "published_at": "2024-08-09",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2b6a841f0b5185c6bfba.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:09:58+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/the-spend-management-wars",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:00+00:00",
+            "published_at": "2024-10-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d30df1b93d828d460bfa.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nFebruary 23, 2024",
+          "extracted_at": "2026-11-24T02:10:26+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/themes-from-campground-2023",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:49+00:00",
+            "published_at": "2024-02-23",
+            "raw_path": "data/meetcampfire.com/raw/company_site/0ae2f2d6174646ba1ce8.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder January 16, 2025",
+          "extracted_at": "2026-11-24T02:09:56+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/tips-for-landing-the-cfo-role-w-cfo-trust-and-will",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:37:51+00:00",
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/7301c75cced50719c2e4.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:32+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/vibe-accounting-the-future-of-finance-is-here",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:02+00:00",
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/9ff4a098d954f88ce2b3.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
           "evidence_snippet": "John Glasgow\nis the CEO and Founder of Campfire, the modern accounting software for tech companies.",
           "extracted_at": "2026-11-24T02:10:15+00:00",
           "is_current": null,
@@ -918,6 +1546,34 @@
             "retrieved_at": "2026-11-24T01:38:47+00:00",
             "published_at": "2025-02-06",
             "raw_path": "data/meetcampfire.com/raw/company_site/960bb7b248eb836120ff.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:06+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:19+00:00",
+            "published_at": "2024-02-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b0a1ff5cb054d040aa71.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:32+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/why-modern-finance-teams-are-reconsidering-netsuite",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:06+00:00",
+            "published_at": "2024-09-11",
+            "raw_path": "data/meetcampfire.com/raw/company_site/e2672cb4233553b1e416.txt"
           }
         },
         {
@@ -946,6 +1602,20 @@
             "retrieved_at": "2026-11-24T01:44:15+00:00",
             "published_at": null,
             "raw_path": "data/meetcampfire.com/raw/search/675f32c356168011c761.txt"
+          }
+        },
+        {
+          "field": "full_name",
+          "value": "John Glasgow",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:36+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog?category=Finance",
+            "source_type": "search",
+            "retrieved_at": "2026-11-24T01:44:12+00:00",
+            "published_at": "2026-11-04",
+            "raw_path": "data/meetcampfire.com/raw/search/dbed4a1b34099a6c8ae2.txt"
           }
         },
         {
@@ -1048,6 +1718,34 @@
         },
         {
           "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow CEO & Founder • October 08, 2026",
+          "extracted_at": "2026-11-24T02:10:06+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/announcing-campfire-s-basecamp-2026-the-largest-ai-conference-for-corporate-finance-and-accounting-leaders",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:20+00:00",
+            "published_at": "2026-10-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d40d81106835796dbc1b.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:22+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/announcing-campfire-x-rho-partnering-to-accelerate-accounting-workflows",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:42+00:00",
+            "published_at": "2024-03-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/374508dda478da318cd2.txt"
+          }
+        },
+        {
+          "field": "title",
           "value": "CEO and Founder",
           "evidence_snippet": "— John Glasgow, CEO and Founder at Campfire",
           "extracted_at": "2026-11-24T02:10:09+00:00",
@@ -1058,6 +1756,118 @@
             "retrieved_at": "2026-11-24T01:38:27+00:00",
             "published_at": "2025-08-12",
             "raw_path": "data/meetcampfire.com/raw/company_site/41af79ca2026530a8797.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nJanuary 16, 2025",
+          "extracted_at": "2026-11-24T02:10:31+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/announcing-soc-2-type-2-compliance-at-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:01+00:00",
+            "published_at": "2025-01-16",
+            "raw_path": "data/meetcampfire.com/raw/company_site/365d4863f6d21d601fef.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/april-2024-insights-from-around-the-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:43+00:00",
+            "published_at": "2024-04-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/978e65abf9ed53a8b73f.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:20+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/april-product-updates",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:36+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/ae9504f97721eaf64e51.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:08+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/august-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:25+00:00",
+            "published_at": "2026-09-02",
+            "raw_path": "data/meetcampfire.com/raw/company_site/cf4ecc0f3963ea6a3ba8.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:15+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/automating-month-end-accruals",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:49+00:00",
+            "published_at": "2026-06-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d8cbf58352f951f95966.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:04+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/build-custom-reports-with-ember",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:16+00:00",
+            "published_at": "2026-11-04",
+            "raw_path": "data/meetcampfire.com/raw/company_site/5d3cbdf27834404e2455.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/byo-csv-any-format-how-campfire-s-ai-native-erp-cleans-up-your-uploads",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:23+00:00",
+            "published_at": "2026-09-09",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a623a4985ce5e743403a.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • October 15, 2025",
+          "extracted_at": "2026-11-24T02:10:10+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-65-million-series-b-co-led-by-accel-and-ribbit",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:29+00:00",
+            "published_at": "2025-10-15",
+            "raw_path": "data/meetcampfire.com/raw/company_site/fc4f2d81600e31f5a16c.txt"
           }
         },
         {
@@ -1090,6 +1900,146 @@
         },
         {
           "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:07+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-announces-forecast-an-end-to-the-mid-month-guessing-game",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:22+00:00",
+            "published_at": "2026-09-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b3a51f55b101488f2fd9.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:01+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-chatgpt-for-accounting",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:09+00:00",
+            "published_at": "2026-11-18",
+            "raw_path": "data/meetcampfire.com/raw/company_site/65910041de75776b0fb8.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nMay 14, 2026",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-is-the-first-erp-with-an-mcp-store",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:35+00:00",
+            "published_at": "2026-05-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/f82624bd49c9b718662c.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nJune 22, 2026",
+          "extracted_at": "2026-11-24T02:10:17+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-london-office",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:51+00:00",
+            "published_at": "2026-06-22",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d0e8c724ddef69e5d76f.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • August 27, 2025",
+          "extracted_at": "2026-11-24T02:10:11+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campfire-raises-35m-series-a-from-accel",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:30+00:00",
+            "published_at": "2025-08-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/95adff80e81d9e7fcad8.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/campsites-the-community-for-accounting-finance-leaders",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:45+00:00",
+            "published_at": "2024-10-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/fec10d60aa629658816a.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:26+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/chatgpt-vs-product-integrated-ai",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:52+00:00",
+            "published_at": "2025-05-21",
+            "raw_path": "data/meetcampfire.com/raw/company_site/62225b3ef0da0fbe22d1.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:09:59+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/controllers-tech-stack-a-2026-playbook-for-modern-finance-teams",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:06+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/44f66205c2cbc6479b24.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:11+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/february-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:31+00:00",
+            "published_at": "2025-02-28",
+            "raw_path": "data/meetcampfire.com/raw/company_site/49718f12cbcfe435b089.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nAugust 14, 2024",
+          "extracted_at": "2026-11-24T02:10:28+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/finance-leaders-guide-to-being-acquired",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:53+00:00",
+            "published_at": "2024-08-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/82f85060283e275f64a6.txt"
+          }
+        },
+        {
+          "field": "title",
           "value": "CEO and Founder",
           "evidence_snippet": "John Glasgow is the CEO and Founder of Campfire, the modern accounting software for tech companies.",
           "extracted_at": "2026-11-24T02:09:56+00:00",
@@ -1100,6 +2050,48 @@
             "retrieved_at": "2026-11-24T01:37:50+00:00",
             "published_at": "2025-02-21",
             "raw_path": "data/meetcampfire.com/raw/company_site/884df4c1b6cabc4b0f53.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • February 01, 2025",
+          "extracted_at": "2026-11-24T02:09:58+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/how-i-built-out-our-buyside-m-and-a-at-a-series-c-tech-company",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:37:59+00:00",
+            "published_at": "2025-02-01",
+            "raw_path": "data/meetcampfire.com/raw/company_site/1da00f7cb89f93a721a8.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • October 08, 2026",
+          "extracted_at": "2026-11-24T02:09:56+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/how-the-secret-cfo-runs-his-own-books-on-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:37:49+00:00",
+            "published_at": "2026-10-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/12a255041ecb95bff38c.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nNovember 20, 2024",
+          "extracted_at": "2026-11-24T02:10:32+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/how-to-maximize-efficiency-in-2025",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:03+00:00",
+            "published_at": "2024-11-20",
+            "raw_path": "data/meetcampfire.com/raw/company_site/bf92defc820ea50e8120.txt"
           }
         },
         {
@@ -1119,6 +2111,314 @@
         {
           "field": "title",
           "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:28+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/insights-from-around-the-campfire-may-2024",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:56+00:00",
+            "published_at": "2024-05-17",
+            "raw_path": "data/meetcampfire.com/raw/company_site/10b12e2b8f930e1d24a8.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/integrations-anrok",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:26+00:00",
+            "published_at": "2025-11-13",
+            "raw_path": "data/meetcampfire.com/raw/company_site/0bea4bcc24046f86383f.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:22+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-LAM-the-first-erp-native-ai-model-built-for-accounting",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:42+00:00",
+            "published_at": "2025-10-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/ba8c03b404a075b38b47.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:16+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-askember-in-slack",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:50+00:00",
+            "published_at": "2026-06-25",
+            "raw_path": "data/meetcampfire.com/raw/company_site/891323819edb07d85457.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:05+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-campfire-stripe-revenue-automation-with-stripe-data",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:17+00:00",
+            "published_at": "2024-02-23",
+            "raw_path": "data/meetcampfire.com/raw/company_site/677072cb15e3926f798e.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow CEO & Founder • November 17, 2026",
+          "extracted_at": "2026-11-24T02:10:04+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-custom-dashboards",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:15+00:00",
+            "published_at": "2026-11-17",
+            "raw_path": "data/meetcampfire.com/raw/company_site/548210b90890cfb7fe69.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow CEO & Founder March 12, 2026",
+          "extracted_at": "2026-11-24T02:10:02+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-ember-agents",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:12+00:00",
+            "published_at": "2026-03-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2f94471ce4c2769bdb91.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:09+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/introducing-migration-agent-erp-data-migration-in-minutes",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:24+00:00",
+            "published_at": "2026-09-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/ff80f2eeef231df382d2.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:03+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/january-2026-product-updates-automation-intelligence-and-global-scale",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:13+00:00",
+            "published_at": "2026-02-10",
+            "raw_path": "data/meetcampfire.com/raw/company_site/bf136858eb3cb3911bb9.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:11+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/january-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:35+00:00",
+            "published_at": "2025-01-31",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b4c59961c2c1b7a32f1a.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:12+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/july-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:37+00:00",
+            "published_at": "2025-08-01",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b1ff00a621a1b325c2e1.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/june-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:46+00:00",
+            "published_at": "2024-06-23",
+            "raw_path": "data/meetcampfire.com/raw/company_site/bfa7b78398c6187c0294.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:19+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/lease-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:52+00:00",
+            "published_at": "2026-06-08",
+            "raw_path": "data/meetcampfire.com/raw/company_site/054d6e0984564617da37.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:20+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/march-product-updates",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:37+00:00",
+            "published_at": "2026-03-31",
+            "raw_path": "data/meetcampfire.com/raw/company_site/56f96b8818e6a5768d9e.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:13+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/may-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:41+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/3a0a53dea56736d31682.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:09:58+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/meet-ember-the-newest-member-of-your-team",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:01+00:00",
+            "published_at": "2024-12-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/51d5941a63a08b951ff2.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • January 14, 2025",
+          "extracted_at": "2026-11-24T02:10:30+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/merger-mastery-for-finance-leaders",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:57+00:00",
+            "published_at": "2025-01-14",
+            "raw_path": "data/meetcampfire.com/raw/company_site/720a68141a2d0f112077.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/multi-book-accounting-is-now-live-in-campfire",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:53+00:00",
+            "published_at": "2026-05-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/17a917e69a6e7dc7716c.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:18+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/multi-book-accounting-what-it-is-and-why-it-matters",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:34+00:00",
+            "published_at": "2026-05-22",
+            "raw_path": "data/meetcampfire.com/raw/company_site/a58e56b6173fcef20be4.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:24+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/navigating-the-path-to-professional-fulfillment-lessons-from-the-operators",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:48+00:00",
+            "published_at": "2024-05-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/db02a6c4e0289c35dcbf.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:13+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/november-product-update",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:42+00:00",
+            "published_at": "2024-12-04",
+            "raw_path": "data/meetcampfire.com/raw/company_site/e3d1999b0706adc5c50d.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder • March 03, 2026",
+          "extracted_at": "2026-11-24T02:10:03+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/owning-our-superpower",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:14+00:00",
+            "published_at": "2026-03-03",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b22bbc6f1d31eef6b3ec.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
           "evidence_snippet": "John Glasgow, CEO & Founder at Campfire",
           "extracted_at": "2026-11-24T02:10:22+00:00",
           "is_current": true,
@@ -1128,6 +2428,20 @@
             "retrieved_at": "2026-11-24T01:58:40+00:00",
             "published_at": "2025-10-20",
             "raw_path": "data/meetcampfire.com/raw/company_site/91e43051659a68fa5eb9.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:26+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/partnerships-rippling",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:50+00:00",
+            "published_at": "2025-05-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/82b5dd8057e89bd3e44e.txt"
           }
         },
         {
@@ -1146,6 +2460,146 @@
         },
         {
           "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder\nNovember 17, 2026",
+          "extracted_at": "2026-11-24T02:10:00+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/revenue-recognition-for-startups-and-beyond-the-complete-asc-606-guide",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:07+00:00",
+            "published_at": null,
+            "raw_path": "data/meetcampfire.com/raw/company_site/232aec817b4221568f6c.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:15+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/standardize-close-process-ember-skills",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:48+00:00",
+            "published_at": "2026-07-21",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2b66fb1d419680d2a84e.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:14+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/suger-migrates-from-quickbooks-to-campfire-for-improved-financial-reporting",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:46+00:00",
+            "published_at": "2024-09-05",
+            "raw_path": "data/meetcampfire.com/raw/company_site/0b9c901bad2baff5dae9.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nOctober 06, 2026",
+          "extracted_at": "2026-11-24T02:10:06+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/tabs-campfire-billing-and-the-erp-in-sync",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:21+00:00",
+            "published_at": "2026-10-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/01e60364554cb386db44.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nAugust 26, 2026",
+          "extracted_at": "2026-11-24T02:10:01+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/the-best-ai-native-erp-software-in-2026-a-guide-for-modern-finance-teams",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:08+00:00",
+            "published_at": "2026-08-26",
+            "raw_path": "data/meetcampfire.com/raw/company_site/110e6f575f04e490b203.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:30+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/the-modern-finance-tech-stack",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:59+00:00",
+            "published_at": "2024-08-09",
+            "raw_path": "data/meetcampfire.com/raw/company_site/2b6a841f0b5185c6bfba.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:09:58+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/the-spend-management-wars",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:00+00:00",
+            "published_at": "2024-10-29",
+            "raw_path": "data/meetcampfire.com/raw/company_site/d30df1b93d828d460bfa.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder\nFebruary 23, 2024",
+          "extracted_at": "2026-11-24T02:10:26+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/themes-from-campground-2023",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:49+00:00",
+            "published_at": "2024-02-23",
+            "raw_path": "data/meetcampfire.com/raw/company_site/0ae2f2d6174646ba1ce8.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder January 16, 2025",
+          "extracted_at": "2026-11-24T02:09:56+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/tips-for-landing-the-cfo-role-w-cfo-trust-and-will",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:37:51+00:00",
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/7301c75cced50719c2e4.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:32+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/vibe-accounting-the-future-of-finance-is-here",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:02+00:00",
+            "published_at": "2025-02-06",
+            "raw_path": "data/meetcampfire.com/raw/company_site/9ff4a098d954f88ce2b3.txt"
+          }
+        },
+        {
+          "field": "title",
           "value": "CEO and Founder",
           "evidence_snippet": "John Glasgow\nis the CEO and Founder of Campfire, the modern accounting software for tech companies.",
           "extracted_at": "2026-11-24T02:10:15+00:00",
@@ -1156,6 +2610,34 @@
             "retrieved_at": "2026-11-24T01:38:47+00:00",
             "published_at": "2025-02-06",
             "raw_path": "data/meetcampfire.com/raw/company_site/960bb7b248eb836120ff.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:06+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:38:19+00:00",
+            "published_at": "2024-02-27",
+            "raw_path": "data/meetcampfire.com/raw/company_site/b0a1ff5cb054d040aa71.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow\n•\nCEO & Founder",
+          "extracted_at": "2026-11-24T02:10:32+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/why-modern-finance-teams-are-reconsidering-netsuite",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:59:06+00:00",
+            "published_at": "2024-09-11",
+            "raw_path": "data/meetcampfire.com/raw/company_site/e2672cb4233553b1e416.txt"
           }
         },
         {
@@ -1184,6 +2666,20 @@
             "retrieved_at": "2026-11-24T01:44:15+00:00",
             "published_at": null,
             "raw_path": "data/meetcampfire.com/raw/search/675f32c356168011c761.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "CEO & Founder",
+          "evidence_snippet": "John Glasgow • CEO & Founder",
+          "extracted_at": "2026-11-24T02:10:36+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog?category=Finance",
+            "source_type": "search",
+            "retrieved_at": "2026-11-24T01:44:12+00:00",
+            "published_at": "2026-11-04",
+            "raw_path": "data/meetcampfire.com/raw/search/dbed4a1b34099a6c8ae2.txt"
           }
         },
         {
@@ -1284,10 +2780,11 @@
             "raw_path": "data/meetcampfire.com/raw/search/18a48916497eff3a19d4.txt"
           }
         }
-      ]
+      ],
+      "review_flags": []
     },
     {
-      "id": 6,
+      "id": 7,
       "company_id": 1,
       "full_name": "Marcio Arnecke",
       "location": null,
@@ -1349,10 +2846,63 @@
             "raw_path": "data/meetcampfire.com/raw/search/c9a2162d78022f970667.txt"
           }
         }
-      ]
+      ],
+      "review_flags": []
     },
     {
-      "id": 7,
+      "id": 8,
+      "company_id": 1,
+      "full_name": "Nick Jezienicki",
+      "location": null,
+      "bio": null,
+      "profile_url": "https://campfire.ai/blog/atlar",
+      "confidence": "low",
+      "updated_at": "2026-11-24T02:10:20+00:00",
+      "source_count": 1,
+      "roles": [
+        {
+          "title_raw": "Head of Technology Partnerships",
+          "function": "sales",
+          "seniority": "head",
+          "is_current": true,
+          "as_of": "2026-05-12",
+          "note": "affiliation rests on a single author byline on the company's site: company site campfire.ai/blog/atlar (2026-05-12)"
+        }
+      ],
+      "facts": [
+        {
+          "field": "full_name",
+          "value": "Nick Jezienicki",
+          "evidence_snippet": "Nick Jezienicki Head of Technology Partnerships • May 12, 2026",
+          "extracted_at": "2026-11-24T02:10:20+00:00",
+          "is_current": null,
+          "source": {
+            "url": "https://campfire.ai/blog/atlar",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:35+00:00",
+            "published_at": "2026-05-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/93ead9aeec2c3fd72181.txt"
+          }
+        },
+        {
+          "field": "title",
+          "value": "Head of Technology Partnerships",
+          "evidence_snippet": "Nick Jezienicki Head of Technology Partnerships • May 12, 2026",
+          "extracted_at": "2026-11-24T02:10:20+00:00",
+          "is_current": true,
+          "source": {
+            "url": "https://campfire.ai/blog/atlar",
+            "source_type": "company_site",
+            "retrieved_at": "2026-11-24T01:58:35+00:00",
+            "published_at": "2026-05-12",
+            "raw_path": "data/meetcampfire.com/raw/company_site/93ead9aeec2c3fd72181.txt"
+          }
+        }
+      ],
+      "review_flags": []
+    },
+    {
+      "id": 9,
       "company_id": 1,
       "full_name": "Paul Nichols",
       "location": null,
@@ -1456,7 +3006,8 @@
             "raw_path": "data/meetcampfire.com/raw/search/dcdfc356dd81bf01948f.txt"
           }
         }
-      ]
+      ],
+      "review_flags": []
     }
   ]
 }

@@ -2,12 +2,12 @@
 
 None. Everyone the scout found is in the pipeline's data: John Glasgow, Marcio Arnecke, and Alexandra Roveda. The scout also confirms Roveda from a Fortune press release dated 2026-10-30, so she is the right Campfire.
 
-Possible misses caused by the affiliation rule (D22), for your decision:
+Restored after Phase 4: a byline with a title on the company's own domain now counts as affiliation (D22, changed):
 
-| Name | Title | Why rejected | Verifier's view | Verified by Daniel |
+| Name | Title | Evidence | Verifier's earlier view | Verified by Daniel |
 |---|---|---|---|---|
-| Brendan Doyle | Head of Product | 8 rejected claims (bylines on 7 campfire.ai blog posts plus the blog index, per `collection.rejections`); none names Campfire | Very likely a Campfire employee (posts written in Campfire's voice) | ✅ / ❌ / note |
-| Nick Jezienicki | Head of Technology Partnerships | 1 byline on the Atlar partner post | Probably Campfire, less certain (a single post) | ✅ / ❌ / note |
+| Brendan Doyle | Head of Product | bylines on 7 campfire.ai blog posts plus the blog index | Very likely a Campfire employee | ✅ / ❌ / note |
+| Nick Jezienicki | Head of Technology Partnerships | one byline, on the Atlar partner post | Probably Campfire, less certain | ✅ / ❌ / note |
 
 ### Scout vs. pipeline
 
@@ -17,3 +17,4 @@ Possible misses caused by the affiliation rule (D22), for your decision:
   - Erik Leavell (Head of Finance & Applied AI, campfire.ai/basecamp).
 - **CFO:** John Glasgow is also called "CEO & CFO". The Daily Upside (2026-11-09) reports the CFO role is open, with a hire expected soon. That may need a re-collect later.
 - campfire.ai has no team or about page, so coverage depends on the blog, press, and search.
+- **Source-verifier verdicts** are from the collection in commit 60a6431. Brendan Doyle and Nick Jezienicki were rejected then, so they show "not checked".

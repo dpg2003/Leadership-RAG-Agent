@@ -17,7 +17,7 @@ from urllib.parse import urlsplit
 
 from leadership.models import normalize_name
 from leadership.pipeline.extract import ExtractedPerson, Extraction
-from leadership.pipeline.titles import TitleClass, classify_title, mentions_former
+from leadership.pipeline.titles import TitleClass, classify_title, function_for, mentions_former
 from leadership.sources.base import Company, RawDocument
 from leadership.sources.search import is_company_host
 
@@ -54,6 +54,7 @@ class Claim:
     bio: str | None = None
     reanchored: bool = False  # evidence span taken from the source, not the model's quote
     extracted_at: str | None = None  # when the LLM extraction was made (stable on re-runs)
+    affiliation: str = ""  # how the evidence ties the person to the company (D22)
 
 
 @dataclass(frozen=True)
@@ -105,23 +106,100 @@ def _own_sec_filing(doc: RawDocument, company: Company) -> bool:
     )
 
 
-def affiliation_problem(doc: RawDocument, snippet: str, company: Company | None) -> str:
-    """D22: the evidence must itself tie the person to the company. Accepted when the source is
+_BYLINE_FILLER = re.compile(
+    r"\b(?:by|written by|posted by|author|authored by|and)\b"
+    r"|\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2},?\s+\d{4}\b"
+    r"|\b\d{4}-\d\d-\d\d\b|\b\d+\s+min(?:ute)?s?\s+read\b",
+    re.IGNORECASE,
+)
+
+
+def is_byline(snippet: str, full_name: str, title: str) -> bool:
+    """The snippet is an author line: name, title, and at most a date or 'by'/'min read'."""
+    rest = norm_text(snippet).casefold()
+    for part in (norm_text(full_name).casefold(), norm_text(title).casefold()):
+        if part not in rest:
+            return False
+        rest = rest.replace(part, " ", 1)
+    rest = _BYLINE_FILLER.sub(" ", rest)
+    return not re.sub(r"[\W_]+", "", rest)
+
+
+# Words after "of" / "," that name a scope, not an organisation ("Chief of Staff", "VP, EMEA").
+_NOT_AN_ORG = re.compile(
+    r"\b(?:the|our|team|company|staff|emea|apac|amer|americas|europe|asia|latam|"
+    r"north america|global|international|us|uk|eu)\b"
+)
+
+
+def _names_other_employer(title: str, company: Company) -> bool:
+    """The title itself names an organisation that isn't the company: 'Founder at Atlar',
+    'Head of Partnerships at Atlar', 'CEO, Atlar'. The text after the LAST 'at'/'@' and the
+    text after the last ','/'of' are each checked. 'VP, Engineering' (a function), 'Chief of
+    Staff' and 'VP, EMEA' (scopes) and '... at Campfire' (the company) are not."""
+    names = _company_names(company)
+    t = norm_text(title)
+    for separators in (r"\bat\b|@", r",|\bof\b"):
+        parts = re.split(separators, t, flags=re.IGNORECASE)
+        if len(parts) < 2:
+            continue
+        tail = parts[-1].strip().casefold()
+        if not tail or any(n in tail for n in names):
+            continue
+        if function_for(tail) == "other" and not _NOT_AN_ORG.search(tail):
+            return True
+    return False
+
+
+def affiliation_problem(
+    doc: RawDocument,
+    snippet: str,
+    company: Company | None,
+    full_name: str = "",
+    title: str = "",
+) -> str:
+    return (
+        ""
+        if affiliation_via(doc, snippet, company, full_name, title)
+        else (f"evidence does not state an affiliation with {company.name if company else ''}")
+    )
+
+
+def affiliation_via(
+    doc: RawDocument,
+    snippet: str,
+    company: Company | None,
+    full_name: str = "",
+    title: str = "",
+) -> str:
+    """Which route ties the person to the company: 'sec_filing', 'names_company',
+    'people_page', 'first_person', 'byline', or '' (none: reject).
+
+    D22: the evidence must itself tie the person to the company. Accepted when the source is
     one of the company's own SEC filings; the snippet names the company; or the page is the
-    company's own and is a people page (team, leadership, IR management) or speaks in the
-    first person. A byline on a company blog post ("Jane Doe, Head of Partnerships") is not
-    enough: guest and partner authors are common."""
-    if company is None or doc.source_type == "sec_filing" or _own_sec_filing(doc, company):
-        return ""
+    company's own and is a people page (team, leadership, IR management), speaks in the
+    first person, or is a byline: the snippet is only the name, the title and perhaps a date
+    ("Jane Doe · Head of Product · May 12, 2026"). Decided by Daniel after Phase 4: an author
+    byline with a title on the company's own domain states the affiliation. A quoted outsider
+    ("said Jane Doe, CFO of Acme") is not a byline."""
+    if company is None:
+        return "unchecked"
+    if doc.source_type == "sec_filing" or _own_sec_filing(doc, company):
+        return "sec_filing"
     s = norm_text(snippet).casefold()
     if any(
         re.search(rf"(?<![a-z0-9]){re.escape(n)}(?![a-z0-9])", s) for n in _company_names(company)
     ):
+        return "names_company"
+    if not (doc.source_type == "company_site" or is_company_host(doc.url, company)):
         return ""
-    own = doc.source_type == "company_site" or is_company_host(doc.url, company)
-    if own and (_PEOPLE_PAGE.search(urlsplit(doc.url).path) or _FIRST_PERSON.search(snippet)):
-        return ""
-    return f"evidence does not state an affiliation with {company.name}"
+    if _PEOPLE_PAGE.search(urlsplit(doc.url).path):
+        return "people_page"
+    if _FIRST_PERSON.search(snippet):
+        return "first_person"
+    if is_byline(snippet, full_name, title) and not _names_other_employer(title, company):
+        return "byline"
+    return ""
 
 
 def _snippet_problem(snippet: str, last_name: str, title: str, doc_norm: str) -> str:
@@ -231,9 +309,9 @@ def check_person(
     title_class = classify_title(p.title, company.name if company else None)
     if title_class is None:
         return reject("title out of scope (not C-level, founder, VP or Head)")
-    affiliation = affiliation_problem(doc, snippet, company)
-    if affiliation:
-        return reject(affiliation)
+    via = affiliation_via(doc, snippet, company, p.full_name, p.title)
+    if not via:
+        return reject(f"evidence does not state an affiliation with {company.name}")
 
     status = p.status
     former_re = rf"\bformer(?:ly)?\b[^.]{{0,40}}{re.escape(p.title)}"
@@ -256,6 +334,7 @@ def check_person(
 
     return Claim(
         reanchored=reanchored,
+        affiliation=via,
         doc=doc,
         full_name=p.full_name.strip(),
         title=p.title.strip(),
