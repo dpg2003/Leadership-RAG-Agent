@@ -148,7 +148,7 @@ def write_results(results: list[Result], model: str, out_dir: Path = EVAL_DIR) -
     data = {"run_at": now, "model": model, "passed": passed, "total": len(results),
             "cost_usd": cost, "results": [asdict(r) for r in results]}  # fmt: skip
     (out_dir / "results.json").write_text(
-        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
     )
     lines = [
         "# Eval results",
@@ -172,5 +172,5 @@ def write_results(results: list[Result], model: str, out_dir: Path = EVAL_DIR) -
             + " |"
         )
     path = out_dir / "RESULTS.md"
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     return path
