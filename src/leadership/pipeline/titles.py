@@ -164,8 +164,8 @@ def classify_title(title: str, company_name: str | None = None) -> TitleClass | 
 def seat_functions(title: str) -> set[str]:
     """Functions of every C-suite seat a title names: "CEO & CFO" -> {"other", "finance"}.
 
-    Resolution keeps one role row per title, filed under its first seat (D29/D30), so the
-    chat tools use this to surface a second seat named in a source's wording (D36)."""
+    resolve.py makes one C-level role row per seat (D37); the chat tools also use it for
+    VP-level wordings that name a C-suite seat ("VP and CISO", D36)."""
     t = _clean(title)
     seats = {_C_ACRONYMS[w] for w in re.findall(r"[a-z]+", t) if w in _C_ACRONYMS}
     for phrase in re.findall(r"\bchief\b(?:\s+[a-z&,']+){1,5}?\s+officer\b", t):

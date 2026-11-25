@@ -155,7 +155,7 @@
     "review": {
       "c_level_not_in_proxy_undated": [
         {
-          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)",
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (search copy of current roster, searched 2026-11-24)",
           "person": "Stephanie Guild",
           "title": "Chief Investment Officer",
           "urls": [
@@ -163,7 +163,7 @@
           ]
         },
         {
-          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)",
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (search copy of current roster, searched 2026-11-24)",
           "person": "Connie Schan",
           "title": "Chief People Officer",
           "urls": [
@@ -1657,7 +1657,7 @@
           "seniority": "c_level",
           "is_current": true,
           "as_of": "2026-11-24",
-          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)"
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (search copy of current roster, searched 2026-11-24)"
         }
       ],
       "facts": [
@@ -4353,7 +4353,7 @@
           "seniority": "c_level",
           "is_current": true,
           "as_of": "2026-11-24",
-          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)"
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (search copy of current roster, searched 2026-11-24)"
         },
         {
           "title_raw": "Head of Investment Strategy",

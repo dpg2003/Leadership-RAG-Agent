@@ -360,6 +360,11 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   - the proxy rule (D16): a C-level title on the current roster but not in the proxy stays current and stays listed for review, with the note "listed on the company's current roster (retrieved <date>)".
   - Promotions (a newer title supersedes an older one) still use real page dates only. A retrieval date says when the page was read, not when a title started.
 - **Source records are unchanged:** sources.published_at stays NULL, because the page itself has no date. The chat marks such a source `dated_by: retrieval date (current roster page)`.
+- **Search copies (added after the phase review):** a search copy's `fetched_at` is when the search was made. The copied text's own crawl date is unknown. So:
+  - Its citation reads "search copy of current roster, searched <date>", and the chat marks it `dated_by: search date of a search copy of the current roster (content date unknown)`.
+  - Its search date **never outweighs an explicit, dated "former" statement**. A directly fetched roster page does, since it is the live page as fetched.
+  - No stored role changed because of this.
+  - Tests pin both boundaries: roster dates don't drive promotions, and a search copy loses to a dated "former" statement.
 - **Effect:**
   - Robinhood: 13 people sourced only from the roster copy move from low to medium confidence, and roster roles are now dated 2026-11-24 (when the roster was retrieved). Current counts are unchanged at 22 and 8.
   - The VP count is still 15: 2 high, 13 medium, 0 low (it was 2, 3 and 10).
@@ -384,3 +389,29 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   | Total | 177,043 | $0.389 | 103,693 | $0.158 |
 
 - The CEO-location turn is still large because `get_person` for Vlad Tenev returns many facts. That is a possible later trim; it is not done here.
+
+## D40. Phase 6: the eval
+
+- **`eval/questions.yaml`:** 10 cases per company, plus 2 run with no company selected. They cover:
+  - the four example questions;
+  - two or more not-found questions per company (salary, email, revenue, age);
+  - a follow-up per company;
+  - a source conflict (Warnick);
+  - low confidence (Campfire's VPs, Nick Jezienicki);
+  - a review flag (Koegel);
+  - the company-handling cases: no company selected (asks which), an uncollected company (Stripe, declined), and an uncollected company asked about inside a Robinhood chat.
+- **Expected answers:**
+  - `expected` is written from the committed data.
+  - `verified_by` is null until Daniel hand-checks a case. `leadership eval` prints how many are unverified.
+- **Grading is deterministic:** regex include and exclude checks on the last answer, required tool calls with arguments, `no_tools`, and "cites a tool-result URL". The same answer always gets the same verdict, and every failure names the check that failed.
+  - **Rejected: an LLM judge.** It is non-deterministic, adds cost, and a second model would grade the first.
+  - **Weakness:** regexes can reject a correct paraphrase. In the first run, "Stripe isn't one of the companies in the collected data" failed the decline pattern, so the pattern was widened. Exclude patterns target the specific wrong claim (for example "Pinner is the current CTO") rather than a name, because a correct answer mentions the former holder.
+- **Running it:** `leadership eval [domain]` runs that company's cases plus the no-company cases, 4 cases in parallel, through the real agent. It writes `eval/results.json` and `eval/RESULTS.md` (the answers, the tools called, and the cost), and exits with status 1 if any case fails.
+- **Tightened after the phase review:**
+  - A bare `low` also matched "below", so it became `low confidence`.
+  - rh-vps now requires "15 confirmed" and "0 low confidence".
+  - rh-koegel-flag rejects "no longer / has left".
+  - rh-followup-cfo now requires that the CFO's location is reported as not found. That is what the follow-up "and the CFO?" asks after a location question.
+  - The tightened `low confidence` pattern then rejected a correct "Confidence: Low, because …". It now accepts both word orders. Every change to a pattern is recorded here.
+- **Result:** see `eval/RESULTS.md` for the latest run.
+- **Dependency:** PyYAML, for the spec's `questions.yaml`.

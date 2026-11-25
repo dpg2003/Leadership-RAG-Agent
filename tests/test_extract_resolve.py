@@ -1190,3 +1190,35 @@ def test_profile_page_is_not_a_roster():
     d = doc("https://acme.test/management/bo-lee", "Bo Lee VP of Data at Acme")
     (claim,), _ = _one(d, "Bo Lee", "VP of Data", "Bo Lee VP of Data at Acme", ACME)
     assert not claim.roster and claim.effective_date is None
+
+
+def test_roster_date_does_not_drive_promotions():
+    """D38: retrieval dates never supersede, or get superseded by, a dated title."""
+    roster = doc("https://acme.test/team", "Bo Lee\nVP of Data")
+    news = doc("https://news.test/a", "March 3, 2026\nAcme's Bo Lee, Head of Analytics", "search")
+    (r,), _ = _one(roster, "Bo Lee", "VP of Data", "Bo Lee\nVP of Data", ACME)
+    ex = Extraction(page_published_date="2026-03-03", published_date_snippet="March 3, 2026",
+                    people=[person("Bo Lee", "Head of Analytics",
+                                   "Acme's Bo Lee, Head of Analytics")])  # fmt: skip
+    (n,), _ = validate(news, ex, ACME)
+    roles = by_name(resolve_claims([r, n], today=TODAY), "Bo Lee").roles
+    assert {x.title: x.is_current for x in roles} == {"VP of Data": True, "Head of Analytics": True}
+
+
+def _former(url, source_type="search"):
+    d = doc(url, "June 1, 2026\nBo Lee, former VP of Data at Acme", source_type)
+    ex = Extraction(page_published_date="2026-06-01", published_date_snippet="June 1, 2026",
+                    people=[person("Bo Lee", "VP of Data", "Bo Lee, former VP of Data at Acme",
+                                   status="former")])  # fmt: skip
+    return validate(d, ex, ACME)[0]
+
+
+def test_search_copy_of_roster_does_not_outweigh_a_dated_former_statement():
+    copy = doc("https://investors.acme.test/governance/leadership", "Bo Lee VP of Data", "search")
+    (c,), _ = _one(copy, "Bo Lee", "VP of Data", "Bo Lee VP of Data", ACME)
+    res = resolve_claims([c, *_former("https://news.test/left")], today=TODAY)
+    assert not by_name(res, "Bo Lee").is_current
+    direct = doc("https://acme.test/team", "Bo Lee\nVP of Data")
+    (d,), _ = _one(direct, "Bo Lee", "VP of Data", "Bo Lee\nVP of Data", ACME)
+    res = resolve_claims([d, *_former("https://news.test/left")], today=TODAY)
+    assert by_name(res, "Bo Lee").is_current  # the live page, fetched after the news

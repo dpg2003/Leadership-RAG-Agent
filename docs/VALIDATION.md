@@ -144,8 +144,8 @@ The split is a keyword heuristic over the verifier's one-line reasons; the per-p
 
 **C-level, not in the latest proxy (undated or roster source)** (2)
 
-- Stephanie Guild · Chief Investment Officer · C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24) · https://investors.robinhood.com/governance/leadership
-- Connie Schan · Chief People Officer · C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24) · https://investors.robinhood.com/governance/leadership
+- Stephanie Guild · Chief Investment Officer · C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (search copy of current roster, searched 2026-11-24) · https://investors.robinhood.com/governance/leadership
+- Connie Schan · Chief People Officer · C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (search copy of current roster, searched 2026-11-24) · https://investors.robinhood.com/governance/leadership
 
 **Retired by the proxy rule (D16)** (14)
 

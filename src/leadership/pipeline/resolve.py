@@ -24,6 +24,7 @@ from urllib.parse import urlsplit
 
 from leadership.models import SOURCE_PRIORITY, display_name, normalize_name
 from leadership.pipeline.titles import seat_functions
+from leadership.pipeline.validate import ROSTER_PATH
 
 if TYPE_CHECKING:
     from leadership.pipeline.validate import Claim
@@ -155,6 +156,8 @@ def _cite(c: Claim) -> str:
     kind = c.doc.meta.get("form") or c.doc.source_type.replace("_", " ")
     if c.published_at:
         when = c.published_at
+    elif c.roster and c.doc.source_type == "search":
+        when = f"search copy of current roster, searched {c.effective_date}"
     elif c.roster:
         when = f"current roster, retrieved {c.effective_date}"
     else:
@@ -171,10 +174,7 @@ def _newest(claims: list[Claim]) -> Claim:
 # An undated page whose LAST path segment is a people word (/governance/leadership, /team,
 # /about) is the company's current listing: for choosing a title, it counts as newer than
 # any dated claim. /management/<name> profiles and /about/<product> pages are not listings.
-_LISTING_PATH = re.compile(
-    r"/(?:team|our-team|about|about-us|leadership|people|management|executives?|founders|"
-    r"who-we-are)/?$"
-)
+_LISTING_PATH = ROSTER_PATH
 
 
 # Deputy / Associate / Assistant General Counsel are not the legal chief.
@@ -304,13 +304,19 @@ def _resolve_role(
     current = [c for c in claims if c.status != "former"]
     former = [c for c in claims if c.status == "former"]
     # D38: a roster listing counts as dated by its retrieval date (effective_date).
-    newest_current = max((_ordinal(c.effective_date) for c in current), default=-1)
     newest_former = max((_ordinal(c.effective_date) for c in former), default=-1)
+    # A search copy's text has an unknown crawl date, so its search date never outweighs an
+    # explicit, dated "former" statement; a directly fetched roster page does (D38).
+    vs_former = max(
+        (_ordinal(c.published_at if c.roster and c.doc.source_type == "search"
+                  else c.effective_date) for c in current),
+        default=-1,
+    )  # fmt: skip
     newest_dated_current = max((_ordinal(c.published_at) for c in current), default=-1)
     note = ""
     retired_by_proxy = False
     # A 'former' statement wins unless a current claim is strictly newer (undated = oldest).
-    is_current = bool(current) and (not former or newest_current > newest_former)
+    is_current = bool(current) and (not former or vs_former > newest_former)
     if former and current:
         note = (
             f"sources disagree on whether this role is current: former per "

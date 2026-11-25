@@ -77,7 +77,7 @@ def test_roster_listing_is_dated_by_retrieval_and_medium_confidence():
     (abhishek,) = tools.get_person(RH, "Abhishek Fatehpuria")["people"]
     assert abhishek["confidence"] == "medium"
     (role,) = abhishek["roles"]
-    assert role["last_confirmed"] and role["sources"][0]["dated_by"].startswith("retrieval")
+    assert role["last_confirmed"] and role["sources"][0]["dated_by"].startswith("search date")
 
 
 def test_seat_functions():

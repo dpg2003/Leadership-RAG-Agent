@@ -1,0 +1,389 @@
+{
+  "run_at": "2026-11-25T02:33:37+00:00",
+  "model": "claude-sonnet-5-5",
+  "passed": 22,
+  "total": 22,
+  "cost_usd": 0.2288,
+  "results": [
+    {
+      "id": "rh-cto",
+      "company": "robinhood.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "No current CTO in the collected data (vacant or unknown). Jeff Pinner was CTO; an 8-K filed 2026-05-08 says he separated on May 7, 2026. The data conflicts with the older 2026-04-22 proxy.",
+      "verified_by": null,
+      "answer": "Robinhood has no current CTO in the collected data. The seat looks vacant or unknown. I also found no current engineering leaders of any seniority.\n\n**Former CTO: Jeff Pinner (not current)**\n- An [8-K dated 2026-05-08](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm) says that on May 7, 2026 the company determined Jeffrey Pinner, Chief Technology Officer, \"would be separating from his position, effective the same day.\"\n- The sources disagree on whether he is current. The [DEF 14A proxy dated 2026-04-22](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm) says he \"has been our Chief Technology Officer since August 2024.\" That filing is older than the 8-K.\n- A [company newsroom post from 2024-08-12](https://robinhood.com/newsroom/robinhood-welcomes-jeff-pinner-as-chief-technology-officer/) announced he had joined as CTO.\n- His last-confirmed date for the role is 2026-05-08, from the 8-K.\n\n**Earlier CTO: Johann Kerbrat (not current in that role)**\n- He was \"Chief Technology Officer and GM of Robinhood Crypto\" per a [2022-09-28 newsroom post](https://robinhood.com/newsroom/robinhood-and-circle-join-forces-to-bring-usdc-to-customers/), which is his last-confirmed date for that role. The 2026-04-22 proxy does not list him in it.\n- He is still current in another role: Senior Vice President and General Manager, Crypto and International. This comes from a [search copy of the leadership roster](https://investors.robinhood.com/governance/leadership), last confirmed 2026-11-24.\n\n**Other former technology leader: Cathy Southwick (not current)**\n- She was Chief Information Officer, last confirmed 2021-10-01 in a [newsroom post](https://robinhood.com/newsroom/welcome-robinhoods-chief-information-officer-cathy-southwick-and-vp-of-infrastructure-mark/). The 2026-04-22 proxy does not list her.\n\nI checked company site pages (47 documents), web search results (31) and SEC filings (4), collected 2026-11-25. None of them names a successor.",
+      "tools": [
+        "list_leaders({\"company\": \"robinhood.com\", \"function\": \"engineering\", \"seniority\": \"c_level\", \"include_former\": true})",
+        "list_leaders({\"company\": \"robinhood.com\", \"function\": \"engineering\"})"
+      ],
+      "prompt_tokens": 11196,
+      "output_tokens": 1055,
+      "cost_usd": 0.0125,
+      "error": null
+    },
+    {
+      "id": "rh-vps",
+      "company": "robinhood.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "15 current VPs: 15 confirmed (high/medium confidence: 2 high, 13 medium), 0 low confidence. Chris Koegel is flagged as departing Dec 31, 2026 to Klarna.",
+      "verified_by": null,
+      "answer": "Robinhood has 15 current VPs (people, not roles): 15 confirmed (high/medium confidence), 0 low confidence. Two are high confidence and 13 are medium.\n\nAll titles come from the [Robinhood leadership page](https://investors.robinhood.com/governance/leadership).\n\n- Abhishek Fatehpuria: VP, Product Management\n- Chris Koegel: VP, Corporate Finance & Investor Relations\n- Deepak Rao: SVP and GM, Robinhood Money, Robinhood Gold, Growth, and Marketing\n- Evan McHenry: VP and Chief Information Security Officer\n- JB Mackenzie: VP and GM, Futures and Prediction Markets\n- Johann Kerbrat: SVP and GM, Crypto and International\n- Jordan Sinclair: President of Robinhood UK and GM of Bitstamp UK\n- Lucas Moskowitz: SVP, General Counsel and Corporate Secretary (high confidence)\n- Matt Billings: VP, Brokerage and President, Robinhood Financial and Robinhood Securities (high confidence)\n- Nicola White: VP, Institutional Crypto, GM, Bitstamp\n- Pooja Anand: VP, Enterprise Risk Management and Internal Audit\n- Ravi Mehta: VP, Credit Cards and Chief Credit Officer\n- Robb Baldwin: VP and GM, TradePMR\n- Seok Lee: VP, Total Rewards\n- Walter Koller: VP and COO, Robinhood Financial\n\n**Review flag:** Chris Koegel is departing on Dec 31, 2026 to become CFO at Klarna. He is still current. This was confirmed from multiple sources, including Klarna's announcement on Nov 12, 2026 ([source](https://www.autobound.ai/companies/robinhood/executive-changes)).",
+      "tools": [
+        "count_leaders({\"company\": \"robinhood.com\", \"seniority\": \"vp\"})"
+      ],
+      "prompt_tokens": 6247,
+      "output_tokens": 717,
+      "cost_usd": 0.0078,
+      "error": null
+    },
+    {
+      "id": "rh-marketing",
+      "company": "robinhood.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "No current CMO in the data. The most senior current marketing leader is Deepak Rao, SVP and GM, Robinhood Money, Robinhood Gold, Growth, and Marketing. Christina Smedley (CMO, last confirmed 2020-08-04) is not current.",
+      "verified_by": null,
+      "answer": "There is no current Chief Marketing Officer in the collected data, so the CMO seat is vacant or unknown. Sources checked were company site (47 documents), search (31) and SEC filings (4), collected 2026-11-25.\n\n**Most senior current marketing leader (not a CMO):** Deepak Rao, Senior Vice President and General Manager, Robinhood Money, Robinhood Gold, Growth, and Marketing. His confidence is medium and there are no review flags. His title appears on the [leadership page](https://investors.robinhood.com/governance/leadership) and his [management bio](https://investors.robinhood.com/management/deepak-rao). Both are search copies of the current roster with no content date. His role was last confirmed 2026-11-24.\n\n**Former CMO:** Christina Smedley is not current. The data notes she is not listed in the 2026-04-22 proxy, which is newer than the last claim of her role. She was last confirmed on 2020-08-04, in a [company newsroom post](https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/) announcing her as Chief Marketing Officer. An [SEC filing](https://www.sec.gov/Archives/edgar/data/1783879/000162828021013986/robinhoods-1a1.htm) lists her as \"Chief Marketing and Communications Officer\", undated.",
+      "tools": [
+        "list_leaders({\"company\": \"robinhood.com\", \"function\": \"marketing\", \"seniority\": \"c_level\", \"include_former\": true})",
+        "list_leaders({\"company\": \"robinhood.com\", \"function\": \"marketing\"})"
+      ],
+      "prompt_tokens": 6494,
+      "output_tokens": 663,
+      "cost_usd": 0.0073,
+      "error": null
+    },
+    {
+      "id": "rh-ceo-location",
+      "company": "robinhood.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "Vlad Tenev (Chairman & CEO) lives in the Bay Area of California, per the board of directors page.",
+      "verified_by": null,
+      "answer": "Robinhood's CEO, Vlad Tenev, is based in the Bay Area of California. The source says \"He lives in the Bay Area of California with his wife and three children\" ([board of directors page](https://investors.robinhood.com/governance/board-of-directors)). The page has no date.\n\nHe is the current Chairman & Chief Executive Officer, per the [leadership roster](https://investors.robinhood.com/governance/leadership). His confidence is high, and he has no review flags.",
+      "tools": [
+        "list_leaders({\"company\": \"robinhood.com\", \"seniority\": \"c_level\", \"function\": \"other\", \"include_former\": true})",
+        "get_person({\"company\": \"robinhood.com\", \"name\": \"Vlad Tenev\"})"
+      ],
+      "prompt_tokens": 19314,
+      "output_tokens": 385,
+      "cost_usd": 0.0133,
+      "error": null
+    },
+    {
+      "id": "rh-followup-cfo",
+      "company": "robinhood.com",
+      "kind": "follow_up",
+      "passed": true,
+      "failures": [],
+      "expected": "Shiv Verma is the current CFO (high confidence); his location is not in the collected data. Jason Warnick is a former CFO.",
+      "verified_by": null,
+      "answer": "**Not found in the collected data.** No location is stored for Shiv Verma, Robinhood's CFO. I checked company site pages (47 documents), web search results (31) and SEC filings (4). The data was collected on 2026-11-25.\n\n- **Current CFO:** Shiv Verma is the Chief Financial Officer, with high confidence and no review flags. His role was last confirmed 2026-11-24. The [SEC filing of 2026-06-26](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm) says \"Shiv Verma, the Company's Chief Financial Officer\". A [press release of 2026-07-29](https://investors.robinhood.com/node/16381/pdf) also gives that title.\n- **Former CFO:** Jason Warnick is not current. The [proxy statement of 2026-04-22](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm) calls him \"former Chief Financial Officer\", and that is the date his role was last confirmed. The data notes that sources disagree. Older company newsroom posts, such as the [2020-08-04 post](https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/), still list him as CFO.\n- **Other finance C-level:** Dara Bazzano is Chief Accounting Officer, with high confidence. The [filing of 2026-06-26](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm) says she has held that role since April 2026. No location is stored for her either.",
+      "tools": [
+        "list_leaders({\"company\": \"robinhood.com\", \"seniority\": \"c_level\", \"function\": \"other\", \"include_former\": true})",
+        "get_person({\"company\": \"robinhood.com\", \"name\": \"Vlad Tenev\"})",
+        "list_leaders({\"company\": \"robinhood.com\", \"function\": \"finance\", \"seniority\": \"c_level\", \"include_former\": true})",
+        "get_person({\"company\": \"robinhood.com\", \"name\": \"Shiv Verma\"})"
+      ],
+      "prompt_tokens": 35319,
+      "output_tokens": 1274,
+      "cost_usd": 0.0368,
+      "error": null
+    },
+    {
+      "id": "rh-salary",
+      "company": "robinhood.com",
+      "kind": "not_found",
+      "passed": true,
+      "failures": [],
+      "expected": "Not found in the collected data (no compensation data is collected); sources checked are listed.",
+      "verified_by": null,
+      "answer": "Not found in the collected data. The database holds only names, titles, function, seniority, dates, location and bio, so it has no compensation figures.\n\nThe CEO is Vlad Tenev, listed as Chairman & Chief Executive Officer ([investors.robinhood.com](https://investors.robinhood.com/governance/leadership)).\n\nSources checked (collected 2026-11-25): 47 company website documents, 31 web search results and 4 SEC EDGAR filings.",
+      "tools": [
+        "list_leaders({\"company\": \"robinhood.com\", \"seniority\": \"c_level\"})"
+      ],
+      "prompt_tokens": 13113,
+      "output_tokens": 326,
+      "cost_usd": 0.0251,
+      "error": null
+    },
+    {
+      "id": "rh-email",
+      "company": "robinhood.com",
+      "kind": "not_found",
+      "passed": true,
+      "failures": [],
+      "expected": "Not found in the collected data (no contact details are collected).",
+      "verified_by": null,
+      "answer": "Not found in the collected data. It holds only names, titles, function, seniority, dates, location and bio, so it has no email addresses.\n\nSources checked (collected 2026-11-25): 47 company-site documents, 31 web-search documents and 4 SEC filings.\n\nThe data does confirm that Vlad Tenev is currently Chairman & Chief Executive Officer of Robinhood, with high confidence and last confirmed 2026-11-24. The source is [Robinhood's investor leadership page](https://investors.robinhood.com/governance/leadership).",
+      "tools": [
+        "get_person({\"company\": \"robinhood.com\", \"name\": \"Vlad Tenev\"})"
+      ],
+      "prompt_tokens": 7739,
+      "output_tokens": 334,
+      "cost_usd": 0.0117,
+      "error": null
+    },
+    {
+      "id": "rh-warnick-conflict",
+      "company": "robinhood.com",
+      "kind": "conflict",
+      "passed": true,
+      "failures": [],
+      "expected": "No. The 2026-04-22 proxy calls him former CFO; a 2020 company post still lists him as CFO, but it is older (sources disagree). Shiv Verma is the current CFO.",
+      "verified_by": null,
+      "answer": "**No. Jason Warnick is not the current CFO.** The data lists him as a former Chief Financial Officer with no current role at Robinhood.\n\n- **Why he's former:** The DEF 14A proxy filed 2026-04-22 says \"Jason Warnick, former Chief Financial Officer\" ([SEC filing](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000053/hood-20260422.htm)). That date is also the last-confirmed date for his role.\n- **Conflicting source:** The role note says the sources disagree. A 2020-08-04 company newsroom post still lists him as CFO ([Robinhood newsroom](https://robinhood.com/newsroom/christina-smedley-joins-robinhood-as-chief-marketing-officer/)). It is much older than the proxy filing, so the proxy's \"former\" wording is the more recent evidence.\n- **Current CFO:** Shiv Verma, with high confidence and a last-confirmed date of 2026-11-24. The sources are:\n  - A [2026-07-29 press release](https://investors.robinhood.com/node/16381/pdf): \"said Shiv Verma, Chief Financial Officer of Robinhood.\"\n  - A [2026-06-26 SEC filing](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000083/hood-20260625.htm): \"Shiv Verma, the Company's Chief Financial Officer.\"\n  - A [2026-05-08 SEC filing](https://www.sec.gov/Archives/edgar/data/1783879/000178387926000065/hood-20260507.htm): \"Name: Shiv Verma Title: Chief Financial Officer.\"\n\nNeither person has review flags.",
+      "tools": [
+        "list_leaders({\"company\": \"robinhood.com\", \"function\": \"finance\", \"seniority\": \"c_level\", \"include_former\": true})",
+        "get_person({\"company\": \"robinhood.com\", \"name\": \"Jason Warnick\"})"
+      ],
+      "prompt_tokens": 9687,
+      "output_tokens": 781,
+      "cost_usd": 0.0088,
+      "error": null
+    },
+    {
+      "id": "rh-koegel-flag",
+      "company": "robinhood.com",
+      "kind": "flag",
+      "passed": true,
+      "failures": [],
+      "expected": "Yes, still current (VP, Corporate Finance & Investor Relations), but flagged as departing Dec 31, 2026 to Klarna as CFO (multiple sources).",
+      "verified_by": null,
+      "answer": "Yes, for now. Chris Koegel is still current at Robinhood, but he is leaving soon.\n\n- **Current role:** Vice President, Corporate Finance & Investor Relations. The wording comes from the [Robinhood investor leadership page](https://investors.robinhood.com/governance/leadership). The role was last confirmed on 2026-11-24, using a search copy of the current roster whose content date is unknown. His confidence is medium.\n- **Departure flag:** He is leaving on Dec 31, 2026 to become CFO at Klarna. The flag's note says he is \"still current\" and that this was confirmed from multiple sources, including Klarna's announcement on Nov 12, 2026. The source is [autobound.ai](https://www.autobound.ai/companies/robinhood/executive-changes), dated 2026-11-12. Daniel reviewed it on 2026-11-23.",
+      "tools": [
+        "get_person({\"company\": \"robinhood.com\", \"name\": \"Chris Koegel\"})"
+      ],
+      "prompt_tokens": 5493,
+      "output_tokens": 373,
+      "cost_usd": 0.0043,
+      "error": null
+    },
+    {
+      "id": "cf-cto",
+      "company": "meetcampfire.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "Paul Nichols (high confidence; \"led by CTO Paul Nichols\", newest 2026-07-08). Fernando San Martin's \"Co-founder / CTO\" (single 2024-02-27 post) is not current.",
+      "verified_by": null,
+      "answer": "**Paul Nichols** is Campfire's current CTO. He is high confidence, and no review flags apply.\n\n- His title comes from three sources:\n  - A [Zanovoy blog post](https://zanovoy.com/blog/campfire-ember-ai-reviewed), dated 2026-07-08. This is his last-confirmed date. It says \"Campfire's engineering team, led by CTO Paul Nichols…\".\n  - A [Campfire blog post](https://campfire.ai/blog/campfire-accelerates-accounting-with-claude), dated 2025-02-06.\n  - A [Claude customer page](https://claude.com/customers/campfire), which is undated.\n\n**Former CTO:** Fernando San Martin is not current. A [2024-02-27 Campfire post](https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern) calls him \"Co-founder / CTO\". The data marks the role as not current because that is the only source and nothing newer confirms it (it is more than 18 months old). The data doesn't say he left the company.",
+      "tools": [
+        "list_leaders({\"company\": \"meetcampfire.com\", \"function\": \"engineering\", \"seniority\": \"c_level\", \"include_former\": true})"
+      ],
+      "prompt_tokens": 6154,
+      "output_tokens": 498,
+      "cost_usd": 0.0056,
+      "error": null
+    },
+    {
+      "id": "cf-cfo",
+      "company": "meetcampfire.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "John Glasgow (CEO & CFO): \"CEO & CFO at Campfire\" (Campfire blog, 2026-02-24) and \"CEO, CFO and founder\" (CFO Dive, undated). No separate CFO in the data.",
+      "verified_by": null,
+      "answer": "**John Glasgow** is the CFO of Campfire, and he is also the CEO. The data has no separate CFO. He has high confidence and no review flags.\n\n- His title is \"CEO & CFO\" in a [Campfire blog post dated 2026-02-24](https://campfire.ai/blog/campfire-and-doss-partner-to-connect-real-time-operations-with-ai-native-accounting). That is the last-confirmed date for the CFO role.\n- A [CFO Dive article](https://www.cfodive.com/news/campfire-ceo-targets-systems-first-accounting-approach/805732) (undated) calls him \"CEO, CFO and founder.\"\n- More recent company pages give only \"CEO & Founder\", for example [this post from 2026-11-18](https://campfire.ai/blog/campfire-chatgpt-for-accounting). They don't mention the CFO title, so I can't tell whether he still holds it.\n\nThe data lists no former CFOs.",
+      "tools": [
+        "list_leaders({\"company\": \"meetcampfire.com\", \"function\": \"finance\", \"seniority\": \"c_level\", \"include_former\": true})"
+      ],
+      "prompt_tokens": 6960,
+      "output_tokens": 444,
+      "cost_usd": 0.0051,
+      "error": null
+    },
+    {
+      "id": "cf-vps",
+      "company": "meetcampfire.com",
+      "kind": "low_confidence",
+      "passed": true,
+      "failures": [],
+      "expected": "2 current VPs: 0 confirmed, 2 low confidence (single undated sources): Alexandra Roveda (vice president of enterprise) and Chris McDonough (VP of Sales).",
+      "verified_by": null,
+      "answer": "Campfire has 2 current VPs: 0 confirmed (high/medium confidence), 2 low confidence. Both are low confidence because each rests on a single undated source.\n\n- **Alexandra Roveda, vice president of enterprise.** The source says \"Campfire appointed Alexandra Roveda vice president of enterprise Friday, Oct. 30, giving her responsibility for expanding the business across North America.\" ([TokenPost](https://www.tokenpost.com/news/people/44993))\n- **Chris McDonough, VP of Sales.** The source says \"Chris McDonough, VP of Sales at Campfire.\" ([GTM Newsletter](https://thegtmnewsletter.substack.com/p/gtm-205-ai-native-sales-organization-chris-mcdonough-campfire))\n\nNeither person has review flags, and the data has no notes about conflicting sources.\n\nThe data was collected on 2026-11-25 from 88 company-site documents, 26 search results and 0 SEC filings.",
+      "tools": [
+        "count_leaders({\"company\": \"meetcampfire.com\", \"seniority\": \"vp\"})",
+        "list_leaders({\"company\": \"meetcampfire.com\", \"seniority\": \"vp\"})"
+      ],
+      "prompt_tokens": 9097,
+      "output_tokens": 538,
+      "cost_usd": 0.009,
+      "error": null
+    },
+    {
+      "id": "cf-marketing",
+      "company": "meetcampfire.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "Marcio Arnecke, Chief Marketing Officer (low confidence, single source, 2026-10-16).",
+      "verified_by": null,
+      "answer": "**Marcio Arnecke** is Campfire's Chief Marketing Officer. His title comes from a [Fortune press release dated 2026-10-16](https://fortune.com/press-releases/campfire-appoints-former-apollo-cmo-marcio-arnecke-global-marketing-2026-10-16). It quotes him as \"Chief Marketing Officer, Campfire.\"\n\n- **Confidence:** Low, because only one source supports it.\n- **Flags:** None.\n- **Former holders:** None found.\n- **Other marketing leaders:** None. Counting people, there is 1 current marketing leader: 0 confirmed (high/medium confidence), 1 low confidence (single source).",
+      "tools": [
+        "list_leaders({\"company\": \"meetcampfire.com\", \"function\": \"marketing\", \"seniority\": \"c_level\", \"include_former\": true})",
+        "list_leaders({\"company\": \"meetcampfire.com\", \"function\": \"marketing\"})"
+      ],
+      "prompt_tokens": 6160,
+      "output_tokens": 433,
+      "cost_usd": 0.005,
+      "error": null
+    },
+    {
+      "id": "cf-ceo-location",
+      "company": "meetcampfire.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "John Glasgow is the CEO; his location is not found in the collected data.",
+      "verified_by": null,
+      "answer": "Not found in the collected data. Campfire's CEO is John Glasgow, but no location is recorded for him.\n\nHe is current and high confidence. His titles are \"CEO & Founder\", last confirmed 2026-11-18 on [campfire.ai](https://campfire.ai/blog/campfire-chatgpt-for-accounting), and \"CEO & CFO\", per [this 2026-02-24 post](https://campfire.ai/blog/campfire-and-doss-partner-to-connect-real-time-operations-with-ai-native-accounting). He has no review flags.\n\nSources checked (collected 2026-11-25): 88 company-site documents, 26 web-search documents and 0 SEC filings.",
+      "tools": [
+        "list_leaders({\"company\": \"meetcampfire.com\", \"seniority\": \"c_level\", \"include_former\": true})",
+        "get_person({\"company\": \"meetcampfire.com\", \"name\": \"John Glasgow\"})"
+      ],
+      "prompt_tokens": 17433,
+      "output_tokens": 436,
+      "cost_usd": 0.0122,
+      "error": null
+    },
+    {
+      "id": "cf-followup-location",
+      "company": "meetcampfire.com",
+      "kind": "follow_up",
+      "passed": true,
+      "failures": [],
+      "expected": "Paul Nichols's location is not found in the collected data.",
+      "verified_by": null,
+      "answer": "Not found in the collected data. There is no location for Paul Nichols. His record has no location and no location facts.\n\nSources checked, as of the 2026-11-25 collection: 88 company-site documents, 26 web-search documents and 0 SEC filings. His title appears in three of them, but none says where he is based.\n\nI answered your earlier CTO question without a tool result in this conversation. I have now fetched his record, and it supports what I said. He is current, high confidence and has no review flags. His CTO title is last confirmed on 2026-07-08, per [Zanovoy blog](https://zanovoy.com/blog/campfire-ember-ai-reviewed). Two other sources also give it: [Campfire blog](https://campfire.ai/blog/campfire-accelerates-accounting-with-claude) and [Claude customer page](https://claude.com/customers/campfire).\n\nI haven't re-fetched the former-CTO details for Fernando San Martin from my earlier answer, so treat those as unverified.",
+      "tools": [
+        "list_leaders({\"company\": \"meetcampfire.com\", \"function\": \"engineering\", \"seniority\": \"c_level\", \"include_former\": true})",
+        "get_person({\"company\": \"meetcampfire.com\", \"name\": \"Paul Nichols\"})"
+      ],
+      "prompt_tokens": 12913,
+      "output_tokens": 1017,
+      "cost_usd": 0.0157,
+      "error": null
+    },
+    {
+      "id": "cf-revenue",
+      "company": "meetcampfire.com",
+      "kind": "not_found",
+      "passed": true,
+      "failures": [],
+      "expected": "Not found in the collected data (only leadership data is collected).",
+      "verified_by": null,
+      "answer": "Not found in the collected data. The database only holds leaders' names, titles, function, seniority, dates, location and bio. It has no financial figures such as revenue.\n\nI checked these sources, collected on 2026-11-25:\n- Company website (team and about pages, newsroom, blog): 88 documents\n- Web search results (news and other public pages): 26 documents\n- SEC EDGAR filings: 0 documents\n\nI can tell you about Campfire's leadership instead. The C-level people are John Glasgow (CEO & Founder), Paul Nichols (CTO) and Marcio Arnecke (CMO).",
+      "tools": [
+        "list_leaders({\"company\": \"meetcampfire.com\", \"seniority\": \"c_level\"})"
+      ],
+      "prompt_tokens": 8283,
+      "output_tokens": 367,
+      "cost_usd": 0.0134,
+      "error": null
+    },
+    {
+      "id": "cf-age",
+      "company": "meetcampfire.com",
+      "kind": "not_found",
+      "passed": true,
+      "failures": [],
+      "expected": "Not found in the collected data (ages are not collected).",
+      "verified_by": null,
+      "answer": "Not found in the collected data. John Glasgow's age isn't recorded. The database holds only names, titles, function, seniority, dates, location and bio. It checked 88 company-site documents, 26 search results and 0 SEC filings, collected on 2026-11-25.\n\nWhat the data does have on him (high confidence, no review flags):\n- He is currently CEO & Founder at Campfire. His latest source, a [Campfire blog post](https://campfire.ai/blog/campfire-chatgpt-for-accounting) dated 2026-11-18, gives that title.\n- He is also currently listed as CEO & CFO, last confirmed 2026-02-24 in a [Campfire blog post](https://campfire.ai/blog/campfire-and-doss-partner-to-connect-real-time-operations-with-ai-native-accounting).",
+      "tools": [
+        "get_person({\"company\": \"meetcampfire.com\", \"name\": \"John Glasgow\"})"
+      ],
+      "prompt_tokens": 7133,
+      "output_tokens": 410,
+      "cost_usd": 0.011,
+      "error": null
+    },
+    {
+      "id": "cf-nick-low",
+      "company": "meetcampfire.com",
+      "kind": "low_confidence",
+      "passed": true,
+      "failures": [],
+      "expected": "Head of Technology Partnerships, low confidence: the affiliation rests on a single author byline on Campfire's site (campfire.ai/blog/atlar, 2026-05-12).",
+      "verified_by": null,
+      "answer": "Nick Jezienicki is the Head of Technology Partnerships at Campfire. His function is filed under sales, and his seniority is \"head\". His role is current, last confirmed on 2026-05-12.\n\n**Low confidence:** His affiliation rests on a single author byline on the company's site. That byline reads \"Nick Jezienicki Head of Technology Partnerships • May 12, 2026\" ([campfire.ai/blog/atlar](https://campfire.ai/blog/atlar)).\n\nHe has no review flags. The collected data has no location or bio for him.",
+      "tools": [
+        "get_person({\"company\": \"meetcampfire.com\", \"name\": \"Nick Jezienicki\"})"
+      ],
+      "prompt_tokens": 5395,
+      "output_tokens": 267,
+      "cost_usd": 0.0032,
+      "error": null
+    },
+    {
+      "id": "cf-founders",
+      "company": "meetcampfire.com",
+      "kind": "example",
+      "passed": true,
+      "failures": [],
+      "expected": "John Glasgow (CEO & Founder, current) and Fernando San Martin (co-founder, historical: no current role in the data).",
+      "verified_by": null,
+      "answer": "**John Glasgow** founded Campfire. He is the current CEO and Founder, and the data calls him \"CEO & Founder\" in several sources:\n- [campfire.ai, 2026-11-18](https://campfire.ai/blog/campfire-chatgpt-for-accounting) says \"John Glasgow • CEO & Founder\".\n- [Fortune press release, 2026-10-16](https://fortune.com/press-releases/campfire-appoints-former-apollo-cmo-marcio-arnecke-global-marketing-2026-10-16) says \"founder and CEO\".\n- [CFO Dive](https://www.cfodive.com/news/campfire-ceo-targets-systems-first-accounting-approach/805732) (undated) says \"CEO, CFO and founder\".\n\nHe has high confidence in the data and no review flags. One source also lists him as CEO & CFO ([campfire.ai, 2026-02-24](https://campfire.ai/blog/campfire-and-doss-partner-to-connect-real-time-operations-with-ai-native-accounting)).\n\n**Fernando San Martin** is named as co-founder, but he is not current. The collected data has no current role for him. His last confirmation is 2024-02-27, when a [campfire.ai blog post](https://campfire.ai/blog/were-coming-out-of-stealth-with-usd3-5m-in-funding-and-announcing-our-modern) called him \"Co-founder / CTO\". That is a single source with no newer confirmation, so his status may be out of date. The data gives no reason for his departure.",
+      "tools": [
+        "list_leaders({\"company\": \"meetcampfire.com\", \"seniority\": \"founder\", \"include_former\": true})",
+        "list_leaders({\"company\": \"meetcampfire.com\", \"seniority\": \"c_level\", \"include_former\": true})"
+      ],
+      "prompt_tokens": 12198,
+      "output_tokens": 755,
+      "cost_usd": 0.0185,
+      "error": null
+    },
+    {
+      "id": "no-company",
+      "company": null,
+      "kind": "company",
+      "passed": true,
+      "failures": [],
+      "expected": "Asks which company (Robinhood or Campfire) instead of guessing.",
+      "verified_by": null,
+      "answer": "Which company do you mean: Campfire (meetcampfire.com) or Robinhood (robinhood.com)?",
+      "tools": [],
+      "prompt_tokens": 2262,
+      "output_tokens": 39,
+      "cost_usd": 0.0006,
+      "error": null
+    },
+    {
+      "id": "uncollected-company",
+      "company": null,
+      "kind": "company",
+      "passed": true,
+      "failures": [],
+      "expected": "Declines; Stripe was not collected. Lists the collected companies (Robinhood, Campfire).",
+      "verified_by": null,
+      "answer": "Stripe isn't one of the collected companies, so I can't answer that. The collected companies are Campfire (meetcampfire.com) and Robinhood (robinhood.com). I can look up leadership at either of those if you'd like.",
+      "tools": [],
+      "prompt_tokens": 2267,
+      "output_tokens": 76,
+      "cost_usd": 0.001,
+      "error": null
+    },
+    {
+      "id": "uncollected-in-company-chat",
+      "company": "robinhood.com",
+      "kind": "company",
+      "passed": true,
+      "failures": [],
+      "expected": "Declines; Stripe was not collected (does not answer with Robinhood's CFO as Stripe's).",
+      "verified_by": null,
+      "answer": "Stripe isn't in the collected data. The collected companies are Campfire (meetcampfire.com) and Robinhood (robinhood.com). I can look up leadership for either of them if you'd like.",
+      "tools": [],
+      "prompt_tokens": 2289,
+      "output_tokens": 66,
+      "cost_usd": 0.0009,
+      "error": null
+    }
+  ]
+}

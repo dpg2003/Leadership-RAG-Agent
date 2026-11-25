@@ -179,7 +179,11 @@ def _role_sources(person: dict[str, Any], r: dict[str, Any]) -> list[dict[str, A
                 "wording": f["value"],
                 "evidence": f["evidence_snippet"][:SNIPPET_CHARS],
                 "dated_by": "page date" if f["source"]["published_at"]
-                else "retrieval date (current roster page)" if f in retrieved
+                else (
+                    "search date of a search copy of the current roster (content date "
+                    "unknown)" if f["source"]["source_type"] == "search"
+                    else "retrieval date (current roster page)"
+                ) if f in retrieved
                 else "undated",
             },
         )  # fmt: skip

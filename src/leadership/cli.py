@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.table import Table
 
-from leadership.config import MissingSettingError
+from leadership.config import REPO_ROOT, MissingSettingError
 from leadership.sources.company_site import MAX_PAGES
 
 app = typer.Typer(add_completion=False, no_args_is_help=True, help=__doc__)
@@ -203,6 +203,51 @@ def chat(
             break
         if q:
             answer(q)
+
+
+@app.command("eval")
+def eval_cmd(
+    domain: str | None = typer.Argument(
+        None, help="Run this company's cases plus the no-company cases (default: all)"
+    ),
+    case: list[str] | None = typer.Option(None, "--case", "-c", help="Only these case ids"),  # noqa: B008
+    workers: int = typer.Option(4, help="Cases run in parallel"),
+    write: bool = typer.Option(True, help="Write eval/results.json and eval/RESULTS.md"),
+) -> None:
+    """Run eval/questions.yaml through the real chat agent and print pass/fail."""
+    from leadership.config import llm_model
+    from leadership.evaluate import load_cases, run, select, write_results
+
+    try:
+        cases = select(load_cases(), domain, case)
+    except ValueError as exc:
+        console.print(f"[red]{exc}[/]")
+        raise typer.Exit(2) from exc
+    model = llm_model()
+    console.print(f"Running {len(cases)} eval cases with {model} …")
+    try:
+        results = run(cases, workers=workers)
+    except MissingSettingError as exc:
+        console.print(f"[red]{exc}[/]")
+        raise typer.Exit(2) from exc
+    table = Table("case", "kind", "result", "why", "cost")
+    for r in results:
+        table.add_row(
+            r.id, r.kind, "[green]PASS[/]" if r.passed else "[red]FAIL[/]",
+            "; ".join(r.failures)[:120], f"${r.cost_usd}",
+        )  # fmt: skip
+    console.print(table)
+    passed = sum(r.passed for r in results)
+    unverified = sum(not r.verified_by for r in results)
+    cost = round(sum(r.cost_usd or 0 for r in results), 4)
+    console.print(
+        f"[bold]{passed}/{len(results)} passed[/] · cost ${cost}"
+        + (f" · {unverified} expected answers not yet hand-verified" if unverified else "")
+    )
+    if write:
+        console.print(f"wrote {write_results(results, model).relative_to(REPO_ROOT).as_posix()}")
+    if passed < len(results):
+        raise typer.Exit(1)
 
 
 @app.command("validation-report")
