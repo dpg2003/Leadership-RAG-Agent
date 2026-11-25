@@ -157,12 +157,32 @@ def _role_sources(person: dict[str, Any], r: dict[str, Any]) -> list[dict[str, A
     wording.sort(key=lambda f: f["source"]["published_at"] or "", reverse=True)
     cited = [f for f in titles if _cited_in(f["source"]["url"], note)]
     dated = [f for f in titles if r["as_of"] and f["source"]["published_at"] == r["as_of"]]
+    # D38: a roster listing is dated by its retrieval date.
+    retrieved = [
+        f for f in titles
+        if r["as_of"] and not f["source"]["published_at"]
+        and (f["source"]["retrieved_at"] or "")[:10] == r["as_of"]
+    ]  # fmt: skip
+    # D37: a C-level row split from a combined title ("CEO & CFO") is backed by every
+    # wording that names its seat ("CEO, CFO and founder").
+    seat = [
+        f for f in titles
+        if r["seniority"] == "c_level" and r["function"] in seat_functions(f["value"])
+        and f["is_current"] is not False
+    ] if r["function"] != "other" else []  # fmt: skip
     out: dict[str, dict[str, Any]] = {}
-    for f in wording[:MAX_SOURCES_PER_WORDING] + cited + dated[:1]:
+    for f in wording[:MAX_SOURCES_PER_WORDING] + cited + dated[:1] + retrieved[:1] + seat[:3]:
         out.setdefault(
             f["source"]["url"],
-            _cite(f) | {"wording": f["value"], "evidence": f["evidence_snippet"][:SNIPPET_CHARS]},
-        )
+            _cite(f)
+            | {
+                "wording": f["value"],
+                "evidence": f["evidence_snippet"][:SNIPPET_CHARS],
+                "dated_by": "page date" if f["source"]["published_at"]
+                else "retrieval date (current roster page)" if f in retrieved
+                else "undated",
+            },
+        )  # fmt: skip
     return list(out.values())
 
 

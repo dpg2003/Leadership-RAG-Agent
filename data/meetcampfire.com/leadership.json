@@ -613,6 +613,14 @@
       "source_count": 76,
       "roles": [
         {
+          "title_raw": "CEO & CFO",
+          "function": "finance",
+          "seniority": "c_level",
+          "is_current": true,
+          "as_of": "2026-02-24",
+          "note": null
+        },
+        {
           "title_raw": "CEO & Founder",
           "function": "other",
           "seniority": "c_level",

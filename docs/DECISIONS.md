@@ -333,3 +333,54 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   - **Former roles of current people:** in `not_current`, a person who left that role but holds another says "STILL CURRENT in another role" and lists `current_roles`.
   - **Cost:** each answer's tokens and cost (from `extract.PRICES`) are logged and shown in the CLI.
 
+
+## D37. One role row per C-suite seat in a combined title (Daniel, after Phase 5)
+
+- **Rule (`resolve._role_keys`):** a C-level title naming several seats becomes one role row per seat. For example, "CEO & CFO" and "CEO, CFO and founder" give a CEO row (function `other`) and a CFO row (`finance`). Each row is resolved from the claims whose wording names that seat (`titles.seat_functions`), so the CFO row has both CFO sources and its own dates and currency. A founder part still adds a founder role (D23).
+- **Not split:**
+  - VP-level titles that name a C-suite title, e.g. "Vice President and Chief Information Security Officer". They stay one VP row (D30).
+  - General Counsel / Chief Legal titles, which D4 decides.
+- **Counts are people, not roles,** so they don't change: Campfire stays at 8 current and Robinhood at 22.
+- **Effect:**
+  - John Glasgow (Campfire) now has "CEO & CFO" (c_level/finance, current, last dated 2026-02-24), backed by the Campfire Doss blog post and the CFO Dive article, as well as "CEO & Founder".
+  - No Robinhood rows change.
+- The chat's `also_titled` (D36) is kept for VP-level wordings such as McHenry's and Koller's. Glasgow no longer appears there because his CFO row is resolved.
+- **Supersedes** D36's "Rejected for now: splitting combined titles".
+
+## D38. A current roster listing is dated by its retrieval date (Daniel, after Phase 5)
+
+- **Rule:**
+  - A current listing on the company's own leadership or team roster page has no page date. It is dated by its retrieval date (`Claim.effective_date`), not treated as undated, because a roster page shows current staff when it is fetched.
+  - A roster page is a listing whose last path segment is a people word (`validate.ROSTER_PATH`), on the company's own host: fetched directly, or a search copy of it.
+  - `/management/<name>` profile pages are not rosters.
+- **Confidence:** a search copy of the company's roster (investors.robinhood.com/governance/leadership is bot-blocked, D13) is `medium` on its own, not `low`. Corroboration raises it under the usual rules (an SEC filing, or 2+ sources including the company site, give `high`).
+- **Where the date is used:**
+  - the role's `as_of`, and the current-vs-former comparison;
+  - the 18-month rule (D32), so a roster listing is never stale;
+  - the proxy rule (D16): a C-level title on the current roster but not in the proxy stays current and stays listed for review, with the note "listed on the company's current roster (retrieved <date>)".
+  - Promotions (a newer title supersedes an older one) still use real page dates only. A retrieval date says when the page was read, not when a title started.
+- **Source records are unchanged:** sources.published_at stays NULL, because the page itself has no date. The chat marks such a source `dated_by: retrieval date (current roster page)`.
+- **Effect:**
+  - Robinhood: 13 people sourced only from the roster copy move from low to medium confidence, and roster roles are now dated 2026-11-24 (when the roster was retrieved). Current counts are unchanged at 22 and 8.
+  - The VP count is still 15: 2 high, 13 medium, 0 low (it was 2, 3 and 10).
+  - Campfire has no roster page in the data, so nothing changes there.
+
+## D39. Chat token use: prompt caching and trimmed history (Daniel, after Phase 5)
+
+- **Caching:**
+  - One explicit `cache_control` breakpoint on the system block caches the tool definitions with it, because tools render first.
+  - A top-level automatic `cache_control` caches the growing conversation within a question's tool loop.
+  - TTL is 5 minutes. Cost uses 1.25x for cache writes and 0.05x for cache reads on Sonnet 5.5 / Opus 5.5 (0.1x on other models).
+- **Trimming:** once a question is answered, its tool calls, tool results and thinking are replaced in `history` by one assistant message: the tools called, then the answer text. The answer already holds the facts and URLs a follow-up needs, and rule 1 makes the agent call tools again for anything new. `trim_history=False` and `prompt_cache=False` restore the old behaviour; the measurements use them.
+- **Measured on the real agent**, same 5 Robinhood questions (CTO, VPs, marketing, CEO location, "and the CFO?"):
+
+  | Question | Before: prompt tokens | Before: cost | After: prompt tokens (cached read) | After: cost |
+  |---|---:|---:|---:|---:|
+  | Who's their CTO? | 11,194 | $0.0315 | 11,173 (6,551) | $0.0220 |
+  | How many VPs? | 19,754 | $0.0482 | 15,362 (5,373) | $0.0350 |
+  | Who heads marketing? | 31,926 | $0.0696 | 10,335 (7,046) | $0.0160 |
+  | Where is their CEO based? | 62,356 | $0.1292 | 51,478 (30,384) | $0.0601 |
+  | **and the CFO?** | **51,813** | **$0.1104** | **15,345 (9,311)** | **$0.0250** |
+  | Total | 177,043 | $0.389 | 103,693 | $0.158 |
+
+- The CEO-location turn is still large because `get_person` for Vlad Tenev returns many facts. That is a possible later trim; it is not done here.

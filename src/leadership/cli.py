@@ -180,7 +180,8 @@ def chat(
             for url in reply.sources:
                 console.print(f"[dim]  - {url}[/]", soft_wrap=True)
         console.print(
-            f"[dim]  {reply.input_tokens:,} tokens in / {reply.output_tokens:,} out · "
+            f"[dim]  {reply.prompt_tokens:,} tokens in ({reply.cache_read_tokens:,} cached) / "
+            f"{reply.output_tokens:,} out · "
             f"${reply.cost_usd}[/]\n"
         )
 

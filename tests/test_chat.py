@@ -59,15 +59,25 @@ def test_ceo_location_comes_with_evidence():
     assert "lives in the Bay Area" in loc["evidence"] and loc["url"].startswith("https://")
 
 
-def test_second_seat_in_a_combined_title_is_surfaced_not_resolved():
-    """Campfire: no CFO role row, but sources call the CEO 'CEO & CFO' (D36)."""
+def test_combined_title_is_a_cfo_row_with_both_sources():
+    """Campfire: 'CEO & CFO' is split into a CFO row (D37), backed by both wordings."""
     r = tools.list_leaders(CF, "finance", "c_level", include_former=True)
-    assert r["current"] == [] and r["not_current"] == []
-    (glasgow,) = r["also_titled"]
-    assert glasgow["name"] == "John Glasgow"
-    wordings = {w["wording"] for w in glasgow["wordings_naming_this_seat"]}
-    assert wordings == {"CEO & CFO", "CEO, CFO and founder"}
-    assert all(w["sources"][0]["url"] for w in glasgow["wordings_naming_this_seat"])
+    (glasgow,) = r["current"]
+    assert glasgow["name"] == "John Glasgow" and "also_titled" not in r
+    cfo = glasgow["roles"][0]
+    assert (cfo["title"], cfo["function"], cfo["is_current"]) == ("CEO & CFO", "finance", True)
+    assert {s["wording"] for s in cfo["sources"]} == {"CEO & CFO", "CEO, CFO and founder"}
+    assert tools.count_leaders(CF)["current_total"] == 8  # people, not roles
+
+
+def test_roster_listing_is_dated_by_retrieval_and_medium_confidence():
+    """D38: the search copy of investors.robinhood.com/governance/leadership."""
+    rows = tools.count_leaders(RH, seniority="vp")
+    assert rows["current_total"] == 15 and rows["low_confidence"] == 0
+    (abhishek,) = tools.get_person(RH, "Abhishek Fatehpuria")["people"]
+    assert abhishek["confidence"] == "medium"
+    (role,) = abhishek["roles"]
+    assert role["last_confirmed"] and role["sources"][0]["dated_by"].startswith("retrieval")
 
 
 def test_seat_functions():
@@ -142,7 +152,37 @@ def test_agent_runs_tools_keeps_history_and_collects_cited_sources():
     tool_result = client.requests[1][-1]["content"][0]
     assert tool_result["tool_use_id"] == "t1" and "Bay Area" in tool_result["content"]
     agent.ask("What's his salary?")
-    assert len(client.requests[2]) == 5  # q1, tool_use, tool_result, answer, q2
+    # D39: q1's tool turns are trimmed to the answer: q1, answer, q2
+    assert len(client.requests[2]) == 3
+    kept = client.requests[2][1]
+    assert kept["role"] == "assistant" and "get_person(" in kept["content"]
+    assert "Bay Area of California" in kept["content"]
+
+
+def test_untrimmed_history_keeps_tool_turns_and_cache_markers():
+    client = ScriptedClient([
+        _resp("end_turn", _block("text", text="a")), _resp("end_turn", _block("text", text="b")),
+    ])  # fmt: skip
+    agent = ChatAgent(RH, model="test", client=client, trim_history=False, prompt_cache=False)
+    agent.ask("q1")
+    agent.ask("q2")
+    assert len(client.requests[1]) == 3  # nothing to trim without tools, still q1, a, q2
+
+
+def test_prompt_cache_marks_system_and_conversation():
+    seen = {}
+
+    class Capture(ScriptedClient):
+        def create(self, **kw):
+            seen.update(kw)
+            return self.responses.pop(0)
+
+    agent = ChatAgent(
+        RH, model="test", client=Capture([_resp("end_turn", _block("text", text="x"))])
+    )
+    agent.ask("hi")
+    assert seen["system"][0]["cache_control"] == {"type": "ephemeral"}
+    assert seen["cache_control"] == {"type": "ephemeral"}
 
 
 def test_agent_rolls_back_history_on_error():

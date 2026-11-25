@@ -35,7 +35,7 @@ REVIEW_TITLES = {
     "from_blocked_host": "From a bot-blocked company host: check in your browser (D13)",
     "reanchored": "Evidence re-anchored from the source text (D22)",
     "stale_single_source": "Single source older than 18 months: not current (D32)",
-    "c_level_not_in_proxy_undated": "C-level title not in the latest proxy, source undated",
+    "c_level_not_in_proxy_undated": "C-level, not in the latest proxy (undated or roster source)",
     "superseded_by_proxy": "Retired by the proxy rule (D16)",
     "superseded_by_promotion": "Superseded by a later title",
     "founder_historical": "Founders without a current operating role (D23)",

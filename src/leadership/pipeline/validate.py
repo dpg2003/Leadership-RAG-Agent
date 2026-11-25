@@ -55,6 +55,16 @@ class Claim:
     reanchored: bool = False  # evidence span taken from the source, not the model's quote
     extracted_at: str | None = None  # when the LLM extraction was made (stable on re-runs)
     affiliation: str = ""  # how the evidence ties the person to the company (D22)
+    # D38: a current listing on the company's own roster page (team / leadership listing).
+    # Such a page shows current staff when fetched, so it is dated by its retrieval date.
+    roster: bool = False
+
+    @property
+    def effective_date(self) -> str | None:
+        """The page date; for a roster listing without one, the date it was retrieved."""
+        if self.published_at:
+            return self.published_at
+        return self.doc.fetched_at[:10] if self.roster and self.doc.fetched_at else None
 
 
 @dataclass(frozen=True)
@@ -84,6 +94,22 @@ _PEOPLE_PAGE = re.compile(
 # First person on the company's own page: "my co-founder", "our CTO", "we hired".
 # ("us" is left out: it also matches "US" in "Head of US Partnerships".)
 _FIRST_PERSON = re.compile(r"\b(?:our|my|we|we're|we've)\b", re.IGNORECASE)
+
+
+# A listing page: the LAST path segment is a people word (/governance/leadership, /team,
+# /about). /management/<name> profiles and /about/<product> pages are not listings.
+ROSTER_PATH = re.compile(
+    r"/(?:team|our-team|about|about-us|leadership|people|management|executives?|founders|"
+    r"who-we-are)/?$"
+)
+
+
+def is_roster(doc: RawDocument, company: Company | None) -> bool:
+    """D38: the company's own leadership/team listing page, fetched directly or via a search
+    copy of it (investors.robinhood.com/governance/leadership is bot-blocked, D13)."""
+    if company is None or not ROSTER_PATH.search(urlsplit(doc.url).path):
+        return False
+    return doc.source_type == "company_site" or is_company_host(doc.url, company)
 
 
 def _company_names(company: Company) -> set[str]:
@@ -356,6 +382,7 @@ def check_person(
         location=location,
         location_snippet=location_snippet,
         bio=bio,
+        roster=status == "current" and not published_at and is_roster(doc, company),
     )
 
 

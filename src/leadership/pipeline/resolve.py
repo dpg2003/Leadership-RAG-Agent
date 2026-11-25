@@ -23,6 +23,7 @@ from typing import TYPE_CHECKING, Any
 from urllib.parse import urlsplit
 
 from leadership.models import SOURCE_PRIORITY, display_name, normalize_name
+from leadership.pipeline.titles import seat_functions
 
 if TYPE_CHECKING:
     from leadership.pipeline.validate import Claim
@@ -140,7 +141,7 @@ def _ordinal(iso: str | None) -> int:
 
 def _claim_sort_key(c: Claim) -> tuple:
     """Best evidence first: source priority, then newest dated, then URL for stability."""
-    return (SOURCE_PRIORITY[c.doc.source_type], -_ordinal(c.published_at), c.doc.url, c.title)
+    return (SOURCE_PRIORITY[c.doc.source_type], -_ordinal(c.effective_date), c.doc.url, c.title)
 
 
 def _is_proxy(c: Claim) -> bool:
@@ -152,12 +153,18 @@ def _cite(c: Claim) -> str:
     parts = urlsplit(c.doc.url)
     where = (parts.hostname or "").removeprefix("www.") + parts.path.rstrip("/")
     kind = c.doc.meta.get("form") or c.doc.source_type.replace("_", " ")
-    return f"{kind} {where} ({c.published_at or 'undated'})"
+    if c.published_at:
+        when = c.published_at
+    elif c.roster:
+        when = f"current roster, retrieved {c.effective_date}"
+    else:
+        when = "undated"
+    return f"{kind} {where} ({when})"
 
 
 def _newest(claims: list[Claim]) -> Claim:
     return max(
-        claims, key=lambda c: (_ordinal(c.published_at), -SOURCE_PRIORITY[c.doc.source_type])
+        claims, key=lambda c: (_ordinal(c.effective_date), -SOURCE_PRIORITY[c.doc.source_type])
     )
 
 
@@ -181,7 +188,9 @@ def _title_claim(claims: list[Claim]) -> Claim:
     Superseded wording stays in the facts."""
 
     def key(c: Claim) -> tuple:
-        listing = not c.published_at and bool(_LISTING_PATH.search(urlsplit(c.doc.url).path))
+        listing = c.roster or (
+            not c.published_at and bool(_LISTING_PATH.search(urlsplit(c.doc.url).path))
+        )
         return (
             listing,
             _ordinal(c.published_at),
@@ -259,6 +268,11 @@ def _role_keys(c: Claim, in_proxy: bool = False) -> list[tuple[str, str]]:
         keys = [("vp" if c.title_class.seniority == "vp" else "head", "legal")]
     else:
         keys = [(c.title_class.seniority, c.title_class.function)]
+    # D37: a C-level title naming several seats ("CEO & CFO", "CEO, CFO and founder") is one
+    # role row per seat, each backed by the claims whose wording names it.
+    if c.title_class.seniority == "c_level" and not c.title_class.legal_chief:
+        for function in sorted(seat_functions(c.title) - {f for _, f in keys}):
+            keys.append(("c_level", function))
     if c.title_class.also_founder:
         keys.append(("founder", "other"))
     return keys
@@ -271,7 +285,9 @@ def role_confidence(claims: list[Claim]) -> str:
     types = {c.doc.source_type for c in claims}
     if "sec_filing" in types or (len(urls) >= 2 and "company_site" in types):
         return "high"
-    if "company_site" in types or len(urls) >= 2:
+    # D38: a search copy of the company's own roster page is medium (it is the company's
+    # page, fetched via search because the host blocks bots); corroboration raises it.
+    if "company_site" in types or len(urls) >= 2 or any(c.roster for c in claims):
         return "medium"
     return "low"
 
@@ -287,8 +303,10 @@ def _resolve_role(
     claims = sorted(claims, key=_claim_sort_key)
     current = [c for c in claims if c.status != "former"]
     former = [c for c in claims if c.status == "former"]
-    newest_current = max((_ordinal(c.published_at) for c in current), default=-1)
-    newest_former = max((_ordinal(c.published_at) for c in former), default=-1)
+    # D38: a roster listing counts as dated by its retrieval date (effective_date).
+    newest_current = max((_ordinal(c.effective_date) for c in current), default=-1)
+    newest_former = max((_ordinal(c.effective_date) for c in former), default=-1)
+    newest_dated_current = max((_ordinal(c.published_at) for c in current), default=-1)
     note = ""
     retired_by_proxy = False
     # A 'former' statement wins unless a current claim is strictly newer (undated = oldest).
@@ -312,12 +330,18 @@ def _resolve_role(
         and key not in proxy_keys
         and not any(c.doc.source_type == "sec_filing" for c in current)
     ):
-        if newest_current <= 0:
+        roster = [c for c in current if c.roster]
+        if roster:
+            note = (
+                f"C-level title not in the {proxy_date} proxy; listed on the company's current "
+                f"roster: {_cite(roster[0])}"
+            )
+        elif newest_dated_current <= 0:
             note = (
                 f"C-level title not in the {proxy_date} proxy; source is undated: "
                 f"{_cite(current[0])}"
             )
-        elif newest_current < _ordinal(proxy_date):
+        elif newest_dated_current < _ordinal(proxy_date):
             is_current = False
             retired_by_proxy = True
             note = (
@@ -326,7 +350,7 @@ def _resolve_role(
             )
 
     supporting = current if is_current or retired_by_proxy else (former or claims)
-    dated = [c.published_at for c in supporting if c.published_at]
+    dated = [c.effective_date for c in supporting if c.effective_date]
     as_of = max(dated) if dated else None
     confidence = role_confidence(supporting)
     single = len({c.doc.url for c in supporting}) == 1
@@ -538,7 +562,7 @@ def _review_role(review: dict[str, list[dict[str, Any]]], name: str, r: Resolved
     }
     if "disagree" in r.note:
         review["conflicts"].append(entry | {"field": "is_current", "resolved": r.is_current})
-    elif "source is undated" in r.note:
+    elif "source is undated" in r.note or ("current roster" in r.note and "proxy" in r.note):
         review["c_level_not_in_proxy_undated"].append(entry)
     elif "proxy" in r.note:
         review["superseded_by_proxy"].append(entry)

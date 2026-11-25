@@ -1132,3 +1132,61 @@ def test_retire_stale_keeps_earlier_notes():
                      "merged from 2 rows with overlapping wording (D30): a / b")  # fmt: skip
     retire_stale([r], _date(2026, 11, 24))
     assert not r.is_current and "no newer confirmation" in r.note and "merged from 2 rows" in r.note
+
+
+def test_combined_c_level_title_is_one_row_per_seat():
+    """D37: 'CEO & CFO' is a CEO row and a CFO row; the person is still counted once."""
+    a = doc("https://acme.test/blog/a", "February 24, 2026\n— Jo Park, CEO & CFO at Acme")
+    b = doc("https://news.test/x", "Jo Park, CEO, CFO and founder of Acme, said", "search")
+    c = doc("https://acme.test/blog/b", "November 18, 2026\nJo Park, CEO & Founder")
+    claims = _single(a, "Jo Park", "CEO & CFO", "— Jo Park, CEO & CFO at Acme",
+                     date="2026-02-24", date_text="February 24, 2026")  # fmt: skip
+    claims += _single(b, "Jo Park", "CEO, CFO and founder",
+                      "Jo Park, CEO, CFO and founder of Acme, said")  # fmt: skip
+    claims += _single(c, "Jo Park", "CEO & Founder", "Jo Park, CEO & Founder",
+                      date="2026-11-18", date_text="November 18, 2026")  # fmt: skip
+    res = resolve_claims(claims, today=TODAY)
+    (jo,) = res.people
+    cfo = next(r for r in jo.roles if r.function == "finance")
+    assert (cfo.title, cfo.seniority, cfo.is_current) == ("CEO & CFO", "c_level", True)
+    assert {x.doc.url for x in cfo.claims} == {a.url, b.url}
+    assert any(r.function == "other" and r.seniority == "c_level" for r in jo.roles)
+
+
+def test_vp_title_naming_a_c_seat_is_not_split():
+    d = doc(
+        "https://acme.test/team", "Bo Lee, Vice President and Chief Information Security Officer"
+    )
+    claims = _single(d, "Bo Lee", "Vice President and Chief Information Security Officer",
+                     "Bo Lee, Vice President and Chief Information Security Officer")  # fmt: skip
+    (role,) = by_name(resolve_claims(claims, today=TODAY), "Bo Lee").roles
+    assert role.seniority == "vp"
+
+
+ACME = Company("Acme", "acme.test", "https://acme.test/")
+
+
+def test_roster_listing_is_dated_by_retrieval_date():
+    """D38: the company's own leadership page shows current staff when fetched."""
+    d = doc("https://acme.test/about/leadership", "Bo Lee\nVP of Data")
+    (claim,), _ = _one(d, "Bo Lee", "VP of Data", "Bo Lee\nVP of Data", ACME)
+    assert claim.roster and claim.published_at is None and claim.effective_date == "2026-11-24"
+    (role,) = by_name(resolve_claims([claim], today=TODAY), "Bo Lee").roles
+    assert role.as_of == "2026-11-24" and role.is_current
+
+
+def test_search_copy_of_roster_is_medium_other_search_pages_low():
+    roster = doc("https://investors.acme.test/governance/leadership", "Bo Lee VP of Data", "search")
+    (claim,), _ = _one(roster, "Bo Lee", "VP of Data", "Bo Lee VP of Data", ACME)
+    assert claim.roster
+    assert by_name(resolve_claims([claim], today=TODAY), "Bo Lee").confidence == "medium"
+    news = doc("https://news.test/acme-people", "Acme's Bo Lee, VP of Data", "search")
+    (claim,), _ = _one(news, "Bo Lee", "VP of Data", "Acme's Bo Lee, VP of Data", ACME)
+    assert not claim.roster
+    assert by_name(resolve_claims([claim], today=TODAY), "Bo Lee").confidence == "low"
+
+
+def test_profile_page_is_not_a_roster():
+    d = doc("https://acme.test/management/bo-lee", "Bo Lee VP of Data at Acme")
+    (claim,), _ = _one(d, "Bo Lee", "VP of Data", "Bo Lee VP of Data at Acme", ACME)
+    assert not claim.roster and claim.effective_date is None

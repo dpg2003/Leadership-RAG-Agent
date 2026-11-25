@@ -155,7 +155,7 @@
     "review": {
       "c_level_not_in_proxy_undated": [
         {
-          "note": "C-level title not in the 2026-04-22 proxy; source is undated: search investors.robinhood.com/governance/leadership (undated)",
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)",
           "person": "Stephanie Guild",
           "title": "Chief Investment Officer",
           "urls": [
@@ -163,7 +163,7 @@
           ]
         },
         {
-          "note": "C-level title not in the 2026-04-22 proxy; source is undated: search investors.robinhood.com/governance/leadership (undated)",
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)",
           "person": "Connie Schan",
           "title": "Chief People Officer",
           "urls": [
@@ -673,7 +673,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -682,7 +682,7 @@
           "function": "product",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -1281,7 +1281,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -1290,7 +1290,7 @@
           "function": "finance",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -1647,7 +1647,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -1656,8 +1656,8 @@
           "function": "people",
           "seniority": "c_level",
           "is_current": true,
-          "as_of": null,
-          "note": "C-level title not in the 2026-04-22 proxy; source is undated: search investors.robinhood.com/governance/leadership (undated)"
+          "as_of": "2026-11-24",
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)"
         }
       ],
       "facts": [
@@ -1708,7 +1708,7 @@
           "function": "legal",
           "seniority": "c_level",
           "is_current": true,
-          "as_of": "2026-04-22",
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -1980,7 +1980,7 @@
           "function": "marketing",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -2117,7 +2117,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -2126,7 +2126,7 @@
           "function": "security",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -2411,7 +2411,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -2420,7 +2420,7 @@
           "function": "other",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -2871,7 +2871,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 2,
       "roles": [
@@ -2888,7 +2888,7 @@
           "function": "other",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3034,7 +3034,7 @@
           "function": "other",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3246,7 +3246,7 @@
           "function": "legal",
           "seniority": "vp",
           "is_current": true,
-          "as_of": "2020-08-19",
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3458,7 +3458,7 @@
           "function": "operations",
           "seniority": "vp",
           "is_current": true,
-          "as_of": "2023-09-18",
+          "as_of": "2026-11-24",
           "note": "merged from 2 rows with overlapping wording (D30): VP and President of Robinhood Financial LLC and Robinhood Securities, LLC / Vice President, Brokerage and President, Robinhood Financial and Robinhood Securities"
         }
       ],
@@ -3543,7 +3543,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -3552,7 +3552,7 @@
           "function": "other",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3661,7 +3661,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -3670,7 +3670,7 @@
           "function": "other",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3713,7 +3713,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -3722,7 +3722,7 @@
           "function": "other",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3883,7 +3883,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -3892,7 +3892,7 @@
           "function": "other",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3935,7 +3935,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T02:12:33+00:00",
       "source_count": 1,
       "roles": [
@@ -3944,7 +3944,7 @@
           "function": "people",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -3996,7 +3996,7 @@
           "function": "finance",
           "seniority": "c_level",
           "is_current": true,
-          "as_of": "2026-07-29",
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -4343,7 +4343,7 @@
       "location": null,
       "bio": null,
       "profile_url": "https://investors.robinhood.com/governance/leadership",
-      "confidence": "low",
+      "confidence": "medium",
       "updated_at": "2026-11-24T03:13:39+00:00",
       "source_count": 2,
       "roles": [
@@ -4352,8 +4352,8 @@
           "function": "other",
           "seniority": "c_level",
           "is_current": true,
-          "as_of": null,
-          "note": "C-level title not in the 2026-04-22 proxy; source is undated: search investors.robinhood.com/governance/leadership (undated)"
+          "as_of": "2026-11-24",
+          "note": "C-level title not in the 2026-04-22 proxy; listed on the company's current roster: search investors.robinhood.com/governance/leadership (current roster, retrieved 2026-11-24)"
         },
         {
           "title_raw": "Head of Investment Strategy",
@@ -4440,7 +4440,7 @@
           "function": "operations",
           "seniority": "c_level",
           "is_current": true,
-          "as_of": "2026-04-22",
+          "as_of": "2026-11-24",
           "note": null
         }
       ],
@@ -4618,7 +4618,7 @@
           "function": "other",
           "seniority": "c_level",
           "is_current": true,
-          "as_of": "2026-10-28",
+          "as_of": "2026-11-24",
           "note": null
         },
         {
@@ -5350,7 +5350,7 @@
           "function": "operations",
           "seniority": "vp",
           "is_current": true,
-          "as_of": null,
+          "as_of": "2026-11-24",
           "note": null
         }
       ],

@@ -1,8 +1,14 @@
 """Tool-calling chat agent over the typed tools in tools.py (real LLM calls).
 
-The agent keeps the whole conversation (including tool calls and results) in `history`, so
-follow-ups such as "and the CFO?" or "where is he based?" work. Each `ask()` returns the
-answer, the tool steps it took, and the source URLs it could cite, for the CLI and UI.
+The agent keeps the conversation in `history`, so follow-ups such as "and the CFO?" or
+"where is he based?" work. Once a question is answered, its tool calls and results are
+trimmed from the history and only the question and the answer are kept (D39): the answer
+already holds the facts and URLs a follow-up needs, and the agent calls tools again for
+anything new. The tools and system prompt are cached (prompt caching), and so is the
+growing conversation within a question's tool loop.
+
+Each `ask()` returns the answer, the tool steps it took, the source URLs it cites, and its
+token use and cost, for the CLI, the UI and the eval.
 """
 
 from __future__ import annotations
@@ -27,6 +33,12 @@ MAX_TOKENS = 4096
 MAX_TOOL_ROUNDS = 8
 _URL = re.compile(r"https?://[^\s\"'<>)\]]+")
 
+# Prompt-cache price multipliers on the base input price (Anthropic pricing page, prompt
+# caching, 5-minute TTL): writes 1.25x; reads 0.05x on Sonnet 5.5 / Opus 5.5, else 0.1x.
+CACHE_WRITE = 1.25
+CACHE_READ = {"claude-sonnet-5-5": 0.05, "claude-opus-5-5": 0.05}
+_EPHEMERAL = {"type": "ephemeral"}
+
 
 @dataclass
 class Step:
@@ -41,9 +53,16 @@ class Reply:
     text: str
     steps: list[Step] = field(default_factory=list)
     sources: list[str] = field(default_factory=list)  # tool-result URLs cited in the answer
-    input_tokens: int = 0
+    input_tokens: int = 0  # uncached input
+    cache_write_tokens: int = 0
+    cache_read_tokens: int = 0
     output_tokens: int = 0
     cost_usd: float | None = None
+
+    @property
+    def prompt_tokens(self) -> int:
+        """All input tokens sent, cached or not."""
+        return self.input_tokens + self.cache_write_tokens + self.cache_read_tokens
 
 
 class ChatAgent:
@@ -53,6 +72,8 @@ class ChatAgent:
         model: str | None = None,
         client: Any = None,
         today: date | None = None,
+        prompt_cache: bool = True,
+        trim_history: bool = True,
     ) -> None:
         companies = available_companies()
         domains = {c["domain"] for c in companies}
@@ -65,6 +86,8 @@ class ChatAgent:
         self.system = system_prompt(
             companies, company, (today or datetime.now(UTC).date()).isoformat()
         )
+        self.prompt_cache = prompt_cache
+        self.trim_history = trim_history
         self.history: list[dict[str, Any]] = []
         self._client = client
 
@@ -75,6 +98,23 @@ class ChatAgent:
             )
         return self._client
 
+    def _request(self) -> dict[str, Any]:
+        req: dict[str, Any] = {
+            "model": self.model,
+            "max_tokens": MAX_TOKENS,
+            "tools": TOOL_SCHEMAS,
+            "messages": self.history,
+            "thinking": {"type": "adaptive"},
+        }
+        if self.prompt_cache:
+            # Tools render before the system prompt, so one breakpoint here caches both;
+            # the top-level field caches the conversation tail within a tool loop.
+            req["system"] = [{"type": "text", "text": self.system, "cache_control": _EPHEMERAL}]
+            req["cache_control"] = _EPHEMERAL
+        else:
+            req["system"] = self.system
+        return req
+
     def ask(self, question: str) -> Reply:
         start = len(self.history)
         self.history.append({"role": "user", "content": question})
@@ -82,16 +122,12 @@ class ChatAgent:
         tool_urls: set[str] = set()
         try:
             for _ in range(MAX_TOOL_ROUNDS + 1):
-                response = self._client_lazy().messages.create(
-                    model=self.model,
-                    max_tokens=MAX_TOKENS,
-                    system=self.system,
-                    tools=TOOL_SCHEMAS,
-                    messages=self.history,
-                    thinking={"type": "adaptive"},
-                )
-                reply.input_tokens += response.usage.input_tokens
-                reply.output_tokens += response.usage.output_tokens
+                response = self._client_lazy().messages.create(**self._request())
+                u = response.usage
+                reply.input_tokens += u.input_tokens
+                reply.cache_write_tokens += getattr(u, "cache_creation_input_tokens", 0) or 0
+                reply.cache_read_tokens += getattr(u, "cache_read_input_tokens", 0) or 0
+                reply.output_tokens += u.output_tokens
                 self.history.append({"role": "assistant", "content": response.content})
                 if response.stop_reason != "tool_use":
                     break
@@ -128,16 +164,41 @@ class ChatAgent:
         reply.text = text
         cited = {u.rstrip(".,;") for u in _URL.findall(text)}
         reply.sources = sorted(u for u in tool_urls if u in cited)
-        price = PRICES.get(self.model)
-        if price:
-            reply.cost_usd = round(
-                (reply.input_tokens * price[0] + reply.output_tokens * price[1]) / 1e6, 4
-            )
+        if self.trim_history:
+            self._trim(start, reply)
+        reply.cost_usd = self._cost(reply)
         log.info(
-            "chat answer: %d tool calls, %d tokens in / %d out, cost $%s",
-            len(reply.steps), reply.input_tokens, reply.output_tokens, reply.cost_usd,
+            "chat answer: %d tool calls, %d prompt tokens (%d cached read, %d cache write) "
+            "/ %d out, cost $%s",
+            len(reply.steps), reply.prompt_tokens, reply.cache_read_tokens,
+            reply.cache_write_tokens, reply.output_tokens, reply.cost_usd,
         )  # fmt: skip
         return reply
+
+    def _trim(self, start: int, reply: Reply) -> None:
+        """Replace this question's tool calls and results with the question and the answer
+        (D39). The tools called are noted in the kept answer, so the model knows the facts
+        came from tools."""
+        calls = "; ".join(
+            f"{s.tool}({', '.join(f'{k}={v!r}' for k, v in s.input.items())})" for s in reply.steps
+        )
+        answer = reply.text or "(no answer)"
+        if calls:
+            answer = f"[Answered from tool results: {calls}]\n\n{answer}"
+        self.history[start + 1 :] = [{"role": "assistant", "content": answer}]
+
+    def _cost(self, reply: Reply) -> float | None:
+        price = PRICES.get(self.model)
+        if not price:
+            return None
+        read = CACHE_READ.get(self.model, 0.1)
+        usd = (
+            reply.input_tokens * price[0]
+            + reply.cache_write_tokens * price[0] * CACHE_WRITE
+            + reply.cache_read_tokens * price[0] * read
+            + reply.output_tokens * price[1]
+        ) / 1e6
+        return round(usd, 4)
 
 
 def steps_as_json(steps: list[Step]) -> str:
