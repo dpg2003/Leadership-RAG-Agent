@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import logging
+from typing import Any
 
 import typer
 from rich.console import Console
 from rich.logging import RichHandler
 from rich.table import Table
 
-from leadership.config import REPO_ROOT, MissingSettingError
+from leadership.config import COMPANIES_PATH, REPO_ROOT, MissingSettingError, company_settings
 from leadership.sources.company_site import MAX_PAGES
 
 app = typer.Typer(add_completion=False, no_args_is_help=True, help=__doc__)
@@ -31,14 +32,35 @@ def _setup_logging(verbose: bool) -> None:
         logging.getLogger(noisy).setLevel(logging.WARNING)
 
 
+def company_options(
+    url: str, name: str | None, ticker: str | None, private: bool | None, max_pages: int | None
+) -> dict[str, Any]:
+    """Flags override data/companies.yaml, which overrides the built-in defaults."""
+    from leadership.pipeline.discover import normalize_domain
+
+    flags = {"name": name, "ticker": ticker, "private": private, "max_pages": max_pages}
+    configured = company_settings(normalize_domain(url))
+    if ticker is not None and private is None:
+        flags["private"] = False  # an explicit --ticker means a public lookup, over the file
+    opts = {"name": None, "ticker": None, "private": False, "max_pages": MAX_PAGES}
+    opts |= configured | {k: v for k, v in flags.items() if v is not None}
+    used = {k: v for k, v in configured.items() if flags[k] is None}
+    if used:
+        shown = ", ".join(f"{k}={v}" for k, v in used.items())
+        console.print(f"Settings from {COMPANIES_PATH.relative_to(REPO_ROOT).as_posix()}: {shown}")
+    return opts
+
+
 @app.command()
 def discover(
     url: str = typer.Argument(..., help="Company domain or URL, e.g. robinhood.com"),
     name: str | None = typer.Option(None, help="Company name (default: read from the site)"),
     ticker: str | None = typer.Option(None, help="Stock ticker, if public (default: look up)"),
-    private: bool = typer.Option(False, help="Skip the SEC lookup"),
+    private: bool | None = typer.Option(None, "--private/--public", help="Skip the SEC lookup"),
     source: list[str] | None = typer.Option(None, help="Only these sources (repeatable)"),  # noqa: B008
-    max_pages: int = typer.Option(MAX_PAGES, help="Company-site pages to fetch (top-ranked)"),
+    max_pages: int | None = typer.Option(
+        None, help=f"Company-site pages to fetch, top-ranked (default {MAX_PAGES})"
+    ),
     refresh: bool = typer.Option(False, help="Ignore the cache and re-fetch"),
     verbose: bool = typer.Option(False, "--verbose", "-v"),
 ) -> None:
@@ -49,15 +71,18 @@ def discover(
 
     _setup_logging(verbose)
     try:
+        o = company_options(url, name, ticker, private, max_pages)
         with fetcher_for(normalize_domain(url), refresh) as fetcher:
-            company = resolve_company(fetcher, url, name, ticker, private)
+            company = resolve_company(fetcher, url, o["name"], o["ticker"], o["private"])
             status = (
                 f"public ({company.ticker}, CIK {company.cik})" if company.is_public else "private"
             )
             console.print(
                 f"[bold]{company.name}[/] · {company.domain} → {company.site_url} · {status}"
             )
-            result = run_discover(company, fetcher, tuple(source) if source else None, max_pages)
+            result = run_discover(
+                company, fetcher, tuple(source) if source else None, o["max_pages"]
+            )
     except MissingSettingError as exc:
         console.print(f"[red]{exc}[/]")
         raise typer.Exit(2) from exc
@@ -86,8 +111,10 @@ def collect(
     url: str = typer.Argument(..., help="Company domain or URL, e.g. robinhood.com"),
     name: str | None = typer.Option(None, help="Company name (default: read from the site)"),
     ticker: str | None = typer.Option(None, help="Stock ticker, if public (default: look up)"),
-    private: bool = typer.Option(False, help="Skip the SEC lookup"),
-    max_pages: int = typer.Option(MAX_PAGES, help="Company-site pages to fetch (top-ranked)"),
+    private: bool | None = typer.Option(None, "--private/--public", help="Skip the SEC lookup"),
+    max_pages: int | None = typer.Option(
+        None, help=f"Company-site pages to fetch, top-ranked (default {MAX_PAGES})"
+    ),
     refresh: bool = typer.Option(False, help="Ignore the fetch cache and re-fetch"),
     reextract: bool = typer.Option(False, help="Ignore cached LLM extractions"),
     verbose: bool = typer.Option(False, "--verbose", "-v"),
@@ -98,15 +125,8 @@ def collect(
 
     _setup_logging(verbose)
     try:
-        result = run_collect(
-            url,
-            name=name,
-            ticker=ticker,
-            private=private,
-            max_pages=max_pages,
-            refresh=refresh,
-            reextract=reextract,
-        )
+        opts = company_options(url, name, ticker, private, max_pages)
+        result = run_collect(url, **opts, refresh=refresh, reextract=reextract)
     except MissingSettingError as exc:
         console.print(f"[red]{exc}[/]")
         raise typer.Exit(2) from exc

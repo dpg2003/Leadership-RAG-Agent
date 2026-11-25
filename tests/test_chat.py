@@ -70,6 +70,51 @@ def test_combined_title_is_a_cfo_row_with_both_sources():
     assert tools.count_leaders(CF)["current_total"] == 8  # people, not roles
 
 
+def test_founder_filter_includes_a_merged_ceo_and_founder_row():
+    """Glasgow's "CEO & Founder" is one C-level row standing for a founder role too (D29)."""
+    r = tools.list_leaders(CF, seniority="founder", include_former=True)
+    assert [p["name"] for p in r["current"]] == ["John Glasgow"]
+    assert r["current"][0]["roles"][0]["title"] == "CEO & Founder"
+    assert [p["name"] for p in r["not_current"]] == ["Fernando San Martin"]
+    c = tools.count_leaders(CF, seniority="founder")
+    assert c["current_total"] == 1 and c["people"][0]["title"] == "CEO & Founder"
+    assert tools.list_leaders(CF, seniority="c_level")["current_count"] >= 1
+    assert tools.count_leaders(CF)["current_total"] == 8
+
+
+_NOTES = [
+    ("c_level", "one row for: c_level, founder", True),
+    ("c_level", "dated 2026; one row for: c_level, founder", True),
+    ("c_level", "one row for: c_level, founder; merged from 2 rows (D30): A / B", True),
+    (
+        "c_level",
+        "one row for: c_level, vp; merged from 2 rows (D30): Co-Founder & CTO / CTO",
+        False,
+    ),
+    ("c_level", "founder of a club", False),
+    ("vp", "one row for: vp, head", False),
+    ("c_level", "one row for: c_level, founders", False),
+    ("c_level", None, False),
+    ("founder", None, True),
+]
+
+
+@pytest.mark.parametrize(("seniority", "note", "is_founder"), _NOTES)
+def test_founder_filter_sql_and_python_agree(seniority, note, is_founder):
+    from leadership.storage.repository import _SENIORITY_MATCH_SQL, covers_seniority
+
+    role = {"seniority": seniority, "note": note}
+    with closing(sqlite3.connect(":memory:")) as conn:
+        conn.execute("CREATE TABLE roles (seniority TEXT, note TEXT)")
+        conn.execute("INSERT INTO roles VALUES (?, ?)", (seniority, note))
+        for want in ("founder", "c_level", "vp", None):
+            sql = conn.execute(
+                f"SELECT COUNT(*) FROM roles r WHERE {_SENIORITY_MATCH_SQL}", (want,) * 3
+            ).fetchone()[0]
+            assert bool(sql) == covers_seniority(role, want), (note, want)
+    assert covers_seniority(role, "founder") is is_founder
+
+
 def test_roster_listing_is_dated_by_retrieval_and_medium_confidence():
     """D38: the search copy of investors.robinhood.com/governance/leadership."""
     rows = tools.count_leaders(RH, seniority="vp")

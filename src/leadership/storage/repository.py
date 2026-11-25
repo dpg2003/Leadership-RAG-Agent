@@ -51,6 +51,33 @@ _SENIORITY_ORDER = (
 _SOURCE_COUNT_SQL = "(SELECT COUNT(DISTINCT f.source_id) FROM facts f WHERE f.person_id = p.id)"
 
 
+# A role row matches a seniority filter on its own seniority, or, for "founder", when it is a
+# merged row that also stands for a founder role (D29 notes it "one row for: c_level, founder").
+# Both read only the comma list right after the marker, up to the next "; " (later note text,
+# such as a D30 merge naming a "Co-Founder" title, never counts), and match it exactly.
+MERGED_NOTE = "one row for: "
+_MERGED_TAIL = "substr(r.note, instr(r.note, 'one row for: ') + 13)"
+_MERGED_LIST = (
+    f"CASE WHEN instr({_MERGED_TAIL}, ';') > 0 "
+    f"THEN substr({_MERGED_TAIL}, 1, instr({_MERGED_TAIL}, ';') - 1) ELSE {_MERGED_TAIL} END"
+)
+_SENIORITY_MATCH_SQL = (
+    "(? IS NULL OR r.seniority = ? OR (? = 'founder' AND instr(r.note, 'one row for: ') > 0"
+    f" AND instr(', ' || {_MERGED_LIST} || ',', ', founder,') > 0))"
+)
+
+
+def covers_seniority(role: dict[str, Any], seniority: str | None) -> bool:
+    """Python twin of _SENIORITY_MATCH_SQL, for filtering role dicts (same test, same cases)."""
+    if seniority is None or role["seniority"] == seniority:
+        return True
+    note = role.get("note") or ""
+    if seniority != "founder" or MERGED_NOTE not in note:
+        return False
+    merged = note.split(MERGED_NOTE, 1)[1].split(";", 1)[0]
+    return ", founder," in f", {merged},"
+
+
 def _check_choice(name: str, value: str | None, allowed: tuple[str, ...]) -> None:
     if value is not None and value not in allowed:
         raise ValueError(f"Invalid {name} {value!r}; expected one of {', '.join(allowed)}")
@@ -360,9 +387,9 @@ class Repository:
                 WHERE c.domain = ?
                   AND EXISTS (SELECT 1 FROM roles r WHERE r.person_id = p.id AND r.is_current = 1
                               AND (? IS NULL OR r.function = ?)
-                              AND (? IS NULL OR r.seniority = ?))
+                              AND {_SENIORITY_MATCH_SQL})
                 ORDER BY rank, p.full_name""",
-            (domain, function, function, seniority, seniority),
+            (domain, function, function, seniority, seniority, seniority),
         ).fetchall()
         leaders = []
         for row in rows:
@@ -379,13 +406,13 @@ class Repository:
         _check_choice("function", function, FUNCTIONS)
         _check_choice("seniority", seniority, SENIORITIES)
         return self.conn.execute(
-            """SELECT COUNT(DISTINCT p.id) FROM people p
+            f"""SELECT COUNT(DISTINCT p.id) FROM people p
                JOIN companies c ON c.id = p.company_id
                JOIN roles r ON r.person_id = p.id
                WHERE c.domain = ? AND r.is_current = 1
                  AND (? IS NULL OR r.function = ?)
-                 AND (? IS NULL OR r.seniority = ?)""",
-            (domain, function, function, seniority, seniority),
+                 AND {_SENIORITY_MATCH_SQL}""",
+            (domain, function, function, seniority, seniority, seniority),
         ).fetchone()[0]
 
     def get_person(self, domain: str, name: str) -> list[dict[str, Any]]:

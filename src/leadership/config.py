@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from typing import Any
 
+import yaml
 from dotenv import load_dotenv
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -52,6 +54,27 @@ def require_setting(name: str) -> str:
 
 def llm_model() -> str:
     return get_setting("LLM_MODEL") or DEFAULT_LLM_MODEL
+
+
+COMPANIES_PATH = DATA_DIR / "companies.yaml"
+COMPANY_SETTING_TYPES = {"name": str, "ticker": str, "private": bool, "max_pages": int}
+
+
+def company_settings(domain: str, path: Path = COMPANIES_PATH) -> dict[str, Any]:
+    """Collection settings for `domain` from data/companies.yaml ({} if none)."""
+    if not path.exists():
+        return {}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    if not isinstance(data, dict):
+        raise ValueError(f"{path}: expected a mapping of domain -> settings")
+    for company, settings in data.items():  # check every company, not just the one asked for
+        if not isinstance(settings, dict):
+            raise ValueError(f"{path}: settings for {company} must be a mapping")
+        for key, value in settings.items():
+            want = COMPANY_SETTING_TYPES.get(key)
+            if want is None or type(value) is not want:
+                raise ValueError(f"{path}: bad setting {key}={value!r} for {company}")
+    return dict(data.get(domain) or {})
 
 
 def company_dir(domain: str) -> Path:

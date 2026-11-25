@@ -362,7 +362,7 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - **Source records are unchanged:** sources.published_at stays NULL, because the page itself has no date. The chat marks such a source `dated_by: retrieval date (current roster page)`.
 - **Search copies (added after the phase review):** a search copy's `fetched_at` is when the search was made. The copied text's own crawl date is unknown. So:
   - Its citation reads "search copy of current roster, searched <date>", and the chat marks it `dated_by: search date of a search copy of the current roster (content date unknown)`.
-  - Its search date **never outweighs an explicit, dated "former" statement**. A directly fetched roster page does, since it is the live page as fetched.
+  - Its search date **never outweighs an explicit, dated "former" statement**. A directly fetched roster page does, since it is the live page as fetched. (Proposed by Claude after the review; approved by Daniel after Phase 6.)
   - No stored role changed because of this.
   - Tests pin both boundaries: roster dates don't drive promotions, and a search copy loses to a dated "former" statement.
 - **Effect:**
@@ -415,3 +415,17 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   - The tightened `low confidence` pattern then rejected a correct "Confidence: Low, because …". It now accepts both word orders. Every change to a pattern is recorded here.
 - **Result:** see `eval/RESULTS.md` for the latest run.
 - **Dependency:** PyYAML, for the spec's `questions.yaml`.
+
+## D41. Per-company collection settings in data/companies.yaml (Daniel, after Phase 6)
+
+- **Problem:** reproducing the committed data needed flags (`--ticker HOOD` for Robinhood; `--private --max-pages 120` for Campfire). A bare `collect` silently produced different data: without the ticker the SEC name match is ambiguous and Robinhood is treated as private, and the default page cap fetched 51 Campfire pages instead of 88.
+- **Rule:** `data/companies.yaml` holds each company's settings (`name`, `ticker`, `private`, `max_pages`). `leadership collect <domain>` and `leadership discover <domain>` read them. A flag on the command line overrides the file, and the file overrides the built-in defaults. `--public` overrides a configured `private: true`, and so does an explicit `--ticker` (unless `--private` is also given). The CLI prints which settings came from the file.
+- **Validation:** the whole file is checked on every read, for every company. A non-mapping entry, an unknown key or a wrong type is a `ValueError`, not ignored.
+- **Check:** a bare `leadership collect robinhood.com` and `leadership collect meetcampfire.com` (from the caches) reproduced the committed leadership.json files byte for byte. The only database difference was the new collection-run log row, so the committed databases were restored.
+- **Tests:** `tests/test_config.py` checks that the config is read, that flags override it, and that bad settings are rejected.
+
+## D42. A founder filter includes merged "CEO & Founder" rows (Daniel, after Phase 6)
+
+- **Problem:** D29 keeps John Glasgow's "CEO & Founder" as one C-level row, noted "one row for: c_level, founder". `list_leaders(seniority="founder")` matched on the row's seniority only, so it missed him. The agent recovered with a second call.
+- **Rule:** a role row matches the founder filter if its seniority is `founder`, or if its merge note lists `founder` among the merged seniorities. The SQL in `repository.py` (`_SENIORITY_MATCH_SQL`) and the Python filter in the chat tools (`covers_seniority`) apply the same test, so `list_leaders` and `count_leaders` agree. Both read only the comma list right after "one row for: ", up to the next ";". Later note text (for example a D30 merge naming a "Co-Founder & CTO" title) never counts. A parametrized test runs the SQL and the Python on the same notes, and they must agree (added after the phase review).
+- **Effect:** Campfire founders: John Glasgow (current, "CEO & Founder"), plus Fernando San Martin as not current. No stored data changed, and the totals are unchanged at 22 and 8.

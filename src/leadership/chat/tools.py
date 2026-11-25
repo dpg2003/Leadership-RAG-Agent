@@ -19,7 +19,7 @@ from leadership.config import DATA_DIR, db_path
 from leadership.models import FUNCTIONS, SENIORITIES
 from leadership.pipeline.collect import load_review_flags
 from leadership.pipeline.titles import seat_functions
-from leadership.storage.repository import Repository
+from leadership.storage.repository import Repository, covers_seniority
 
 MAX_SOURCES_PER_WORDING = 3
 MAX_WORDINGS = 6
@@ -229,9 +229,7 @@ def _summary(domain: str, person: dict[str, Any], current_only: bool) -> dict[st
 
 
 def _matches(r: dict[str, Any], function: str | None, seniority: str | None) -> bool:
-    return (function is None or r["function"] == function) and (
-        seniority is None or r["seniority"] == seniority
-    )
+    return (function is None or r["function"] == function) and covers_seniority(r, seniority)
 
 
 def _also_titled(

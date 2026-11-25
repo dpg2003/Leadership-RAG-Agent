@@ -1,0 +1,10 @@
+# Per-company collection settings read by `leadership collect <domain>` and
+# `leadership discover <domain>`, so a bare command reproduces the committed data.
+# A command-line flag overrides the value here. Keys: name, ticker, private, max_pages.
+
+robinhood.com:
+  ticker: HOOD        # the SEC name match alone is ambiguous; without this it is treated as private
+
+meetcampfire.com:
+  private: true       # no SEC filings
+  max_pages: 120      # with the default cap the run fetched 51 site pages instead of 88
