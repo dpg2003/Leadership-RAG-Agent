@@ -460,3 +460,13 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   - API errors (connection, rate limit, HTTP status, a rejected key) and any other error become a plain message.
   - Details go to the console log only. `client.showErrorDetails = "none"` hides tracebacks in the page.
 - **Tests:** `tests/test_ui.py` drives the page with Streamlit's AppTest over the committed data. Chat answers there come from a test-only stand-in for `ChatAgent.ask`. `test_chat.py` covers the streaming loop with a scripted stream client. The real agent is covered by the eval and a manual streamed run.
+
+## D44. Secret scans never read `.env` (Daniel, before submission)
+
+- **Incident:** in Phase 1, a `phase-reviewer` subagent ran a broad `grep -rE "sk-ant-|…"` over the repo. It matched `.env` and printed the line with the Anthropic API key into its transcript. The key was never committed, and git history is clean. It was found while preparing `session/` for submission. The key is redacted in the `session/` copy and was revoked and rotated.
+- **Root cause:** the `.env` deny rules covered the Read tool only, not shell commands. The scan instructions also searched for a bare prefix and printed matching lines.
+- **Fixes:**
+  - `.claude/agents/phase-reviewer.md` and `fresh-clone-tester.md`: secret scans exclude `.env` and `.env.*` (`--exclude='.env' --exclude='.env.*'`). They search for key-shaped values (`sk-ant-` or `tvly-` plus 20 or more key characters, a long token after `API_KEY=`), not bare prefixes, so text that only mentions the prefix isn't a hit. They print only file:line (`cut -d: -f1-2`, or `git grep -l` for history), never the matched text.
+  - `.claude/settings.json`: Bash deny rules for commands that read `.env` files directly (`cat`, `head`, `tail`, `less`, `more`, `type`, `Get-Content`, `strings`, `grep`, `rg`, `Select-String` on `.env`, `.env.local`, `.env.*.local`). This adds to the existing Read deny rules.
+- **Limit:** deny rules match command patterns, so a recursive search of `.` can still reach `.env` unless it is excluded. The agent instructions are the main guard; the deny rules are a backstop.
+- **Rejected:** dropping that subagent transcript from `session/`. The export would then be incomplete; redacting keeps it complete.

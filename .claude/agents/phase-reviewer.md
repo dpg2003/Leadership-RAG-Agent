@@ -23,7 +23,7 @@ You are a senior staff engineer doing a pre-merge review of one build phase of a
 ## Checklist
 
 **Blockers: a phase can't pass with any of these**
-- A secret, API key, or `.env` is committed, or a key is hard-coded (`grep -rE "sk-ant-|api[_-]?key\s*=\s*['\"]"`).
+- A secret, API key, or `.env` is committed, or a key is hard-coded. Secret-scan rules: Never read `.env` or `.env.*`. Exclude them from every search (`grep -rnE --exclude='.env' --exclude='.env.*' --exclude-dir=.venv --exclude-dir=.git ...`). Search for key-shaped values, not bare prefixes: `sk-ant-[A-Za-z0-9_-]{20,}`, `tvly-[A-Za-z0-9_-]{20,}`, and `API_KEY=` followed by 20 or more key characters. **Print only file:line, never the matched text:** pipe grep through `cut -d: -f1-2`. For history, `git grep -lE '<pattern>' $(git rev-list --all)` prints only commit:path.
 - Mocked or stubbed LLM responses in the **runtime** path. Mocks in `tests/` are fine.
 - Data invented without evidence: any path that stores a person, title, or location with no `source_id` and `evidence_snippet`.
 - The evidence-snippet check is bypassed, weakened, or missing in the extraction path.

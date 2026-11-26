@@ -24,7 +24,7 @@
     No current CTO in the collected data (vacant or unknown). Jeff Pinner was CTO; an 8-K
     filed 2026-05-08 says he separated on May 7, 2026. The data conflicts with the older
     2026-04-22 proxy.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Pinner", "vacant|unknown|no current|not (currently )?(filled|listed)", "May 7, 2026|2026-05-0[78]|May 8, 2026"]
     exclude: ["Pinner is (the |their |robinhood's )?(current )?(cto|chief technology officer)"]
@@ -38,7 +38,7 @@
   expected: >-
     15 current VPs: 15 confirmed (high/medium confidence: 2 high, 13 medium), 0 low
     confidence. Chris Koegel is flagged as departing Dec 31, 2026 to Klarna.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["\\b15\\b", "15 confirmed", "\\b0 low[- ]confidence", "Klarna"]
     tools: [{tool: count_leaders, args: {seniority: vp}}]
@@ -51,7 +51,7 @@
     No current CMO in the data. The most senior current marketing leader is Deepak Rao,
     SVP and GM, Robinhood Money, Robinhood Gold, Growth, and Marketing. Christina Smedley
     (CMO, last confirmed 2020-08-04) is not current.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Deepak Rao"]
     exclude: ["Smedley is (the |their |robinhood's )?(current )?(cmo|chief marketing officer|head)"]
@@ -64,7 +64,7 @@
   expected: >-
     Vlad Tenev (Chairman & CEO) lives in the Bay Area of California, per the board of
     directors page.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Vlad Tenev", "Bay Area"]
     cites: true
@@ -76,7 +76,7 @@
   expected: >-
     Shiv Verma is the current CFO (high confidence); his location is not in the collected
     data. Jason Warnick is a former CFO.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Shiv Verma", "not found|no location|location (is|isn't|is not) (not )?(in|recorded|listed)"]
     exclude: ["Warnick is (the |their |robinhood's )?(current )?(cfo|chief financial officer)"]
@@ -87,7 +87,7 @@
   kind: not_found
   turns: ["What's the CEO's salary?"]
   expected: Not found in the collected data (no compensation data is collected); sources checked are listed.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["not found", "sources? (were )?checked|checked"]
     exclude: ["\\$\\s?\\d"]
@@ -97,7 +97,7 @@
   kind: not_found
   turns: ["What is Vlad Tenev's email address?"]
   expected: Not found in the collected data (no contact details are collected).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["not found"]
     exclude: ["[a-z0-9._-]+@[a-z0-9-]+\\.[a-z]+"]
@@ -109,7 +109,7 @@
   expected: >-
     No. The 2026-04-22 proxy calls him former CFO; a 2020 company post still lists him as
     CFO, but it is older (sources disagree). Shiv Verma is the current CFO.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Warnick", "not current|no longer|former", "2026-04-22|proxy", "disagree|conflict|older"]
     exclude: ["\\byes\\b,? (he is|jason warnick is) (still )?(the |their )?(cfo|chief financial officer)"]
@@ -121,7 +121,7 @@
   expected: >-
     Yes, still current (VP, Corporate Finance & Investor Relations), but flagged as
     departing Dec 31, 2026 to Klarna as CFO (multiple sources).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["\\b(yes|still (a |listed as )?current|is still)\\b", "Klarna", "Dec(ember)?\\.? 31|2026-12-31"]
     exclude: ["no longer (current|at)|not current|has (already )?left"]
@@ -133,7 +133,7 @@
   expected: >-
     Paul Nichols (high confidence; "led by CTO Paul Nichols", newest 2026-07-08). Fernando
     San Martin's "Co-founder / CTO" (single 2024-02-27 post) is not current.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Paul Nichols"]
     exclude: ["San Martin is (the |their |campfire's )?(current )?(cto|chief technology officer)"]
@@ -146,7 +146,7 @@
   expected: >-
     John Glasgow (CEO & CFO): "CEO & CFO at Campfire" (Campfire blog, 2026-02-24) and
     "CEO, CFO and founder" (CFO Dive, undated). No separate CFO in the data.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Glasgow", "CEO (&|and) CFO|CEO, CFO", "cfodive\\.com", "campfire\\.ai/blog/campfire-and-doss"]
     tools: [{tool: list_leaders, args: {function: finance}}]
@@ -158,7 +158,7 @@
   expected: >-
     2 current VPs: 0 confirmed, 2 low confidence (single undated sources): Alexandra
     Roveda (vice president of enterprise) and Chris McDonough (VP of Sales).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["\\b2\\b|\\btwo\\b", "\\b2 low[- ]confidence|\\bboth\\b.{0,40}\\blow[- ]confidence", "Roveda", "McDonough"]
     tools: [{tool: count_leaders, args: {seniority: vp}}]
@@ -168,7 +168,7 @@
   kind: example
   turns: ["Who heads marketing?"]
   expected: Marcio Arnecke, Chief Marketing Officer (low confidence, single source, 2026-10-16).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Marcio Arnecke", "\\blow[- ]confidence|confidence\\W{1,3}(is |was )?low\\b"]
     cites: true
@@ -178,7 +178,7 @@
   kind: example
   turns: ["Where is their CEO based?"]
   expected: John Glasgow is the CEO; his location is not found in the collected data.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Glasgow", "not found"]
 
@@ -187,7 +187,7 @@
   kind: follow_up
   turns: ["Who's their CTO?", "Where is he based?"]
   expected: Paul Nichols's location is not found in the collected data.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Nichols", "not found"]
 
@@ -196,7 +196,7 @@
   kind: not_found
   turns: ["What's Campfire's annual revenue?"]
   expected: Not found in the collected data (only leadership data is collected).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["not found"]
     exclude: ["\\$\\s?\\d"]
@@ -206,7 +206,7 @@
   kind: not_found
   turns: ["How old is John Glasgow?"]
   expected: Not found in the collected data (ages are not collected).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["not found"]
     exclude: ["\\b(is|aged?) \\d{2}\\b", "\\d{2} years old"]
@@ -218,7 +218,7 @@
   expected: >-
     Head of Technology Partnerships, low confidence: the affiliation rests on a single
     author byline on Campfire's site (campfire.ai/blog/atlar, 2026-05-12).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Technology Partnerships", "\\blow[- ]confidence|confidence\\W{1,3}(is |was )?low\\b","byline|single source"]
 
@@ -229,7 +229,7 @@
   expected: >-
     John Glasgow (CEO & Founder, current) and Fernando San Martin (co-founder, historical:
     no current role in the data).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Glasgow", "San Martin", "not current|historical|no current"]
 
@@ -238,7 +238,7 @@
   kind: company
   turns: ["Who's their CTO?"]
   expected: Asks which company (Robinhood or Campfire) instead of guessing.
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Robinhood", "Campfire", "\\?"]
     exclude: ["Pinner", "Paul Nichols"]
@@ -249,7 +249,7 @@
   kind: company
   turns: ["Who is the CEO of Stripe?"]
   expected: Declines; Stripe was not collected. Lists the collected companies (Robinhood, Campfire).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["not (been )?collected|no (collected )?data|don't have|do not have|isn't (in|one of)|is not (in|one of)|not among", "Robinhood|Campfire"]
     exclude: ["Collison"]
@@ -259,7 +259,7 @@
   kind: company
   turns: ["Who's Stripe's CFO?"]
   expected: Declines; Stripe was not collected (does not answer with Robinhood's CFO as Stripe's).
-  verified_by: null
+  verified_by: daniel
   checks:
     include: ["Stripe", "not (been )?collected|no (collected )?data|don't have|do not have|isn't (in|one of)|is not (in|one of)|not among"]
     exclude: ["Shiv Verma is (stripe's|the cfo of stripe)"]

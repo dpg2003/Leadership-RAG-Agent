@@ -25,7 +25,7 @@ You are a skeptical reviewer at the hiring company, opening this repo for the fi
 - `docs/DECISIONS.md` and `docs/VALIDATION.md` exist, and VALIDATION.md has the human "Verified" column filled in, not blank.
 - The README lists the AI tools used.
 
-**2. Secret scan.** Grep the clone, including git history (`git log -p`), for `sk-ant-`, `tvly-`, `Bearer `, and `api_key=` with a literal value. Any hit is a **critical** finding.
+**2. Secret scan.** Scan the clone, including git history, for committed keys. Never read `.env` or `.env.*`. Exclude them from every search (`grep -rnE --exclude='.env' --exclude='.env.*' --exclude-dir=.venv --exclude-dir=.git ...`). Search for key-shaped values, not bare prefixes: `sk-ant-[A-Za-z0-9_-]{20,}`, `tvly-[A-Za-z0-9_-]{20,}`, and `API_KEY=` followed by 20 or more key characters. **Print only file:line, never the matched text:** pipe grep through `cut -d: -f1-2`. For history, `git grep -lE '<pattern>' $(git rev-list --all)` prints only commit:path. Also check for `Bearer ` and `api_key=` with a literal value. Any key-shaped hit is a **critical** finding; report it by file:line only.
 
 **3. Portability scan** (to catch Windows problems statically, since you can't run Windows):
 - `git ls-files --eol` reports no CRLF files.

@@ -53,13 +53,37 @@ The UI is served on localhost only. Without `ANTHROPIC_API_KEY`, the Leadership 
 
 ## Screenshots
 
-**Chat tab:** a streamed answer with its sources, agent steps and cost.
+**1.** Chat tab: "How many VPs do they have?" gives 15 current, with the confidence split (2 high, 13 medium, 0 low) and a cited source.
 
-![Chat tab](docs/screenshots/chat.png)
+![Chat tab](docs/screenshots/01-chat-vp-answer.png)
 
-**Leadership tab:** grouped tables, filters, review flags, and the not-current toggle.
+**2.** The answer's collapsible Sources and Agent steps.
 
-![Leadership tab](docs/screenshots/leadership.png)
+![Screenshot 2](docs/screenshots/02-chat-sources.png)
+
+**3.** The rest of the VP list, ending with the review flag: Chris Koegel is departing Dec 31, 2026 to Klarna, and is still current.
+
+![Screenshot 3](docs/screenshots/03-chat-vp-answer-cont.png)
+
+**4.** A broader question answered as tables: 7 current C-level leaders, each with confidence and a linked source, and why two are medium confidence.
+
+![Screenshot 4](docs/screenshots/04-chat-c-level-table.png)
+
+**5.** The same answer's VP table (15 current).
+
+![Screenshot 5](docs/screenshots/05-chat-vp-table.png)
+
+**6.** The end of the VP table: the roster's dating caveat and the Koegel flag.
+
+![Screenshot 6](docs/screenshots/06-chat-vp-table-cont.png)
+
+**7.** The Agent steps for that answer: the four typed tool calls the agent made.
+
+![Screenshot 7](docs/screenshots/07-chat-agent-steps.png)
+
+**8.** Leadership tab: 22 current Robinhood leaders (7 high, 15 medium, 0 low confidence), the Koegel review flag, search, function and confidence filters, and tables grouped C-level / VP with title, function, location, confidence, source count and flags.
+
+![Leadership tab](docs/screenshots/08-leadership.png)
 
 ## Architecture
 
@@ -130,6 +154,7 @@ flowchart LR
   - investors.robinhood.com returns Akamai 403 to every automated client, robots.txt included. We don't work around it: no browser User-Agent and no headless browser.
   - We keep the copies of its pages that Tavily returned, at the lowest trust level (`source_type=search`), and mark them for a manual browser check.
   - A search copy's content date is unknown, so it can never outweigh a dated "former" statement (D38).
+- **The UI is bound to localhost** (`server.address = "localhost"`, D43). It isn't reachable from the network, and it sends no usage statistics.
 - **No redistribution (D14):** the raw cache (full copies of third-party pages and filings) is gitignored. Only short evidence snippets are committed.
 - **Personal data:** only professional facts are collected: name, title, work location, a short bio. Questions about salary, email, age and the like are answered "not found" (eval cases rh-salary, rh-email, cf-age).
 
@@ -238,9 +263,26 @@ Each non-trivial decision went into `docs/DECISIONS.md` with the rejected altern
   - My own 18-month rule only lowered confidence, and the 8-of-8 finding replaced it (D32).
   - The source-verifier's flag on a CNBC filming location led to a stricter location rule (D34).
 
-**Planning & setup (summary — not a transcript):**
+### Planning & setup (summary — not a transcript)
 
-> **TODO (Daniel):** paste the "Planning & setup (summary — not a transcript)" block here, verbatim.
+Before building, I used Claude (claude.ai) to plan the approach and draft the Claude Code prompt. Key decisions from that planning:
+
+- **Sourcing:** company site → SEC EDGAR → Tavily search. **LinkedIn excluded** because its ToS prohibits scraping; the coverage trade-off is accepted and documented in `docs/DECISIONS.md`.
+- **Storage:** SQLite, relational, Postgres-compatible schema, with a `facts` table recording every claim alongside its evidence. A vector store was rejected because the target questions are counts and filters.
+- **Scope cut after the hiring team's guidance** ("keep it simple", "validate what the agent produces"): removed Wikidata, an LLM verifier step, a separate title-normalizer LLM step, a raw-SQL chat fallback, and UI-triggered collection. Added an exact-match check that rejects any extraction whose evidence snippet doesn't appear in the source text, plus a human validation checklist.
+- **Validation subagents** (`.claude/agents/`): `phase-reviewer`, `coverage-scout` (blind, with no way to read project files), `source-verifier`, and `fresh-clone-tester`. They're written as read-only reviewers so the build agent's work is checked by agents that didn't produce it. Their reports are inputs to my review, not approvals.
+- The final prompt is saved at `docs/initial-prompt.md`.
+
+**Setup issues I hit with Claude Code, and how they were resolved:**
+
+1. **Cloud session couldn't reach local files.** My first attempt ran in a cloud Claude Code session, which couldn't see the files on my PC. I switched to Claude Code running locally in VS Code, which also keeps API keys on my machine and out of the session export.
+2. **Setup landed in a temporary folder.** The first local run initialized git and committed in a temporary session folder. Only some files were copied to the project folder, without `.git` or `.claude/`. I caught this when the agents didn't appear in VS Code, and redid the setup directly in the project folder.
+3. **The `.env` safety check stopped the commit.** Claude Code was told to verify that `.env` was git-ignored before committing. The check failed because `.gitignore` hadn't been created yet, so it stopped instead of committing, and I approved adding `.gitignore` first.
+4. **Agent read access to `.env` wasn't blocked at first.** Reviewing the commit showed `.claude/settings.json` was missing, so I added a deny rule that stops Claude Code from reading `.env`.
+5. **Plugin agents restricted.** My globally installed plugin agents were also available in the session. I told Claude Code to use only the four project subagents, so that all production code comes from the main session.
+6. **Phase 0 plan review.** I approved the plan with changes. I removed two stored fields that could be derived instead (`source_priority`, `source_count`) and rejected a new `exec` seniority category in favor of mapping President and General Counsel to `c_level`.
+
+**Session history note:** the early setup sessions (items 1–4) weren't preserved; their output is visible in the git history (scaffolding commit `b155ed7`). The full build, from the Phase 0 plan onward, is exported in `session/`.
 
 ## AI tools used
 
