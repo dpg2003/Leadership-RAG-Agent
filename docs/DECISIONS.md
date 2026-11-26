@@ -414,6 +414,7 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
   - rh-followup-cfo now requires that the CFO's location is reported as not found. That is what the follow-up "and the CFO?" asks after a location question.
   - The tightened `low confidence` pattern then rejected a correct "Confidence: Low, because …". It now accepts both word orders. Every change to a pattern is recorded here.
 - **Result:** see `eval/RESULTS.md` for the latest run.
+- **When results are written (after the fresh-clone test):** only a full run rewrites `eval/results.json` and `eval/RESULTS.md` by default. A run limited by `-c` or by company leaves them alone, unless `--write` is given. Without `ANTHROPIC_API_KEY`, the eval stops before running any case and writes nothing. The fresh-clone tester found that a keyless `eval -c no-company` replaced the committed 22/22 results with "0/1 passed".
 - **Dependency:** PyYAML, for the spec's `questions.yaml`.
 
 ## D41. Per-company collection settings in data/companies.yaml (Daniel, after Phase 6)

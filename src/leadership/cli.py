@@ -232,11 +232,19 @@ def eval_cmd(
     ),
     case: list[str] | None = typer.Option(None, "--case", "-c", help="Only these case ids"),  # noqa: B008
     workers: int = typer.Option(4, help="Cases run in parallel"),
-    write: bool = typer.Option(True, help="Write eval/results.json and eval/RESULTS.md"),
+    write: bool | None = typer.Option(
+        None, help="Write eval/results.json and eval/RESULTS.md (default: only for a full run)"
+    ),
 ) -> None:
     """Run eval/questions.yaml through the real chat agent and print pass/fail."""
-    from leadership.config import llm_model
+    from leadership.config import llm_model, require_setting
     from leadership.evaluate import load_cases, run, select, write_results
+
+    try:
+        require_setting("ANTHROPIC_API_KEY")  # fail before running, so no results are written
+    except MissingSettingError as exc:
+        console.print(f"[red]{exc}[/]")
+        raise typer.Exit(2) from exc
 
     try:
         cases = select(load_cases(), domain, case)
@@ -264,6 +272,8 @@ def eval_cmd(
         f"[bold]{passed}/{len(results)} passed[/] · cost ${cost}"
         + (f" · {unverified} expected answers not yet hand-verified" if unverified else "")
     )
+    if write is None:  # a partial run never replaces the committed full results
+        write = not domain and not case
     if write:
         console.print(f"wrote {write_results(results, model).relative_to(REPO_ROOT).as_posix()}")
     if passed < len(results):

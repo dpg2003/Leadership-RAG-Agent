@@ -44,8 +44,8 @@ The UI is served on localhost only. Without `ANTHROPIC_API_KEY`, the Leadership 
 | Command | What it does | Keys needed |
 |---|---|---|
 | `uv run leadership chat robinhood.com` | Terminal chat (`-q "question"` to ask and exit) | `ANTHROPIC_API_KEY` |
-| `uv run leadership eval` | Runs the 22 eval cases through the real agent and writes `eval/RESULTS.md` (about $0.23) | `ANTHROPIC_API_KEY` |
-| `uv run pytest` | 236 offline tests; no keys, no network | none |
+| `uv run leadership eval` | Runs the 22 eval cases through the real agent (about $0.23). A full run rewrites `eval/RESULTS.md`; `-c <case id>` or a company runs a subset without touching it | `ANTHROPIC_API_KEY` |
+| `uv run pytest` | 238 offline tests; no keys, no network | none |
 | `uv run leadership collect robinhood.com` | Re-collects a company: discover, extract, validate, resolve, store | `ANTHROPIC_API_KEY`, `TAVILY_API_KEY`, `SEC_USER_AGENT` |
 | `uv run leadership validation-report` | Regenerates `docs/VALIDATION.md` and keeps the hand-check ticks | none |
 
@@ -162,7 +162,7 @@ Validation was treated as a feature. The full record is in [docs/VALIDATION.md](
 - **Cases:** 10 per company plus 2 with no company selected. They cover the four example questions, "not found" questions (salary, email, revenue, age), follow-ups, a source conflict (Jason Warnick), low confidence, a departure flag (Koegel), asking which company, and declining an uncollected company.
 - **Grading** is deterministic: regexes, required tool calls with arguments, and citations (D40). `verified_by` in `eval/questions.yaml` records who hand-checked each expected answer.
 
-**Unit tests:** 236 offline tests, with no keys and no network. They cover title rules, evidence checks, identity and currency resolution, provenance enforcement, the repository queries, the chat tools and agent loop, the eval grader, the config, and the UI (Streamlit AppTest).
+**Unit tests:** 238 offline tests, with no keys and no network. They cover title rules, evidence checks, identity and currency resolution, provenance enforcement, the repository queries, the chat tools and agent loop, the eval grader, the config, and the UI (Streamlit AppTest).
 
 ## Cost per run
 

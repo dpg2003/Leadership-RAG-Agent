@@ -62,3 +62,38 @@ def test_grader_no_tools():
     case = {"checks": {"include": [r"\?"], "no_tools": True}}
     assert grade(case, _reply("Which company?")) == []
     assert grade(case, _reply("Which company?", [_step("list_leaders")]))
+
+
+def test_keyless_eval_exits_cleanly_and_writes_nothing(monkeypatch, tmp_path):
+    from typer.testing import CliRunner
+
+    from leadership import cli, evaluate
+
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    wrote = []
+    monkeypatch.setattr(evaluate, "write_results", lambda *a, **k: wrote.append(a))
+    result = CliRunner().invoke(cli.app, ["eval", "-c", "no-company"])
+    assert result.exit_code == 2 and "ANTHROPIC_API_KEY" in result.output
+    assert wrote == []
+
+
+def test_partial_eval_run_does_not_replace_committed_results(monkeypatch):
+    from typer.testing import CliRunner
+
+    from leadership import cli, evaluate
+
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key-not-used")
+    ok = Result(id="no-company", company=None, kind="company", passed=True, failures=[],
+                expected="x", verified_by=None, answer="Which company?")  # fmt: skip
+    monkeypatch.setattr(evaluate, "run", lambda cases, **k: [ok])
+    wrote = []
+
+    def fake_write(*args, **kwargs):
+        wrote.append(args)
+        return evaluate.EVAL_DIR / "RESULTS.md"
+
+    monkeypatch.setattr(evaluate, "write_results", fake_write)
+    result = CliRunner().invoke(cli.app, ["eval", "-c", "no-company"])
+    assert result.exit_code == 0 and wrote == []
+    result = CliRunner().invoke(cli.app, ["eval", "-c", "no-company", "--write"])
+    assert result.exit_code == 0 and len(wrote) == 1
