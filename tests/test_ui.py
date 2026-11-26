@@ -136,3 +136,27 @@ def test_api_failures_are_friendly_messages_not_tracebacks(key, monkeypatch, exc
     assert not at.exception
     assert any(text in e.value for e in at.error)
     assert not any("Traceback" in m.value or "boom" in m.value for m in at.markdown)
+
+
+def test_ui_launch_is_headless_everywhere():
+    """No first-run email prompt: the CLI, the VS Code config and config.toml all run headless
+    and send no usage stats."""
+    import json
+    import tomllib
+
+    from leadership.cli import ui_command
+
+    cmd = ui_command(8501)
+    flags = dict(zip(cmd[5::2], cmd[6::2], strict=True))
+    assert cmd[1:4] == ["-m", "streamlit", "run"] and cmd[4].endswith("app.py")
+    assert flags == {"--server.port": "8501", "--server.headless": "true",
+                     "--browser.gatherUsageStats": "false"}  # fmt: skip
+    launch = json.loads((REPO_ROOT / ".vscode" / "launch.json").read_text(encoding="utf-8"))
+    (ui,) = [c for c in launch["configurations"] if c["name"] == "Launch UI"]
+    args = ui["args"]
+    assert args[args.index("--server.headless") + 1] == "true"
+    assert args[args.index("--browser.gatherUsageStats") + 1] == "false"
+    config = tomllib.loads((REPO_ROOT / ".streamlit" / "config.toml").read_text(encoding="utf-8"))
+    assert config["server"]["headless"] is True
+    assert config["server"]["address"] == "localhost"  # this machine only
+    assert config["browser"]["gatherUsageStats"] is False

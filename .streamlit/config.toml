@@ -12,8 +12,12 @@ font = "sans serif"
 showErrorDetails = "none"   # never show raw stack traces in the page
 toolbarMode = "minimal"
 
+[server]
+headless = true             # no first-run email prompt, no auto-opened browser
+address = "localhost"       # serve on this machine only (no Network/External URL)
+
 [browser]
-gatherUsageStats = false
+gatherUsageStats = false    # send no usage statistics
 
 [runner]
 magicEnabled = false

@@ -2,7 +2,7 @@
 
 Work in progress. The full README (quickstart, architecture, validation, limitations) lands in the final phase.
 
-Web UI: `uv run leadership ui` (or the VS Code "Launch UI" config), then open http://localhost:8501. Chat needs `ANTHROPIC_API_KEY` in `.env`; the Leadership tab works without it.
+Web UI: `uv run leadership ui` (or the VS Code "Launch UI" config), then open http://localhost:8501 (no browser opens by itself, and there is no first-run prompt). The UI is served on localhost only. Chat needs `ANTHROPIC_API_KEY` in `.env`; the Leadership tab works without it.
 
 ## Known limitations
 

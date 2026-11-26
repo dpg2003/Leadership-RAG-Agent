@@ -432,7 +432,7 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 
 ## D43. Phase 7: the Streamlit UI
 
-- **Entry points:** `leadership ui` (`--port`, `--headless`) runs `streamlit run src/leadership/ui/app.py` from the repo root, so `.streamlit/config.toml` applies. VS Code has a "Launch UI" config in `.vscode/launch.json`, plus Chat, Collect (which reads settings from `data/companies.yaml`), Eval and Tests.
+- **Entry points:** `leadership ui` (`--port`) runs `streamlit run src/leadership/ui/app.py` from the repo root, so `.streamlit/config.toml` applies. The run is always headless (`--server.headless true`): Streamlit's first-run email prompt would otherwise block the first launch. Headless also means no browser opens, so the CLI prints the URL (http://localhost:8501) to open. The "Launch UI" config passes the same flags, and `config.toml` sets `server.headless = true` and `browser.gatherUsageStats = false` for a direct `streamlit run` too. It also sets `server.address = "localhost"`: the UI is served to this machine only, and Streamlit no longer prints a Network or External URL, which showed the public IP. VS Code has a "Launch UI" config in `.vscode/launch.json`, plus Chat, Collect (which reads settings from `data/companies.yaml`), Eval and Tests.
 - **Presentation only:** the UI holds no data logic.
   - Answers come from the Phase 5 `ChatAgent`.
   - Tables come from `tools.list_leaders(include_former=True)`, and the sidebar from a new read helper, `tools.last_run`.
