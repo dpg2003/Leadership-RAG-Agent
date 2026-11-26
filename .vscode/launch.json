@@ -7,56 +7,86 @@
       "request": "launch",
       "module": "streamlit",
       "args": [
-        "run", "src/leadership/ui/app.py", "--server.port", "8501",
-        "--server.headless", "true", "--browser.gatherUsageStats", "false"
+        "run",
+        "src/leadership/ui/app.py",
+        "--server.port",
+        "8501",
+        "--server.headless",
+        "true",
+        "--browser.gatherUsageStats",
+        "false"
       ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "justMyCode": true
     },
     {
-      "name": "Chat (Robinhood)",
+      "name": "Chat CLI",
       "type": "debugpy",
       "request": "launch",
       "module": "leadership.cli",
-      "args": ["chat", "robinhood.com"],
+      "args": [
+        "chat",
+        "${input:company}"
+      ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal"
     },
     {
-      "name": "Collect Robinhood (settings from data/companies.yaml)",
+      "name": "Collect robinhood.com",
       "type": "debugpy",
       "request": "launch",
       "module": "leadership.cli",
-      "args": ["collect", "robinhood.com"],
+      "args": [
+        "collect",
+        "robinhood.com"
+      ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal"
     },
     {
-      "name": "Collect Campfire (settings from data/companies.yaml)",
+      "name": "Collect meetcampfire.com",
       "type": "debugpy",
       "request": "launch",
       "module": "leadership.cli",
-      "args": ["collect", "meetcampfire.com"],
+      "args": [
+        "collect",
+        "meetcampfire.com"
+      ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal"
     },
     {
-      "name": "Eval (all cases, real API)",
+      "name": "Eval",
       "type": "debugpy",
       "request": "launch",
       "module": "leadership.cli",
-      "args": ["eval"],
+      "args": [
+        "eval"
+      ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal"
     },
     {
-      "name": "Tests",
+      "name": "Debug tests",
       "type": "debugpy",
       "request": "launch",
       "module": "pytest",
       "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "company",
+      "type": "pickString",
+      "description": "Company to chat about",
+      "options": [
+        "robinhood.com",
+        "meetcampfire.com"
+      ],
+      "default": "robinhood.com"
     }
   ]
 }
