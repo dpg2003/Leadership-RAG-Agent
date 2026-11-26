@@ -169,7 +169,7 @@ Validation was treated as a feature. The full record is in [docs/VALIDATION.md](
 | `phase-reviewer` | Read-only review of every phase's diff | 3 BLOCKs (Phases 1, 2, 3), plus PASS WITH FIXES on most rounds; every phase ended on PASS ([below](#how-i-worked-with-claude-code)) |
 | `coverage-scout` | Blind web research on each company's leadership, never shown our data | Robinhood: 2 misses (Erika Dean, Katelyn Perna), fixed by a general crawler-ranking fix (D26); no known misses remain. Campfire: no misses. |
 | `source-verifier` | Checks every stored fact against its cached and live source | Evidence supported: Robinhood 51 of 60 records, Campfire 23 of 24. I hand-checked every disputed record. |
-| `fresh-clone-tester` | Clones the repo, follows this README literally, runs tests, eval and a UI health check | Run before submission (below) |
+| `fresh-clone-tester` | Clones the repo, follows this README literally, runs tests, eval and a UI health check | READY TO SUBMIT on the final commit (offline: 238 tests, UI health check, keyless-eval behaviour, secret scan of the repo, `session/` and git history, deliverables). The real eval ran separately: 22/22. |
 
 **Hand-check (2026-11-23).**
 - I checked every record in `VALIDATION.md` in a browser.
@@ -184,7 +184,7 @@ Validation was treated as a feature. The full record is in [docs/VALIDATION.md](
 - **Two false alarms:** AI-assisted research flagged two people as departed, based on stale search snippets. The live page showed both were current (see [AI tools used](#ai-tools-used)).
 
 **Eval:** 22/22 passed with the real agent, for $0.23 (`eval/RESULTS.md`).
-- **Cases:** 10 per company plus 2 with no company selected. They cover the four example questions, "not found" questions (salary, email, revenue, age), follow-ups, a source conflict (Jason Warnick), low confidence, a departure flag (Koegel), asking which company, and declining an uncollected company.
+- **Cases:** 10 per company (each Robinhood or Campfire chat, including one asking about Stripe from a Robinhood chat) plus 2 with no company selected. They cover the four example questions, "not found" questions (salary, email, revenue, age), follow-ups, a source conflict (Jason Warnick), low confidence, a departure flag (Koegel), asking which company, and declining an uncollected company.
 - **Grading** is deterministic: regexes, required tool calls with arguments, and citations (D40). `verified_by` in `eval/questions.yaml` records who hand-checked each expected answer.
 
 **Unit tests:** 238 offline tests, with no keys and no network. They cover title rules, evidence checks, identity and currency resolution, provenance enforcement, the repository queries, the chat tools and agent loop, the eval grader, the config, and the UI (Streamlit AppTest).
