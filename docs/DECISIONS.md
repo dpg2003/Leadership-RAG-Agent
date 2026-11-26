@@ -429,3 +429,33 @@ All deterministic, in `pipeline/resolve.py`. The LLM only reports what a page sa
 - **Problem:** D29 keeps John Glasgow's "CEO & Founder" as one C-level row, noted "one row for: c_level, founder". `list_leaders(seniority="founder")` matched on the row's seniority only, so it missed him. The agent recovered with a second call.
 - **Rule:** a role row matches the founder filter if its seniority is `founder`, or if its merge note lists `founder` among the merged seniorities. The SQL in `repository.py` (`_SENIORITY_MATCH_SQL`) and the Python filter in the chat tools (`covers_seniority`) apply the same test, so `list_leaders` and `count_leaders` agree. Both read only the comma list right after "one row for: ", up to the next ";". Later note text (for example a D30 merge naming a "Co-Founder & CTO" title) never counts. A parametrized test runs the SQL and the Python on the same notes, and they must agree (added after the phase review).
 - **Effect:** Campfire founders: John Glasgow (current, "CEO & Founder"), plus Fernando San Martin as not current. No stored data changed, and the totals are unchanged at 22 and 8.
+
+## D43. Phase 7: the Streamlit UI
+
+- **Entry points:** `leadership ui` (`--port`, `--headless`) runs `streamlit run src/leadership/ui/app.py` from the repo root, so `.streamlit/config.toml` applies. VS Code has a "Launch UI" config in `.vscode/launch.json`, plus Chat, Collect (which reads settings from `data/companies.yaml`), Eval and Tests.
+- **Presentation only:** the UI holds no data logic.
+  - Answers come from the Phase 5 `ChatAgent`.
+  - Tables come from `tools.list_leaders(include_former=True)`, and the sidebar from a new read helper, `tools.last_run`.
+  - The UI only groups, filters and formats.
+  - `list_leaders`/`get_person` rows now carry `source_count` (the person's distinct sources), which the table shows.
+- **Streaming:** `ChatAgent.ask(question, on_event=...)` uses `messages.stream` and reports `round`, `text` and `tool` events. Without a callback, the CLI and the eval keep the non-streaming call.
+  - Text streamed in a round that ends in tool calls is the model thinking aloud. The UI clears it when the next round starts, so the final answer is the last round's text, as before.
+  - The tool calls appear live in a status box.
+- **Sources per answer:** `Reply.source_details` gives, for each cited URL, the source type, date and up to 3 evidence snippets. These are taken from the tool results the agent already received, with no new lookup.
+- **Sidebar:**
+  - the company selector;
+  - the last run: date, model, people found and current, documents by source type;
+  - the extraction cost. This is the cost with cached responses priced as if called. The committed runs were served from the cache, so their own cost was $0.
+- **Chat tab:**
+  - an empty chat shows the eval's single-question `example` cases as buttons: 4 for Robinhood, 5 for Campfire;
+  - each answer has collapsible "Sources" and "Agent steps" sections, and a small caption with tokens and cost;
+  - "New conversation" resets the agent.
+- **Leadership tab:**
+  - one table per group (C-level, VP, Head, by the person's most senior current role), with search, function and confidence filters. A founder row ranks last for grouping, because D23 makes a founder current only with an operating role, so that operating role decides the group;
+  - review flags shown as warnings above the tables and in a Flags column;
+  - a toggle to show not-current people with their newest past title, last-confirmed date and reason.
+- **History on interruption:** the agent rolls its history back on any `BaseException`, not just `Exception`. Changing a filter mid-answer makes Streamlit raise a rerun inside the stream callback, and this rollback keeps a dangling `tool_use` turn out of the history (added after the phase review).
+- **Errors:** a missing `ANTHROPIC_API_KEY` shows an info box, and chat is disabled while the Leadership tab still works.
+  - API errors (connection, rate limit, HTTP status, a rejected key) and any other error become a plain message.
+  - Details go to the console log only. `client.showErrorDetails = "none"` hides tracebacks in the page.
+- **Tests:** `tests/test_ui.py` drives the page with Streamlit's AppTest over the committed data. Chat answers there come from a test-only stand-in for `ChatAgent.ask`. `test_chat.py` covers the streaming loop with a scripted stream client. The real agent is covered by the eval and a manual streamed run.

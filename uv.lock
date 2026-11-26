@@ -334,6 +334,7 @@ source = { editable = "." }
 dependencies = [
     { name = "anthropic" },
     { name = "httpx" },
+    { name = "pandas" },
     { name = "pydantic" },
     { name = "python-dotenv" },
     { name = "pyyaml" },
@@ -353,12 +354,13 @@ dev = [
 requires-dist = [
     { name = "anthropic", specifier = ">=0.40" },
     { name = "httpx", specifier = ">=0.27" },
+    { name = "pandas", specifier = ">=2.0" },
     { name = "pydantic", specifier = ">=2.7" },
     { name = "python-dotenv", specifier = ">=1.0" },
     { name = "pyyaml", specifier = ">=6.0" },
     { name = "rich", specifier = ">=13.7" },
     { name = "selectolax", specifier = ">=1.0" },
-    { name = "streamlit", specifier = ">=1.38" },
+    { name = "streamlit", specifier = ">=1.67" },
     { name = "typer", specifier = ">=0.12" },
 ]
 

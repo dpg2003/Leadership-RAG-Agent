@@ -89,6 +89,27 @@ def _sources_checked(repo: Repository, domain: str) -> dict[str, Any]:
     }
 
 
+def last_run(company: str) -> dict[str, Any]:
+    """The latest collection run's stats, for the UI sidebar."""
+    domain = _domain(company)
+    with closing(_connect_ro(domain)) as conn:
+        run = Repository(conn).latest_run(domain) or {}
+    stats = run.get("stats", {})
+    by_source = stats.get("discovery", {}).get("documents_by_source", {})
+    return {
+        "collected_at": run.get("finished_at"),
+        "documents_by_source": dict(by_source),  # company_site, search, sec_filing
+        "documents": stats.get("documents"),
+        "people_found": stats.get("people_found"),
+        "people_current": stats.get("people_current"),
+        # What extraction costs (cached responses priced as if called), and what this run
+        # actually spent (0 when every LLM response came from the cache).
+        "extraction_cost_usd": stats.get("cost_usd_including_cached"),
+        "run_cost_usd": stats.get("cost_usd"),
+        "model": stats.get("model"),
+    }
+
+
 def _flags(domain: str, name: str) -> list[dict[str, str]]:
     return [
         {k: f[k] for k in ("flag", "detail", "source_url", "source_date", "decided_by") if k in f}
@@ -219,6 +240,7 @@ def _summary(domain: str, person: dict[str, Any], current_only: bool) -> dict[st
         "name": person["full_name"],
         "confidence": person["confidence"],
         "location": person["location"],
+        "source_count": person["source_count"],
         "roles": [_role(person, r) for r in roles],
         "title_sources": _grouped_titles(person),
         "flags": _flags(domain, person["full_name"]),

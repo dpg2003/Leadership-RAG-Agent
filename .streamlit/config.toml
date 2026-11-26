@@ -1,0 +1,19 @@
+# Theme and behaviour for `leadership ui` (Streamlit reads this from the repo root).
+
+[theme]
+base = "light"
+primaryColor = "#3B5BDB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F6FA"
+textColor = "#1F2933"
+font = "sans serif"
+
+[client]
+showErrorDetails = "none"   # never show raw stack traces in the page
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false
+
+[runner]
+magicEnabled = false

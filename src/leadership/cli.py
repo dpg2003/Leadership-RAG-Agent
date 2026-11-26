@@ -283,5 +283,28 @@ def validation_report(
     console.print(f"wrote {path}")
 
 
+UI_APP = REPO_ROOT / "src" / "leadership" / "ui" / "app.py"
+
+
+@app.command()
+def ui(
+    port: int = typer.Option(8501, help="Port to serve on"),
+    headless: bool = typer.Option(False, help="Don't open a browser"),
+) -> None:
+    """Open the web UI (Streamlit): chat with sources and steps, and the leadership table."""
+    import subprocess
+    import sys
+
+    cmd = [sys.executable, "-m", "streamlit", "run", str(UI_APP),
+           "--server.port", str(port), "--server.headless", str(headless).lower()]  # fmt: skip
+    console.print(f"Leadership UI on http://localhost:{port} (Ctrl+C to stop)")
+    try:
+        # From the repo root, so Streamlit picks up .streamlit/config.toml (theme, no tracebacks).
+        code = subprocess.call(cmd, cwd=REPO_ROOT)
+    except KeyboardInterrupt:
+        code = 0
+    raise typer.Exit(code)
+
+
 if __name__ == "__main__":
     app()

@@ -204,6 +204,69 @@ def test_agent_runs_tools_keeps_history_and_collects_cited_sources():
     assert "Bay Area of California" in kept["content"]
 
 
+class _Stream:
+    def __init__(self, response):
+        self.response = response
+        self.text_stream = [b.text for b in response.content if b.type == "text"]
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def get_final_message(self):
+        return self.response
+
+
+class StreamingClient(ScriptedClient):
+    def stream(self, **kw):
+        self.requests.append(json.loads(json.dumps(kw["messages"], default=vars)))
+        return _Stream(self.responses.pop(0))
+
+
+def test_streamed_answer_reports_rounds_text_tools_and_source_evidence():
+    url = "https://investors.robinhood.com/governance/board-of-directors"
+    client = StreamingClient([
+        _resp("tool_use", _block("text", text="Checking."),
+              _block("tool_use", id="t1", name="get_person",
+                     input={"company": RH, "name": "Vlad Tenev"})),
+        _resp("end_turn", _block("text", text=f"Bay Area of California ({url})")),
+    ])  # fmt: skip
+    events = []
+    agent = ChatAgent(RH, model="test", client=client, today=date(2026, 11, 23))
+    reply = agent.ask("Where is their CEO based?", on_event=lambda k, d: events.append((k, d)))
+    kinds = [k for k, _ in events]
+    assert kinds == ["round", "text", "tool", "round", "text"]
+    assert events[2][1].tool == "get_person" and events[4][1].startswith("Bay Area")
+    assert reply.text == f"Bay Area of California ({url})"  # the last round's text only
+    (detail,) = reply.source_details
+    assert detail["url"] == url and detail["evidence"]
+    assert any("Bay Area" in e for e in detail["evidence"]) and len(detail["evidence"]) <= 3
+
+
+def test_interrupted_stream_rolls_history_back():
+    """A UI rerun (a BaseException) between a tool_use turn and its tool_result must not
+    leave a dangling tool_use in the history."""
+
+    class Rerun(BaseException):
+        pass
+
+    client = StreamingClient([
+        _resp("tool_use", _block("tool_use", id="t1", name="get_person",
+                                 input={"company": RH, "name": "Vlad Tenev"})),
+    ])  # fmt: skip
+    agent = ChatAgent(RH, model="test", client=client)
+
+    def on_event(kind, data):
+        if kind == "tool":
+            raise Rerun
+
+    with pytest.raises(Rerun):
+        agent.ask("Where is their CEO based?", on_event=on_event)
+    assert agent.history == []
+
+
 def test_untrimmed_history_keeps_tool_turns_and_cache_markers():
     client = ScriptedClient([
         _resp("end_turn", _block("text", text="a")), _resp("end_turn", _block("text", text="b")),

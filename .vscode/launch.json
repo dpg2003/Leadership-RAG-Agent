@@ -1,0 +1,59 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch UI",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "streamlit",
+      "args": ["run", "src/leadership/ui/app.py"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Chat (Robinhood)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "leadership.cli",
+      "args": ["chat", "robinhood.com"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Collect Robinhood (settings from data/companies.yaml)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "leadership.cli",
+      "args": ["collect", "robinhood.com"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Collect Campfire (settings from data/companies.yaml)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "leadership.cli",
+      "args": ["collect", "meetcampfire.com"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Eval (all cases, real API)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "leadership.cli",
+      "args": ["eval"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}

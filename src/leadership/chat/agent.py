@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from typing import Any
@@ -38,6 +39,12 @@ _URL = re.compile(r"https?://[^\s\"'<>)\]]+")
 CACHE_WRITE = 1.25
 CACHE_READ = {"claude-sonnet-5-5": 0.05, "claude-opus-5-5": 0.05}
 _EPHEMERAL = {"type": "ephemeral"}
+MAX_SNIPPETS = 3
+
+# ask(on_event=...) callback: ("round", n) when a model call starts, ("text", delta) for
+# streamed answer text, ("tool", Step) after each tool call. Text streamed in a round that
+# ends in tool calls is the model thinking aloud; the final answer is the last round's text.
+OnEvent = Callable[[str, Any], None]
 
 
 @dataclass
@@ -53,6 +60,8 @@ class Reply:
     text: str
     steps: list[Step] = field(default_factory=list)
     sources: list[str] = field(default_factory=list)  # tool-result URLs cited in the answer
+    # For each cited URL: source type, date and the stored evidence snippets (from tool results)
+    source_details: list[dict[str, Any]] = field(default_factory=list)
     input_tokens: int = 0  # uncached input
     cache_write_tokens: int = 0
     cache_read_tokens: int = 0
@@ -115,14 +124,26 @@ class ChatAgent:
             req["system"] = self.system
         return req
 
-    def ask(self, question: str) -> Reply:
+    def _call(self, on_event: OnEvent | None) -> Any:
+        client = self._client_lazy()
+        if on_event is None:
+            return client.messages.create(**self._request())
+        with client.messages.stream(**self._request()) as stream:
+            for text in stream.text_stream:
+                on_event("text", text)
+            return stream.get_final_message()
+
+    def ask(self, question: str, on_event: OnEvent | None = None) -> Reply:
+        """Answer one question. With `on_event`, the answer is streamed (see OnEvent)."""
         start = len(self.history)
         self.history.append({"role": "user", "content": question})
         reply = Reply("")
         tool_urls: set[str] = set()
         try:
-            for _ in range(MAX_TOOL_ROUNDS + 1):
-                response = self._client_lazy().messages.create(**self._request())
+            for round_no in range(MAX_TOOL_ROUNDS + 1):
+                if on_event:
+                    on_event("round", round_no)
+                response = self._call(on_event)
                 u = response.usage
                 reply.input_tokens += u.input_tokens
                 reply.cache_write_tokens += getattr(u, "cache_creation_input_tokens", 0) or 0
@@ -137,6 +158,8 @@ class ChatAgent:
                         continue
                     output, is_error = run_tool(block.name, dict(block.input))
                     reply.steps.append(Step(block.name, dict(block.input), is_error, output))
+                    if on_event:
+                        on_event("tool", reply.steps[-1])
                     tool_urls.update(_URL.findall(output))
                     results.append(
                         {
@@ -152,8 +175,10 @@ class ChatAgent:
         except anthropic.AuthenticationError as exc:
             del self.history[start:]
             raise RuntimeError("ANTHROPIC_API_KEY was rejected (HTTP 401)") from exc
-        except Exception:
-            del self.history[start:]  # keep the history valid for the next question
+        except BaseException:
+            # Also on BaseException: a UI rerun (Streamlit's RerunException) can interrupt a
+            # streamed answer between a tool_use turn and its tool_result; keep history valid.
+            del self.history[start:]
             raise
 
         text = "".join(b.text for b in response.content if b.type == "text").strip()
@@ -164,6 +189,7 @@ class ChatAgent:
         reply.text = text
         cited = {u.rstrip(".,;") for u in _URL.findall(text)}
         reply.sources = sorted(u for u in tool_urls if u in cited)
+        reply.source_details = source_details(reply.steps, reply.sources)
         if self.trim_history:
             self._trim(start, reply)
         reply.cost_usd = self._cost(reply)
@@ -199,6 +225,38 @@ class ChatAgent:
             + reply.output_tokens * price[1]
         ) / 1e6
         return round(usd, 4)
+
+
+def source_details(steps: list[Step], urls: list[str]) -> list[dict[str, Any]]:
+    """For each URL: the source type, date and evidence snippets that the tool results
+    returned with it (nothing is looked up again)."""
+    found: dict[str, dict[str, Any]] = {u: {"url": u, "evidence": []} for u in urls}
+
+    def walk(node: Any) -> None:
+        if isinstance(node, dict):
+            d = found.get(node.get("url")) if isinstance(node.get("url"), str) else None
+            if d is not None:
+                for key in ("source_type", "published", "dated_by"):
+                    if node.get(key) and key not in d:
+                        d[key] = node[key]
+                ev = node.get("evidence")
+                if isinstance(ev, str) and ev not in d["evidence"]:
+                    d["evidence"].append(ev)
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+
+    for s in steps:
+        if not s.is_error:
+            try:
+                walk(json.loads(s.output))
+            except ValueError:
+                continue
+    for d in found.values():
+        d["evidence"] = d["evidence"][:MAX_SNIPPETS]
+    return [found[u] for u in urls]
 
 
 def steps_as_json(steps: list[Step]) -> str:
