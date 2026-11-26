@@ -107,6 +107,14 @@ flowchart LR
     A --> CLI["CLI<br/>chat, eval"]
 ```
 
+### Why this is RAG (without embeddings)
+
+- **Retrieval:** the agent's typed tool calls (`list_leaders`, `count_leaders`, `get_person`) over SQLite.
+- **Augmentation:** the tool results are placed in the model's context.
+- **Generation:** an answer grounded only in those results, with citations to the stored sources.
+- This is agentic (tool-based) RAG. A vector store was rejected because the target questions are counts, filters and lookups. SQL answers those exactly, and similarity search can't count reliably (D2).
+- If free-text questions about bios matter later, full-text or vector search over the bio facts could be added alongside the tools.
+
 - **Sources (`src/leadership/sources/`):**
   - The company site is crawled from its sitemap. URLs are ranked by people words in the slug and link text, and the top N are fetched (D26).
   - SEC EDGAR provides the latest proxy (the authoritative officer list), the 10-K and 8-K Item 5.02 departures (D11, D21).
